@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.telerik.qsf.common.ExamplesActivity" >
+    
+    <item android:id="@+id/action_view_info"
+        android:title="@string/action_view_info"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>

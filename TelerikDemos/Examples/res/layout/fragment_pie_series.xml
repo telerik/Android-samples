@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParent.ExampleFragment">
+
+    <TextView
+        style="@style/WrapContent.ChartTitle"
+        android:text="@string/pie_series_title" />
+
+    <!-- TODO: Update blank fragment layout -->
+    <com.telerik.widget.chart.visualization.pieChart.RadPieChartView
+        android:id="@+id/chart"
+        style="@style/MatchParent.Chart"
+        android:text="@string/hello_blank_fragment" />
+
+</LinearLayout>

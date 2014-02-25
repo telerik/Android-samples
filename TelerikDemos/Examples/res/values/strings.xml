@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Telerik Examples</string>
+    <string name="version_name">1.0.0</string>
+    <string name="drawer_sectionHome">Home</string>
+    <string name="drawer_sectionFavorites">Favorites</string>
+    <string name="drawer_sectionAbout">About</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_view_info">View info</string>
+    <string name="actionbar_section_all">All</string>
+    <string name="actionbar_section_highlighted">Highlighted</string>
+    <string name="search_title">Search</string>
+    <string name="title_activity_chart">ChartActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_animations_examples">AnimationsExamples</string>
+    <string name="title_activity_auto_complete_examples">AutoCompleteExamples</string>
+    <string name="title_activity_default_examples">Fallback Page</string>
+    <string name="title_activity_calendar_examples">CalendarExamples</string>
+    <string name="title_activity_bar">Bar Series</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="line_examples_title">Monthly sales revenue, (2014)</string>
+    <string name="pie_series_title">International sales by country, 2014</string>
+    <string name="area_chart_title">Monthly sales revenue, 2014</string>
+    <string name="bar_series_title">Performance summary, 2014</string>
+    <string name="title_activity_example_info">ExampleInfoActivity</string>
+    <string name="actionAbout">About</string>
+    <string name="about_body">Telerik Examples show scenarios developers can achieve using Telerik UI for Android - a fully customizable native development toolset for building enterprise and consumer apps.</string>
+    <string name="current_q">Q1 2014</string>
+    <string name="about_version">Version</string>
+
+</resources>

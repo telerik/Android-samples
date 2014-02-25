@@ -1,0 +1,20 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#ffffffff" />
+        </shape>
+    </item>
+    <item android:bottom="4dp">
+        <shape
+            android:shape="rectangle" >
+            <solid
+                android:color="#ff3ae2c6" />
+        </shape>
+    </item>
+    
+    <item>
+        <bitmap android:src="@drawable/snow"
+            android:gravity="center"/>
+    </item>
+</layer-list>
+

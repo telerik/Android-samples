@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_repeater">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/telerik_logo_about"
+            android:scaleType="center"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp" />
+
+
+        <TextView
+            android:id="@+id/version"
+            android:layout_below="@id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_version"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
+            android:textColor="@color/aboutPageVersionTextColor" />
+
+        <TextView
+            android:layout_below="@id/logo"
+            android:layout_toRightOf="@id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current_q"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
+            android:textColor="@color/aboutPageVersionNumberColor" />
+
+        <TextView
+            android:id="@+id/descriptionTextView"
+            android:layout_below="@id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            android:layout_marginRight="15dp"
+            android:text="@string/about_body" />
+    </RelativeLayout>
+</FrameLayout>

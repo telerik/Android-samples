@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/controlImage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/screen_area_chart"
+                    android:layout_margin="1dp" />
+            </FrameLayout>
+
+
+            <ImageView
+                android:id="@+id/badgeImage"
+                android:layout_width="20dp"
+                android:visibility="invisible"
+                android:layout_gravity="bottom|right"
+                android:layout_height="20dp"
+                android:src="@drawable/star"
+                android:layout_margin="2dp" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/controlName"
+                android:textSize="22dp"
+                android:text="Line series"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/controlDescription"
+                android:textSize="14dp"
+                android:text="Description in few words"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/exampleGroupDescriptionColor" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/listItemBottomBorder" />
+</LinearLayout>

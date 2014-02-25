@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="drawerDivider">#FFD2D2D2</color>
+    <color name="controlBackground">#FF00BBBC</color>
+    <color name="listItemBottomBorder">#FFBCBCBC</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="axesPriceColor">#A666CE</color>
+    <color name="axesVolumeColor">#4FB6E7</color>
+    <color name="black">#000000</color>
+    <color name="exampleInfoBackground">#FFFBFBFB</color>
+    <color name="aboutPageVersionTextColor">#FF595959</color>
+    <color name="aboutPageVersionNumberColor">#FF2CB145</color>
+    <color name="exampleGroupDescriptionColor">#FF454545</color>
+    <color name="primary_title_background">#00BBBC</color>
+    <color name="secondary_title_background">#2DB245</color>
+</resources>
