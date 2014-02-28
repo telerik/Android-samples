@@ -3,7 +3,7 @@
 This repository contains an up-to-date version of the [Telerik UI for Android](http://www.telerik.com/android-ui) examples app. 
 The app demonstrates various usage of Telerik UI components for Android.
 
-![TelerikUIAndroid](http://www.telerik.com/sfimages/default-source/productsimages/Android-UI/ProductFeatures/fillgaps.jpg?sfvrsn=0 "")
+![TelerikUIAndroid](http://content.screencast.com/users/kiril/folders/Jing/media/516abf3e-d987-4372-b664-7a8da081be12/2014-02-28_1609.png "")
 
 The current version of the app focuses on the [Charting framework](http://www.telerik.com/android-ui/chart) and its usage in different scenarios. Some of the features supported by the Charting framework are:
 
