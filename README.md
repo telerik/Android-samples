@@ -8,9 +8,13 @@ The app demonstrates various usage of Telerik UI components for Android.
 The current version of the app focuses on the [Charting framework](http://www.telerik.com/android-ui/chart) and its usage in different scenarios. Before exploring the features of the Charting framework, here are some links you might find useful:
 
 [Documentation](http://docs.telerik.com/devtools/android)
+
 [Feedback Portal](http://feedback.telerik.com/Project/158)
+
 [Telerik Android Team Blog](http://blogs.telerik.com/androidteam/)
+
 [Forums](http://www.telerik.com/forums/android/)
+
 
 Some of the features supported by the Charting framework are:
 
