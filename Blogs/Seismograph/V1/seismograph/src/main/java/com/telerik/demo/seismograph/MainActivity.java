@@ -10,15 +10,12 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
-import com.telerik.common.Function;
-import com.telerik.widget.chart.engine.axes.MajorTickModel;
 import com.telerik.widget.chart.engine.databinding.DataPointBinding;
 import com.telerik.widget.chart.visualization.cartesianChart.CartesianChartGrid;
 import com.telerik.widget.chart.visualization.cartesianChart.GridLineRenderMode;
@@ -40,10 +37,10 @@ public class MainActivity extends Activity implements SensorEventListener {
     private static final int Y_AXIS_INDEX = 1;
     private static final int Z_AXIS_INDEX = 2;
 
-    private int defaultCoolDown; // Get from resources.
+    private int defaultCoolDown;
     private int coolDown;
 
-    private int bufferSize; // Get from resources.
+    private int bufferSize;
     private int currentAxisIndex = X_AXIS_INDEX;
 
     private int framesCount = 0;
@@ -55,19 +52,20 @@ public class MainActivity extends Activity implements SensorEventListener {
     private ViewGroup chartContainer;
 
     private RadCartesianChartView chart;
-    private Needle needle;
 
     private Queue<SeismicDataPoint> seismicActivityBuffer;
     private List<SeismicDataPoint> allSeismicActivity;
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (this.stopped || this.coolDown-- > 0)
+        if (this.stopped || this.coolDown-- > 0) {
             return;
+        }
 
         this.coolDown = this.defaultCoolDown;
-        if (this.seismicActivityBuffer.size() > this.bufferSize)
+        if (this.seismicActivityBuffer.size() > this.bufferSize) {
             this.seismicActivityBuffer.remove();
+        }
 
         SeismicDataPoint point = new SeismicDataPoint(this.framesCount++, event.values[this.currentAxisIndex]);
 
@@ -77,8 +75,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         this.chartContainer.removeAllViews();
         this.chart = createChart(seismicActivityBuffer);
         this.chartContainer.addView(chart);
-
-        this.needle.updateNeedle(point.y);
     }
 
     @Override
@@ -114,8 +110,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         }
 
         this.chartContainer = (ViewGroup) findViewById(R.id.chart_container);
-        this.needle = new Needle(this, chartContainer.getPaddingRight());
-        ((ViewGroup) findViewById(R.id.main_container)).addView(this.needle);
 
         this.chart = createChart(this.seismicActivityBuffer);
         this.chartContainer.addView(this.chart);
@@ -218,22 +212,13 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         chart.setHorizontalAxis(hAxis);
         chart.getSeries().add(series);
-        //chart.getBehaviors().add(panZoom);
         chart.setPalette(ChartPalettes.dark());
         chart.setEmptyContent("");
 
         // Customize chart elements after adding them to the chart to override the application of the palette.
         hAxis.setTickColor(Color.TRANSPARENT);
-
         grid.setMajorYLinesRenderMode(GridLineRenderMode.INNER_AND_LAST);
-        grid.setMajorYLineDashArray(
-                new float[]{
-                        this.needle.typedValueToPixels(TypedValue.COMPLEX_UNIT_DIP, 10),
-                        this.needle.typedValueToPixels(TypedValue.COMPLEX_UNIT_DIP, 4)
-                }
-        );
         vAxis.setLineColor(Color.TRANSPARENT);
-        //hAxis.setLineColor(Color.TRANSPARENT);
         return chart;
     }
 
