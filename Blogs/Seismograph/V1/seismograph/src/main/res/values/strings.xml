@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Seismograph</string>
+    <string name="hello_world">Seismograph</string>
+    <string name="action_settings">Settings</string>
+    <string name="default_cool_down">5</string>
+    <string name="buffer_size">100</string>
+
+</resources>
