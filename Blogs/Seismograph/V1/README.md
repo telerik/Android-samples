@@ -1,8 +1,5 @@
 #How to Build an Android App That Displays Live Accelerometer Data Using a Line Chart Control
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/VCvmPO-li5k" frameborder="0" allowfullscreen></iframe>
+<a href="http://www.youtube.com/embed/VCvmPO-li5k" target="_blank"><img src="http://content.screencast.com/users/kiril/folders/Default/media/dc3b5494-6252-4332-b0c8-afad94845ed0/seismographV1_screen.png" alt="How to Build an Android App That Displays Live Accelerometer Data Using a Line Chart Control" style="width: 560px;height: 315px"/></a>
 
 ###More information can be found here: http://blogs.telerik.com/androidteam/posts/14-04-01/how-to-build-an-android-app-that-displays-live-accelerometer-data-using-a-line-chart-control
-
-
-
