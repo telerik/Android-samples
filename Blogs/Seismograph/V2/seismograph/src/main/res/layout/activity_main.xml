@@ -18,13 +18,13 @@
         <Button
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:text="Start"
+            android:text="@string/action_start"
             android:id="@+id/start_btn" />
 
         <Button
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:text="Stop"
+            android:text="@string/action_stop"
             android:id="@+id/stop_btn"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp" />
@@ -45,14 +45,14 @@
                 android:id="@+id/axis_x"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="X-axis"
+                android:text="@string/action_xaxis"
                 android:checked="true" />
 
             <RadioButton
                 android:id="@+id/axis_y"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Y-axis"
+                android:text="@string/action_yaxis"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp" />
 
@@ -60,7 +60,7 @@
                 android:id="@+id/axis_z"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Z-axis" />
+                android:text="@string/action_zaxis" />
         </RadioGroup>
 
     </LinearLayout>
@@ -71,7 +71,6 @@
         android:layout_height="match_parent"
         android:id="@+id/chart_container"
         android:layout_toRightOf="@id/side_menu"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="5dp" />
+         />
 
 </RelativeLayout>

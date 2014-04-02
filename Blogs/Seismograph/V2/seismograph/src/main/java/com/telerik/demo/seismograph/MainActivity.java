@@ -10,6 +10,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -52,6 +53,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     private ViewGroup chartContainer;
 
     private RadCartesianChartView chart;
+    private Needle needle;
 
     private Queue<SeismicDataPoint> seismicActivityBuffer;
     private List<SeismicDataPoint> allSeismicActivity;
@@ -75,6 +77,8 @@ public class MainActivity extends Activity implements SensorEventListener {
         this.chartContainer.removeAllViews();
         this.chart = createChart(seismicActivityBuffer);
         this.chartContainer.addView(chart);
+
+        this.needle.updateNeedle(point.y);
     }
 
     @Override
@@ -110,6 +114,8 @@ public class MainActivity extends Activity implements SensorEventListener {
         }
 
         this.chartContainer = (ViewGroup) findViewById(R.id.chart_container);
+        this.needle = new Needle(this, chartContainer.getPaddingRight());
+        ((ViewGroup) findViewById(R.id.main_container)).addView(this.needle);
 
         this.chart = createChart(this.seismicActivityBuffer);
         this.chartContainer.addView(this.chart);
@@ -218,6 +224,12 @@ public class MainActivity extends Activity implements SensorEventListener {
         // Customize chart elements after adding them to the chart to override the application of the palette.
         hAxis.setTickColor(Color.TRANSPARENT);
         grid.setMajorYLinesRenderMode(GridLineRenderMode.INNER_AND_LAST);
+        grid.setMajorYLineDashArray(
+                new float[]{
+                        this.needle.typedValueToPixels(TypedValue.COMPLEX_UNIT_DIP, 10),
+                        this.needle.typedValueToPixels(TypedValue.COMPLEX_UNIT_DIP, 4)
+                }
+        );
         vAxis.setLineColor(Color.TRANSPARENT);
         return chart;
     }
