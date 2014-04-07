@@ -38,7 +38,7 @@ public class Needle extends View {
         this.halfNeedleHeight = ((int) dpToPx(NEEDLE_HEIGHT)) >> 1;
     }
 
-    public void updateNeedle(float y) {
+    public void updatePosition(float y) {
         invalidate();
         this.currentY = y;
     }

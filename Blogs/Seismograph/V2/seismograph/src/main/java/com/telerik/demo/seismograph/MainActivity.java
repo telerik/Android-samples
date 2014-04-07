@@ -78,7 +78,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         this.chart = createChart(seismicActivityBuffer);
         this.chartContainer.addView(chart);
 
-        this.needle.updateNeedle(point.y);
+        this.needle.updatePosition(point.y);
     }
 
     @Override
