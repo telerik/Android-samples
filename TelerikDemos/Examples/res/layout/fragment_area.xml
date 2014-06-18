@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.telerik.qsf.examples.chart.series.area.AreaFragment"
+    tools:context="com.telerik.examples.examples.chart.series.area.AreaFragment"
     style="@style/MatchParent.ExampleFragment">
 
     <TextView

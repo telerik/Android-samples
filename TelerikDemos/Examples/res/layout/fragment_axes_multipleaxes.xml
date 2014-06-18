@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
     android:orientation="vertical"
-    style="@style/MatchParent">
+    style="@style/MatchParent"
+    android:layout_margin="16dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:orientation="horizontal"
@@ -48,6 +46,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
+
         <CheckBox
             style="@style/AxesCheckbox"
             android:checked="true"
@@ -55,7 +54,7 @@
             android:text="PRICE"
             android:layout_marginRight="@dimen/onedp"
             android:paddingLeft="8dp"
-            android:background="@drawable/axes_price"/>
+            android:background="@drawable/axes_price" />
 
         <CheckBox
             android:id="@+id/axesVolume"
@@ -65,7 +64,7 @@
             android:layout_marginLeft="@dimen/onedp"
             android:paddingRight="8dp"
             android:gravity="right"
-            android:background="@drawable/axes_volume"/>
+            android:background="@drawable/axes_volume" />
     </LinearLayout>
 
     <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView

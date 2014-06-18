@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap
+            android:gravity="left|center_vertical"
+            android:src="@drawable/navigation_drawer_hamburger" />
+    </item>
+</layer-list>

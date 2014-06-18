@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/panZoomTitle"
+        android:text="Dow Jones industrial average"
+        android:gravity="left|center_vertical"
+        android:textSize="20sp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/checkBoxesPanel">
+
+        <CheckBox
+            android:text="OPEN"
+            android:id="@+id/open"
+            android:background="@drawable/pan_zoom_checkbox_open"
+            style="@style/PanZoomCheckboxPortrait"
+            android:checked="false" />
+
+        <CheckBox
+            android:text="HIGH"
+            android:id="@+id/high"
+            android:background="@drawable/pan_zoom_checkbox_high"
+            style="@style/PanZoomCheckboxPortrait" />
+
+        <CheckBox
+            android:text="LOW"
+            android:id="@+id/low"
+            android:background="@drawable/pan_zoom_checkbox_low"
+            style="@style/PanZoomCheckboxPortrait" />
+
+        <CheckBox
+            android:text="CLOSE"
+            android:id="@+id/close"
+            android:background="@drawable/pan_zoom_checkbox_close"
+            style="@style/PanZoomCheckboxPortrait"
+            android:layout_marginRight="0dp" />
+    </LinearLayout>
+
+    <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
+        android:id="@+id/panZoomChart"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+</LinearLayout>

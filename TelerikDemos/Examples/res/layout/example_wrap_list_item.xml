@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.telerik.examples.primitives.SquareLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/controlImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:background="@color/controlBackground"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_gravity="bottom|left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#C8ffffff">
+
+            <TextView
+                android:id="@+id/controlName"
+                android:textSize="@dimen/example_list_wrap_item_title_fontsize"
+                android:text="Line series"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/example_list_wrap_item_text_margin_top"
+                android:layout_marginLeft="@dimen/example_list_wrap_item_text_margin_left"
+                android:layout_marginRight="@dimen/example_list_wrap_item_text_margin_right"
+                android:layout_marginBottom="@dimen/example_list_wrap_item_text_margin_bottom"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black" />
+            <ImageButton
+                android:id="@+id/showItemMenu"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="-2dp"
+                android:padding="16dp"
+                android:background="@drawable/ic_list_item_overflow"
+                android:layout_gravity="right|center"/>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/badgeImage"
+            android:scaleType="fitCenter"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="31dp"
+            android:layout_gravity="bottom|right" />
+
+        <ImageView
+            android:id="@+id/badgeOverlay"
+            android:scaleType="fitCenter"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="10dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="31dp"
+            android:layout_gravity="bottom|right" />
+
+        <View
+            android:clickable="false"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/example_item_base_line_thickness"
+            android:layout_gravity="bottom"
+            android:background="@color/listItemBottomBorder" />
+    </FrameLayout>
+</com.telerik.examples.primitives.SquareLinearLayout>

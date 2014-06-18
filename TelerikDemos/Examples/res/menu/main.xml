@@ -1,7 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.telerik.qsf.common.MainActivity">
+    tools:context="com.telerik.examples.MainActivity"
+    tools:ignore="AppCompatResource">
     <item
         android:id="@+id/action_about"
-        android:title="@string/actionAbout" />
+        android:title="@string/aboutString" />
+    <item
+        android:id="@+id/action_toggle_list_view"
+        android:showAsAction="always"
+        android:icon="@drawable/example_group_toggle_layout"
+        android:title="Toggle List Layout" />
 </menu>

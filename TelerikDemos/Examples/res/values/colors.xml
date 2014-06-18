@@ -3,6 +3,7 @@
     <color name="drawerDivider">#FFD2D2D2</color>
     <color name="controlBackground">#FF00BBBC</color>
     <color name="listItemBottomBorder">#FFBCBCBC</color>
+
     <color name="transparent">#00000000</color>
     <color name="white">#ffffffff</color>
     <color name="axesPriceColor">#A666CE</color>
@@ -12,6 +13,30 @@
     <color name="aboutPageVersionTextColor">#FF595959</color>
     <color name="aboutPageVersionNumberColor">#FF2CB145</color>
     <color name="exampleGroupDescriptionColor">#FF454545</color>
+    <color name="panZoomHighColor">#A666CE</color>
+    <color name="panZoomLowColor">#9DCC00</color>
+    <color name="panZoomCloseColor">#F9BA1A</color>
     <color name="primary_title_background">#00BBBC</color>
     <color name="secondary_title_background">#2DB245</color>
+
+    <color name="calendar_range_price_color">#511749</color>
+    <color name="calendar_event_text_color">#737373</color>
+    <color name="calendar_background_range_example">#F2F2F2</color>
+    <color name="calendar_example_background">#FFDDDDDD</color>
+    <color name="list_item_text_color">#FF454545</color>
+
+    <!--Gradient colors for the ExampleActivity background. Resolved automatically by applying the Fragment short name of each example group to the _example_menu_color# string.-->
+
+    <!--Chart-->
+    <color name="chart_example_menu_color1">#ff001337</color>
+    <color name="chart_example_menu_color2">#ff004173</color>
+    <color name="chart_example_menu_color3">#ff00a5c2</color>
+    <color name="chart_example_menu_color4">#ff018e86</color>
+    <!--Calendar-->
+    <color name="calendar_example_menu_color1">#ff3f1e55</color>
+    <color name="calendar_example_menu_color2">#ffae4887</color>
+    <color name="calendar_example_menu_color3">#ffff818f</color>
+    <color name="calendar_example_menu_color4">#fff0514e</color>
+    <color name="legend_bg">#bbffffff</color>
+    <!--Gradient colors for the ExampleActivity background. Resolved automatically by applying the Fragment short name of each example group to the _example_menu_color# string.-->
 </resources>

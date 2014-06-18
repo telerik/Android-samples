@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="example_list_fragment_columns">1</integer>
+    <integer name="example_list_fragment_columns_wrap">3</integer>
+    <dimen name="example_list_spacing">14dp</dimen>
+    <dimen name="example_group_list_item_size">132dp</dimen>
+    <dimen name="example_group_list_item_badge_left_margin">116dp</dimen>
+    <dimen name="example_list_item_title_fontsize">25sp</dimen>
+    <dimen name="example_list_item_fontsize">16sp</dimen>
+    <dimen name="example_list_wrap_item_title_fontsize">19sp</dimen>
+
+    <dimen name="example_list_item_text_margin_top">10dp</dimen>
+    <dimen name="example_list_item_text_margin_bottom">16dp</dimen>
+    <dimen name="tips_title_font_size">30sp</dimen>
+    <dimen name="tips_font_size">18sp</dimen>
+    <bool name="example_annotations_show_menu_landscape">true</bool>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list>
+    <item>
+        <rotate xmlns:android="http://schemas.android.com/apk/res/android"
+            android:fromDegrees="180">
+            <bitmap android:src="@drawable/btn_show_bg" />
+        </rotate>
+    </item>
+</layer-list>

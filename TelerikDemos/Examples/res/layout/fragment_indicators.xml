@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/isn_bold"
+            android:textColor="#33b5e5"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/spinners_title"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/range_selection_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/range_select_btn_text"
+            android:background="@drawable/indicators_btn" />
+
+        <Button
+            android:id="@+id/technicials_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TECHNICIALS"
+            android:background="@drawable/indicators_btn"
+            android:layout_marginLeft="5dp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".70"
+        android:layout_marginTop="10dp">
+
+        <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
+            android:id="@+id/chart_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.telerik.widget.primitives.legend.RadLegendView
+            android:id="@+id/main_chart_legend"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@color/legend_bg" />
+    </FrameLayout>
+
+    <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
+        android:id="@+id/chart_volume"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".15" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".15">
+
+        <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
+            android:id="@+id/chart_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.telerik.widget.primitives.legend.RadLegendView
+            android:id="@+id/indicators_chart_legend"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@color/legend_bg" />
+    </FrameLayout>
+
+</LinearLayout>

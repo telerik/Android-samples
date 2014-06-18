@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParent.ExampleFragment">
+
+    <TextView
+        style="@style/WrapContent.ChartTitle"
+        android:text="Dow Jones financial data" />
+
+    <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
+        android:id="@+id/chart"
+        style="@style/MatchParent.Chart" />
+
+</LinearLayout>

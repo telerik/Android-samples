@@ -5,7 +5,7 @@
 
     <TextView
         style="@style/WrapContent.ChartTitle"
-        android:text="@string/bar_series_title"/>
+        android:text="@string/bar_series_title" />
 
     <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
         android:id="@+id/chart"

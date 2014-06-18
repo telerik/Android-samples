@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="example_list_fragment_columns">2</integer>
+    <integer name="example_list_fragment_columns_wrap">4</integer>
+    <dimen name="example_list_right_margin">130dp</dimen>
+    <dimen name="example_list_left_margin">130dp</dimen>
+    <dimen name="example_group_list_item_size">132dp</dimen>
+    <dimen name="example_group_list_item_badge_left_margin">114dp</dimen>
+</resources>

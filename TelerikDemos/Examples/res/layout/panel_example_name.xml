@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/panelExampleName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#7F454545">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="top"
+            android:background="#7F454545" />
+
+        <TextView
+            android:id="@+id/panelExampleNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Example name"
+            android:textColor="?android:attr/textColorPrimaryInverseNoDisable"
+            android:textSize="20sp" />
+
+    </FrameLayout>
+
+    <ToggleButton
+        android:id="@+id/btnShowMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:background="@drawable/example_show_menu"
+        android:textOff=""
+        android:textOn="" />
+
+</FrameLayout>

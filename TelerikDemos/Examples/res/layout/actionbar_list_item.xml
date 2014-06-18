@@ -7,5 +7,7 @@
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
-    android:text="Highlighted" android:textColor="@color/white" android:paddingLeft="10dp"
-    />
+    android:text="Highlighted"
+    android:textColor="@color/black"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" />

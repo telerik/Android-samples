@@ -4,14 +4,30 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.telerik.qsf.common.MainActivity">
+    tools:context="com.telerik.examples.MainActivity">
     <!-- As the main content view, the view below consumes the entire
              space available using match_parent in both dimensions. -->
-    <FrameLayout
-        android:id="@+id/container"
+    <RelativeLayout
+        android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:background="@drawable/background_repeater">
+
+        <com.telerik.examples.primitives.TipsPresenter
+            android:id="@+id/tipsPresenter"
+            android:layout_marginLeft="@dimen/example_list_left_margin"
+            android:layout_marginRight="@dimen/example_list_right_margin"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_below="@+id/tipsPresenter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 
     <!-- android:layout_gravity="start" tells DrawerLayout to treat
          this as a sliding drawer on the left side for left-to-right
@@ -22,9 +38,8 @@
          the container. -->
     <fragment
         android:id="@+id/navigation_drawer"
+        android:name="com.telerik.examples.common.fragments.NavigationDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:name="com.telerik.qsf.common.NavigationDrawerFragment" />
-
+        android:layout_gravity="start" />
 </android.support.v4.widget.DrawerLayout>

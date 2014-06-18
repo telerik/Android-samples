@@ -4,13 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_repeater"
-    tools:context="com.telerik.qsf.common.ExampleInfoActivity">
-    <TextView
-        android:textSize="18dp"
+    tools:context="com.telerik.examples.ExampleInfoActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:padding="16dp"
-        android:background="@color/exampleInfoBackground"
-        android:id="@+id/txtInfo"
-        android:layout_margin="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    </FrameLayout>
+        android:clipToPadding="false"
+        android:animateLayoutChanges="true">
+        <TextView
+            android:textSize="18dp"
+            android:padding="16dp"
+            android:background="@color/exampleInfoBackground"
+            android:id="@+id/txtInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+</FrameLayout>

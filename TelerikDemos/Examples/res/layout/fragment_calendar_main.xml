@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+    <FrameLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="#FFEEEEEE">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:layout_gravity="center"
+                android:background="@color/transparent"
+                android:padding="8dp"
+                android:id="@+id/btnUpCaret"
+                android:src="@drawable/up_caret"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Spinner
+                android:id="@+id/calendarModesSpinner"
+                android:background="@drawable/abc_spinner_ab_holo_light"
+                android:layout_gravity="center_vertical"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnShowToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:background="@drawable/calendar_main_action_bar_icon"
+            android:paddingTop="3dp"
+            android:text="12"
+            android:textColor="@color/exampleGroupDescriptionColor"
+            android:textSize="11sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="bottom"
+            android:background="@color/listItemBottomBorder" />
+    </FrameLayout>
+
+    <com.telerik.widget.calendar.RadCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/actionBar"
+        android:animateLayoutChanges="true" />
+
+    <View
+        android:id="@+id/calendarBottomBorder"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/calendarView"
+        android:background="@color/dark_grey_text_color" />
+
+    <LinearLayout
+        android:id="@+id/listEventsBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/calendarBottomBorder"
+        android:background="@color/listItemBottomBorder"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/txtDayTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="19sp" />
+
+        <ListView
+            android:id="@+id/listEvents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@color/transparent"
+            android:dividerHeight="16dp" />
+    </LinearLayout>
+
+</RelativeLayout>

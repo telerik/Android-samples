@@ -2,24 +2,35 @@
 
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-    </style>
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar"></style>
+
 
     <style name="DarkTheme" parent="AppTheme">
         <item name="android:actionBarStyle">@style/ExamplesActivityActionBar</item>
-        <item name="android:actionBarTabStyle">@style/BarTab</item>
-        <item name="android:actionBarTabBarStyle">@style/TabBar</item>
         <item name="android:actionBarDivider">@drawable/tab_divider</item>
-        <item name="android:dropDownListViewStyle">@style/ActionBarDropDownStyle</item>
+        <item name="scrollingTabViewStyle">@style/ScrollingTabViewStyle</item>
+        <item name="scrollingTabStyle">@style/BarTabHorizontal</item>
     </style>
 
-    <style name="ActionBarDropDownStyle" parent="@android:style/Widget.Holo.ListView.DropDown">
-        <item name="android:dividerHeight">1dp</item>
-        <item name="android:divider">#ff000000</item>
-        <item name="android:background">#ff252939</item>
+    <style name="DarkThemeLandscape" parent="DarkTheme">
+        <item name="scrollingTabStyle">@style/BarTabVertical</item>
     </style>
 
-    <style name="BrandedActionBarTheme" parent="AppTheme">
+    <style name="ExampleGroupDarkTheme" parent="DarkTheme">
         <item name="android:actionBarStyle">@style/MainActivityActionBar</item>
+        <item name="scrollingTabViewStyle">@style/ExampleGroupScrollingTabViewStyle</item>
+        <item name="scrollingTabStyle">@style/ExampleGroupBarTabHorizontal</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <!-- Support library compatibility -->
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+
     </style>
+
+    <style name="BrandedActionBarTheme" parent="DarkTheme">
+        <item name="android:actionBarStyle">@style/MainActivityActionBar</item>
+        <item name="android:actionBarWidgetTheme">@style/AppTheme</item>
+        <item name="android:actionDropDownStyle">@style/SpinnerDropDownStyle</item>
+    </style>
+
 </resources>

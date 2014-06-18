@@ -26,4 +26,18 @@
         <attr name="gridThickness" format="dimension" />
         <attr name="gridColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="ScrollingTabView">
+        <attr name="contentHeight" format="dimension" />
+        <attr name="orientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ScrollingTabViewTheme">
+        <attr name="scrollingTabViewStyle" format="reference" />
+        <attr name="scrollingTabStyle" format="reference" />
+    </declare-styleable>
+
 </resources>

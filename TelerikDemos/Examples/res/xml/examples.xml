@@ -1,176 +1,251 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Examples xmlns:android="http://schemas.android.com/apk/res/android">
+<Examples>
 
     <ExampleGroup
-        android:drawable="@drawable/screen_area_chart"
-        HeaderText="Area Series"
-        ExampleInfo="The Area Series can be plotted in several different ways. From the plain case with plotting a single series to more complicated scenarios including different series combinations. The currently supported scenarios include STACK, STACK100 and standard plotting mode."
-        Fragment="examples.chart.series.area"
-        IsNew="false"
-        Screenshot="ScreenAreaChart"
-        ShortDescription="Show trends on the same diagram with STACK, STACK100 and standard plotting mode."
-        Image="Chart.png">
+        DrawerIcon="drawable/ic_nav_calendar"
+        ExampleInfo="
+    Telerik's RadCalendarView for Android is a widget which can be used for presenting events information, date picking and other general calendar usages.\n\n
+    It provides three different modes for date presentation:\n
+    - Year,\n
+    - Month,\n
+    - Week.\n\n
+    The different modes can be easily switched through intuitive gestures. There are also three selection modes:\n
+    - Single,\n
+    - Multiple,\n
+    - Range.\n\n
+    The dates that are presented can be easily restricted with providing Min and Max dates.\n\n
+    The examples for the control include:\n
+    - A first look example which demonstrates how events can be integrated\n
+    - A range selection example which demonstrates how this widget can be used for date picking.\n"
+        Fragment="calendar"
+        HeaderText="Calendar"
+        HomepageLogo="drawable/ic_calendar_action_bar"
+        HomepageHeader="drawable/bg_calendar"
+        Image="drawable/ic_list_calendar"
+        Logo="drawable/ic_list_calendar"
+        IsHighlighted="true"
+        IsNew="true"
+        ShortDescription="Calendar component that provides three different views: year, month and week">
         <Example
-            android:drawable="@drawable/area_1"
-            HeaderText="Area"
-            Fragment="examples.chart.series.area.AreaFragment"
-            ShortDescription="Area series description here." />
+            ExampleInfo="
+    First look at Telerik's Calendar for Android. \n\n
+    The example demonstrates how the widget displays dates from one week, one month and one year depending on the current display mode.\n\n
+    The week view and the month view also show how events information can be integrated in the calendar cell's content.\n\n
+    By using intuitive gestures you can switch from Week to Month or from Month to Year and vice versa. The modes can also be changed through a Spinner.\n\n
+    The calendar follows your locale, so if you change the Language from your device's Settings, you will see that the names of the months and the days in the calendar will follow your change.\n"
+            Fragment="examples.calendar.CalendarMainFragment"
+            HeaderText="First Look"
+            Image="drawable/screen_calendar"
+            IsNew="true"
+            IsHighlighted="true"
+            ShortDescription="Demonstrates events and different time periods presentations - week, month, year" />
         <Example
-            android:drawable="@drawable/area_2"
-            HeaderText="stacked area"
-            Fragment="examples.chart.series.area.StackedAreaFragment" />
-        <Example
-            android:drawable="@drawable/area_3"
-            HeaderText="spline area"
-            Fragment="examples.chart.series.area.SplineAreaFragment" />
-        <Example
-            android:drawable="@drawable/area_4"
-            HeaderText="stacked spline area"
-            Fragment="examples.chart.series.area.StackedSplineAreaFragment" />
-        <Example
-            android:drawable="@drawable/area_5"
-            HeaderText="stack100 area"
-            Fragment="examples.chart.series.area.Stack100AreaFragment" />
-        <Example
-            android:drawable="@drawable/area_6"
-            HeaderText="stack100 spline area"
-            Fragment="examples.chart.series.area.Stack100SplineAreaFragment" />
+            ExampleInfo="
+    Range Selection example for Telerik's Calendar for Android. \n\n
+    It demonstrates how the widget can be used inside a popup for picking dates. The example represents an excerpt from a hotel reservation app where you can use the calendar widget to select the range of your stay and book a hotel of your choice.\n\n
+    The calendar is configured to use range selection where you tap on the first and the last date and the whole range between them gets selected. The Min date is set to today, so that you can't make a reservation for a previous date.\n"
+            Fragment="examples.calendar.CalendarRangeSelectionFragment"
+            HeaderText="Range Selection"
+            Image="drawable/screen_range_selection"
+            IsHighlighted="true"
+            IsNew="true"
+            ShortDescription="Easy selection of date ranges with calendar" />
     </ExampleGroup>
-
     <ExampleGroup
-        android:drawable="@drawable/screen_line_chart"
-        HeaderText="Line Series"
-        IsNew="false"
-        Screenshot="ScreenLineChart"
-        ShortDescription="Use Line and Spline series to monitor trends."
-        ExampleInfo="Line series are used to display a series of data points, typically to show trends over a period of time. One or more series of data can be used and the appearance for each series can be tailored to emphasize the data using unique colors, line thicknesses, shadow, pen style, and point marks."
-        Image="Chart.png"
-        Fragment="examples.chart.series.line">
-        <Example
-            android:drawable="@drawable/line_1"
-            HeaderText="Line series"
-            ShortDescription="Line series description here."
-            Fragment="examples.chart.series.line.LineSeriesFragment" />
-        <Example
-            android:drawable="@drawable/line_3"
-            HeaderText="Multiple Line series"
-            Fragment="examples.chart.series.line.MultipleLineSeriesFragment" />
-        <Example
-            android:drawable="@drawable/line_5"
-            HeaderText="Spline series"
-            Fragment="examples.chart.series.line.SplineSeriesFragment" />
-        <Example
-            android:drawable="@drawable/line_7"
-            HeaderText="Multiple Spline series"
-            Fragment="examples.chart.series.line.MultipleSplineSeriesFragment" />
-    </ExampleGroup>
+        DrawerIcon="drawable/ic_nav_chart"
+        ExampleInfo="Telerik Chart for Android supports 7 different series types which can help you easily visualize your business sensitive data in your Android application.\n\n
+Built on a highly optimized rendering engine, Telerik Chart for Android also provides user interaction capabilities like Trackball, Tooltip, Pan &amp; Zoom and selection.\n\n
+Inspired and built according to the Holo design principles, Telerik Chart for Android nicely blends with the latest Android UX trends coming from Google. You can explore the different series types, as well as the interaction features by choosing an example from the list on the Chart homepage."
+        Fragment="chart"
+        HeaderText="Chart"
+        HomepageLogo="drawable/ic_chart_action_bar"
+        HomepageHeader="drawable/bg_chart"
+        Image="drawable/ic_list_chart"
+        Logo="drawable/ic_list_chart"
+        IsHighlighted="true"
+        IsNew="true"
+        ShortDescription="Flexible and optimized Charting component that can be used to visualize different types of data">
+        <GalleryExample
+            ExampleInfo="Line series are used to display a series of data points, typically to show trends over a period of time. One or more series of data can be used and the appearance for each series can be tailored to emphasize the data using unique colors, line thicknesses, shadow, pen style, and point marks."
+            Fragment="Chart.LineSeries"
+            HeaderText="Line Series"
+            Image="drawable/screen_line_chart"
+            IsNew="false"
+            ShortDescription="Use Line and Spline series to monitor trends.">
+            <Example
+                Fragment="examples.chart.series.line.LineSeriesFragment"
+                HeaderText="Line series"
+                Image="drawable/line_2"
+                ShortDescription="Line series description here." />
+            <Example
+                Fragment="examples.chart.series.line.MultipleLineSeriesFragment"
+                HeaderText="Multiple Line series"
+                Image="drawable/line_4" />
+            <Example
+                Fragment="examples.chart.series.line.SplineSeriesFragment"
+                HeaderText="Spline series"
+                Image="drawable/line_5" />
+            <Example
+                Fragment="examples.chart.series.line.MultipleSplineSeriesFragment"
+                HeaderText="Multiple Spline series"
+                Image="drawable/line_7" />
+        </GalleryExample>
 
-    <ExampleGroup
-        android:drawable="@drawable/screen_bar_chart"
-        HeaderText="Bar Series"
-        ShortDescription="Compare sets of data by visualizing the data points as vertical bars."
-        ExampleInfo="Bar charts graphically summarize and display categories of data and let the user compare amounts or values between different categories. Bar charts are useful for comparing multiple series of data (i.e. providing snapshots of data at particular points in time). With Bar and RangeBar series you can easily visualize data points as bar blocks where the height of each bar denotes the magnitude of its data point. Styling has been made easy so you can quickly differentiate each bar."
-        Fragment="examples.chart.series.bar"
-        Screenshot="ScreenBarChart">
+        <GalleryExample
+            ExampleInfo="The Area Series can be plotted in several different ways. From the plain case with plotting a single series to more complicated scenarios including different series combinations. The currently supported scenarios include STACK, STACK100 and standard plotting mode."
+            Fragment="Chart.AreaSeries"
+            HeaderText="Area Series"
+            Image="drawable/screen_area_chart"
+            IsNew="false"
+            ShortDescription="Show trends on the same diagram with STACK, STACK100 and standard plotting mode.">
+            <Example
+                Fragment="examples.chart.series.area.AreaFragment"
+                HeaderText="Area"
+                Image="drawable/area_1"
+                ShortDescription="Area series description here." />
+            <Example
+                Fragment="examples.chart.series.area.StackedAreaFragment"
+                HeaderText="stacked area"
+                Image="drawable/area_2" />
+            <Example
+                Fragment="examples.chart.series.area.SplineAreaFragment"
+                HeaderText="spline area"
+                Image="drawable/area_3" />
+            <Example
+                Fragment="examples.chart.series.area.StackedSplineAreaFragment"
+                HeaderText="stacked spline area"
+                Image="drawable/area_4" />
+            <Example
+                Fragment="examples.chart.series.area.Stack100AreaFragment"
+                HeaderText="stack100 area"
+                Image="drawable/area_5" />
+            <Example
+                Fragment="examples.chart.series.area.Stack100SplineAreaFragment"
+                HeaderText="stack100 spline area"
+                Image="drawable/area_6" />
+        </GalleryExample>
+        <GalleryExample
+            ExampleInfo="Bar charts graphically summarize and display categories of data and let the user compare amounts or values between different categories. Bar charts are useful for comparing multiple series of data (i.e. providing snapshots of data at particular points in time). With Bar and RangeBar series you can easily visualize data points as bar blocks where the height of each bar denotes the magnitude of its data point. Styling has been made easy so you can quickly differentiate each bar."
+            Fragment="Chart.BarSeries"
+            HeaderText="Bar Series"
+            Image="drawable/screen_bar_chart"
+            IsNew="false"
+            ShortDescription="Compare sets of data by visualizing the data points as vertical bars.">
+            <Example
+                Fragment="examples.chart.series.bar.BarFragment"
+                HeaderText="Bar series"
+                Image="drawable/bar_1" />
+            <Example
+                Fragment="examples.chart.series.bar.BarClusterFragment"
+                HeaderText="Clustered Bar Series"
+                Image="drawable/bar_2"
+                ShortDescription="Clustered Bar series description here." />
+            <Example
+                Fragment="examples.chart.series.bar.BarStackFragment"
+                HeaderText="Stacked bar series"
+                Image="drawable/bar_3" />
+            <Example
+                Fragment="examples.chart.series.bar.BarStack100Fragment"
+                HeaderText="Stacked bar series"
+                Image="drawable/bar_4" />
+            <Example
+                Fragment="examples.chart.series.bar.BarHorizontalFragment"
+                HeaderText="Horizontal bar series"
+                Image="drawable/bar_5" />
+            <Example
+                Fragment="examples.chart.series.bar.BarHorizontalClusterFragment"
+                HeaderText="Horizontal bar series"
+                Image="drawable/bar_6" />
+            <Example
+                Fragment="examples.chart.series.bar.BarHorizontalStackFragment"
+                HeaderText="Horizontal bar series"
+                Image="drawable/bar_7" />
+            <Example
+                Fragment="examples.chart.series.bar.BarHorizontalStack100Fragment"
+                HeaderText="Horizontal bar series"
+                Image="drawable/bar_8" />
+            <Example
+                Fragment="examples.chart.series.bar.BarRangeFragment"
+                HeaderText="Range bar series"
+                Image="drawable/bar_9" />
+        </GalleryExample>
+        <GalleryExample
+            ExampleInfo="Pie charts are used to display the contribution of fractional parts to a whole. Each data point is a pie slice with arc size proportional to the magnitude of the point’s value. Pie and doughnut charts are most useful when you have to compare percentage values of different items that are part of the same series. Illustrating them as pie slices makes it easier for anyone to quickly understand the underlying data."
+            Fragment="Chart.PieSeries"
+            HeaderText="Pie Series"
+            Image="drawable/screen_pie_chart"
+            IsNew="false"
+            ShortDescription="Each data point is a pie slice with arc size proportional to the magnitude of the point’s value.">
+            <Example
+                Fragment="examples.chart.series.pie.PieSeriesFragment"
+                HeaderText="Pie series"
+                Image="drawable/pie_1" />
+            <Example
+                Fragment="examples.chart.series.pie.PieSeriesSecondFragment"
+                HeaderText="Pie series"
+                Image="drawable/pie_2" />
+            <Example
+                Fragment="examples.chart.series.pie.DoughnutSeriesFragment"
+                HeaderText="Doughnut series"
+                Image="drawable/pie_4" />
+            <Example
+                Fragment="examples.chart.series.pie.DoughnutSeriesSecondFragment"
+                HeaderText="Doughnut series"
+                Image="drawable/pie_5" />
+        </GalleryExample>
+        <GalleryExample
+            ExampleInfo="Financial series are used to visualize the ohlc values of collected financial data for stock prices."
+            Fragment="Chart.OhlcSeries"
+            HeaderText="Financial Series"
+            IsHighlighted="true"
+            Image="drawable/screen_financial"
+            IsNew="true"
+            ShortDescription="Financial series are used to visualize the ohlc values of collected financial data for stock prices.">
+            <Example
+                HeaderText="Candlestick series"
+                Image="drawable/financial_1"
+                IsNew="true"
+                ShortDescription="Candle sticks represent ohlc financial data using candle-like shapes."
+                ExampleInfo="Candle sticks are representing the open, high, low, close values of financial data using candle-like shapes, where empty candles represent periods where the close value is lesser than the open value."
+                Fragment="examples.chart.series.financial.CandlestickSeriesFragment" />
+            <Example
+                HeaderText="Ohlc series"
+                Image="drawable/financial_2"
+                IsNew="true"
+                ShortDescription="Ohlc series represent ohlc data using stick figures."
+                ExampleInfo="Ohlc series represent ohlc data, by using stick figures. Every figure consists of 3 parts. There is one vertical stick representing the high and low values and two horizontal sticks representing the open and close values."
+                Fragment="examples.chart.series.financial.OhlcSeriesFragment" />
+        </GalleryExample>
         <Example
-            android:drawable="@drawable/bar_1"
-            HeaderText="Bar series"
-            Fragment="examples.chart.series.bar.BarFragment" />
+            ExampleInfo="The details in a large data set can easily be seen with the pan and zoom feature. Pinch in, out or pan to see the desired level of detail."
+            Fragment="examples.chart.behaviors.PanZoom"
+            HeaderText="Pan and Zoom"
+            Image="drawable/screen_pan_zoom"
+            IsHighlighted="true"
+            IsNew="false"
+            ShortDescription="See the details in a data set by using pinch and pan gestures." />
         <Example
-            android:drawable="@drawable/bar_2"
-            HeaderText="Clustered Bar Series"
-            ShortDescription="Clustered Bar series description here."
-            Fragment="examples.chart.series.bar.BarClusterFragment" />
-        <Example
-            android:drawable="@drawable/bar_3"
-            HeaderText="Stacked bar series"
-            Fragment="examples.chart.series.bar.BarStackFragment" />
-        <Example
-            android:drawable="@drawable/bar_4"
-            HeaderText="Stacked bar series"
-            Fragment="examples.chart.series.bar.BarStack100Fragment" />
-        <Example
-            android:drawable="@drawable/bar_5"
-            HeaderText="Horizontal bar series"
-            Fragment="examples.chart.series.bar.BarHorizontalFragment" />
-        <Example
-            android:drawable="@drawable/bar_6"
-            HeaderText="Horizontal bar series"
-            Fragment="examples.chart.series.bar.BarHorizontalClusterFragment" />
-        <Example
-            android:drawable="@drawable/bar_7"
-            HeaderText="Horizontal bar series"
-            Fragment="examples.chart.series.bar.BarHorizontalStackFragment" />
-        <Example
-            android:drawable="@drawable/bar_8"
-            HeaderText="Horizontal bar series"
-            Fragment="examples.chart.series.bar.BarHorizontalStack100Fragment" />
-        <Example
-            android:drawable="@drawable/bar_9"
-            HeaderText="Range bar series"
-            Fragment="examples.chart.series.bar.BarRangeFragment" />
-    </ExampleGroup>
-
-    <ExampleGroup
-        HeaderText="Pie Series"
-        android:drawable="@drawable/screen_pie_chart"
-        IsNew="false"
-        Screenshot="ScreenPieChart"
-        ExampleInfo="Pie charts are used to display the contribution of fractional parts to a whole. Each data point is a pie slice with arc size proportional to the magnitude of the point’s value. Pie and doughnut charts are most useful when you have to compare percentage values of different items that are part of the same series. Illustrating them as pie slices makes it easier for anyone to quickly understand the underlying data."
-        ShortDescription="Each data point is a pie slice with arc size proportional to the magnitude of the point’s value."
-        Image="Chart.png"
-        Fragment="examples.chart.series.pie">
-        <Example
-            android:drawable="@drawable/pie_1"
-            HeaderText="Pie series"
-            Fragment="examples.chart.series.pie.PieSeriesFragment" />
-        <Example
-            android:drawable="@drawable/pie_2"
-            HeaderText="Pie series"
-            Fragment="examples.chart.series.pie.PieSeriesSecondFragment" />
-        <Example
-            android:drawable="@drawable/pie_4"
-            HeaderText="Doughnut series"
-            Fragment="examples.chart.series.pie.DoughnutSeriesFragment" />
-        <Example
-            android:drawable="@drawable/pie_5"
-            HeaderText="Doughnut series"
-            Fragment="examples.chart.series.pie.DoughnutSeriesSecondFragment" />
-        <!--<Example android:drawable="@drawable/pie_3"-->
-        <!--HeaderText="Multiple Line series"-->
-        <!--Fragment="examples.chart.series.line.MultipleLineSeriesFragment" />-->
-        <!--<Example android:drawable="@drawable/pie_4"-->
-        <!--HeaderText="Multiple Spline series"-->
-        <!--Fragment="examples.chart.series.line.MultipleSplineSeriesFragment" />-->
-    </ExampleGroup>
-
-    <ExampleGroup
-        HeaderText="Annotations"
-        android:drawable="@drawable/screen_annotations"
-        IsNew="false"
-        Screenshot="ScreenAnnotations"
-        ShortDescription="Visual elements for highlighting certain areas and denoting statistical significance."
-        ExampleInfo="Annotations are visual elements that can be used to highlight certain areas on the plot area and denote statistical significance. An annotation is an explanatory image or text which can be anchored to a single point, a coordinate, or an arbitrary pixel coordinate on a chart's surface. Currently supported annotations are: Cartesian Grid Line, Cartesian Plot Band and custom Cartesian annotations."
-        Image="Chart.png"
-        Fragment="examples.chart.annotations">
-        <Example
-            android:drawable="@drawable/pie_1"
-            HeaderText="Weather data"
-            Fragment="examples.chart.annotations.WeatherData" />
-    </ExampleGroup>
-
-    <ExampleGroup
-        HeaderText="Axes"
-        android:drawable="@drawable/screen_axes"
-        IsNew="false"
-        Screenshot="ScreenAxes"
-        ShortDescription="Plot any type of data using Linear, Numerical, Logarithmic, DateTime and Categorical axes."
-        ExampleInfo="You can feed various data types into the chart. Depending on the chart type, numerical data can be distributed on the X-axis over other numbers, categories (strings) or points in time (DateTime). RadChart uses several types of axes to plot its data: Linear, Numerical, Logarithmic, DateTime and Categorical."
-        Image="Chart.png"
-        Fragment="examples.chart.axes">
-        <Example
-            android:drawable="@drawable/pie_1"
+            ExampleInfo="You can feed various data types into the chart. Depending on the chart type, numerical data can be distributed on the X-axis over other numbers, categories or points in time. RadChart uses several types of axes to plot its data: Linear, Categorical, Logarithmic, DateTimeCategorical and DateTimeContinuous."
+            Fragment="examples.chart.axes.MultipleAxes"
             HeaderText="Multiple axes"
-            Fragment="examples.chart.axes.MultipleAxes" />
+            Image="drawable/screen_axes"
+            IsNew="false"
+            ShortDescription="Plot any type of data using Linear, Numerical, Logarithmic, DateTime and Categorical axes." />
+        <Example
+            ExampleInfo="Annotations are visual elements that can be used to highlight certain areas on the chart and denote statistical significance. An annotation is an explanatory image, text or another visual element which can be anchored to a single point or a point range. The currently supported annotations are: Grid Line, Plot Band and Custom annotations."
+            Fragment="examples.chart.annotations.WeatherData"
+            HeaderText="Annotations"
+            Image="drawable/screen_annotations"
+            IsNew="false"
+            ShortDescription="Visual elements for highlighting certain areas and denoting statistical significance." />
+        <Example
+            IsHighlighted="true"
+            HeaderText="Indicators"
+            Image="drawable/screen_indicators"
+            IsNew="true"
+            ShortDescription="Indicators are used extensively to predict changes in stock trends or price patterns."
+            ExampleInfo="Indicators are used extensively to predict changes in stock trends or price patterns by using specific algorithms and chart series to visualize them."
+            Fragment="examples.chart.series.financial.IndicatorsFragment" />
+
     </ExampleGroup>
 </Examples>
