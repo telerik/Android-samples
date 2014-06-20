@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="calendar_range_example_height">400dp</dimen>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="example_list_fragment_columns">1</integer>
+    <integer name="example_list_fragment_columns_wrap">3</integer>
+    <dimen name="example_list_spacing">24dp</dimen>
+    <dimen name="example_group_list_item_size">182dp</dimen>
+    <dimen name="example_group_list_item_badge_left_margin">164dp</dimen>
+    <dimen name="example_list_item_title_fontsize">27sp</dimen>
+    <dimen name="example_list_item_fontsize">18sp</dimen>
+    <dimen name="example_list_wrap_item_title_fontsize">20sp</dimen>
+
+    <dimen name="example_list_item_text_margin_right">20dp</dimen>
+    <dimen name="example_list_item_text_margin_left">20dp</dimen>
+    <dimen name="example_list_item_text_margin_bottom">16dp</dimen>
+
+    <dimen name="tips_title_font_size">32sp</dimen>
+    <dimen name="tips_font_size">20sp</dimen>
+    <dimen name="example_group_bar_tabs_font_size">15sp</dimen>
+</resources>

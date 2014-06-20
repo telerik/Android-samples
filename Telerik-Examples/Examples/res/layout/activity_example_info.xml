@@ -1,0 +1,24 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_repeater"
+    tools:context="com.telerik.examples.ExampleInfoActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:clipToPadding="false"
+        android:animateLayoutChanges="true">
+        <TextView
+            android:textSize="18dp"
+            android:padding="16dp"
+            android:background="@color/exampleInfoBackground"
+            android:id="@+id/txtInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+</FrameLayout>

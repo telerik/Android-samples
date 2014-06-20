@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.telerik.widget.calendar.RadCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/calendar_range_example_height"/>
+
+    <TextView
+        android:padding="@dimen/eighteendp"
+        android:textSize="@dimen/fourteenSp"
+        android:gravity="center_horizontal"
+        android:background="@color/calendar_background_range_example"
+        android:text="@string/calendar_range_how_to_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

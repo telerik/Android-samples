@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/example_group_header_horizontal_height"
+        android:clipChildren="true">
+
+        <FrameLayout
+            android:id="@+id/imageBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/mainRoot"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/example_group_header_horizontal_height"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/hamburger"
+                android:layout_width="?android:actionBarSize"
+                android:layout_height="?android:actionBarSize"
+                android:layout_gravity="left|top"
+                android:background="@drawable/hamburger" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:layout_marginLeft="@dimen/example_group_action_bar_control_logo_left_margin"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/controlLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center" />
+
+            <TextView
+                android:id="@+id/controlLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="roboto"
+                android:text="Chart"
+                android:textColor="#ffffffff"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top">
+
+            <ToggleButton
+                android:id="@+id/btnSwitchLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/example_group_toggle_layout"
+                android:textOff=""
+                android:textOn="" />
+
+            <Button
+                android:id="@+id/btnShowGroupMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:background="@drawable/example_group_show_menu" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tabAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="roboto"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/allStringAllCaps"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:background="#28000000" />
+
+            <TextView
+                android:id="@+id/tabFavorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="roboto"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/favoritesStringAllCaps"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/tabPointer"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_below="@+id/mainRoot"
+        android:layout_gravity="bottom"
+        android:paddingBottom="8dp"
+        android:scaleType="center" />
+</RelativeLayout>

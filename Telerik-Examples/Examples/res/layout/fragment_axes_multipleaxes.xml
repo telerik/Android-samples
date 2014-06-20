@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/MatchParent"
+    android:layout_margin="16dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginRight="5dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/axesPriceColor"
+                android:text="AAPL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="Oct 12 2012 - Oct 12 2013"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:text="Apple inc. stock values and trading volume - NasdaqGS"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            style="@style/AxesCheckbox"
+            android:checked="true"
+            android:id="@+id/axesPrice"
+            android:text="PRICE"
+            android:layout_marginRight="@dimen/onedp"
+            android:paddingLeft="8dp"
+            android:background="@drawable/axes_price" />
+
+        <CheckBox
+            android:id="@+id/axesVolume"
+            android:checked="true"
+            style="@style/AxesCheckbox"
+            android:text="VOLUME"
+            android:layout_marginLeft="@dimen/onedp"
+            android:paddingRight="8dp"
+            android:gravity="right"
+            android:background="@drawable/axes_volume" />
+    </LinearLayout>
+
+    <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
+        android:id="@+id/chart"
+        style="@style/MatchParent.Chart" />
+</LinearLayout>

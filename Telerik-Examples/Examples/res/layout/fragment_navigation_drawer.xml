@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFFFF">
+
+    <ListView
+        android:id="@+id/headerListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:choiceMode="singleChoice"
+        android:divider="@color/drawerDivider"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/navigation_drawer_list_root_selector"/>
+
+
+
+    <TextView
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?android:attr/textColorHint"
+        android:text="CONTROLS"
+        android:fontFamily="roboto"
+        android:textStyle="bold"/>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/drawerDivider" />
+
+    <ListView
+        android:id="@+id/controlsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:choiceMode="singleChoice"
+        android:divider="@color/drawerDivider"
+        android:listSelector="@drawable/navigation_drawer_list_root_selector"
+        android:dividerHeight="1dp"/>
+</LinearLayout>

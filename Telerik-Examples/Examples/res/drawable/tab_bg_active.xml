@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/tab_divider" />
+    <item android:right="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#33a7d2" />
+        </shape>
+    </item>
+
+    <item
+        android:bottom="@dimen/tab_indicator_height"
+        android:right="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#171923" />
+        </shape>
+    </item>
+
+</layer-list>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:layout_height="fill_parent"
+        android:layout_width="0dp"
+        android:layout_weight="10"
+        android:id="@+id/annotationsRadioGroup"
+        android:orientation="vertical">
+
+        <RadioButton
+            style="@style/AnnotationsRadioButtonLandscape"
+            android:id="@+id/monday"
+            android:background="@drawable/monday"
+            android:text="mon -10°" />
+
+        <RadioButton
+            style="@style/AnnotationsRadioButtonLandscape"
+            android:id="@+id/tuesday"
+            android:background="@drawable/tuesday"
+            android:text="tue -5°" />
+
+        <RadioButton
+            style="@style/AnnotationsRadioButtonLandscape"
+            android:id="@+id/wednesday"
+            android:background="@drawable/wednesday"
+            android:text="wed 1°" />
+
+        <RadioButton
+            style="@style/AnnotationsRadioButtonLandscape"
+            android:id="@+id/thursday"
+            android:background="@drawable/thursday"
+            android:text="thu 0°" />
+
+        <RadioButton
+            style="@style/AnnotationsRadioButtonLandscape"
+            android:id="@+id/friday"
+            android:background="@drawable/friday"
+            android:text="fri -2°" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:layout_height="fill_parent"
+        android:layout_width="0dp"
+        android:layout_weight="90">
+
+        <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:background="@drawable/annotations_title_background"
+            android:layout_gravity="top|left"
+            android:id="@+id/annotationsTitle"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</LinearLayout>

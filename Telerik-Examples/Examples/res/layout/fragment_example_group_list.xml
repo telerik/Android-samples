@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.telerik.examples.primitives.ExamplesGridView
+        android:clipToPadding="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:stretchMode="columnWidth"
+        android:scrollbars="none"
+        android:id="@+id/grid"
+        android:padding="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalSpacing="@dimen/example_list_spacing"
+        android:horizontalSpacing="@dimen/example_list_spacing"
+        android:divider="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/emptyContentPresenter"
+        android:text="@string/emptyContentString"
+        android:visibility="gone"
+        android:layout_margin="16dp"
+        android:textSize="17dp"
+        android:textColor="#454545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>

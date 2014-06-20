@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Dow Jones industrial average"
+        android:id="@+id/panZoomTitle"
+        android:gravity="left|center_vertical"
+        android:textSize="20sp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/checkBoxesPanel"
+            android:orientation="vertical"
+            android:layout_width="80dp"
+            android:layout_height="fill_parent">
+
+            <CheckBox
+                android:text="OPEN"
+                android:background="@drawable/pan_zoom_checkbox_open_landscape"
+                style="@style/PanZoomCheckboxLandscape"
+                android:id="@+id/open"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp" />
+
+            <CheckBox
+                android:text="HIGH"
+                android:background="@drawable/pan_zoom_checkbox_high_landscape"
+                style="@style/PanZoomCheckboxLandscape"
+                android:id="@+id/high"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp" />
+
+            <CheckBox
+                android:text="LOW"
+                android:background="@drawable/pan_zoom_checkbox_low_landscape"
+                style="@style/PanZoomCheckboxLandscape"
+                android:id="@+id/low"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp" />
+
+            <CheckBox
+                android:text="CLOSE"
+                android:background="@drawable/pan_zoom_checkbox_close_landscape"
+                style="@style/PanZoomCheckboxLandscape"
+                android:id="@+id/close"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="0dp" />
+        </LinearLayout>
+
+        <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
+            android:layout_marginLeft="15dp"
+            android:id="@+id/panZoomChart"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
+</LinearLayout>

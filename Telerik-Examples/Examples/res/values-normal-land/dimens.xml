@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="example_list_fragment_columns">1</integer>
+    <integer name="example_list_fragment_columns_wrap">3</integer>
+    <dimen name="example_list_right_margin">82dp</dimen>
+</resources>

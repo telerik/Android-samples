@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.telerik.examples"
+    android:versionCode="2"
+    android:versionName="Q2 2014">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name=".common.ExamplesApplicationContext"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/appName"
+        android:logo="@drawable/telerik_logo"
+        android:theme="@style/AppTheme"
+        tools:replace="label">
+        <activity
+            android:name="com.telerik.examples.MainActivity"
+            android:label="@string/appName"
+            android:launchMode="singleTop"
+            android:theme="@style/BrandedActionBarTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.telerik.examples.ExampleGroupActivity"
+            android:label="@string/appName"
+            android:theme="@style/ExampleGroupDarkTheme" />
+        <activity
+            android:name="com.telerik.examples.ExampleInfoActivity"
+            android:label="@string/appName"
+            android:theme="@style/BrandedActionBarTheme" />
+        <activity
+            android:name="com.telerik.examples.ExampleActivity"
+            android:label="@string/appName"></activity>
+        <activity
+            android:name="com.telerik.examples.ViewCodeActivity"
+            android:label="@string/title_activity_view_code"
+            android:theme="@style/BrandedActionBarTheme"></activity>
+    </application>
+
+</manifest>
