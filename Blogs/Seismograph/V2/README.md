@@ -1,5 +1,11 @@
-#How to Build an Android App That Displays Live Accelerometer Data Using a Line Chart Control (part 2)
+This repository contains the code demonstrated in [How to Build an Android App That Displays Live Accelerometer Data Using a Line Chart Control (part 2)](http://blogs.telerik.com/androidteam/posts/14-04-08/how-to-build-an-android-app-that-displays-live-accelerometer-data-using-a-line-chart-control-part-2)
 
-<a href="https://www.youtube.com/watch?v=AYP1EfIRfUA" target="_blank"><img src="http://content.screencast.com/users/kiril/folders/Default/media/73e31205-271a-4c3c-a130-d75ebad5a8ce/preview.png" alt="How to Build an Android App That Displays Live Accelerometer Data Using a Line Chart Control (part 2)" style="width: 560px;height: 309px"/></a>
+The Chart control used in this sample is part of [Telerik UI for Android](http://www.telerik.com/android-ui) -  a set of tools for building Android applications. 
 
-###More information can be found here: http://blogs.telerik.com/androidteam/posts/14-04-08/how-to-build-an-android-app-that-displays-live-accelerometer-data-using-a-line-chart-control-part-2
+[What's new in UI for Android](http://www.telerik.com/support/whats-new/android-ui/release-history)
+
+[UI for Android Documentation](http://docs.telerik.com/devtools/android)
+
+[UI for Android Feedback Portal](http://feedback.telerik.com/Project/158)
+
+[UI for Android Forums](http://www.telerik.com/forums/android)
