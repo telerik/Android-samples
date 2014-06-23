@@ -14,7 +14,7 @@ Some of the scenarios Telerik Examples includes are:
  - Data annotations in Telerik Chart.
  - Providing feedback using Telerik’s AppFeedback component. AppFeedback enables two-way communication between the application developer and the user.
 
-New examples are added regularly. The application is available for download through the Google Play store: [coming soon]
+New examples are added regularly. You can [download Telerik Examples from Google Play](https://play.google.com/store/apps/details?id=com.telerik.examples).
 
 [What's new in UI for Android](http://www.telerik.com/support/whats-new/android-ui/release-history)
 
