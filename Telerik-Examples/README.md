@@ -16,7 +16,7 @@ Some of the scenarios Telerik Examples includes are:
 
 New examples are added regularly. You can [download Telerik Examples from Google Play](https://play.google.com/store/apps/details?id=com.telerik.examples) or scan the QR code below.
 
-<img src='https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.telerik.examples&chs=180x180&choe=UTF-8&chld=L|2' alt='generator qr'>
+<a rel='nofollow' href='https://play.google.com/store/apps/details?id=com.telerik.examples' border='0' style='cursor:default'><img src='https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.telerik.examples&chs=180x180&choe=UTF-8&chld=L|2' alt='generator qr'></a>
 
 [What's new in UI for Android](http://www.telerik.com/support/whats-new/android-ui/release-history)
 
