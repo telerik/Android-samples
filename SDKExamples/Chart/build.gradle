@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.14.0'
+    }
+}
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs '..\\libs'
+    }
+}
+
+android {
+    lintOptions {
+        abortOnError false
+    }
+}
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.1.0"
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 19
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+
+    compile(name: 'Common-2014.3.1023-devRelease', ext: 'aar');
+    compile(name: 'Primitives-2014.3.1023-devRelease', ext: 'aar');
+    compile(name: 'Chart-2014.3.1023-devRelease', ext: 'aar');
+    compile(name: 'Input-2014.3.1023-devRelease', ext: 'aar');
+    compile 'com.android.support:appcompat-v7:19.0.0'
+}
