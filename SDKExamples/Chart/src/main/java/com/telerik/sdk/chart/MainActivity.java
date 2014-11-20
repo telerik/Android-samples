@@ -8,6 +8,10 @@ import android.view.MenuItem;
 
 import com.telerik.manual.tests.R;
 
+import fragments.axes.DateTimeContinuousAxisFragment;
+import fragments.axes.MultipleAxesFragment;
+import fragments.behaviors.ChartSelectionBehaviorFragment;
+import fragments.behaviors.PanAndZoomFragment;
 import fragments.series.CandleStickSeriesFragment;
 import fragments.series.DoughnutSeriesFragment;
 import fragments.series.IndicatorSeriesFragment;
@@ -30,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
 
         FragmentManager fm = this.getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();
-        transaction.add(R.id.container, new IndicatorSeriesFragment());
+        transaction.add(R.id.container, new ChartSelectionBehaviorFragment());
         transaction.commit();
     }
 
