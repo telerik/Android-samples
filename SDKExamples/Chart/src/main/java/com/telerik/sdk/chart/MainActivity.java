@@ -10,6 +10,7 @@ import com.telerik.manual.tests.R;
 
 import fragments.behaviors.LabelBehaviorFragment;
 import fragments.features.GridFeatureFragment;
+import fragments.features.PalettesFragment;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -21,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
 
         FragmentManager fm = this.getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();
-        transaction.add(R.id.container, new GridFeatureFragment());
+        transaction.add(R.id.container, new PalettesFragment());
         transaction.commit();
     }
 
