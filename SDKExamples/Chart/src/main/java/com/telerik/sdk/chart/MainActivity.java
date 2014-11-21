@@ -8,21 +8,8 @@ import android.view.MenuItem;
 
 import com.telerik.manual.tests.R;
 
-import fragments.axes.DateTimeContinuousAxisFragment;
-import fragments.axes.MultipleAxesFragment;
-import fragments.behaviors.ChartSelectionBehaviorFragment;
-import fragments.behaviors.PanAndZoomFragment;
-import fragments.series.CandleStickSeriesFragment;
-import fragments.series.DoughnutSeriesFragment;
-import fragments.series.IndicatorSeriesFragment;
-import fragments.series.OhlcSeriesFragment;
-import fragments.series.PieSeriesFragment;
-import fragments.series.ScatterBubbleSeriesFragment;
-import fragments.series.ScatterPointSeriesFragment;
-import fragments.series.SplineAreaSeriesFragment;
-import fragments.series.StackAreaSeriesFragment;
-import fragments.series.StackBarSeriesFragment;
-import fragments.series.StackSplineAreaSeriesFragment;
+import fragments.behaviors.LabelBehaviorFragment;
+import fragments.features.GridFeatureFragment;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -34,7 +21,7 @@ public class MainActivity extends ActionBarActivity {
 
         FragmentManager fm = this.getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();
-        transaction.add(R.id.container, new ChartSelectionBehaviorFragment());
+        transaction.add(R.id.container, new GridFeatureFragment());
         transaction.commit();
     }
 

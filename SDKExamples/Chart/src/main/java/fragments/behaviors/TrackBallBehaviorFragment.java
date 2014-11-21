@@ -8,32 +8,28 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.telerik.manual.tests.R;
-import com.telerik.widget.chart.engine.axes.common.AxisLabelFitMode;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
-import com.telerik.widget.chart.visualization.behaviors.ChartPanAndZoomBehavior;
-import com.telerik.widget.chart.visualization.behaviors.ChartPanZoomMode;
-import com.telerik.widget.chart.visualization.behaviors.ChartSelectionBehavior;
-import com.telerik.widget.chart.visualization.behaviors.ChartSelectionMode;
+import com.telerik.widget.chart.engine.series.combination.ChartSeriesCombineMode;
+import com.telerik.widget.chart.visualization.behaviors.ChartTrackBallBehavior;
 import com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.CategoricalAxis;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.LinearAxis;
 import com.telerik.widget.chart.visualization.cartesianChart.series.categorical.AreaSeries;
-import com.telerik.widget.chart.visualization.cartesianChart.series.categorical.BarSeries;
+import com.telerik.widget.chart.visualization.cartesianChart.series.categorical.LineSeries;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by ginev on 11/20/2014.
+ * Created by ginev on 11/21/2014.
  */
-public class ChartSelectionBehaviorFragment extends Fragment {
+public class TrackBallBehaviorFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        // Inflate the layout for this fragment
-        FrameLayout rootView = (FrameLayout)inflater.inflate(R.layout.fragment_selection, container, false);
+        FrameLayout rootView = (FrameLayout)inflater.inflate(R.layout.fragment_line_series, container, false);
         rootView.addView(this.createChart());
         return rootView;
     }
@@ -42,32 +38,34 @@ public class ChartSelectionBehaviorFragment extends Fragment {
         //Create the Chart View
         RadCartesianChartView chart = new RadCartesianChartView(this.getActivity());
 
-        //Create the bar series and attach axes and value bindings.
-        BarSeries barSeries = new BarSeries();
-
-        barSeries.setValueBinding(new FieldNameDataPointBinding("value"));
-        barSeries.setCategoryBinding(new FieldNameDataPointBinding("category"));
-
         LinearAxis verticalAxis = new LinearAxis();
         //The values in the linear axis will not have values after the decimal point.
         verticalAxis.setLabelFormat("%.0f");
         CategoricalAxis horizontalAxis = new CategoricalAxis();
-        horizontalAxis.setLabelInterval(10);
-        horizontalAxis.setLabelFitMode(AxisLabelFitMode.MULTI_LINE);
+        chart.setVerticalAxis(verticalAxis);
+        chart.setHorizontalAxis(horizontalAxis);
 
-        barSeries.setVerticalAxis(verticalAxis);
-        barSeries.setHorizontalAxis(horizontalAxis);
 
-        //Bind series to data
-        barSeries.setData(this.getData());
+        for (int i = 0; i < 3; i++) {
+            //Create the bar series and attach axes and value bindings.
+            AreaSeries areaSeries = new AreaSeries();
 
-        //Add series to chart
-        chart.getSeries().add(barSeries);
+            //We want to stack the different area series.
+            areaSeries.setCombineMode(ChartSeriesCombineMode.STACK);
 
-        ChartSelectionBehavior sb = new ChartSelectionBehavior();
-        sb.setDataPointsSelectionMode(ChartSelectionMode.SINGLE);
+            areaSeries.setValueBinding(new FieldNameDataPointBinding("value"));
+            areaSeries.setCategoryBinding(new FieldNameDataPointBinding("category"));
 
-        chart.getBehaviors().add(sb);
+            //Bind series to data
+            areaSeries.setData(this.getData());
+
+            //Add series to chart
+            chart.getSeries().add(areaSeries);
+        }
+
+        ChartTrackBallBehavior tbBehavior = new ChartTrackBallBehavior(this.getActivity());
+        tbBehavior.setShowIntersectionPoints(true);
+        chart.getBehaviors().add(tbBehavior);
 
         return chart;
     }
@@ -76,7 +74,7 @@ public class ChartSelectionBehaviorFragment extends Fragment {
         Random numberGenerator = new Random();
         ArrayList<DataEntity> result = new ArrayList<DataEntity>(8);
 
-        for (int i = 0; i < 15; i++){
+        for (int i = 0; i < 8; i++){
             DataEntity entity = new DataEntity();
             entity.value = numberGenerator.nextInt(10) + 1;
             entity.category = "Item " + i;
