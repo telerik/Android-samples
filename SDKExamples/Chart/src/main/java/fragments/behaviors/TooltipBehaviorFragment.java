@@ -21,7 +21,7 @@ import java.util.Random;
 /**
  * Created by ginev on 11/21/2014.
  */
-public class LabelBehaviorFragment extends Fragment{
+public class TooltipBehaviorFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FrameLayout rootView = (FrameLayout)inflater.inflate(R.layout.fragment_scatter_bubble_series, container, false);
