@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.telerik.manual.tests.R;
+import com.telerik.android.sdk.R;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.CategoricalAxis;
@@ -18,10 +18,12 @@ import com.telerik.widget.chart.visualization.cartesianChart.series.categorical.
 import java.util.ArrayList;
 import java.util.Random;
 
+import activities.ExampleFragment;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SplineSeriesFragment extends Fragment {
+public class SplineSeriesFragment extends Fragment implements ExampleFragment{
 
 
     public SplineSeriesFragment() {
@@ -75,6 +77,11 @@ public class SplineSeriesFragment extends Fragment {
         }
 
         return result;
+    }
+
+    @Override
+    public String title() {
+        return "Spline series";
     }
 
     public class DataEntity{

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.telerik.manual.tests.R;
+import com.telerik.android.sdk.R;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.visualization.annotations.HorizontalAlignment;
 import com.telerik.widget.chart.visualization.annotations.cartesian.CartesianGridLineAnnotation;
@@ -19,20 +19,22 @@ import com.telerik.widget.chart.visualization.cartesianChart.series.categorical.
 
 import java.util.ArrayList;
 
+import activities.ExampleFragment;
+
 /**
  * Created by ginev on 11/21/2014.
  */
-public class PlotBandAnnotationFragment extends Fragment {
+public class PlotBandAnnotationFragment extends Fragment implements ExampleFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        FrameLayout rootView = (FrameLayout)inflater.inflate(R.layout.fragment_plot_band_annotation, container, false);
+        FrameLayout rootView = (FrameLayout) inflater.inflate(R.layout.fragment_plot_band_annotation, container, false);
         rootView.addView(this.createChart());
         return rootView;
     }
 
-    private RadCartesianChartView createChart(){
+    private RadCartesianChartView createChart() {
         //Create the Chart View
         RadCartesianChartView chart = new RadCartesianChartView(this.getActivity());
 
@@ -66,10 +68,15 @@ public class PlotBandAnnotationFragment extends Fragment {
         return chart;
     }
 
-    private ArrayList<DataEntity> getData(){
+    @Override
+    public String title() {
+        return "Plot Band annotations";
+    }
+
+    private ArrayList<DataEntity> getData() {
         ArrayList<DataEntity> result = new ArrayList<DataEntity>(8);
 
-        for (int i = 0; i < 8; i++){
+        for (int i = 0; i < 8; i++) {
             DataEntity entity = new DataEntity();
             entity.value = i + 1;
             entity.category = "Item " + i;
@@ -79,7 +86,7 @@ public class PlotBandAnnotationFragment extends Fragment {
         return result;
     }
 
-    public class DataEntity{
+    public class DataEntity {
         public String category;
         public int value;
     }

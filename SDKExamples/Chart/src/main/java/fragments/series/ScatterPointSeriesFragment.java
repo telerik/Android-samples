@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.telerik.manual.tests.R;
+import com.telerik.android.sdk.R;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.CategoricalAxis;
@@ -18,10 +18,12 @@ import com.telerik.widget.chart.visualization.cartesianChart.series.scatter.Scat
 import java.util.ArrayList;
 import java.util.Random;
 
+import activities.ExampleFragment;
+
 /**
  * Created by ginev on 11/18/2014.
  */
-public class ScatterPointSeriesFragment extends Fragment {
+public class ScatterPointSeriesFragment extends Fragment implements ExampleFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,6 +72,11 @@ public class ScatterPointSeriesFragment extends Fragment {
         }
 
         return result;
+    }
+
+    @Override
+    public String title() {
+        return "Scatter point series";
     }
 
     public class ScatterDataEntity{
