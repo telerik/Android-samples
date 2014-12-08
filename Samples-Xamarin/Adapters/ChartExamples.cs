@@ -55,6 +55,8 @@ namespace Samples
 
 			chartExamples.Put("Features", result);
 
+			result = new ArrayList();
+
 			result.Add(new PanAndZoomFragment());
 			result.Add(new SelectionBehaviorFragment());
 			result.Add(new TooltipBehaviorFragment());
@@ -62,10 +64,14 @@ namespace Samples
 
 			chartExamples.Put("Behaviors", result);
 
+			result = new ArrayList();
+
 			result.Add(new DateTimeContinuousAxisFragment());
 			result.Add(new MultipleAxesFragment());
 
 			chartExamples.Put("Axes", result);
+
+			result = new ArrayList();
 
 			result.Add(new GridLineAnnotationFragment());
 			result.Add(new PlotBandAnnotationFragment());

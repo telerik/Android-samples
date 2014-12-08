@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="Samples.Samples">
-	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19" />
-	<application android:label="Samples">
-	      
-	</application>
-</manifest>
+	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="20" />
+	<application android:label="Samples" android:theme="@style/AppTheme"></application>
+</manifest> 

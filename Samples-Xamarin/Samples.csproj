@@ -119,6 +119,8 @@
     <AndroidResource Include="Resources\layout\list_item_control.axml" />
     <AndroidResource Include="Resources\layout\list_item_child.axml" />
     <AndroidResource Include="Resources\layout\list_item_group.axml" />
+    <AndroidResource Include="Resources\layout\fragment_chart_legend_example.axml" />
+    <AndroidResource Include="Resources\values\Styles.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

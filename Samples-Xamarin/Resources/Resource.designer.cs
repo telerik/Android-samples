@@ -1264,14 +1264,14 @@ namespace Samples
 			// aapt resource value: 0x7f06004d
 			public const int action_mode_close_button = 2131099725;
 			
+			// aapt resource value: 0x7f06009e
+			public const int action_refresh = 2131099806;
+			
+			// aapt resource value: 0x7f06009d
+			public const int action_send = 2131099805;
+			
 			// aapt resource value: 0x7f06009c
-			public const int action_refresh = 2131099804;
-			
-			// aapt resource value: 0x7f06009b
-			public const int action_send = 2131099803;
-			
-			// aapt resource value: 0x7f06009a
-			public const int action_settings = 2131099802;
+			public const int action_settings = 2131099804;
 			
 			// aapt resource value: 0x7f06004e
 			public const int activity_chooser_view_content = 2131099726;
@@ -1297,17 +1297,20 @@ namespace Samples
 			// aapt resource value: 0x7f06003f
 			public const int center = 2131099711;
 			
-			// aapt resource value: 0x7f060099
-			public const int chart_data_point_content_container = 2131099801;
+			// aapt resource value: 0x7f06008a
+			public const int chartView = 2131099786;
 			
-			// aapt resource value: 0x7f060094
-			public const int chart_layout_root = 2131099796;
+			// aapt resource value: 0x7f06009b
+			public const int chart_data_point_content_container = 2131099803;
+			
+			// aapt resource value: 0x7f060096
+			public const int chart_layout_root = 2131099798;
 			
 			// aapt resource value: 0x7f060079
 			public const int chart_tooltip_category = 2131099769;
 			
-			// aapt resource value: 0x7f060098
-			public const int chart_tooltip_pointer = 2131099800;
+			// aapt resource value: 0x7f06009a
+			public const int chart_tooltip_pointer = 2131099802;
 			
 			// aapt resource value: 0x7f06007a
 			public const int chart_tooltip_value = 2131099770;
@@ -1351,8 +1354,8 @@ namespace Samples
 			// aapt resource value: 0x7f060059
 			public const int edit_query = 2131099737;
 			
-			// aapt resource value: 0x7f060095
-			public const int emptyContent = 2131099797;
+			// aapt resource value: 0x7f060097
+			public const int emptyContent = 2131099799;
 			
 			// aapt resource value: 0x7f060013
 			public const int end = 2131099667;
@@ -1396,23 +1399,26 @@ namespace Samples
 			// aapt resource value: 0x7f06003e
 			public const int left = 2131099710;
 			
-			// aapt resource value: 0x7f06008b
-			public const int legendItemIconView = 2131099787;
+			// aapt resource value: 0x7f06008d
+			public const int legendItemIconView = 2131099789;
 			
-			// aapt resource value: 0x7f06008c
-			public const int legendItemTitleView = 2131099788;
+			// aapt resource value: 0x7f06008e
+			public const int legendItemTitleView = 2131099790;
 			
-			// aapt resource value: 0x7f060097
-			public const int legendListView = 2131099799;
+			// aapt resource value: 0x7f060099
+			public const int legendListView = 2131099801;
+			
+			// aapt resource value: 0x7f060089
+			public const int legendView = 2131099785;
 			
 			// aapt resource value: 0x7f060076
 			public const int listComments = 2131099766;
 			
-			// aapt resource value: 0x7f060090
-			public const int listControls = 2131099792;
+			// aapt resource value: 0x7f060092
+			public const int listControls = 2131099794;
 			
-			// aapt resource value: 0x7f06008a
-			public const int listItems = 2131099786;
+			// aapt resource value: 0x7f06008c
+			public const int listItems = 2131099788;
 			
 			// aapt resource value: 0x7f060001
 			public const int listMode = 2131099649;
@@ -1423,8 +1429,8 @@ namespace Samples
 			// aapt resource value: 0x7f06007e
 			public const int lowText = 2131099774;
 			
-			// aapt resource value: 0x7f060091
-			public const int menuList = 2131099793;
+			// aapt resource value: 0x7f060093
+			public const int menuList = 2131099795;
 			
 			// aapt resource value: 0x7f060012
 			public const int middle = 2131099666;
@@ -1453,8 +1459,8 @@ namespace Samples
 			// aapt resource value: 0x7f060058
 			public const int radio = 2131099736;
 			
-			// aapt resource value: 0x7f060096
-			public const int renderSurface = 2131099798;
+			// aapt resource value: 0x7f060098
+			public const int renderSurface = 2131099800;
 			
 			// aapt resource value: 0x7f060040
 			public const int right = 2131099712;
@@ -1546,29 +1552,29 @@ namespace Samples
 			// aapt resource value: 0x7f060075
 			public const int txtCommentsLabel = 2131099765;
 			
-			// aapt resource value: 0x7f06008e
-			public const int txtControlName = 2131099790;
+			// aapt resource value: 0x7f060090
+			public const int txtControlName = 2131099792;
 			
 			// aapt resource value: 0x7f060071
 			public const int txtDate = 2131099761;
 			
-			// aapt resource value: 0x7f060093
-			public const int txtDescription = 2131099795;
+			// aapt resource value: 0x7f060095
+			public const int txtDescription = 2131099797;
 			
 			// aapt resource value: 0x7f06006d
 			public const int txtEditComment = 2131099757;
 			
-			// aapt resource value: 0x7f06008d
-			public const int txtExampleName = 2131099789;
-			
 			// aapt resource value: 0x7f06008f
-			public const int txtFeatureName = 2131099791;
+			public const int txtExampleName = 2131099791;
+			
+			// aapt resource value: 0x7f060091
+			public const int txtFeatureName = 2131099793;
 			
 			// aapt resource value: 0x7f060073
 			public const int txtFeedbackText = 2131099763;
 			
-			// aapt resource value: 0x7f060089
-			public const int txtNoItems = 2131099785;
+			// aapt resource value: 0x7f06008b
+			public const int txtNoItems = 2131099787;
 			
 			// aapt resource value: 0x7f060072
 			public const int txtStatus = 2131099762;
@@ -1576,8 +1582,8 @@ namespace Samples
 			// aapt resource value: 0x7f060087
 			public const int txtText = 2131099783;
 			
-			// aapt resource value: 0x7f060092
-			public const int txtTitle = 2131099794;
+			// aapt resource value: 0x7f060094
+			public const int txtTitle = 2131099796;
 			
 			// aapt resource value: 0x7f06004a
 			public const int up = 2131099722;
@@ -1753,58 +1759,61 @@ namespace Samples
 			public const int fragment_chart_example = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int fragment_feedback_items = 2130903081;
+			public const int fragment_chart_legend_example = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int legend_item_view = 2130903082;
+			public const int fragment_feedback_items = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int list_item_child = 2130903083;
+			public const int legend_item_view = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int list_item_control = 2130903084;
+			public const int list_item_child = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int list_item_group = 2130903085;
+			public const int list_item_control = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int list_progress_indicator = 2130903086;
+			public const int list_item_group = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int Main = 2130903087;
+			public const int list_progress_indicator = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int main_menu_content = 2130903088;
+			public const int Main = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int main_menu_list_item = 2130903089;
+			public const int main_menu_content = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int ohlc_trackball_item_content = 2130903090;
+			public const int main_menu_list_item = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int popup_edit_details = 2130903091;
+			public const int ohlc_trackball_item_content = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int radchartbase = 2130903092;
+			public const int popup_edit_details = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int radlegendcontrol = 2130903093;
+			public const int radchartbase = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int range_trackball_item_content = 2130903094;
+			public const int radlegendcontrol = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int support_simple_spinner_dropdown_item = 2130903095;
+			public const int range_trackball_item_content = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int tooltip_container = 2130903096;
+			public const int support_simple_spinner_dropdown_item = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int trackball_container = 2130903097;
+			public const int tooltip_container = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int trial_message = 2130903098;
+			public const int trackball_container = 2130903098;
+			
+			// aapt resource value: 0x7f03003b
+			public const int trial_message = 2130903099;
 			
 			static Layout()
 			{
@@ -3112,7 +3121,7 @@ namespace Samples
 					16843055,
 					16843056,
 					16843057,
-					16843829};
+					16843832};
 			
 			// aapt resource value: 4
 			public const int MenuView_android_headerBackground = 4;
