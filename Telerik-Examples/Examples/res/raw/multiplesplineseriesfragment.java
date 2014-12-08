@@ -1,8 +1,9 @@
 package com.telerik.examples.examples.chart.series.line;
 
-import android.content.Context;
 import android.content.res.Resources;
+import android.util.TypedValue;
 
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.examples.chart.series.area.AreaFragment;
 import com.telerik.examples.viewmodels.ExampleDataProvider;
@@ -25,32 +26,30 @@ public class MultipleSplineSeriesFragment extends AreaFragment {
 
     @Override
     protected void prepareAreaChart() {
-        Context activity = getActivity();
-
-        LinearAxis vAxis = new LinearAxis(activity);
+        LinearAxis vAxis = new LinearAxis();
         vAxis.setMaximum(VERTICAL_AXIS_MULTIPLE_MAX);
 
-        CategoricalAxis hAxis = new CategoricalAxis(activity);
+        CategoricalAxis hAxis = new CategoricalAxis();
         hAxis.setLabelFitMode(AxisLabelFitMode.MULTI_LINE);
 
         DataPointBinding categoryBinding = new FieldNameDataPointBinding("category");
         DataPointBinding valueBinding = new FieldNameDataPointBinding("value");
 
-        SplineSeries series = new SplineSeries(activity);
+        SplineSeries series = new SplineSeries();
         Resources res = this.getResources();
-        series.setStrokeThickness(res.getDimension(R.dimen.twodp));
+        series.setStrokeThickness(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 2));
         series.setCategoryBinding(categoryBinding);
         series.setValueBinding(valueBinding);
         series.setData(ExampleDataProvider.lineData());
 
-        SplineSeries secondarySeries = new SplineSeries(activity);
+        SplineSeries secondarySeries = new SplineSeries();
         res = this.getResources();
-        secondarySeries.setStrokeThickness(res.getDimension(R.dimen.twodp));
+        secondarySeries.setStrokeThickness(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 2));
         secondarySeries.setCategoryBinding(categoryBinding);
         secondarySeries.setValueBinding(valueBinding);
         secondarySeries.setData(ExampleDataProvider.lineDataSecondary());
 
-        CartesianChartGrid grid = new CartesianChartGrid(activity);
+        CartesianChartGrid grid = new CartesianChartGrid();
         grid.setStripLinesVisibility(GridLineVisibility.Y);
 
         cartesianChart.setGrid(grid);

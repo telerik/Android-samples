@@ -1,7 +1,9 @@
 package com.telerik.examples.examples.chart.series.pie;
 
 import android.content.res.Resources;
+import android.util.TypedValue;
 
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.common.DataClass;
 import com.telerik.examples.viewmodels.ExampleDataProvider;
@@ -40,9 +42,9 @@ public class DoughnutSeriesFragment extends PieFragment {
 
     @Override
     protected void preparePieChart() {
-        DoughnutSeries doughnutSeries = new DoughnutSeries(this.getActivity().getBaseContext());
+        DoughnutSeries doughnutSeries = new DoughnutSeries();
         Resources res = this.getResources();
-        doughnutSeries.setSliceOffset(res.getDimension(R.dimen.twodp));
+        doughnutSeries.setSliceOffset(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 2));
         doughnutSeries.setShowLabels(true);
         doughnutSeries.setValueBinding(new FieldNameDataPointBinding("value"));
 
@@ -51,7 +53,7 @@ public class DoughnutSeriesFragment extends PieFragment {
 
         doughnutSeries.setData(ExampleDataProvider.pieData());
 
-        RadPieChartView pieChart = (RadPieChartView)this.chart;
+        RadPieChartView pieChart = (RadPieChartView) this.chart;
         pieChart.getSeries().add(doughnutSeries);
     }
 }

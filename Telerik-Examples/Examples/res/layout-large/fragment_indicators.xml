@@ -36,18 +36,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/indicators_btn"
-            android:text="@string/range_select_btn_text" />
+            android:background="@drawable/indicators_btn" />
 
         <Button
-            android:id="@+id/technicials_btn"
+            android:id="@+id/technicals_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:background="@drawable/indicators_btn"
-            android:text="TECHNICIALS" />
-
+            android:text="TECHNICALS" />
     </LinearLayout>
 
     <FrameLayout

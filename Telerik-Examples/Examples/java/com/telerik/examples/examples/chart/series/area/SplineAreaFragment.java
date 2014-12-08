@@ -1,10 +1,9 @@
 package com.telerik.examples.examples.chart.series.area;
 
 import com.telerik.examples.R;
-import com.telerik.examples.common.DataClass;
 import com.telerik.examples.viewmodels.ExampleDataProvider;
 import com.telerik.widget.chart.engine.axes.common.AxisLabelFitMode;
-import com.telerik.widget.chart.engine.databinding.DataPointBinding;
+import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.CategoricalAxis;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.LinearAxis;
 import com.telerik.widget.chart.visualization.cartesianChart.series.categorical.SplineAreaSeries;
@@ -24,31 +23,19 @@ public class SplineAreaFragment extends AreaFragment {
 
     @Override
     protected void prepareAreaChart() {
-        SplineAreaSeries areaSeries = new SplineAreaSeries(context);
+        SplineAreaSeries areaSeries = new SplineAreaSeries();
 
-        CategoricalAxis horizontal = new CategoricalAxis(context);
+        CategoricalAxis horizontal = new CategoricalAxis();
         horizontal.setLabelFitMode(AxisLabelFitMode.MULTI_LINE);
 
-        LinearAxis vertical = new LinearAxis(context);
+        LinearAxis vertical = new LinearAxis();
 
         this.cartesianChart.setHorizontalAxis(horizontal);
         this.cartesianChart.setVerticalAxis(vertical);
         this.cartesianChart.getSeries().add(areaSeries);
 
-        areaSeries.setCategoryBinding(new DataPointBinding() {
-            @Override
-            public Object getValue(Object instance) throws IllegalArgumentException {
-                return ((DataClass) instance).category;
-            }
-        });
-
-        areaSeries.setValueBinding(new DataPointBinding() {
-            @Override
-            public Object getValue(Object instance) throws IllegalArgumentException {
-                return ((DataClass) instance).value;
-            }
-        });
-
+        areaSeries.setCategoryBinding(new FieldNameDataPointBinding("category"));
+        areaSeries.setValueBinding(new FieldNameDataPointBinding("value"));
         areaSeries.setData(ExampleDataProvider.areaData());
     }
 }

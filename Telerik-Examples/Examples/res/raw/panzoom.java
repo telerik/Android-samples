@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.telerik.android.common.Function;
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.common.FinancialDataClass;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
@@ -44,21 +46,24 @@ public class PanZoom extends ExampleFragmentBase implements CompoundButton.OnChe
     public PanZoom() {
     }
 
+    private View initContent(LayoutInflater inflater, ViewGroup container) {
+        if (this.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            return inflater.inflate(R.layout.fragment_behaviors_panzoom, container, false);
+        } else {
+            return inflater.inflate(R.layout.fragment_behaviors_panzoom_landscape, container, false);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.orientation = this.getResources().getConfiguration().orientation;
         this.context = this.getActivity();
-        View root;
-        if (this.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            root = inflater.inflate(R.layout.fragment_behaviors_panzoom, container, false);
-        } else {
-            root = inflater.inflate(R.layout.fragment_behaviors_panzoom_landscape, container, false);
-        }
+        View root = this.initContent(inflater, container);
 
-        this.chart = (RadCartesianChartView) root.findViewById(R.id.panZoomChart);
+        this.chart = Util.getLayoutPart(root, R.id.panZoomChart, RadCartesianChartView.class);
         this.prepareChart();
 
-        ViewGroup checkBoxesPanel = (ViewGroup) root.findViewById(R.id.checkBoxesPanel);
+        ViewGroup checkBoxesPanel = Util.getLayoutPart(root, R.id.checkBoxesPanel, ViewGroup.class);
         Typeface serifLight = Typeface.create("sans-serif-light", Typeface.NORMAL);
         for (int i = 0; i < checkBoxesPanel.getChildCount(); ++i) {
             CheckBox view = (CheckBox) checkBoxesPanel.getChildAt(i);
@@ -69,16 +74,15 @@ public class PanZoom extends ExampleFragmentBase implements CompoundButton.OnChe
             this.onCheckedChanged(view, view.isChecked());
         }
 
-        TextView title = (TextView) root.findViewById(R.id.panZoomTitle);
+        TextView title = Util.getLayoutPart(root, R.id.panZoomTitle, TextView.class);
         title.setTypeface(serifLight);
 
         return root;
     }
 
     private void prepareChart() {
-        float fiveDp = this.getResources().getDimension(R.dimen.fivedp);
-        LinearAxis verticalAxis = new LinearAxis(this.context);
-        verticalAxis.setLabelMargin(fiveDp);
+        LinearAxis verticalAxis = new LinearAxis();
+        verticalAxis.setLabelMargin(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 5));
         verticalAxis.setMinimum(9000);
         verticalAxis.setLabelValueToStringConverter(new Function<Object, String>() {
             @Override
@@ -90,8 +94,8 @@ public class PanZoom extends ExampleFragmentBase implements CompoundButton.OnChe
         });
         this.chart.setVerticalAxis(verticalAxis);
 
-        DateTimeCategoricalAxis horizontalAxis = new DateTimeCategoricalAxis(this.context);
-        horizontalAxis.setLabelMargin(this.getResources().getDimension(R.dimen.fifteendp));
+        DateTimeCategoricalAxis horizontalAxis = new DateTimeCategoricalAxis();
+        horizontalAxis.setLabelMargin(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 15));
         horizontalAxis.setMajorTickInterval(50);
         horizontalAxis.setDateTimeFormat(new SimpleDateFormat("MM/dd/yy"));
         horizontalAxis.setDateTimeComponent(DateTimeComponent.DATE);
@@ -111,7 +115,7 @@ public class PanZoom extends ExampleFragmentBase implements CompoundButton.OnChe
             }
         });
 
-        openSeries = new LineSeries(this.context);
+        openSeries = new LineSeries();
         openSeries.setCategoryBinding(categoryBinding);
         openSeries.setValueBinding(valueBinding);
         openSeries.setData(ExampleDataProvider.panZoomData(getResources()));
@@ -123,7 +127,7 @@ public class PanZoom extends ExampleFragmentBase implements CompoundButton.OnChe
             }
         });
 
-        highSeries = new LineSeries(this.context);
+        highSeries = new LineSeries();
         highSeries.setCategoryBinding(categoryBinding);
         highSeries.setValueBinding(valueBinding);
         highSeries.setData(ExampleDataProvider.panZoomData(getResources()));
@@ -135,7 +139,7 @@ public class PanZoom extends ExampleFragmentBase implements CompoundButton.OnChe
             }
         });
 
-        lowSeries = new LineSeries(this.context);
+        lowSeries = new LineSeries();
         lowSeries.setCategoryBinding(categoryBinding);
         lowSeries.setValueBinding(valueBinding);
         lowSeries.setData(ExampleDataProvider.panZoomData(getResources()));
@@ -147,7 +151,7 @@ public class PanZoom extends ExampleFragmentBase implements CompoundButton.OnChe
             }
         });
 
-        closeSeries = new AreaSeries(this.context);
+        closeSeries = new AreaSeries();
         closeSeries.setCategoryBinding(categoryBinding);
         closeSeries.setValueBinding(valueBinding);
         closeSeries.setData(ExampleDataProvider.panZoomData(getResources()));
@@ -163,7 +167,7 @@ public class PanZoom extends ExampleFragmentBase implements CompoundButton.OnChe
         this.highSeries.setStrokeColor(0xFFA666CE);
         this.openSeries.setStrokeColor(0xFF4FB6E7);
 
-        CartesianChartGrid grid = new CartesianChartGrid(this.context);
+        CartesianChartGrid grid = new CartesianChartGrid();
         grid.setMajorLinesVisibility(GridLineVisibility.Y);
         this.chart.setGrid(grid);
 
@@ -179,21 +183,19 @@ public class PanZoom extends ExampleFragmentBase implements CompoundButton.OnChe
             this.updateGravity(buttonView, isChecked);
         }
 
-        int visibility = isChecked ? View.VISIBLE : View.INVISIBLE;
-
         int id = buttonView.getId();
         switch (id) {
             case R.id.open:
-                this.openSeries.setVisibility(visibility);
+                this.openSeries.setVisible(isChecked);
                 break;
             case R.id.close:
-                this.closeSeries.setVisibility(visibility);
+                this.closeSeries.setVisible(isChecked);
                 break;
             case R.id.high:
-                this.highSeries.setVisibility(visibility);
+                this.highSeries.setVisible(isChecked);
                 break;
             case R.id.low:
-                this.lowSeries.setVisibility(visibility);
+                this.lowSeries.setVisible(isChecked);
                 break;
         }
     }

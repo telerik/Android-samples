@@ -9,5 +9,5 @@
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:text="Highlighted"
     android:textColor="@color/white"
-    android:paddingLeft="10dp"
+    android:paddingLeft="0dp"
     android:paddingRight="10dp" />

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParent.ExampleFragment">
+
+    <TextView
+        android:id="@+id/chartTitle"
+        style="@style/WrapContent.ChartTitle"
+        android:text="@string/bubble_series_title" />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/chartTitle"
+        android:id="@+id/verticalAxisTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Return on Investment" />
+
+    <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
+        android:layout_below="@+id/verticalAxisTitle"
+        android:layout_above="@+id/horizontalAxisTitle"
+        android:id="@+id/chart"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <TextView
+        android:layout_above="@+id/scatterLegendView"
+        android:id="@+id/horizontalAxisTitle"
+        android:text="Age of Investments (Years)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+    <com.telerik.widget.primitives.legend.RadLegendView
+        android:layout_marginTop="15dp"
+        android:id="@+id/scatterLegendView"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

@@ -1,7 +1,8 @@
 package com.telerik.examples.examples.chart.series.pie;
 
-import android.content.res.Resources;
+import android.util.TypedValue;
 
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.common.DataClass;
 import com.telerik.examples.viewmodels.ExampleDataProvider;
@@ -38,10 +39,9 @@ public class PieSeriesFragment extends PieFragment {
 
     @Override
     protected void preparePieChart() {
-        final PieSeries pieSeries = new PieSeries(context);
+        PieSeries pieSeries = new PieSeries();
 
-        Resources res = this.getResources();
-        pieSeries.setSliceOffset(res.getDimension(R.dimen.twodp));
+        pieSeries.setSliceOffset(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 2));
         pieSeries.setShowLabels(true);
         pieSeries.setValueBinding(new FieldNameDataPointBinding("value"));
 

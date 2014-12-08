@@ -1,11 +1,10 @@
 package com.telerik.examples.examples.chart.series.area;
 
 import com.telerik.examples.R;
-import com.telerik.examples.common.DataClass;
 import com.telerik.examples.examples.chart.ChartSelectionAndLabelsFragment;
 import com.telerik.examples.viewmodels.ExampleDataProvider;
 import com.telerik.widget.chart.engine.axes.common.AxisLabelFitMode;
-import com.telerik.widget.chart.engine.databinding.DataPointBinding;
+import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.visualization.behaviors.ChartSelectionBehavior;
 import com.telerik.widget.chart.visualization.behaviors.ChartSelectionMode;
 import com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView;
@@ -32,35 +31,24 @@ public class AreaFragment extends ChartSelectionAndLabelsFragment {
     @Override
     protected void prepareChart() {
         super.prepareChart();
-        this.cartesianChart = (RadCartesianChartView)this.chart;
+        this.cartesianChart = (RadCartesianChartView) this.chart;
         this.prepareAreaChart();
     }
 
     protected void prepareAreaChart() {
-        AreaSeries areaSeries = new AreaSeries(context);
+        AreaSeries areaSeries = new AreaSeries();
 
-        CategoricalAxis horizontal = new CategoricalAxis(context);
+        CategoricalAxis horizontal = new CategoricalAxis();
         horizontal.setLabelFitMode(AxisLabelFitMode.MULTI_LINE);
 
-        LinearAxis vertical = new LinearAxis(context);
+        LinearAxis vertical = new LinearAxis();
 
         this.cartesianChart.setHorizontalAxis(horizontal);
         this.cartesianChart.setVerticalAxis(vertical);
         this.cartesianChart.getSeries().add(areaSeries);
 
-        areaSeries.setCategoryBinding(new DataPointBinding() {
-            @Override
-            public Object getValue(Object instance) {
-                return ((DataClass) instance).category;
-            }
-        });
-
-        areaSeries.setValueBinding(new DataPointBinding() {
-            @Override
-            public Object getValue(Object instance) {
-                return ((DataClass) instance).value;
-            }
-        });
+        areaSeries.setCategoryBinding(new FieldNameDataPointBinding("category"));
+        areaSeries.setValueBinding(new FieldNameDataPointBinding("value"));
 
         areaSeries.setData(ExampleDataProvider.areaData());
         areaSeries.setDataPointIndicatorRenderer(new SphericalDataPointIndicatorRenderer(areaSeries));

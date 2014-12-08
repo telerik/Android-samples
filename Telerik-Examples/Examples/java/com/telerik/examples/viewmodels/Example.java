@@ -1,7 +1,6 @@
 package com.telerik.examples.viewmodels;
 
 public class Example {
-
     private String headerText = "";
     private String descriptionText = "";
     private String exampleInfo = "";
@@ -15,17 +14,14 @@ public class Example {
     }
 
     public ExampleGroup getParentControl() {
-        if (this.parent instanceof GalleryExample) {
-            return this.parent.getParentControl();
-        }
-        return this.parent != null ? this.parent : (ExampleGroup) this;
+        return this.parent;
     }
 
     public String getFragmentName() {
         return String.format("com.telerik.examples.%s", fragmentName);
     }
 
-    public String getShortFragmentName(){
+    public String getShortFragmentName() {
         return this.fragmentName;
     }
 
@@ -72,7 +68,6 @@ public class Example {
     public void setDescriptionText(String descriptionText) {
         this.descriptionText = descriptionText;
     }
-
 
     public String getImage() {
         return this.imageResource;

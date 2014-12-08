@@ -3,13 +3,25 @@ package com.telerik.examples.common;
 import java.util.Calendar;
 
 public class DataClass {
-
     public String category;
     public Float value;
     public Float value2;
     public Float value3;
     public Float value4;
     public Calendar date;
+
+    public DataClass() {
+    }
+
+    public DataClass(float value, float value2) {
+        this.value = value;
+        this.value2 = value2;
+    }
+
+    public DataClass(float value, float value2, float value3) {
+        this(value, value2);
+        this.value3 = value3;
+    }
 
     public DataClass(Calendar date) {
         this(date, 0.0F, 0.0F);

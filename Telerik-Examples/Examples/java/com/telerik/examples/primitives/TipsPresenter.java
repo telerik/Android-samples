@@ -12,9 +12,6 @@ import android.widget.FrameLayout;
 import com.telerik.examples.R;
 import com.telerik.examples.common.ExamplesApplicationContext;
 
-/**
- * Created by ginev on 25/04/2014.
- */
 public class TipsPresenter extends FrameLayout implements Button.OnClickListener {
 
     private ExamplesApplicationContext app;

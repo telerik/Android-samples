@@ -64,22 +64,28 @@ public class WeatherData extends ExampleFragmentBase implements RadioGroup.OnChe
     public WeatherData() {
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        this.context = this.getActivity();
+    private void initContent(LayoutInflater inflater, ViewGroup container) {
         // Inflate the layout for this fragment
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             this.contentView = inflater.inflate(R.layout.fragment_annotations_watherdata, container, false);
         }else{
             this.contentView = inflater.inflate(R.layout.fragment_annotations_watherdata_landscape, container, false);
         }
-        this.chart = (RadCartesianChartView) this.contentView.findViewById(R.id.chart);
-        this.title = (TextView) this.contentView.findViewById(R.id.annotationsTitle);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        this.context = this.getActivity();
+
+        this.initContent(inflater, container);
+
+        this.chart = Util.getLayoutPart(this.contentView, R.id.chart, RadCartesianChartView.class);
+        this.title = Util.getLayoutPart(this.contentView, R.id.annotationsTitle, TextView.class);
         title.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
         this.prepareChart();
 
-        this.buttons = (RadioGroup) this.contentView.findViewById(R.id.annotationsRadioGroup);
+        this.buttons = Util.getLayoutPart(this.contentView, R.id.annotationsRadioGroup, RadioGroup.class);
         this.buttons.setOnCheckedChangeListener(this);
 
         this.buttons.check(R.id.monday);
@@ -91,18 +97,18 @@ public class WeatherData extends ExampleFragmentBase implements RadioGroup.OnChe
         Resources res = this.getResources();
         ChartPalette customPalette = chart.getPalette().clone();
         PaletteEntry entry = customPalette.getEntry(ChartPalette.BAR_FAMILY, 0);
-        entry.setStrokeWidth(Util.getDimen(context, TypedValue.COMPLEX_UNIT_DIP, 1));
+        entry.setStrokeWidth(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 1));
         entry.setFill(0xff3E3E3E);
         entry.setStroke(Color.WHITE);
         chart.setPalette(customPalette);
 
-        CategoricalAxis horizontalAxis = new CategoricalAxis(this.context);
+        CategoricalAxis horizontalAxis = new CategoricalAxis();
         horizontalAxis.setLabelMargin(20);
         chart.setHorizontalAxis(horizontalAxis);
-        horizontalAxis.setLineThickness(res.getDimension(R.dimen.onedp));
+        horizontalAxis.setLineThickness(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 1));
         horizontalAxis.setLineColor(0xff66B3D4);
 
-        LinearAxis verticalAxis = new LinearAxis(this.context);
+        LinearAxis verticalAxis = new LinearAxis();
         verticalAxis.setMinimum(-30);
         verticalAxis.setMaximum(10);
         verticalAxis.setMajorStep(10);
@@ -112,7 +118,7 @@ public class WeatherData extends ExampleFragmentBase implements RadioGroup.OnChe
         verticalAxis.setTickColor(Color.TRANSPARENT);
         verticalAxis.setLineColor(Color.TRANSPARENT);
 
-        RangeBarSeries barSeries = new RangeBarSeries(this.context);
+        RangeBarSeries barSeries = new RangeBarSeries();
         barSeries.setShowLabels(true);
 
         barSeries.setHighBinding(new GenericDataPointBinding<DataClass, Float>(new Function<DataClass, Float>() {
@@ -140,11 +146,11 @@ public class WeatherData extends ExampleFragmentBase implements RadioGroup.OnChe
         barSeries.setLabelRenderer(seriesLabelRenderer);
         this.chart.getSeries().add(barSeries);
 
-        CartesianChartGrid grid = new CartesianChartGrid(this.context);
+        CartesianChartGrid grid = new CartesianChartGrid();
         chart.setGrid(grid);
 
         grid.setMajorYLinesRenderMode(GridLineRenderMode.INNER_AND_LAST);
-        grid.setLineThickness(res.getDimension(R.dimen.onedp));
+        grid.setLineThickness(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 1));
         grid.setLineColor(Color.WHITE);
         grid.setMajorLinesVisibility(GridLineVisibility.Y);
         grid.setStripLinesVisibility(GridLineVisibility.Y);
@@ -171,13 +177,8 @@ public class WeatherData extends ExampleFragmentBase implements RadioGroup.OnChe
 
         AnnotationRenderer renderer = new AnnotationRenderer();
         for (int i = -20; i <= 10; i += 10) {
-            CartesianCustomAnnotation degreeAnnotation = new CartesianCustomAnnotation(this.context);
+            CartesianCustomAnnotation degreeAnnotation = new CartesianCustomAnnotation(verticalAxis, horizontalAxis, (double) i, "22:00", Integer.toString(i) + "\u00b0");
             degreeAnnotation.setContentRenderer(renderer);
-            degreeAnnotation.setContent(Integer.toString(i) + "\u00b0");
-            degreeAnnotation.setHorizontalAxis(horizontalAxis);
-            degreeAnnotation.setVerticalAxis(verticalAxis);
-            degreeAnnotation.setHorizontalValue("22:00");
-            degreeAnnotation.setVerticalValue((double) i);
             chart.getAnnotations().add(degreeAnnotation);
         }
     }
@@ -364,7 +365,7 @@ public class WeatherData extends ExampleFragmentBase implements RadioGroup.OnChe
 
             String text = content.toString();
             canvas.drawText(
-                    text, (float) (layoutSlot.x - (layoutSlot.width / 2.0)),
+                    text, (float) (layoutSlot.getX() - (layoutSlot.getWidth() / 2.0)),
                     (float) layoutSlot.getBottom(), contentPaint);
         }
     }
@@ -382,14 +383,14 @@ public class WeatherData extends ExampleFragmentBase implements RadioGroup.OnChe
             super(owner);
             this.stroke.setStyle(Paint.Style.STROKE);
             this.stroke.setColor(Color.WHITE);
-            this.stroke.setStrokeWidth(resources.getDimension(R.dimen.onedp));
+            this.stroke.setStrokeWidth(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 1));
 
             this.highFill.setColor(0xffF5413F);
             this.lowFill.setColor(0xff4FB6E7);
-            this.paint.setTextSize(resources.getDimension(R.dimen.twelveSp));
+            this.paint.setTextSize(Util.getDimen(TypedValue.COMPLEX_UNIT_SP, 12));
             this.paint.setColor(Color.WHITE);
-            this.labelMargin = resources.getDimension(R.dimen.threedp);
-            this.labelPadding = resources.getDimension(R.dimen.fivedp);
+            this.labelMargin = Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 3);
+            this.labelPadding = Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 5);
         }
 
         @Override
@@ -413,7 +414,7 @@ public class WeatherData extends ExampleFragmentBase implements RadioGroup.OnChe
                     0,
                     labelText.length(),
                     this.paint,
-                    (int)Math.round(dataPoint.getLayoutSlot().width),
+                    (int)Math.round(dataPoint.getLayoutSlot().getWidth()),
                     Layout.Alignment.ALIGN_CENTER,
                     1.0f,
                     1.0f,
@@ -423,29 +424,29 @@ public class WeatherData extends ExampleFragmentBase implements RadioGroup.OnChe
         private void renderTopLabel(Canvas canvas, RadRect dataPointSlot, String labelText, StaticLayout textBounds) {
             RectF labelBounds = new RectF();
             double height = textBounds.getHeight() + this.labelPadding * 2;
-            double top = dataPointSlot.y - this.labelMargin - height;
-            labelBounds.set((float)dataPointSlot.x,
+            double top = dataPointSlot.getY() - this.labelMargin - height;
+            labelBounds.set((float)dataPointSlot.getX(),
                     (float)top,
                     (float)dataPointSlot.getRight(),
                     (float)(top + height));
 
             canvas.drawRect(labelBounds.left, labelBounds.top, labelBounds.right, labelBounds.bottom, this.highFill);
             canvas.drawRect(labelBounds.left, labelBounds.top, labelBounds.right, labelBounds.bottom, this.stroke);
-            canvas.drawText(labelText, (float)(dataPointSlot.x + (dataPointSlot.width / 2.0) - textBounds.getLineWidth(0) / 2.0), labelBounds.centerY() + textBounds.getLineBottom(0) - textBounds.getLineBaseline(0), paint);
+            canvas.drawText(labelText, (float)(dataPointSlot.getX() + (dataPointSlot.getWidth() / 2.0) - textBounds.getLineWidth(0) / 2.0), labelBounds.centerY() + textBounds.getLineBottom(0) - textBounds.getLineBaseline(0), paint);
         }
 
         private void renderBottomLabel(Canvas canvas, RadRect dataPointSlot, String labelText, StaticLayout textBounds) {
             RectF labelBounds = new RectF();
             double height = textBounds.getHeight() + this.labelPadding * 2;
             double top = dataPointSlot.getBottom() + this.labelMargin;
-            labelBounds.set((float)dataPointSlot.x,
+            labelBounds.set((float)dataPointSlot.getX(),
                     (float)top,
                     (float)dataPointSlot.getRight(),
                     (float) (top + height));
 
             canvas.drawRect(labelBounds.left, labelBounds.top, labelBounds.right, labelBounds.bottom, this.lowFill);
             canvas.drawRect(labelBounds.left, labelBounds.top, labelBounds.right, labelBounds.bottom, this.stroke);
-            canvas.drawText(labelText, (float) (dataPointSlot.x + (dataPointSlot.width / 2.0) - textBounds.getLineWidth(0) / 2.0f), labelBounds.centerY() + textBounds.getLineBottom(0) - textBounds.getLineBaseline(0), paint);
+            canvas.drawText(labelText, (float) (dataPointSlot.getX() + (dataPointSlot.getWidth() / 2.0) - textBounds.getLineWidth(0) / 2.0f), labelBounds.centerY() + textBounds.getLineBottom(0) - textBounds.getLineBaseline(0), paint);
         }
     }
 }

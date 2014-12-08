@@ -4,9 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
-/**
- * Created by ginev on 12/06/2014.
- */
 public class ExamplesGridView extends GridView {
 
     private OnOverScrollByHandler onOverScrollByHandler;

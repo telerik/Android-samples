@@ -1,7 +1,9 @@
 package com.telerik.examples.examples.chart.series.line;
 
 import android.content.res.Resources;
+import android.util.TypedValue;
 
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.examples.chart.series.area.AreaFragment;
 import com.telerik.examples.viewmodels.ExampleDataProvider;
@@ -30,33 +32,33 @@ public class MultipleLineSeriesFragment extends AreaFragment {
 
     @Override
     protected void prepareAreaChart() {
-        LinearAxis vAxis = new LinearAxis(context);
+        LinearAxis vAxis = new LinearAxis();
         vAxis.setMinimum(VERTICAL_AXIS_MULTIPLE_MIN);
         vAxis.setMaximum(VERTICAL_AXIS_MULTIPLE_MAX);
         vAxis.setMajorStep(VERTICAL_AXIS_MULTIPLE_STEP);
 
-        CategoricalAxis hAxis = new CategoricalAxis(context);
+        CategoricalAxis hAxis = new CategoricalAxis();
         hAxis.setLabelFitMode(AxisLabelFitMode.MULTI_LINE);
 
         DataPointBinding categoryBinding = new FieldNameDataPointBinding("category");
         DataPointBinding valueBinding = new FieldNameDataPointBinding("value");
 
-        LineSeries series = new LineSeries(context);
+        LineSeries series = new LineSeries();
         Resources res = this.getResources();
-        series.setStrokeThickness(res.getDimension(R.dimen.twodp));
+        series.setStrokeThickness(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 2));
         series.setCategoryBinding(categoryBinding);
         series.setValueBinding(valueBinding);
         series.setData(ExampleDataProvider.lineData());
         series.setDataPointIndicatorRenderer(new SphericalDataPointIndicatorRenderer(series));
 
-        LineSeries secondarySeries = new LineSeries(context);
-        secondarySeries.setStrokeThickness(res.getDimension(R.dimen.twodp));
+        LineSeries secondarySeries = new LineSeries();
+        secondarySeries.setStrokeThickness(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 2));
         secondarySeries.setCategoryBinding(categoryBinding);
         secondarySeries.setValueBinding(valueBinding);
         secondarySeries.setData(ExampleDataProvider.lineDataSecondary());
         secondarySeries.setDataPointIndicatorRenderer(new SphericalDataPointIndicatorRenderer(secondarySeries));
 
-        CartesianChartGrid grid = new CartesianChartGrid(context);
+        CartesianChartGrid grid = new CartesianChartGrid();
         grid.setStripLinesVisibility(GridLineVisibility.Y);
 
         cartesianChart.setGrid(grid);

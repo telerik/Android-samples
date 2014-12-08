@@ -1,18 +1,17 @@
 package com.telerik.examples.common;
 
 import android.app.Activity;
-import android.os.Bundle;
 
 import com.telerik.examples.R;
+import com.telerik.examples.common.licensing.KeysRetriever;
 
 import eqatec.analytics.monitor.AnalyticsMonitorFactory;
-import eqatec.analytics.monitor.AnalyticsMonitorStatus;
 import eqatec.analytics.monitor.IAnalyticsMonitor;
 import eqatec.analytics.monitor.Version;
 
 public class TrackedApplication extends StateAwareApplication {
 
-    private final static String TELERIK_PLATFORM_ANALYTICS_KEY = "<your-eqatec-key-here>";
+
     private static final String MONITOR_TRACK_FEATURE_FORMAT = "%s.%s";
 
     /**
@@ -42,6 +41,7 @@ public class TrackedApplication extends StateAwareApplication {
     public static final String EXAMPLE_TOOLBAR_ADD_FAVOURITE = "EXAMPLE_TOOLBAR_ADD_FAVOURITE";
     public static final String EXAMPLE_TOOLBAR_REMOVE_FAVOURITE = "EXAMPLE_TOOLBAR_REMOVE_FAVOURITE";
     public static final String EXAMPLE_TOOLBAR_NAVIGATE = "EXAMPLE_TOOLBAR_NAVIGATE";
+    public static final String EXAMPLE_TOOLBAR_TOGGLED = "EXAMPLE_TOOLBAR_TOGGLED";
 
     public static final String LIST_ITEM_SELECTED = "LIST_ITEM_SELECTED";
     public static final String LIST_ITEM_OVERFLOW_FAVOURITE_ADDED = "LIST_ITEM_OVERFLOW_FAVOURITE_ADDED";
@@ -56,7 +56,7 @@ public class TrackedApplication extends StateAwareApplication {
 
         try {
             monitor = AnalyticsMonitorFactory.createMonitor(
-                    getApplicationContext(), TELERIK_PLATFORM_ANALYTICS_KEY,
+                    getApplicationContext(), KeysRetriever.getAnalyticsKey(),
                     new Version(getResources().getString(R.string.version_code))
 
             );
@@ -116,14 +116,14 @@ public class TrackedApplication extends StateAwareApplication {
         this.startMonitor();
     }
 
-    private void startMonitor() {
-        if (this.monitor != null) {
+    protected void startMonitor() {
+        if (this.canStartAnalytics()) {
             this.monitor.start();
         }
     }
 
-    private void stopMonitor() {
-        if (this.monitor != null) {
+    protected void stopMonitor() {
+        if (this.canStopAnalytics()) {
             this.monitor.stop();
             this.monitor.forceSync();
         }
@@ -131,5 +131,13 @@ public class TrackedApplication extends StateAwareApplication {
 
     private boolean isMonitorActive() {
         return this.monitor != null && this.monitor.getStatus().getIsStarted();
+    }
+
+    protected boolean canStartAnalytics() {
+        return this.monitor != null;
+    }
+
+    protected boolean canStopAnalytics() {
+        return this.monitor != null;
     }
 }

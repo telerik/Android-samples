@@ -2,6 +2,7 @@ package com.telerik.examples.viewmodels;
 
 import android.content.res.Resources;
 
+import com.telerik.android.common.Function;
 import com.telerik.examples.R;
 import com.telerik.examples.common.DataClass;
 import com.telerik.examples.common.FinancialDataClass;
@@ -35,6 +36,13 @@ public class ExampleDataProvider {
 
     private static ArrayList<FinancialDataClass> ohlcData;
     private static ArrayList<FinancialDataClass> indicatorsData;
+
+    private static Function<String, FinancialDataClass> financialDataParser = new Function<String, FinancialDataClass>() {
+        @Override
+        public FinancialDataClass apply(String argument) {
+            return parseFinancialDataClass(argument);
+        }
+    };
 
     private static ArrayList<DataClass> initialData() {
         ArrayList<DataClass> data = new ArrayList<DataClass>();
@@ -135,8 +143,8 @@ public class ExampleDataProvider {
     public static Iterable<DataClass> pieData() {
         if (pieData == null) {
             pieData = new ArrayList<DataClass>();
-            pieData.add(new DataClass("Belgium", 39.68F));
-            pieData.add(new DataClass("France", 60.32F));
+            pieData.add(new DataClass("Belgium", 40));
+            pieData.add(new DataClass("France", 60));
         }
 
         return pieData;
@@ -145,9 +153,9 @@ public class ExampleDataProvider {
     public static Iterable<DataClass> pieDataAdditional() {
         if (pieDataAdditional == null) {
             pieDataAdditional = new ArrayList<DataClass>();
-            pieDataAdditional.add(new DataClass("Belgium", 40.74F));
-            pieDataAdditional.add(new DataClass("France", 28.70F));
-            pieDataAdditional.add(new DataClass("Germany", 30.56F));
+            pieDataAdditional.add(new DataClass("Belgium", 40));
+            pieDataAdditional.add(new DataClass("France", 30));
+            pieDataAdditional.add(new DataClass("Germany", 30));
         }
 
         return pieDataAdditional;
@@ -156,7 +164,7 @@ public class ExampleDataProvider {
     public static Iterable<FinancialDataClass> ohlcData(Resources resources) {
         if (ohlcData == null) {
             ohlcData = new ArrayList<FinancialDataClass>();
-            parseFinancialDataFromXml(ohlcData, R.raw.dowjones, resources);
+            parseFinancialDataFromXml(ohlcData, R.raw.dowjones, resources, financialDataParser);
         }
 
         return ohlcData.subList(0, 10); // TODO: Extract first 10 entries in another xml file
@@ -165,31 +173,33 @@ public class ExampleDataProvider {
     public static Iterable<FinancialDataClass> panZoomData(Resources resources) {
         if (panZoomData == null) {
             panZoomData = new ArrayList<FinancialDataClass>();
-            parseFinancialDataFromXml(panZoomData, R.raw.dowjones, resources);
+            parseFinancialDataFromXml(panZoomData, R.raw.dowjones, resources, financialDataParser);
         }
 
         return panZoomData;
     }
 
-    private static void parseFinancialDataFromXml(List<FinancialDataClass> list, int xmlResource, Resources resources) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(resources.openRawResource(xmlResource)));
+    public static <T> void parseFinancialDataFromXml(List<T> list, int xmlResource, Resources resources, Function<String, T> parseLine) {
         try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resources.openRawResource(xmlResource)));
             String line = reader.readLine();
             while (line != null) {
-                String[] tokens = line.split("\t");
-                GregorianCalendar calendar = new GregorianCalendar();
-                calendar.setTime(dateFormat.parse(tokens[0], new ParsePosition(0)));
-                FinancialDataClass data = new FinancialDataClass(calendar, Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2]), Float.parseFloat(tokens[3]), Float.parseFloat(tokens[4]), Float.parseFloat(tokens[5]));
-                list.add(data);
+                list.add(parseLine.apply(line));
                 line = reader.readLine();
             }
 
             reader.close();
 
         } catch (IOException ex) {
-            list = null;
             throw new Error("Could not read financial data from xml.");
         }
+    }
+
+    public static FinancialDataClass parseFinancialDataClass(String data) {
+        String[] tokens = data.split("\t");
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTime(dateFormat.parse(tokens[0], new ParsePosition(0)));
+        return new FinancialDataClass(calendar, Float.parseFloat(tokens[1]), Float.parseFloat(tokens[2]), Float.parseFloat(tokens[3]), Float.parseFloat(tokens[4]), Float.parseFloat(tokens[5]));
     }
 
     public static Iterable<FinancialDataClass> indicatorsDataOneMonth(Resources resources) {
@@ -211,7 +221,7 @@ public class ExampleDataProvider {
     private static List<FinancialDataClass> indicatorsData(Resources resources) {
         if (indicatorsData == null) {
             indicatorsData = new ArrayList<FinancialDataClass>();
-            parseFinancialDataFromXml(indicatorsData, R.raw.financial_data_raw, resources);
+            parseFinancialDataFromXml(indicatorsData, R.raw.financial_data_raw, resources, financialDataParser);
         }
 
         return indicatorsData;

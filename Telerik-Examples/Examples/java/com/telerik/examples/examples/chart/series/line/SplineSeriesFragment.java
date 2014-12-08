@@ -1,8 +1,9 @@
 package com.telerik.examples.examples.chart.series.line;
 
-import android.content.Context;
 import android.content.res.Resources;
+import android.util.TypedValue;
 
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.examples.chart.series.area.AreaFragment;
 import com.telerik.examples.viewmodels.ExampleDataProvider;
@@ -25,24 +26,22 @@ public class SplineSeriesFragment extends AreaFragment {
 
     @Override
     protected void prepareAreaChart() {
-        Context activity = getActivity();
-
-        LinearAxis vAxis = new LinearAxis(activity);
+        LinearAxis vAxis = new LinearAxis();
         vAxis.setMinimum(VERTICAL_AXIS_SINGLE_MIN);
         vAxis.setMaximum(VERTICAL_AXIS_SINGLE_MAX);
         vAxis.setMajorStep(VERTICAL_AXIS_SINGLE_STEP);
 
-        CategoricalAxis hAxis = new CategoricalAxis(activity);
+        CategoricalAxis hAxis = new CategoricalAxis();
         hAxis.setLabelFitMode(AxisLabelFitMode.MULTI_LINE);
 
-        SplineSeries series = new SplineSeries(activity);
+        SplineSeries series = new SplineSeries();
         Resources res = this.getResources();
-        series.setStrokeThickness(res.getDimension(R.dimen.twodp));
+        series.setStrokeThickness(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 2));
         series.setCategoryBinding(new FieldNameDataPointBinding("category"));
         series.setValueBinding(new FieldNameDataPointBinding("value"));
         series.setData(ExampleDataProvider.lineData());
 
-        CartesianChartGrid grid = new CartesianChartGrid(activity);
+        CartesianChartGrid grid = new CartesianChartGrid();
         grid.setStripLinesVisibility(GridLineVisibility.Y);
 
         cartesianChart.setGrid(grid);

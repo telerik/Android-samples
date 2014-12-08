@@ -9,19 +9,25 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.telerik.examples.common.ExamplesApplicationContext;
+import com.telerik.examples.viewmodels.Example;
+import com.telerik.examples.viewmodels.ExampleGroup;
 
 public class ExampleInfoActivity extends Activity {
 
     private TextView txtInfo;
     private ExamplesApplicationContext app;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActionBar actionBar = this.getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setLogo(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+        this.actionBar = this.getActionBar();
+
+        if(this.actionBar != null) {
+            this.actionBar.setDisplayHomeAsUpEnabled(true);
+            this.actionBar.setLogo(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+        }
 
         setContentView(R.layout.activity_example_info);
 
@@ -55,17 +61,22 @@ public class ExampleInfoActivity extends Activity {
         String exampleDescription = null;
         String infoTitle = null;
 
-        if (this.app.selectedControl() != null) {
-            exampleDescription = this.app.selectedControl().getExampleInfo();
-            infoTitle = this.app.selectedControl().getHeaderText();
+        ExampleGroup selectedControl = this.app.selectedControl();
+        if (selectedControl != null) {
+            exampleDescription = selectedControl.getExampleInfo();
+            infoTitle = selectedControl.getHeaderText();
         }
 
-        if (this.app.selectedExample() != null) {
-            exampleDescription = this.app.selectedExample().getExampleInfo();
-            infoTitle = this.app.selectedExample().getHeaderText();
+        Example selectedExample = this.app.selectedExample();
+        if (selectedExample != null) {
+            exampleDescription = selectedExample.getExampleInfo();
+            infoTitle = selectedExample.getHeaderText();
         }
 
-        this.getActionBar().setTitle(infoTitle);
+        if(this.actionBar != null) {
+            this.actionBar.setTitle(infoTitle);
+        }
+
         this.txtInfo.setText(exampleDescription);
     }
 }

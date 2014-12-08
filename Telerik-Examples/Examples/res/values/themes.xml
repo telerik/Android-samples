@@ -4,7 +4,6 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar"></style>
 
-
     <style name="DarkTheme" parent="AppTheme">
         <item name="android:actionBarStyle">@style/ExamplesActivityActionBar</item>
         <item name="android:actionBarDivider">@drawable/tab_divider</item>

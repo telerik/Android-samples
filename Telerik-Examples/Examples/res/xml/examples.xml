@@ -34,7 +34,7 @@
     By using intuitive gestures you can switch from Week to Month or from Month to Year and vice versa. The modes can also be changed through a Spinner.\n\n
     The calendar follows your locale, so if you change the Language from your device's Settings, you will see that the names of the months and the days in the calendar will follow your change.\n"
             Fragment="examples.calendar.CalendarMainFragment"
-            HeaderText="First Look"
+            HeaderText="Calendar"
             Image="drawable/screen_calendar"
             IsNew="true"
             IsHighlighted="true"
@@ -53,7 +53,7 @@
     </ExampleGroup>
     <ExampleGroup
         DrawerIcon="drawable/ic_nav_chart"
-        ExampleInfo="Telerik Chart for Android supports 7 different series types which can help you easily visualize your business sensitive data in your Android application.\n\n
+        ExampleInfo="Telerik Chart for Android supports many different series types which can help you easily visualize your business sensitive data in your Android application.\n\n
 Built on a highly optimized rendering engine, Telerik Chart for Android also provides user interaction capabilities like Trackball, Tooltip, Pan &amp; Zoom and selection.\n\n
 Inspired and built according to the Holo design principles, Telerik Chart for Android nicely blends with the latest Android UX trends coming from Google. You can explore the different series types, as well as the interaction features by choosing an example from the list on the Chart homepage."
         Fragment="chart"
@@ -65,6 +65,26 @@ Inspired and built according to the Holo design principles, Telerik Chart for An
         IsHighlighted="true"
         IsNew="true"
         ShortDescription="Flexible and optimized Charting component that can be used to visualize different types of data">
+        <GalleryExample
+            ExampleInfo="The scatter series are normally used to visualize the distribution of some quality over a numerical value range both horizontally and vertically. The scatter points are fully customizable and developers can customize every visual aspect."
+            Fragment="Chart.ScatterSeries"
+            HeaderText="Scatter Series"
+            Image="drawable/screen_scatter_chart"
+            IsHighlighted="true"
+            IsNew="true"
+            ShortDescription="Use Scatter series to monitor distributions.">
+            <Example
+                Fragment="examples.chart.series.scatter.ScatterFragment"
+                HeaderText="Scatter point series"
+                Image="drawable/scatter"
+                ShortDescription="Scatter point series description here." />
+            <Example
+                Fragment="examples.chart.series.scatter.BubbleSeriesFragment"
+                HeaderText="Scatter bubble series"
+                Image="drawable/bubble"
+                ShortDescription="Scatter bubble series description here." />
+        </GalleryExample>
+
         <GalleryExample
             ExampleInfo="Line series are used to display a series of data points, typically to show trends over a period of time. One or more series of data can be used and the appearance for each series can be tailored to emphasize the data using unique colors, line thicknesses, shadow, pen style, and point marks."
             Fragment="Chart.LineSeries"
@@ -197,7 +217,6 @@ Inspired and built according to the Holo design principles, Telerik Chart for An
             ExampleInfo="Financial series are used to visualize the ohlc values of collected financial data for stock prices."
             Fragment="Chart.OhlcSeries"
             HeaderText="Financial Series"
-            IsHighlighted="true"
             Image="drawable/screen_financial"
             IsNew="true"
             ShortDescription="Financial series are used to visualize the ohlc values of collected financial data for stock prices.">
@@ -246,6 +265,13 @@ Inspired and built according to the Holo design principles, Telerik Chart for An
             ShortDescription="Indicators are used extensively to predict changes in stock trends or price patterns."
             ExampleInfo="Indicators are used extensively to predict changes in stock trends or price patterns by using specific algorithms and chart series to visualize them."
             Fragment="examples.chart.series.financial.IndicatorsFragment" />
-
+        <Example
+            IsHighlighted="true"
+            HeaderText="Live Data"
+            Image="drawable/screen_indicators"
+            IsNew="true"
+            ShortDescription="Demonstrates the ability of the chart to frequently refresh with new data."
+            ExampleInfo="This examples demonstrates how to use ObservableCollection to update the chart in real time."
+            Fragment="examples.chart.LiveDataFragment" />
     </ExampleGroup>
 </Examples>

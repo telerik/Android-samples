@@ -22,9 +22,6 @@ import android.widget.ToggleButton;
 
 import com.telerik.examples.R;
 
-/**
- * Created by ginev on 25/04/2014.
- */
 public class AnimatedTextStrip extends ViewGroup {
 
     private static final int SCALE_DURATION = 150;
@@ -125,7 +122,6 @@ public class AnimatedTextStrip extends ViewGroup {
     }
 
     private void animateExampleTitle() {
-
         AlphaAnimation titleFadeout = new AlphaAnimation(1, 0);
         titleFadeout.setFillAfter(true);
         titleFadeout.setStartOffset(TITLE_START_OFFSET);

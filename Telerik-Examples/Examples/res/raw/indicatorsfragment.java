@@ -25,9 +25,10 @@ import com.telerik.widget.chart.engine.axes.common.AxisHorizontalLocation;
 import com.telerik.widget.chart.engine.axes.common.AxisPlotMode;
 import com.telerik.widget.chart.engine.axes.common.DateTimeComponent;
 import com.telerik.widget.chart.engine.databinding.DataPointBinding;
+import com.telerik.widget.chart.engine.databinding.GenericDataPointBinding;
 import com.telerik.widget.chart.visualization.behaviors.ChartPanAndZoomBehavior;
-import com.telerik.widget.chart.visualization.behaviors.ChartPanZoomMode;
 import com.telerik.widget.chart.visualization.behaviors.ChartTrackBallBehavior;
+import com.telerik.widget.chart.visualization.behaviors.ChartZoomStrategy;
 import com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.DateTimeCategoricalAxis;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.LinearAxis;
@@ -50,28 +51,49 @@ import com.telerik.widget.primitives.legend.RadLegendView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
-public class IndicatorsFragment extends ExampleFragmentBase {
+public class IndicatorsFragment extends ExampleFragmentBase implements View.OnClickListener {
+
+    private static final byte LABELS_INTERVAL_BASE = 3;
+    private static final byte DATA_RANGE_ONE_MONTH = 0;
+    private static final byte DATA_RANGE_SIX_MONTHS = 1;
+    private static final byte DATA_RANGE_ONE_YEAR = 2;
+    private static final byte DATA_RANGE_FIVE_YEARS = 3;
+
+    private static final String DATA_RANGE_NAME = "IndicatorsDataRange";
+    private static final String CURRENT_INDICATOR_NAME = "IndicatorsCurrentIndicator";
+
+    private static final String MA_CHECKED_NAME = "IndicatorsMAChecked";
+    private static final String EXPONENTIAL_MA_CHECKED_NAME = "IndicatorsExponentialMAChecked";
+    private static final String MODIFIED_EXPONENTIAL_MA_CHECKED_NAME = "IndicatorsModifiedExponentialMAChecked";
+    private static final String BOLLINGER_BANDS_CHECKED_NAME = "IndicatorsBollingerBandsChecked";
+
+    private static final byte MACD_INDICATOR_INDEX = 0;
+    private static final byte AVERAGE_TRUE_RANGE_INDICATOR_INDEX = 1;
+    private static final byte RELATIVE_STRENGTH_INDICATOR_INDEX = 2;
+    private static final byte MOMENTUM_INDICATOR_INDEX = 3;
+    private static final byte ULTIMATE_OSCILLATOR_INDICATOR_INDEX = 4;
+    private static final byte STOCHASTIC_FAST_INDICATOR_INDEX = 5;
 
     private boolean maChecked;
     private boolean exponentialMAChecked;
-    private boolean modifiedExponentialMAChecked;
+    private boolean modifiedExponentialMAChecked = true;
     private boolean bollingerBandsChecked;
-    private AlertDialog alertDialog;
+
+    private int currentDataRange = DATA_RANGE_SIX_MONTHS;
+    private int currentIndicator = MACD_INDICATOR_INDEX;
+
+    private Button rangeSelectBtn;
+    private Dialog alertDialog;
     private ArrayList<ChartSeries> currentActiveSeries;
     private Resources resources;
     private Context context;
-    private int currentDataRange = -1;
-    private int currentIndicator = 0;
     private DataPointBinding openBinding;
     private DataPointBinding highBinding;
     private DataPointBinding lowBinding;
     private DataPointBinding closeBinding;
     private DataPointBinding categoryBinding;
-    private Iterable<FinancialDataClass> data;
-    private byte labelsIntervalBase = 3;
-    DateTimeCategoricalAxis mainChartHorizontalAxis;
+    private DateTimeCategoricalAxis mainChartHorizontalAxis;
 
     private RadCartesianChartView mainChart;
     private RadCartesianChartView volumeChart;
@@ -80,70 +102,34 @@ public class IndicatorsFragment extends ExampleFragmentBase {
     public IndicatorsFragment() {
     }
 
-    private Iterable<FinancialDataClass> data(int range) {
-        if (this.currentDataRange != range) {
-            if (range == 0) {
-                this.data = ExampleDataProvider.indicatorsDataOneMonth(this.resources);
-                this.mainChartHorizontalAxis.setMajorTickInterval(this.labelsIntervalBase);
-            } else if (range == 1) {
-                this.data = ExampleDataProvider.indicatorsDataSixMonths(this.resources);
-                this.mainChartHorizontalAxis.setMajorTickInterval(this.labelsIntervalBase * 6);
-            } else if (range == 2) {
-                this.data = ExampleDataProvider.indicatorsDataOneYear(this.resources);
-                this.mainChartHorizontalAxis.setMajorTickInterval(this.labelsIntervalBase * 12);
-            } else if (range == 3) {
-                this.data = ExampleDataProvider.indicatorsDataFiveYears(this.resources);
-                this.mainChartHorizontalAxis.setMajorTickInterval(this.labelsIntervalBase * 12 * 5);
-            }
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(BOLLINGER_BANDS_CHECKED_NAME, this.bollingerBandsChecked);
+        outState.putBoolean(EXPONENTIAL_MA_CHECKED_NAME, this.exponentialMAChecked);
+        outState.putBoolean(MA_CHECKED_NAME, this.maChecked);
+        outState.putBoolean(MODIFIED_EXPONENTIAL_MA_CHECKED_NAME, this.modifiedExponentialMAChecked);
 
-            this.currentDataRange = range;
-        }
+        outState.putInt(DATA_RANGE_NAME, this.currentDataRange);
+        outState.putInt(CURRENT_INDICATOR_NAME, this.currentIndicator);
 
-        return this.data;
+        super.onSaveInstanceState(outState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_indicators, null);
 
+        this.rangeSelectBtn = (Button) root.findViewById(R.id.range_selection_btn);
+
+        if (savedInstanceState != null) {
+            restoreInstanceState(savedInstanceState);
+        }
+
         this.context = getActivity();
         this.resources = getResources();
         this.currentActiveSeries = new ArrayList<ChartSeries>();
 
-        this.categoryBinding = new DataPointBinding() {
-            @Override
-            public Object getValue(Object instance) throws IllegalArgumentException {
-                return ((FinancialDataClass) instance).date;
-            }
-        };
-
-        this.openBinding = new DataPointBinding() {
-            @Override
-            public Object getValue(Object instance) throws IllegalArgumentException {
-                return ((FinancialDataClass) instance).open;
-            }
-        };
-
-        this.highBinding = new DataPointBinding() {
-            @Override
-            public Object getValue(Object instance) throws IllegalArgumentException {
-                return ((FinancialDataClass) instance).high;
-            }
-        };
-
-        this.lowBinding = new DataPointBinding() {
-            @Override
-            public Object getValue(Object instance) throws IllegalArgumentException {
-                return ((FinancialDataClass) instance).low;
-            }
-        };
-
-        this.closeBinding = new DataPointBinding() {
-            @Override
-            public Object getValue(Object instance) throws IllegalArgumentException {
-                return ((FinancialDataClass) instance).close;
-            }
-        };
+        this.initDataPointBindings();
 
         this.mainChart = (RadCartesianChartView) root.findViewById(R.id.chart_main);
         prepareMainChart(this.mainChart);
@@ -154,101 +140,11 @@ public class IndicatorsFragment extends ExampleFragmentBase {
         this.indicatorsChart = (RadCartesianChartView) root.findViewById(R.id.chart_indicator);
         prepareIndicatorsChart(this.indicatorsChart);
 
-        MultipleChartsPanAndZoomBehavior mainPanZoomBehavior = new MultipleChartsPanAndZoomBehavior();
-        MultipleChartsPanAndZoomBehavior volumePanZoomBehavior = new MultipleChartsPanAndZoomBehavior();
-        MultipleChartsPanAndZoomBehavior indicatorsPanZoomBehavior = new MultipleChartsPanAndZoomBehavior();
-
+        MultipleChartsPanAndZoomBehavior mainPanZoomBehavior = new MultipleChartsPanAndZoomBehavior(this.mainChart, this.volumeChart, this.indicatorsChart);
         this.mainChart.getBehaviors().add(mainPanZoomBehavior);
-        this.volumeChart.getBehaviors().add(volumePanZoomBehavior);
-        this.indicatorsChart.getBehaviors().add(indicatorsPanZoomBehavior);
 
-        mainPanZoomBehavior.addBehavior(volumePanZoomBehavior);
-        mainPanZoomBehavior.addBehavior(indicatorsPanZoomBehavior);
-
-        volumePanZoomBehavior.addBehavior(mainPanZoomBehavior);
-        volumePanZoomBehavior.addBehavior(indicatorsPanZoomBehavior);
-        volumePanZoomBehavior.setZoomMode(ChartPanZoomMode.HORIZONTAL);
-        volumePanZoomBehavior.setPanMode(ChartPanZoomMode.HORIZONTAL);
-
-        indicatorsPanZoomBehavior.addBehavior(mainPanZoomBehavior);
-        indicatorsPanZoomBehavior.addBehavior(volumePanZoomBehavior);
-        indicatorsPanZoomBehavior.setZoomMode(ChartPanZoomMode.HORIZONTAL);
-        indicatorsPanZoomBehavior.setPanMode(ChartPanZoomMode.HORIZONTAL);
-
-        root.findViewById(R.id.range_selection_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle(getResources().getString(R.string.indicators_range_dialog_title));
-                builder.setSingleChoiceItems(getResources().getStringArray(R.array.indicators_range_options), currentDataRange, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int item) {
-                        beginUpdate();
-                        resetChartsPanZoom();
-                        updateData(item);
-                        endUpdate();
-                        ((Button) getActivity().findViewById(R.id.range_selection_btn)).setText(getResources().getStringArray(R.array.indicators_range_button_text)[item]);
-                        alertDialog.dismiss();
-                    }
-                });
-
-                alertDialog = builder.create();
-                alertDialog.show();
-            }
-        });
-
-        root.findViewById(R.id.technicials_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Dialog alertDialog = new Dialog(context);
-
-                alertDialog.setContentView(R.layout.indicators_custom_technicials_dialog);
-                final ViewGroup g = (ViewGroup) alertDialog.findViewById(R.id.custom_dialog_view);
-                ViewGroup dialogRoot = ((ViewGroup) g.getParent().getParent().getParent());
-                dialogRoot.getChildAt(0).setVisibility(View.GONE);
-                dialogRoot.getChildAt(1).setVisibility(View.GONE);
-
-                g.findViewById(R.id.cancel_btn).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
-
-                g.findViewById(R.id.set_btn).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        maChecked = ((CheckBox) g.findViewById(R.id.ma)).isChecked();
-                        exponentialMAChecked = ((CheckBox) g.findViewById(R.id.exponential_ma)).isChecked();
-                        modifiedExponentialMAChecked = ((CheckBox) g.findViewById(R.id.modified_exponential_ma)).isChecked();
-                        bollingerBandsChecked = ((CheckBox) g.findViewById(R.id.bollinger)).isChecked();
-
-                        int selectedIndicatorIndex = 0;
-                        for (int i = 0, len = ((RadioGroup) g.findViewById(R.id.indicators_radio_group)).getChildCount(); i < len; i++)
-                            if (((RadioButton) ((RadioGroup) g.findViewById(R.id.indicators_radio_group)).getChildAt(i)).isChecked()) {
-                                selectedIndicatorIndex = i;
-                                break;
-                            }
-
-                        beginUpdate();
-                        resetChartsPanZoom();
-                        updateMainChart(maChecked, exponentialMAChecked, modifiedExponentialMAChecked, bollingerBandsChecked);
-                        updateIndicatorsChart(selectedIndicatorIndex);
-                        updateData(currentDataRange);
-                        endUpdate();
-                        alertDialog.dismiss();
-                    }
-                });
-
-                ((CheckBox) g.findViewById(R.id.ma)).setChecked(maChecked);
-                ((CheckBox) g.findViewById(R.id.exponential_ma)).setChecked(exponentialMAChecked);
-                ((CheckBox) g.findViewById(R.id.modified_exponential_ma)).setChecked(modifiedExponentialMAChecked);
-                ((CheckBox) g.findViewById(R.id.bollinger)).setChecked(bollingerBandsChecked);
-
-                ((RadioButton) ((RadioGroup) g.findViewById(R.id.indicators_radio_group)).getChildAt(currentIndicator)).setChecked(true);
-
-                alertDialog.show();
-            }
-        });
+        root.findViewById(R.id.range_selection_btn).setOnClickListener(this);
+        root.findViewById(R.id.technicals_btn).setOnClickListener(this);
 
         RadLegendView indicatorLegend = (RadLegendView) root.findViewById(R.id.indicators_chart_legend);
         indicatorLegend.setLegendProvider(this.indicatorsChart);
@@ -256,135 +152,236 @@ public class IndicatorsFragment extends ExampleFragmentBase {
         RadLegendView mainLegend = (RadLegendView) root.findViewById(R.id.main_chart_legend);
         mainLegend.setLegendProvider(this.mainChart);
 
-        updateData(1);
+        updateExample(this.currentDataRange);
 
         return root;
     }
 
-    private void resetChartsPanZoom() {
-        this.mainChart.setZoom(1, 1);
-        this.mainChart.setPanOffset(0, 0);
+    private void initDataPointBindings() {
+        this.categoryBinding = new GenericDataPointBinding<FinancialDataClass, Calendar>(new Function<FinancialDataClass, Calendar>() {
+            @Override
+            public Calendar apply(FinancialDataClass argument) {
+                return argument.date;
+            }
+        });
 
-        this.volumeChart.setZoom(1, 1);
-        this.volumeChart.setPanOffset(0, 0);
+        this.openBinding = new GenericDataPointBinding<FinancialDataClass, Float>(new Function<FinancialDataClass, Float>() {
+            @Override
+            public Float apply(FinancialDataClass argument) {
+                return argument.open;
+            }
+        });
 
-        this.indicatorsChart.setZoom(1, 1);
-        this.indicatorsChart.setPanOffset(0, 0);
+        this.highBinding = new GenericDataPointBinding<FinancialDataClass, Float>(new Function<FinancialDataClass, Float>() {
+            @Override
+            public Float apply(FinancialDataClass argument) {
+                return argument.high;
+            }
+        });
+
+        this.lowBinding = new GenericDataPointBinding<FinancialDataClass, Float>(new Function<FinancialDataClass, Float>() {
+            @Override
+            public Float apply(FinancialDataClass argument) {
+                return argument.low;
+            }
+        });
+
+        this.closeBinding = new GenericDataPointBinding<FinancialDataClass, Float>(new Function<FinancialDataClass, Float>() {
+            @Override
+            public Float apply(FinancialDataClass argument) {
+                return argument.close;
+            }
+        });
     }
 
-    private void endUpdate() {
-        this.mainChart.endUpdate();
-        this.volumeChart.endUpdate();
-        this.indicatorsChart.endUpdate();
+    private void showRangeSelectionDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(getResources().getString(R.string.indicators_range_dialog_title));
+        builder.setSingleChoiceItems(getResources().getStringArray(R.array.indicators_range_options), currentDataRange, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                updateData(item);
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog = builder.create();
+        alertDialog.show();
     }
 
-    private void beginUpdate() {
-        this.mainChart.beginUpdate();
-        this.volumeChart.beginUpdate();
-        this.indicatorsChart.beginUpdate();
+    private void showAlertDialog() {
+        alertDialog = new Dialog(context);
+
+        alertDialog.setContentView(R.layout.indicators_custom_technicials_dialog);
+        ViewGroup customDialog = (ViewGroup) alertDialog.findViewById(R.id.custom_dialog_view);
+
+        // Design workaround
+        ViewGroup dialogRoot = ((ViewGroup) customDialog.getParent().getParent().getParent());
+        dialogRoot.getChildAt(0).setVisibility(View.GONE);
+        dialogRoot.getChildAt(1).setVisibility(View.GONE);
+
+        customDialog.findViewById(R.id.cancel_btn).setOnClickListener(this);
+
+        customDialog.findViewById(R.id.set_btn).setOnClickListener(this);
+
+        ((CheckBox) customDialog.findViewById(R.id.ma)).setChecked(maChecked);
+        ((CheckBox) customDialog.findViewById(R.id.exponential_ma)).setChecked(exponentialMAChecked);
+        ((CheckBox) customDialog.findViewById(R.id.modified_exponential_ma)).setChecked(modifiedExponentialMAChecked);
+        ((CheckBox) customDialog.findViewById(R.id.bollinger)).setChecked(bollingerBandsChecked);
+
+        ((RadioButton) ((RadioGroup) customDialog.findViewById(R.id.indicators_radio_group)).getChildAt(currentIndicator)).setChecked(true);
+
+        alertDialog.show();
     }
 
-    private void updateIndicatorsChart(int selectedIndicatorIndex) {
-        if (this.currentIndicator == selectedIndicatorIndex)
-            return;
+    private void cancelTechnicals() {
+        this.alertDialog.dismiss();
+    }
 
-        clearSeries(this.indicatorsChart);
+    private void okTechnicals() {
+        ViewGroup customDialog = (ViewGroup) alertDialog.findViewById(R.id.custom_dialog_view);
+        maChecked = ((CheckBox) customDialog.findViewById(R.id.ma)).isChecked();
+        exponentialMAChecked = ((CheckBox) customDialog.findViewById(R.id.exponential_ma)).isChecked();
+        modifiedExponentialMAChecked = ((CheckBox) customDialog.findViewById(R.id.modified_exponential_ma)).isChecked();
+        bollingerBandsChecked = ((CheckBox) customDialog.findViewById(R.id.bollinger)).isChecked();
 
-        switch (selectedIndicatorIndex) {
-            case 0:
-                addSeriesToChart(createMACDIndicator(), this.indicatorsChart);
+        for (int i = 0, len = ((RadioGroup) customDialog.findViewById(R.id.indicators_radio_group)).getChildCount(); i < len; i++)
+            if (((RadioButton) ((RadioGroup) customDialog.findViewById(R.id.indicators_radio_group)).getChildAt(i)).isChecked()) {
+                currentIndicator = i;
                 break;
-            case 1:
-                addSeriesToChart(createAverageTrueRangeIndicator(), this.indicatorsChart);
-                break;
-            case 2:
-                addSeriesToChart(createRelativeStrengthIndexIndicator(), this.indicatorsChart);
-                break;
-            case 3:
-                addSeriesToChart(createMomentumIndicator(), this.indicatorsChart);
-                break;
-            case 4:
-                addSeriesToChart(createUltimateOscillator(), this.indicatorsChart);
-                break;
-            case 5:
-                addSeriesToChart(createStochasticFastIndicator(), this.indicatorsChart);
-                break;
-            default:
-                throw new IllegalArgumentException("unknown indicator");
+            }
+
+        updateExample(currentDataRange);
+        alertDialog.dismiss();
+    }
+
+    private void updateExample(int dataRange) {
+        beginUpdate();
+        updateMainChart(this.maChecked, this.exponentialMAChecked, this.modifiedExponentialMAChecked, this.bollingerBandsChecked);
+        updateIndicatorsChart(this.currentIndicator);
+        updateData(dataRange);
+        endUpdate();
+    }
+
+    private void restoreInstanceState(Bundle savedInstanceState) {
+        this.bollingerBandsChecked = savedInstanceState.getBoolean(BOLLINGER_BANDS_CHECKED_NAME);
+        this.exponentialMAChecked = savedInstanceState.getBoolean(EXPONENTIAL_MA_CHECKED_NAME);
+        this.maChecked = savedInstanceState.getBoolean(MA_CHECKED_NAME);
+        this.modifiedExponentialMAChecked = savedInstanceState.getBoolean(MODIFIED_EXPONENTIAL_MA_CHECKED_NAME);
+
+        this.currentDataRange = savedInstanceState.getInt(DATA_RANGE_NAME);
+        this.currentIndicator = savedInstanceState.getInt(CURRENT_INDICATOR_NAME);
+    }
+
+    private void prepareMainChart(RadCartesianChartView chart) {
+        this.mainChartHorizontalAxis = new DateTimeCategoricalAxis();
+        this.mainChartHorizontalAxis.setDateTimeFormat(new SimpleDateFormat("MM/dd"));
+        this.mainChartHorizontalAxis.setDateTimeComponent(DateTimeComponent.DATE);
+
+        LinearAxis vAxis = new LinearAxis();
+        vAxis.getLabelRenderer().setLabelValueToStringConverter(new Function<Object, String>() {
+            @Override
+            public String apply(Object argument) {
+                return String.format("%.2f", ((MajorTickModel) argument).value() / 100.0);
+            }
+        });
+
+        OhlcSeries series = new OhlcSeries();
+        series.setCategoryBinding(this.categoryBinding);
+        series.setHighBinding(this.highBinding);
+        series.setLowBinding(this.lowBinding);
+        series.setOpenBinding(this.openBinding);
+        series.setCloseBinding(this.closeBinding);
+        series.setIsVisibleInLegend(false);
+
+        chart.setVerticalAxis(vAxis);
+        chart.setHorizontalAxis(this.mainChartHorizontalAxis);
+        addSeriesToChart(series, chart);
+        vAxis.setHorizontalLocation(AxisHorizontalLocation.RIGHT);
+
+        ChartTrackBallBehavior trackBallBehavior = new ChartTrackBallBehavior(context);
+        trackBallBehavior.contentAdapter().setValueToStringConverter(new Function<Object, String>() {
+            @Override
+            public String apply(Object argument) {
+                return String.format("%.2f", ((Number) argument).doubleValue());
+            }
+        });
+
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        trackBallBehavior.contentAdapter().setCategoryToStringConverter(new Function<Object, String>() {
+            @Override
+            public String apply(Object argument) {
+                return dateFormat.format(((Calendar) argument).getTime());
+            }
+        });
+
+        chart.getBehaviors().add(trackBallBehavior);
+    }
+
+    private void prepareVolumeChart(RadCartesianChartView chart) {
+        DateTimeCategoricalAxis hAxis = new DateTimeCategoricalAxis();
+        hAxis.setDateTimeComponent(DateTimeComponent.DATE);
+
+        LinearAxis vAxis = new LinearAxis();
+        vAxis.getLabelRenderer().setLabelValueToStringConverter(new Function<Object, String>() {
+            @Override
+            public String apply(Object argument) {
+                return String.format("%s", (int) (((MajorTickModel) argument).value() / 1000000));
+            }
+        });
+        vAxis.setLabelInterval(3);
+
+        BarSeries series = new BarSeries();
+        series.setCategoryBinding(this.categoryBinding);
+        series.setValueBinding(new GenericDataPointBinding<FinancialDataClass, Float>(new Function<FinancialDataClass, Float>() {
+            @Override
+            public Float apply(FinancialDataClass argument) {
+                return argument.volume;
+            }
+        }));
+
+        chart.setVerticalAxis(vAxis);
+        chart.setHorizontalAxis(hAxis);
+        addSeriesToChart(series, chart);
+
+        vAxis.setHorizontalLocation(AxisHorizontalLocation.RIGHT);
+        hAxis.setShowLabels(false);
+        hAxis.setTickColor(Color.TRANSPARENT);
+    }
+
+    private void prepareIndicatorsChart(RadCartesianChartView chart) {
+        DateTimeCategoricalAxis hAxis = new DateTimeCategoricalAxis();
+        hAxis.setDateTimeComponent(DateTimeComponent.DATE);
+
+        LinearAxis vAxis = new LinearAxis();
+
+        chart.setVerticalAxis(vAxis);
+        chart.setHorizontalAxis(hAxis);
+
+        hAxis.setPlotMode(AxisPlotMode.BETWEEN_TICKS);
+        hAxis.setShowLabels(false);
+        hAxis.setTickColor(Color.TRANSPARENT);
+        vAxis.setHorizontalLocation(AxisHorizontalLocation.RIGHT);
+        vAxis.setLabelInterval(3);
+    }
+
+    private void clearSeries(RadCartesianChartView chart) {
+        for (CartesianSeries series : chart.getSeries())
+            this.currentActiveSeries.remove(series);
+        chart.getSeries().clear();
+    }
+
+    private void addSeriesToChart(CartesianSeries series, RadCartesianChartView chart) {
+        chart.getSeries().add(series);
+        this.currentActiveSeries.add(series);
+    }
+
+    private void updateData(int range) {
+        for (ChartSeries series : this.currentActiveSeries) {
+            series.setData(data(range));
         }
 
-        this.currentIndicator = selectedIndicatorIndex;
-    }
-
-    private CartesianSeries createMACDIndicator() {
-        MacdIndicator indicator = new MacdIndicator(context);
-        indicator.setCategoryBinding(this.categoryBinding);
-        indicator.setValueBinding(this.lowBinding);
-        indicator.setLongPeriod(12);
-        indicator.setShortPeriod(9);
-        indicator.setSignalPeriod(6);
-        indicator.setLegendTitle("MACD (12, 9, 6)");
-
-        return indicator;
-    }
-
-    private CartesianSeries createStochasticFastIndicator() {
-        StochasticFastIndicator indicator = new StochasticFastIndicator(context);
-        indicator.setCategoryBinding(this.categoryBinding);
-        indicator.setCloseBinding(closeBinding);
-        indicator.setHighBinding(highBinding);
-        indicator.setLowBinding(lowBinding);
-        indicator.setMainPeriod(8);
-        indicator.setSignalPeriod(6);
-        indicator.setLegendTitle("Stochastic Fast (8, 6)");
-
-        return indicator;
-    }
-
-    private CartesianSeries createUltimateOscillator() {
-        UltimateOscillatorIndicator indicator = new UltimateOscillatorIndicator(context);
-        indicator.setCategoryBinding(this.categoryBinding);
-        indicator.setCloseBinding(this.closeBinding);
-        indicator.setHighBinding(this.highBinding);
-        indicator.setLowBinding(this.lowBinding);
-        indicator.setPeriod(2);
-        indicator.setPeriod2(5);
-        indicator.setPeriod3(8);
-        indicator.setLegendTitle("Ultimate Oscillator (2, 5, 8)");
-
-        return indicator;
-    }
-
-    private CartesianSeries createMomentumIndicator() {
-        MomentumIndicator indicator = new MomentumIndicator(context);
-        indicator.setCategoryBinding(this.categoryBinding);
-        indicator.setValueBinding(this.closeBinding);
-        indicator.setPeriod(5);
-        indicator.setLegendTitle("Momentum (5)");
-
-        return indicator;
-    }
-
-    private CartesianSeries createRelativeStrengthIndexIndicator() {
-        RelativeStrengthIndexIndicator indicator = new RelativeStrengthIndexIndicator(context);
-        indicator.setCategoryBinding(this.categoryBinding);
-        indicator.setValueBinding(this.closeBinding);
-        indicator.setPeriod(5);
-        indicator.setLegendTitle("Relative Strength Index (5)");
-
-        return indicator;
-    }
-
-    private CartesianSeries createAverageTrueRangeIndicator() {
-        AverageTrueRangeIndicator indicator = new AverageTrueRangeIndicator(context);
-        indicator.setCategoryBinding(this.categoryBinding);
-        indicator.setCloseBinding(this.closeBinding);
-        indicator.setHighBinding(this.highBinding);
-        indicator.setLowBinding(this.lowBinding);
-        indicator.setPeriod(5);
-        indicator.setLegendTitle("Average True Range (5)");
-
-        return indicator;
+        this.currentDataRange = range;
+        this.rangeSelectBtn.setText(getResources().getStringArray(R.array.indicators_range_button_text)[range]);
     }
 
     private void updateMainChart(boolean maChecked, boolean exponentialMAChecked, boolean modifiedExponentialMAChecked, boolean bollingerBandsChecked) {
@@ -409,190 +406,227 @@ public class IndicatorsFragment extends ExampleFragmentBase {
         }
     }
 
+    private void updateIndicatorsChart(int selectedIndicatorIndex) {
+        clearSeries(this.indicatorsChart);
+
+        switch (selectedIndicatorIndex) {
+            case MACD_INDICATOR_INDEX:
+                addSeriesToChart(createMACDIndicator(), this.indicatorsChart);
+                break;
+            case AVERAGE_TRUE_RANGE_INDICATOR_INDEX:
+                addSeriesToChart(createAverageTrueRangeIndicator(), this.indicatorsChart);
+                break;
+            case RELATIVE_STRENGTH_INDICATOR_INDEX:
+                addSeriesToChart(createRelativeStrengthIndexIndicator(), this.indicatorsChart);
+                break;
+            case MOMENTUM_INDICATOR_INDEX:
+                addSeriesToChart(createMomentumIndicator(), this.indicatorsChart);
+                break;
+            case ULTIMATE_OSCILLATOR_INDICATOR_INDEX:
+                addSeriesToChart(createUltimateOscillator(), this.indicatorsChart);
+                break;
+            case STOCHASTIC_FAST_INDICATOR_INDEX:
+                addSeriesToChart(createStochasticFastIndicator(), this.indicatorsChart);
+                break;
+            default:
+                throw new IllegalArgumentException("unknown indicator type");
+        }
+
+        this.currentIndicator = selectedIndicatorIndex;
+    }
+
+    private Iterable<FinancialDataClass> data(int range) {
+        Iterable<FinancialDataClass> data = null;
+        if (range == DATA_RANGE_ONE_MONTH) {
+            data = ExampleDataProvider.indicatorsDataOneMonth(this.resources);
+            this.mainChartHorizontalAxis.setMajorTickInterval(LABELS_INTERVAL_BASE);
+        } else if (range == DATA_RANGE_SIX_MONTHS) {
+            data = ExampleDataProvider.indicatorsDataSixMonths(this.resources);
+            this.mainChartHorizontalAxis.setMajorTickInterval(LABELS_INTERVAL_BASE * 6);
+        } else if (range == DATA_RANGE_ONE_YEAR) {
+            data = ExampleDataProvider.indicatorsDataOneYear(this.resources);
+            this.mainChartHorizontalAxis.setMajorTickInterval(LABELS_INTERVAL_BASE * 12);
+        } else if (range == DATA_RANGE_FIVE_YEARS) {
+            data = ExampleDataProvider.indicatorsDataFiveYears(this.resources);
+            this.mainChartHorizontalAxis.setMajorTickInterval(LABELS_INTERVAL_BASE * 12 * 5);
+        }
+
+        return data;
+    }
+
+    private void endUpdate() {
+        this.mainChart.endUpdate();
+        this.volumeChart.endUpdate();
+        this.indicatorsChart.endUpdate();
+    }
+
+    private void beginUpdate() {
+        this.mainChart.beginUpdate();
+        this.volumeChart.beginUpdate();
+        this.indicatorsChart.beginUpdate();
+    }
+
+    private CartesianSeries createMACDIndicator() {
+        MacdIndicator indicator = new MacdIndicator();
+        indicator.setCategoryBinding(this.categoryBinding);
+        indicator.setValueBinding(this.closeBinding);
+        indicator.setLongPeriod(12);
+        indicator.setShortPeriod(9);
+        indicator.setSignalPeriod(6);
+        indicator.setLegendTitle("MACD (12, 9, 6)");
+
+        return indicator;
+    }
+
+    private CartesianSeries createStochasticFastIndicator() {
+        StochasticFastIndicator indicator = new StochasticFastIndicator();
+        indicator.setCategoryBinding(this.categoryBinding);
+        indicator.setCloseBinding(closeBinding);
+        indicator.setHighBinding(highBinding);
+        indicator.setLowBinding(lowBinding);
+        indicator.setMainPeriod(8);
+        indicator.setSignalPeriod(6);
+        indicator.setLegendTitle("Stochastic Fast (8, 6)");
+
+        return indicator;
+    }
+
+    private CartesianSeries createUltimateOscillator() {
+        UltimateOscillatorIndicator indicator = new UltimateOscillatorIndicator();
+        indicator.setCategoryBinding(this.categoryBinding);
+        indicator.setCloseBinding(this.closeBinding);
+        indicator.setHighBinding(this.highBinding);
+        indicator.setLowBinding(this.lowBinding);
+        indicator.setPeriod(2);
+        indicator.setPeriod2(5);
+        indicator.setPeriod3(8);
+        indicator.setLegendTitle("Ultimate Oscillator (2, 5, 8)");
+
+        return indicator;
+    }
+
+    private CartesianSeries createMomentumIndicator() {
+        MomentumIndicator indicator = new MomentumIndicator();
+        indicator.setCategoryBinding(this.categoryBinding);
+        indicator.setValueBinding(this.closeBinding);
+        indicator.setPeriod(5);
+        indicator.setLegendTitle("Momentum (5)");
+
+        return indicator;
+    }
+
+    private CartesianSeries createRelativeStrengthIndexIndicator() {
+        RelativeStrengthIndexIndicator indicator = new RelativeStrengthIndexIndicator();
+        indicator.setCategoryBinding(this.categoryBinding);
+        indicator.setValueBinding(this.closeBinding);
+        indicator.setPeriod(5);
+        indicator.setLegendTitle("Relative Strength Index (5)");
+
+        return indicator;
+    }
+
+    private CartesianSeries createAverageTrueRangeIndicator() {
+        AverageTrueRangeIndicator indicator = new AverageTrueRangeIndicator();
+        indicator.setCategoryBinding(this.categoryBinding);
+        indicator.setCloseBinding(this.closeBinding);
+        indicator.setHighBinding(this.highBinding);
+        indicator.setLowBinding(this.lowBinding);
+        indicator.setPeriod(5);
+        indicator.setLegendTitle("Average True Range (5)");
+
+        return indicator;
+    }
+
     private BollingerBandsIndicator createBollingerBandsIndicator() {
-        BollingerBandsIndicator indicator = new BollingerBandsIndicator(context);
+        BollingerBandsIndicator indicator = new BollingerBandsIndicator();
         indicator.setPeriod(5);
         indicator.setStandardDeviations(2);
         indicator.setCategoryBinding(this.categoryBinding);
         indicator.setValueBinding(this.closeBinding);
         indicator.setLegendTitle("Bollinger Bands (5, 2)");
+
         return indicator;
     }
 
     private ModifiedExponentialMovingAverageIndicator createModifiedExponentialMovingAverageIndicator() {
-        ModifiedExponentialMovingAverageIndicator indicator = new ModifiedExponentialMovingAverageIndicator(context);
+        ModifiedExponentialMovingAverageIndicator indicator = new ModifiedExponentialMovingAverageIndicator();
         indicator.setPeriod(5);
         indicator.setCategoryBinding(this.categoryBinding);
         indicator.setValueBinding(this.closeBinding);
         indicator.setLegendTitle("Modified Exponential MA (5)");
+
         return indicator;
     }
 
     private ExponentialMovingAverageIndicator createExponentialMovingAverageIndicator() {
-        ExponentialMovingAverageIndicator indicator = new ExponentialMovingAverageIndicator(context);
+        ExponentialMovingAverageIndicator indicator = new ExponentialMovingAverageIndicator();
         indicator.setPeriod(5);
         indicator.setCategoryBinding(this.categoryBinding);
         indicator.setValueBinding(this.closeBinding);
         indicator.setLegendTitle("Exponential MA (5)");
+
         return indicator;
     }
 
     private MovingAverageIndicator createMovingAverageIndicator() {
-        MovingAverageIndicator indicator = new MovingAverageIndicator(context);
+        MovingAverageIndicator indicator = new MovingAverageIndicator();
         indicator.setPeriod(5);
         indicator.setCategoryBinding(this.categoryBinding);
         indicator.setValueBinding(this.closeBinding);
         indicator.setLegendTitle("Moving Average (5)");
+
         return indicator;
     }
 
-    private void clearSeries(RadCartesianChartView chart) {
-        for (CartesianSeries series : chart.getSeries())
-            this.currentActiveSeries.remove(series);
-        chart.getSeries().clear();
-    }
-
-    private void addSeriesToChart(CartesianSeries series, RadCartesianChartView chart) {
-        chart.getSeries().add(series);
-        this.currentActiveSeries.add(series);
-    }
-
-    private void updateData(int range) {
-        for (ChartSeries series : this.currentActiveSeries)
-            series.setData(data(range));
-    }
-
-    private void prepareMainChart(RadCartesianChartView chart) {
-        this.mainChartHorizontalAxis = new DateTimeCategoricalAxis(context);
-        this.mainChartHorizontalAxis.setDateTimeFormat(new SimpleDateFormat("MM/dd"));
-        this.mainChartHorizontalAxis.setDateTimeComponent(DateTimeComponent.DATE);
-
-        LinearAxis vAxis = new LinearAxis(context);
-        vAxis.getLabelRenderer().setLabelValueToStringConverter(new Function<Object, String>() {
-            @Override
-            public String apply(Object argument) {
-                return String.format("%s", Math.floor(((MajorTickModel) argument).value() / 100));
-            }
-        });
-
-        OhlcSeries series = new OhlcSeries(context);
-        series.setCategoryBinding(this.categoryBinding);
-        series.setHighBinding(this.highBinding); // h
-        series.setLowBinding(this.lowBinding); // l
-        series.setOpenBinding(this.openBinding); // o
-        series.setCloseBinding(this.closeBinding); // c
-        series.setIsVisibleInLegend(false);
-
-        chart.setVerticalAxis(vAxis);
-        chart.setHorizontalAxis(this.mainChartHorizontalAxis);
-        addSeriesToChart(series, chart);
-        addSeriesToChart(createModifiedExponentialMovingAverageIndicator(), chart);
-        this.modifiedExponentialMAChecked = true;
-        vAxis.setHorizontalLocation(AxisHorizontalLocation.RIGHT);
-
-        ChartTrackBallBehavior trackBallBehavior = new ChartTrackBallBehavior(context);
-        trackBallBehavior.contentAdapter().setValueToStringConverter(new Function<Object, String>() {
-            @Override
-            public String apply(Object argument) {
-                return String.format("%.2f", ((Number) argument).doubleValue());
-            }
-        });
-
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        trackBallBehavior.contentAdapter().setCategoryToStringConverter(new Function<Object, String>() {
-            @Override
-            public String apply(Object argument) {
-                return dateFormat.format(((Calendar) argument).getTime());
-            }
-        });
-
-        chart.getBehaviors().add(trackBallBehavior);
-    }
-
-    private void prepareVolumeChart(RadCartesianChartView chart) {
-        DateTimeCategoricalAxis hAxis = new DateTimeCategoricalAxis(context);
-
-        LinearAxis vAxis = new LinearAxis(context);
-        vAxis.getLabelRenderer().setLabelValueToStringConverter(new Function<Object, String>() {
-            @Override
-            public String apply(Object argument) {
-                return String.format("%s", (int) (((MajorTickModel) argument).value() / 1000000));
-            }
-        });
-        vAxis.setLabelInterval(3);
-
-        BarSeries series = new BarSeries(context);
-        series.setCategoryBinding(this.categoryBinding);
-        series.setValueBinding(new DataPointBinding() {
-            @Override
-            public Object getValue(Object instance) throws IllegalArgumentException {
-                return ((FinancialDataClass) instance).volume;
-            }
-        });
-
-        chart.setVerticalAxis(vAxis);
-        chart.setHorizontalAxis(hAxis);
-        addSeriesToChart(series, chart);
-
-        vAxis.setHorizontalLocation(AxisHorizontalLocation.RIGHT);
-        hAxis.setShowLabels(false);
-        hAxis.setTickColor(Color.TRANSPARENT);
-    }
-
-    private void prepareIndicatorsChart(RadCartesianChartView chart) {
-        DateTimeCategoricalAxis hAxis = new DateTimeCategoricalAxis(context);
-
-        LinearAxis vAxis = new LinearAxis(context);
-
-        chart.setVerticalAxis(vAxis);
-        chart.setHorizontalAxis(hAxis);
-        addSeriesToChart(createMACDIndicator(), chart);
-
-        hAxis.setPlotMode(AxisPlotMode.BETWEEN_TICKS);
-        hAxis.setShowLabels(false);
-        hAxis.setTickColor(Color.TRANSPARENT);
-        vAxis.setHorizontalLocation(AxisHorizontalLocation.RIGHT);
-        vAxis.setLabelInterval(3);
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.technicals_btn) {
+            this.showAlertDialog();
+        } else if (v.getId() == R.id.range_selection_btn) {
+            this.showRangeSelectionDialog();
+        } else if (v.getId() == R.id.cancel_btn) {
+            this.cancelTechnicals();
+        } else if (v.getId() == R.id.set_btn) {
+            this.okTechnicals();
+        }
     }
 
     private class MultipleChartsPanAndZoomBehavior extends ChartPanAndZoomBehavior {
-        private List<MultipleChartsPanAndZoomBehavior> behaviors = new ArrayList<MultipleChartsPanAndZoomBehavior>();
+        private RadCartesianChartView[] charts;
+        private RadCartesianChartView mainChart;
 
-        public void addBehavior(MultipleChartsPanAndZoomBehavior chart) {
-            this.behaviors.add(chart);
+        public MultipleChartsPanAndZoomBehavior(RadCartesianChartView mainChart, RadCartesianChartView... charts) {
+            this.mainChart = mainChart;
+            this.charts = charts;
+            this.setZoomStrategy(ChartZoomStrategy.DEFERRED);
         }
 
         @Override
-        public void setZoomToChart(double scale) {
-            this.setZoomToChart(scale, 0);
+        public void onPinchComplete() {
+            super.onPinchComplete();
+
+            for (RadCartesianChartView chart : this.charts) {
+                chart.setZoom(this.mainChart.getZoomWidth(), 1);
+                chart.setPanOffset(this.mainChart.getPanOffsetX(), 0);
+            }
         }
 
-        public void setZoomToChart(double scale, int level) {
-            if (level > 1)
-                return;
+        @Override
+        public void setZoomToChart(double scaleX, double scaleY, double centerX, double centerY) {
+            super.setZoomToChart(scaleX, scaleY, centerX, centerY);
 
-            for (int i = 0, len = this.behaviors.size(); i < len; i++)
-                this.behaviors.get(i).setZoomToChart(scale, level + 1);
-
-            super.setZoomToChart(scale);
+            for (RadCartesianChartView chart : this.charts) {
+                chart.setZoom(this.mainChart.getZoomWidth(), 1);
+                chart.setPanOffset(this.mainChart.getPanOffsetX(), 0);
+            }
         }
 
         @Override
         public void setPanOffsetToChart(double offsetX, double offsetY) {
-            this.setPanOffsetToChart(offsetX, offsetY, 0);
-        }
-
-        public void setPanOffsetToChart(double offsetX, double offsetY, int level) {
-            if (level > 1)
-                return;
-
-            if (this.getPanMode() == ChartPanZoomMode.HORIZONTAL)
-                offsetY = 0;
-
-            for (int i = 0, len = this.behaviors.size(); i < len; i++)
-                this.behaviors.get(i).setPanOffsetToChart(offsetX, offsetY, level + 1);
-
             super.setPanOffsetToChart(offsetX, offsetY);
+            for (RadCartesianChartView chart : this.charts) {
+                chart.setPanOffset(this.mainChart.getPanOffsetX(), 0);
+            }
         }
     }
 }

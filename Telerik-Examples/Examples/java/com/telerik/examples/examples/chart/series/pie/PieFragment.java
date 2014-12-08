@@ -1,8 +1,6 @@
 package com.telerik.examples.examples.chart.series.pie;
 
-import android.util.TypedValue;
-
-import com.telerik.android.common.Util;
+import com.telerik.examples.R;
 import com.telerik.examples.examples.chart.ChartSelectionFragment;
 import com.telerik.widget.chart.visualization.pieChart.RadPieChartView;
 
@@ -13,7 +11,7 @@ public abstract class PieFragment extends ChartSelectionFragment {
     protected void prepareChart() {
         super.prepareChart();
         this.pieChart = (RadPieChartView)chart;
-        float padding = Util.getDimen(this.context, TypedValue.COMPLEX_UNIT_DIP, 20);
+        float padding = this.getResources().getDimension(R.dimen.pie_margin);
         this.pieChart.setChartPadding(padding);
         this.preparePieChart();
     }

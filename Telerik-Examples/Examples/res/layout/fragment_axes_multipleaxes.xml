@@ -52,7 +52,7 @@
             android:checked="true"
             android:id="@+id/axesPrice"
             android:text="PRICE"
-            android:layout_marginRight="@dimen/onedp"
+            android:layout_marginRight="1dp"
             android:paddingLeft="8dp"
             android:background="@drawable/axes_price" />
 
@@ -61,7 +61,7 @@
             android:checked="true"
             style="@style/AxesCheckbox"
             android:text="VOLUME"
-            android:layout_marginLeft="@dimen/onedp"
+            android:layout_marginLeft="1dp"
             android:paddingRight="8dp"
             android:gravity="right"
             android:background="@drawable/axes_volume" />

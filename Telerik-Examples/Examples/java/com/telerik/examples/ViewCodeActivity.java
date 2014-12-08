@@ -2,15 +2,18 @@ package com.telerik.examples;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.SpinnerAdapter;
 
-import com.telerik.examples.common.ExamplesApplicationContext;
+import com.telerik.examples.viewmodels.ExampleSourceModel;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 
@@ -19,31 +22,33 @@ import de.java2html.javasource.JavaSource;
 import de.java2html.javasource.JavaSourceParser;
 import de.java2html.options.JavaSourceConversionOptions;
 
-
-public class ViewCodeActivity extends Activity {
-
+public class ViewCodeActivity extends Activity implements ActionBar.OnNavigationListener {
     private WebView codeVisualizer;
-    private ExamplesApplicationContext app;
+    ExampleSourceModel sourceModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_code);
-        this.app = (ExamplesApplicationContext) this.getApplicationContext();
-        this.setTitle(this.app.selectedExample().getHeaderText() + " code");
-        this.codeVisualizer = (WebView)this.findViewById(R.id.webViewCode);
+        this.codeVisualizer = (WebView) this.findViewById(R.id.webViewCode);
         final ActionBar actionBar = this.getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setLogo(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-        String fileName = this.getIntent().getStringExtra("file_name");
-        this.loadSourceCode(fileName.toLowerCase());
+
+        this.sourceModel = (ExampleSourceModel) this.getIntent().getSerializableExtra("source_model");
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setLogo(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+            SpinnerAdapter adapter = new ExampleSourceAdapter(this.sourceModel, this);
+            actionBar.setListNavigationCallbacks(adapter, this);
+        }
     }
 
     private void loadSourceCode(String rawFile) {
         try {
-            InputStream stream = this.getResources().openRawResource(getResources().getIdentifier(rawFile, "raw", getPackageName()));
+            Resources res = this.getResources();
+            InputStream stream = res.openRawResource(res.getIdentifier(rawFile, "raw", getPackageName()));
             byte[] buffer = new byte[stream.available()];
-            while(stream.read(buffer) != -1);
+            while (stream.read(buffer) != -1) ;
             stream.close();
 
             JavaSource source = new JavaSourceParser().parse(new String(buffer));
@@ -51,15 +56,17 @@ public class ViewCodeActivity extends Activity {
             JavaSource2HTMLConverter converter = new JavaSource2HTMLConverter();
             converter.convert(source, JavaSourceConversionOptions.getDefault(), writer);
             this.codeVisualizer.loadData(writer.toString(), "text/html", "UTF-8");
-        } catch (Exception e) {
-            Log.e("Examples", "Could not read example source.", e);
+            this.codeVisualizer.reload();
+        } catch (IOException e) {
+            Log.w("Examples", "Could not read example source: " + e.getMessage());
+        } catch (Resources.NotFoundException e) {
+            Log.w("Examples", "Example source code not found: " + e.getMessage());
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-
         return false;
     }
 
@@ -74,5 +81,17 @@ public class ViewCodeActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+        return this.tryLoadSource(itemPosition);
+    }
+
+    private boolean tryLoadSource(int index) {
+        String fileName = this.sourceModel.getDependencies().get(index);
+        this.loadSourceCode(fileName.toLowerCase());
+        this.sourceModel.setCurrentIndex(index);
+        return true;
     }
 }
