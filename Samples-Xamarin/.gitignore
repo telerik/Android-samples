@@ -1,0 +1,9 @@
+# generated files
+bin/
+SourceBinaries/**/*.jar
+SourceBinaries/**/*.zip
+lib/
+gen/
+/**/obj/
+/**/*.suo
+*.userprefs

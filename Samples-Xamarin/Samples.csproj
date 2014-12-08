@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{D644C5FD-4257-41A0-922A-AF0D126FF0E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Samples</RootNamespace>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AssemblyName>Samples</AssemblyName>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Telerik.Xamarin.Android.Chart">
+      <HintPath>lib\Telerik.Xamarin.Android.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Common">
+      <HintPath>lib\Telerik.Xamarin.Android.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Feedback">
+      <HintPath>lib\Telerik.Xamarin.Android.Feedback.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Input">
+      <HintPath>lib\Telerik.Xamarin.Android.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Primitives">
+      <HintPath>lib\Telerik.Xamarin.Android.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>lib\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>lib\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExampleActivity.cs" />
+    <Compile Include="ControlActivity.cs" />
+    <Compile Include="Fragments\Chart\Series\AreaSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\CandleStickSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\DoughnutSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\HorizontalBarSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\IndicatorSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\LineSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\OhlcSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\PieSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\ScatterBubbleSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\ScatterPointSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\SplineAreaSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\SplineSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\StackAreaSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\StackBarSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\StackSplineAreaSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Series\VerticalBarSeriesFragment.cs" />
+    <Compile Include="Fragments\Chart\Features\ChartLegendFragment.cs" />
+    <Compile Include="Fragments\Chart\Features\GridFeatureFragment.cs" />
+    <Compile Include="Fragments\Chart\Features\PalettesFragment.cs" />
+    <Compile Include="Fragments\Chart\Behaviors\PanAndZoomFragment.cs" />
+    <Compile Include="Fragments\Chart\Behaviors\SelectionBehaviorFragment.cs" />
+    <Compile Include="Fragments\Chart\Behaviors\TooltipBehaviorFragment.cs" />
+    <Compile Include="Fragments\Chart\Behaviors\TrackballBehaviorFragment.cs" />
+    <Compile Include="Fragments\Chart\Annotations\GridLineAnnotationFragment.cs" />
+    <Compile Include="Fragments\Chart\Annotations\PlotBandAnnotationFragment.cs" />
+    <Compile Include="Adapters\ControlsAdapter.cs" />
+    <Compile Include="Adapters\ExamplesProvider.cs" />
+    <Compile Include="Fragments\ExampleFragment.cs" />
+    <Compile Include="Adapters\ChartExamples.cs" />
+    <Compile Include="Fragments\Chart\Axes\DateTimeContinuousAxisFragment.cs" />
+    <Compile Include="Fragments\Chart\Axes\MultipleAxesFragment.cs" />
+    <Compile Include="Adapters\ExamplesAdapter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\layout\fragment_chart_example.axml" />
+    <AndroidResource Include="Resources\layout\activity_control.axml" />
+    <AndroidResource Include="Resources\layout\activity_example.axml" />
+    <AndroidResource Include="Resources\layout\fragment_calendar_example.axml" />
+    <AndroidResource Include="Resources\layout\list_item_control.axml" />
+    <AndroidResource Include="Resources\layout\list_item_child.axml" />
+    <AndroidResource Include="Resources\layout\list_item_group.axml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="lib\" />
+    <Folder Include="Fragments\" />
+    <Folder Include="Fragments\Chart\" />
+    <Folder Include="Fragments\Calendar\" />
+    <Folder Include="Fragments\Chart\Series\" />
+    <Folder Include="Fragments\Chart\Features\" />
+    <Folder Include="Fragments\Chart\Behaviors\" />
+    <Folder Include="Fragments\Chart\Annotations\" />
+    <Folder Include="Adapters\" />
+    <Folder Include="Fragments\Chart\Axes\" />
+  </ItemGroup>
+</Project>
