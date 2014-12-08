@@ -8,6 +8,7 @@
     <dimen name="example_list_item_title_fontsize">25sp</dimen>
     <dimen name="example_list_item_fontsize">16sp</dimen>
     <dimen name="example_list_wrap_item_title_fontsize">19sp</dimen>
+    <dimen name="pie_margin">40dp</dimen>
 
     <dimen name="example_list_item_text_margin_top">10dp</dimen>
     <dimen name="example_list_item_text_margin_bottom">16dp</dimen>

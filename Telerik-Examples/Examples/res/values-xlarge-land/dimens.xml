@@ -6,4 +6,5 @@
     <dimen name="example_list_left_margin">130dp</dimen>
     <dimen name="example_group_list_item_size">132dp</dimen>
     <dimen name="example_group_list_item_badge_left_margin">114dp</dimen>
+    <dimen name="pie_margin">40dp</dimen>
 </resources>

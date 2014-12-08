@@ -5,9 +5,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
 
-/**
- * Created by ginev on 01/04/14.
- */
 public class CustomVerticalScrollView extends ScrollView implements HVScrollView {
     public CustomVerticalScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);

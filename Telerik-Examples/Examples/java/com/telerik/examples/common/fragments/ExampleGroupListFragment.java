@@ -16,19 +16,16 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.telerik.examples.ExampleActivity;
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
-import com.telerik.examples.common.ExamplesApplicationContext;
 import com.telerik.examples.common.ExamplesAdapter;
+import com.telerik.examples.common.ExamplesApplicationContext;
 import com.telerik.examples.common.TrackedApplication;
 import com.telerik.examples.common.contracts.TrackedActivity;
 import com.telerik.examples.primitives.ExamplesGridView;
 import com.telerik.examples.viewmodels.Example;
 
-/**
- * Created by ginev on 11/04/2014.
- */
-public class ExampleGroupListFragment extends Fragment implements View.OnClickListener, View.OnTouchListener {
+public class ExampleGroupListFragment extends Fragment implements View.OnClickListener, View.OnTouchListener, PopupMenu.OnMenuItemClickListener {
 
     public static final int EXAMPLE_GROUP_GRID_MODE = 1;
     public static final int EXAMPLE_GROUP_LIST_MODE = 2;
@@ -40,14 +37,17 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
     protected FragmentActivity parentActivity;
     private TextView emptyContentString;
 
+    private View initContent(LayoutInflater inflater, ViewGroup container) {
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            return inflater.inflate(R.layout.fragment_example_group_list, container, false);
+        } else {
+            return inflater.inflate(R.layout.fragment_example_group_list_horizontal, container, false);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = null;
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            root = inflater.inflate(R.layout.fragment_example_group_list, container, false);
-        } else {
-            root = inflater.inflate(R.layout.fragment_example_group_list_horizontal, container, false);
-        }
+        View root = this.initContent(inflater, container);
 
         int listMode = currentMode;
 
@@ -55,8 +55,8 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
             listMode = savedInstanceState.getInt("list_mode");
         }
 
-        this.emptyContentString = (TextView) root.findViewById(R.id.emptyContentPresenter);
-        this.gridView = (ExamplesGridView) root.findViewById(R.id.grid);
+        this.emptyContentString = Util.getLayoutPart(root, R.id.emptyContentPresenter, TextView.class);
+        this.gridView = Util.getLayoutPart(root, R.id.grid, ExamplesGridView.class);
 
         if (this.getActivity() instanceof ExamplesGridView.OnOverScrollByHandler) {
             this.gridView.setOnOverScrollByHandler((ExamplesGridView.OnOverScrollByHandler) this.getActivity());
@@ -70,6 +70,9 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
     }
 
     protected void refreshEmptyContent() {
+        if (this.getActivity() == null) {
+            return;
+        }
         if (this.gridView.getAdapter().getCount() == 0) {
             this.emptyContentString.setVisibility(View.VISIBLE);
         } else {
@@ -81,14 +84,13 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
 
     public boolean hasData() {
         if (this.gridView != null) {
-            return this.gridView.getAdapter() != null && this.gridView.getAdapter().getCount() > 0 || false;
+            return this.gridView.getAdapter() != null && this.gridView.getAdapter().getCount() > 0;
         }
 
         return false;
     }
 
     public void refreshFilters() {
-
     }
 
     @Override
@@ -152,56 +154,55 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
         return null;
     }
 
+    private Example selectedExample;
+
     @Override
     public void onClick(View v) {
+        selectedExample = (Example) v.getTag();
         if (v instanceof ImageButton) {
             PopupMenu menu = new PopupMenu(getActivity(), v);
-            final Example example = (Example) v.getTag();
-            if (!app.isExampleInFavourites(example)) {
+            if (!app.isExampleInFavourites(selectedExample)) {
                 menu.inflate(R.menu.example_list_default);
             } else {
                 menu.inflate(R.menu.example_list_in_favourites);
             }
-            menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    if (item.getItemId() == R.id.action_add_to_favorites) {
-                        app.addFavorite(example);
-                        TrackedActivity trackedActivity = (TrackedActivity) getActivity();
-                        if (trackedActivity != null) {
-                            app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_OVERFLOW_FAVOURITE_ADDED);
-                        }
-                        return true;
-                    } else if (item.getItemId() == R.id.action_remove_from_favorites) {
-                        app.removeFavorite(example);
-                        TrackedActivity trackedActivity = (TrackedActivity) getActivity();
-                        if (trackedActivity != null) {
-                            app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_OVERFLOW_FAVOURITE_REMOVED);
-                        }
-                        return true;
-                    } else if (item.getItemId() == R.id.action_view_example_info) {
-                        app.showInfo(getActivity(), example);
-                        TrackedActivity trackedActivity = (TrackedActivity) getActivity();
-                        if (trackedActivity != null) {
-                            app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_OVERFLOW_VIEW_INFO);
-                        }
-                        return true;
-                    }
-
-                    return false;
-                }
-
-            });
+            menu.setOnMenuItemClickListener(this);
             menu.show();
 
         } else {
-            Example selectedExample = (Example) v.getTag();
             this.app.openExample(parentActivity, selectedExample);
-            TrackedActivity trackedActivity = (TrackedActivity)getActivity();
+            TrackedActivity trackedActivity = (TrackedActivity) getActivity();
             if (trackedActivity != null) {
                 app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_SELECTED + ": " + selectedExample.getFragmentName());
             }
         }
+    }
+
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.action_add_to_favorites) {
+            app.addFavorite(selectedExample);
+            TrackedActivity trackedActivity = (TrackedActivity) getActivity();
+            if (trackedActivity != null) {
+                app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_OVERFLOW_FAVOURITE_ADDED);
+            }
+            return true;
+        } else if (item.getItemId() == R.id.action_remove_from_favorites) {
+            app.removeFavorite(selectedExample);
+            TrackedActivity trackedActivity = (TrackedActivity) getActivity();
+            if (trackedActivity != null) {
+                app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_OVERFLOW_FAVOURITE_REMOVED);
+            }
+            return true;
+        } else if (item.getItemId() == R.id.action_view_example_info) {
+            app.showInfo(getActivity(), selectedExample);
+            TrackedActivity trackedActivity = (TrackedActivity) getActivity();
+            if (trackedActivity != null) {
+                app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_OVERFLOW_VIEW_INFO);
+            }
+            return true;
+        }
+
+        return false;
     }
 
     @Override

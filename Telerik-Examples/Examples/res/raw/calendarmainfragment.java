@@ -2,8 +2,11 @@ package com.telerik.examples.examples.calendar;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,11 +22,18 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import com.telerik.android.common.Function;
+import com.telerik.android.common.Procedure;
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
+import com.telerik.widget.calendar.CalendarCell;
+import com.telerik.widget.calendar.CalendarCellType;
+import com.telerik.widget.calendar.CalendarDayCell;
 import com.telerik.widget.calendar.CalendarDisplayMode;
 import com.telerik.widget.calendar.CalendarSelectionMode;
 import com.telerik.widget.calendar.RadCalendarView;
+import com.telerik.widget.calendar.ScrollMode;
 import com.telerik.widget.calendar.WeekNumbersDisplayMode;
 import com.telerik.widget.calendar.events.Event;
 import com.telerik.widget.calendar.events.EventRenderMode;
@@ -33,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -47,9 +58,9 @@ public class CalendarMainFragment extends ExampleFragmentBase {
     private TextView txtDayTitle;
     private ImageButton btnUpCaret;
 
-    private static final int SELECTION_WEEK = 0;
-    private static final int SELECTION_MONTH = 1;
-    private static final int SELECTION_YEAR = 2;
+    public static final int SELECTION_WEEK = 0;
+    public static final int SELECTION_MONTH = 1;
+    public static final int SELECTION_YEAR = 2;
 
     private final String[] corpAppointmentTitles = new String[]{
             "Job interview",
@@ -94,7 +105,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_calendar_main, null);
         this.calendarView = (RadCalendarView) root.findViewById(R.id.calendarView);
 
@@ -128,6 +139,41 @@ public class CalendarMainFragment extends ExampleFragmentBase {
                 updateWeekModeDayString(true);
             }
         });
+        this.calendarView.setScrollMode(ScrollMode.Combo);
+        final Calendar calendar = Calendar.getInstance();
+        this.calendarView.setDateToColor(new Function<Long, Integer>() {
+            @Override
+            public Integer apply(Long argument) {
+                calendar.setTimeInMillis(argument);
+                if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
+                    return Color.RED;
+
+                return null;
+            }
+        });
+        final int colorEnabled = calendarView.getAdapter().getDateCellBackgroundColorEnabled();
+        final int colorDisabled = calendarView.getAdapter().getDateCellBackgroundColorDisabled();
+        final int borderColor = Color.parseColor("#f1891b");
+        final float borderWidth = Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 3);
+        final Bitmap sun = BitmapFactory.decodeResource(getResources(), R.drawable.ic_calendar_sun);
+        this.calendarView.setCustomizationRule(new Procedure<CalendarCell>() {
+            @Override
+            public void apply(CalendarCell argument) {
+                if (argument.getCellType() == CalendarCellType.Date) {
+                    calendar.setTimeInMillis(argument.getDate());
+                    if (calendar.get(Calendar.DAY_OF_MONTH) == 6 || calendar.get(Calendar.DAY_OF_MONTH) == 7) {
+                        argument.setBackgroundColor(Color.parseColor("#f9cc9d"), Color.parseColor("#f9cc9d"));
+                        argument.setBorderColor(borderColor);
+                        argument.setBorderWidth(borderWidth);
+                        argument.setBitmap(sun);
+                    } else {
+                        argument.setBackgroundColor(colorEnabled, colorDisabled);
+                        argument.setBorderColor(Color.TRANSPARENT);
+                        argument.setBitmap(null);
+                    }
+                }
+            }
+        });
         this.calendarView.setSelectionMode(CalendarSelectionMode.Single);
         this.calendarView.setOnDisplayDateChangedListener(new RadCalendarView.OnDisplayDateChangedListener() {
             @Override
@@ -135,18 +181,21 @@ public class CalendarMainFragment extends ExampleFragmentBase {
                 ((CalendarModesSpinnerAdapter) calendarModesSpinner.getAdapter()).notifyDataSetChanged();
             }
         });
-        this.calendarView.setOnSelectedDatesChangedListener(new RadCalendarView.OnSelectedDatesChangedListener() {
+        this.calendarView.setOnCellClickListener(new RadCalendarView.OnCellClickListener() {
             @Override
-            public void onSelectedDatesChanged(RadCalendarView.SelectionContext context) {
-                if(context.newSelection() == null || context.newSelection().size() == 0) {
-                    return;
-                }
-                if (calendarView.getDisplayMode() != CalendarDisplayMode.Week) {
-                    calendarView.setDisplayDate(context.newSelection().get(0));
-                    calendarModesSpinner.setSelection(SELECTION_WEEK);
-                } else {
-                    listEvents.setAdapter(new EventsListAdapter(getActivity(), 0, context.newSelection().get(0)));
-                    updateWeekModeDayString(false);
+            public void onCellClick(CalendarCell clickedCell) {
+                if (clickedCell instanceof CalendarDayCell) {
+                    List<Long> selectedDates = calendarView.getSelectedDates();
+
+                    if (selectedDates.size() > 0) {
+                        if (calendarView.getDisplayMode() != CalendarDisplayMode.Week) {
+                            calendarView.setDisplayDate(selectedDates.get(0));
+                            calendarModesSpinner.setSelection(SELECTION_WEEK);
+                        } else {
+                            listEvents.setAdapter(new EventsListAdapter(getActivity(), 0, selectedDates.get(0)));
+                            updateWeekModeDayString(false);
+                        }
+                    }
                 }
             }
         });
@@ -184,7 +233,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
                     case SELECTION_WEEK:
                         calendarView.changeDisplayMode(CalendarDisplayMode.Week, true);
                         long date;
-                        if(calendarView.getSelectedDates() != null && calendarView.getSelectedDates().size() > 0) {
+                        if (calendarView.getSelectedDates() != null && calendarView.getSelectedDates().size() > 0) {
                             date = calendarView.getSelectedDates().get(0);
                         } else {
                             date = calendarView.getDisplayDate();
@@ -219,14 +268,14 @@ public class CalendarMainFragment extends ExampleFragmentBase {
         boolean isLandscape = false;
         boolean isXLarge = false;
 
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             isLandscape = true;
         }
         if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) ==
                 Configuration.SCREENLAYOUT_SIZE_XLARGE) {
             isXLarge = true;
         }
-        if(isXLarge || isLandscape) {
+        if (isXLarge || isLandscape) {
             this.calendarView.getEventAdapter().getRenderer().setEventRenderMode(EventRenderMode.Text);
             this.calendarView.setWeekNumbersDisplayMode(WeekNumbersDisplayMode.None);
         } else {
@@ -241,7 +290,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
     private void increaseDisplayDate() {
         Calendar c = Calendar.getInstance();
         Long date;
-        if(calendarView.getSelectedDates() != null && calendarView.getSelectedDates().size() > 0) {
+        if (calendarView.getSelectedDates() != null && calendarView.getSelectedDates().size() > 0) {
             date = calendarView.getSelectedDates().get(0);
         } else {
             date = calendarView.getDisplayDate();
@@ -257,7 +306,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
     private void decreaseDisplayDate() {
         Calendar c = Calendar.getInstance();
         Long date;
-        if(calendarView.getSelectedDates() != null && calendarView.getSelectedDates().size() > 0) {
+        if (calendarView.getSelectedDates() != null && calendarView.getSelectedDates().size() > 0) {
             date = calendarView.getSelectedDates().get(0);
         } else {
             date = calendarView.getDisplayDate();
@@ -276,8 +325,8 @@ public class CalendarMainFragment extends ExampleFragmentBase {
             float horizontalDistance = Math.abs(e1.getX() - e2.getX());
             float verticalDistance = Math.abs(e1.getY() - e2.getY());
 
-            if(horizontalDistance > verticalDistance) {
-                if(e1.getX() > e2.getX()) {
+            if (horizontalDistance > verticalDistance) {
+                if (e1.getX() > e2.getX()) {
                     increaseDisplayDate();
                 } else {
                     decreaseDisplayDate();
@@ -306,7 +355,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
         ArrayList<Event> events = new ArrayList<Event>();
         Calendar eventDate = getToday();
 
-        for(int week = 0; week < 2; week ++) {
+        for (int week = 0; week < 2; week++) {
             for (int i = 0; i < personalMeetingTitles.length; i++) {
 
                 eventDate.set(Calendar.AM_PM, Calendar.PM);
@@ -325,9 +374,9 @@ public class CalendarMainFragment extends ExampleFragmentBase {
         }
 
         eventDate = getToday();
-        for(int i = 0; i < sportTitles.length; i++) {
+        for (int i = 0; i < sportTitles.length; i++) {
 
-            if(i != 3) {
+            if (i != 3) {
                 eventDate.set(Calendar.AM_PM, Calendar.PM);
                 eventDate.add(Calendar.DATE, i);
                 eventDate.set(Calendar.HOUR, 6 + i / 2);
@@ -339,6 +388,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
                 events.add(event);
             } else {
                 eventDate.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+                eventDate.add(Calendar.DATE, -7);
                 moveToDayStart(eventDate);
                 long start = eventDate.getTimeInMillis();
                 eventDate.add(Calendar.MINUTE, 90);
@@ -347,6 +397,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
                 event.setAllDay(true);
                 event.setEventColor(sportColor);
                 events.add(event);
+                eventDate.add(Calendar.DATE, 7);
             }
 
             int daysToAdd = i < sportTitles.length / 2 ? 2 - i * 2 : 2 + i * 3;
@@ -355,7 +406,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
         }
 
         eventDate = getToday();
-        for(int week = 0; week < 2; week++) {
+        for (int week = 0; week < 2; week++) {
             for (int i = 0; i < funTitles.length; i++) {
 
                 if (i != 3) {
@@ -369,6 +420,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
                     events.add(event);
                 } else {
                     eventDate.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+                    eventDate.add(Calendar.DATE, -14);
                     moveToDayStart(eventDate);
                     long start = eventDate.getTimeInMillis();
                     eventDate.add(Calendar.MINUTE, 90);
@@ -377,6 +429,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
                     event.setAllDay(true);
                     event.setEventColor(funColor);
                     events.add(event);
+                    eventDate.add(Calendar.DATE, 14);
                 }
 
                 int daysToAdd = i < funTitles.length / 2 ? 3 - i * 3 : 3 + i * 2;
@@ -386,7 +439,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
         }
 
         eventDate = getToday();
-        for(int week = -1; week < 2; week++) {
+        for (int week = -1; week < 2; week++) {
 
             for (int i = 0; i < corpAppointmentTitles.length; i++) {
                 eventDate.set(Calendar.AM_PM, Calendar.AM);
@@ -407,7 +460,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
         Collections.sort(events, new Comparator<Event>() {
             @Override
             public int compare(Event event, Event event2) {
-                return (event.getStartDate() < event2.getStartDate()) ? -1: (event.getStartDate() > event2.getStartDate() ) ? 1 : 0;
+                return (event.getStartDate() < event2.getStartDate()) ? -1 : (event.getStartDate() > event2.getStartDate()) ? 1 : 0;
             }
         });
 
@@ -415,16 +468,11 @@ public class CalendarMainFragment extends ExampleFragmentBase {
     }
 
     private void updateHandledGestures(RadCalendarView calendarView) {
+        calendarView.setHorizontalScroll(false);
+        calendarView.getGestureManager().setSwipeUpToChangeDisplayMode(false);
+        //calendarView.getGestureManager().setTapToChangeDisplayMode(true);
+        calendarView.getGestureManager().setSwipeDownToChangeDisplayMode(true);
 
-        calendarView.gestureAssistant().setSwipeHorizontalToChangeMonths(false);
-        calendarView.gestureAssistant().setSwipeHorizontalToChangeYears(false);
-
-        calendarView.gestureAssistant().setSwipeVerticalToChangeMonths(true);
-        calendarView.gestureAssistant().setSwipeVerticalToChangeYears(true);
-
-        calendarView.gestureAssistant().setSwipeUpToChangeDisplayMode(false);
-
-        calendarView.gestureAssistant().setTapToChangeDisplayMode(true);
     }
 
     private void updateWeekModeDayString(boolean showToday) {
@@ -462,7 +510,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
         @Override
         public View getDropDownView(int position, View convertView, ViewGroup parent) {
             View rootView;
-            if(convertView == null){
+            if (convertView == null) {
                 rootView = View.inflate(getActivity(), R.layout.calendar_main_spinner_item, null);
             } else {
                 rootView = convertView;
@@ -489,12 +537,12 @@ public class CalendarMainFragment extends ExampleFragmentBase {
         public View getView(int position, View convertView, ViewGroup parent) {
 
             View spinView;
-            if(convertView == null){
+            if (convertView == null) {
                 spinView = View.inflate(getActivity(), R.layout.calendar_main_spinner_header, null);
             } else {
                 spinView = convertView;
             }
-            if(spinView != null) {
+            if (spinView != null) {
                 TextView textView = (TextView) spinView.findViewById(R.id.txtCalendarViewMode);
                 if (textView != null) {
                     textView.setText(getHeaderText(position, true));
@@ -508,12 +556,12 @@ public class CalendarMainFragment extends ExampleFragmentBase {
             currentValue.setTimeInMillis(calendarView.getDisplayDate());
             switch (position) {
                 case SELECTION_WEEK:
-                    Calendar weekStart = (Calendar)currentValue.clone();
+                    Calendar weekStart = (Calendar) currentValue.clone();
                     weekStart.set(Calendar.DAY_OF_WEEK, currentValue.getFirstDayOfWeek());
-                    Calendar weekEnd = (Calendar)weekStart.clone();
+                    Calendar weekEnd = (Calendar) weekStart.clone();
                     weekEnd.add(Calendar.DATE, 6);
                     if (weekStart.get(Calendar.MONTH) == weekEnd.get(Calendar.MONTH)) {
-                        return  String.format("%s %d-%d",
+                        return String.format("%s %d-%d",
                                 weekStart.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()),
                                 weekStart.get(Calendar.DAY_OF_MONTH),
                                 weekEnd.get(Calendar.DAY_OF_MONTH));
@@ -525,7 +573,7 @@ public class CalendarMainFragment extends ExampleFragmentBase {
                                 weekEnd.get(Calendar.DAY_OF_MONTH));
                     }
                 case SELECTION_MONTH:
-                    if(includeYear) {
+                    if (includeYear) {
                         return String.format("%s %d",
                                 currentValue.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()),
                                 currentValue.get(Calendar.YEAR));

@@ -11,7 +11,7 @@ public abstract class ChartSelectionAndTooltipFragment extends ChartSelectionFra
         super.prepareChart();
 
         this.tooltipBehavior = new ChartTooltipBehavior(this.getActivity());
-        this.tooltipBehavior.setTriggerMode(TooltipTriggerMode.HOLD);
+        this.tooltipBehavior.setTriggerMode(TooltipTriggerMode.NONE);
         chart.getBehaviors().add(this.tooltipBehavior);
     }
 

@@ -1,0 +1,26 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".examples.panels.ScrollViewFragment">
+
+    <com.telerik.widget.primitives.panels.RadScrollView
+        android:id="@+id/radScrollView"
+        app:scrollMode="horizontal|vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/calendar_pic_1"
+                android:scaleType="fitXY"
+                android:layout_width="5000dp"
+                android:layout_height="5000dp"></ImageView>
+        </FrameLayout>
+    </com.telerik.widget.primitives.panels.RadScrollView>
+
+</FrameLayout>

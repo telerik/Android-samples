@@ -13,8 +13,6 @@ import com.telerik.examples.R;
  */
 public class TemplatesFragment extends Fragment {
 
-    public static final String ARG_OBJECT = "object";
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // The last two arguments ensure LayoutParams are inflated properly.

@@ -3,7 +3,6 @@ package com.telerik.examples.viewmodels;
 import java.util.ArrayList;
 
 public class ExampleGroup extends Example {
-
     private String logo = "drawable/control_logo";
     private String homePageLogo = logo;
     private String drawerIcon = homePageLogo;

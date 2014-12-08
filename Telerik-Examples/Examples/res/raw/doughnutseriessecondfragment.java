@@ -1,13 +1,13 @@
 package com.telerik.examples.examples.chart.series.pie;
 
 import android.content.res.Resources;
+import android.util.TypedValue;
 
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.common.DataClass;
-import com.telerik.examples.examples.chart.ChartSelectionFragment;
 import com.telerik.examples.viewmodels.ExampleDataProvider;
 import com.telerik.widget.chart.engine.dataPoints.DataPoint;
-import com.telerik.widget.chart.engine.databinding.DataPointBinding;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.visualization.common.ChartSeries;
 import com.telerik.widget.chart.visualization.pieChart.DoughnutSeries;
@@ -43,9 +43,9 @@ public class DoughnutSeriesSecondFragment extends PieFragment {
 
     @Override
     protected void preparePieChart() {
-        DoughnutSeries doughnutSeries = new DoughnutSeries(this.getActivity().getBaseContext());
+        DoughnutSeries doughnutSeries = new DoughnutSeries();
         Resources res = this.getResources();
-        doughnutSeries.setSliceOffset(res.getDimension(R.dimen.twodp));
+        doughnutSeries.setSliceOffset(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 2));
         doughnutSeries.setShowLabels(true);
         doughnutSeries.setValueBinding(new FieldNameDataPointBinding("value"));
 
@@ -53,7 +53,7 @@ public class DoughnutSeriesSecondFragment extends PieFragment {
         doughnutSeries.setLabelRenderer(renderer);
         doughnutSeries.setData(ExampleDataProvider.pieDataAdditional());
 
-        RadPieChartView pieChart = (RadPieChartView)this.chart;
+        RadPieChartView pieChart = (RadPieChartView) this.chart;
         pieChart.getSeries().add(doughnutSeries);
     }
 }

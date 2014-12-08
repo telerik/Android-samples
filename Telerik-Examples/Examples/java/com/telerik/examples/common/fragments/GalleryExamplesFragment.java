@@ -15,13 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.telerik.examples.ExampleActivity;
 import com.telerik.examples.R;
 import com.telerik.examples.common.ExamplesApplicationContext;
 import com.telerik.examples.primitives.ExampleViewPagerBase;
 import com.telerik.examples.primitives.ScrollingTab;
 import com.telerik.examples.primitives.ScrollingTabView;
 import com.telerik.examples.viewmodels.Example;
+import com.telerik.examples.viewmodels.ExampleSourceModel;
 import com.telerik.examples.viewmodels.GalleryExample;
 
 import java.lang.reflect.Constructor;
@@ -45,8 +45,9 @@ public class GalleryExamplesFragment extends ExampleFragmentBase implements Acti
     }
 
     @Override
-    public String getSourceKey() {
-        return ((FragmentStatePagerAdapter)viewPager.getAdapter()).getItem(viewPager.getCurrentItem()).getClass().getSimpleName();
+    public ExampleSourceModel getSourceCodeModel() {
+        ExampleFragmentBase example = (ExampleFragmentBase) ((FragmentStatePagerAdapter) viewPager.getAdapter()).getItem(viewPager.getCurrentItem());
+        return example.getSourceCodeModel();
     }
 
     @Override
@@ -83,7 +84,7 @@ public class GalleryExamplesFragment extends ExampleFragmentBase implements Acti
         this.tabView.removeAllTabs();
         for (int i = 0; i < adapter.getCount(); i++) {
             ScrollingTab tab = new ScrollingTab(this.tabView);
-            BitmapDrawable icon = (BitmapDrawable)getResources().getDrawable(adapter.getImage(i));
+            BitmapDrawable icon = (BitmapDrawable) getResources().getDrawable(adapter.getImage(i));
             icon.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
             tab.setIcon(icon);
             tab.setTabListener(this);
@@ -112,8 +113,8 @@ public class GalleryExamplesFragment extends ExampleFragmentBase implements Acti
     @Override
     public void onExampleSuspended() {
         super.onExampleSuspended();
-        ExampleFragmentBase current = ((ExamplesFragmentAdapter)this.viewPager.getAdapter()).currentFragment;
-        if(current != null) {
+        ExampleFragmentBase current = ((ExamplesFragmentAdapter) this.viewPager.getAdapter()).currentFragment;
+        if (current != null) {
             current.onExampleSuspended();
         }
     }
@@ -122,8 +123,8 @@ public class GalleryExamplesFragment extends ExampleFragmentBase implements Acti
     public void onExampleResumed() {
         super.onExampleResumed();
 
-        ExampleFragmentBase current = ((ExamplesFragmentAdapter)this.viewPager.getAdapter()).currentFragment;
-        if(current != null) {
+        ExampleFragmentBase current = ((ExamplesFragmentAdapter) this.viewPager.getAdapter()).currentFragment;
+        if (current != null) {
             current.onExampleResumed();
         }
     }
@@ -147,11 +148,11 @@ public class GalleryExamplesFragment extends ExampleFragmentBase implements Acti
         public void setPrimaryItem(ViewGroup container, int position, Object object) {
             super.setPrimaryItem(container, position, object);
 
-            if(this.currentFragment != null) {
+            if (this.currentFragment != null) {
                 this.currentFragment.onHidden();
             }
 
-            this.currentFragment = (ExampleFragmentBase)object;
+            this.currentFragment = (ExampleFragmentBase) object;
             this.currentFragment.onVisualized();
         }
 

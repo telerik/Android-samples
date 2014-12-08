@@ -1,8 +1,8 @@
 package com.telerik.examples.examples.chart.series.pie;
 
-import android.content.res.Resources;
-import android.view.animation.AnimationUtils;
+import android.util.TypedValue;
 
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.common.DataClass;
 import com.telerik.examples.viewmodels.ExampleDataProvider;
@@ -42,10 +42,8 @@ public class PieSeriesSecondFragment extends PieFragment {
 
     @Override
     protected void preparePieChart() {
-
-        PieSeries pieSeries = new PieSeries(this.getActivity().getBaseContext());
-        Resources res = this.getResources();
-        pieSeries.setSliceOffset(res.getDimension(R.dimen.twodp));
+        PieSeries pieSeries = new PieSeries();
+        pieSeries.setSliceOffset(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 2));
         pieSeries.setShowLabels(true);
 
         pieSeries.setValueBinding(new FieldNameDataPointBinding("value"));
@@ -55,7 +53,7 @@ public class PieSeriesSecondFragment extends PieFragment {
 
         pieSeries.setData(ExampleDataProvider.pieDataAdditional());
 
-        RadPieChartView pieChart = (RadPieChartView)this.chart;
+        RadPieChartView pieChart = (RadPieChartView) this.chart;
         pieChart.getSeries().add(pieSeries);
     }
 }

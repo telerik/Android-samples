@@ -3,6 +3,7 @@ package com.telerik.examples.examples.chart.axes;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.telerik.android.common.Function;
+import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.common.DataClass;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
@@ -24,11 +26,6 @@ import com.telerik.widget.chart.visualization.cartesianChart.axes.DateTimeCatego
 import com.telerik.widget.chart.visualization.cartesianChart.axes.LinearAxis;
 import com.telerik.widget.chart.visualization.cartesianChart.series.categorical.AreaSeries;
 import com.telerik.widget.chart.visualization.cartesianChart.series.categorical.BarSeries;
-import com.telerik.widget.chart.visualization.common.Axis;
-import com.telerik.widget.palettes.ChartPalette;
-import com.telerik.widget.palettes.ChartPalettes;
-import com.telerik.widget.palettes.PaletteEntry;
-import com.telerik.widget.palettes.PaletteEntryCollection;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,6 +41,8 @@ public class MultipleAxes extends ExampleFragmentBase implements CompoundButton.
     CheckBox volume;
     BarSeries barSeries;
     AreaSeries areaSeries;
+    LinearAxis barAxis;
+    LinearAxis areaAxis;
 
     public MultipleAxes() {
     }
@@ -54,8 +53,8 @@ public class MultipleAxes extends ExampleFragmentBase implements CompoundButton.
         this.context = this.getActivity();
         // Inflate the layout for this fragment
         View result = inflater.inflate(R.layout.fragment_axes_multipleaxes, container, false);
-        this.price = (CheckBox) result.findViewById(R.id.axesPrice);
-        this.volume = (CheckBox) result.findViewById(R.id.axesVolume);
+        this.price = Util.getLayoutPart(result, R.id.axesPrice, CheckBox.class);
+        this.volume = Util.getLayoutPart(result, R.id.axesVolume, CheckBox.class);
         this.price.setOnCheckedChangeListener(this);
         this.volume.setOnCheckedChangeListener(this);
 
@@ -82,12 +81,12 @@ public class MultipleAxes extends ExampleFragmentBase implements CompoundButton.
             }
         });
 
-        this.barSeries = new BarSeries(this.context);
+        this.barSeries = new BarSeries();
         this.barSeries.setCategoryBinding(categoryBinding);
         this.barSeries.setValueBinding(valueBinding);
         this.barSeries.setData(this.createData(17, 39));
 
-        LinearAxis barAxis = new LinearAxis(this.context);
+        barAxis = new LinearAxis();
 
         barAxis.setLabelValueToStringConverter(new Function<Object, String>() {
             @Override
@@ -97,15 +96,15 @@ public class MultipleAxes extends ExampleFragmentBase implements CompoundButton.
                 return Integer.toString(val.intValue()) + "M";
             }
         });
-        barAxis.setLabelMargin(res.getDimension(R.dimen.fivedp));
+        barAxis.setLabelMargin(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 5));
         barAxis.setMajorStep(5);
         barAxis.setMaximum(45);
         barAxis.setMinimum(15);
         barAxis.setHorizontalLocation(AxisHorizontalLocation.RIGHT);
         this.barSeries.setVerticalAxis(barAxis);
 
-        this.areaSeries = new AreaSeries(this.context);
-        LinearAxis areaAxis = new LinearAxis(this.context);
+        this.areaSeries = new AreaSeries();
+        areaAxis = new LinearAxis();
         areaAxis.setLabelValueToStringConverter(new Function<Object, String>() {
             @Override
             public String apply(Object argument) {
@@ -114,7 +113,7 @@ public class MultipleAxes extends ExampleFragmentBase implements CompoundButton.
                 return Integer.toString(val.intValue());
             }
         });
-        areaAxis.setLabelMargin(res.getDimension(R.dimen.fivedp));
+        areaAxis.setLabelMargin(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 5));
         areaAxis.setMaximum(800);
         areaAxis.setMinimum(500);
         this.areaSeries.setVerticalAxis(areaAxis);
@@ -122,9 +121,9 @@ public class MultipleAxes extends ExampleFragmentBase implements CompoundButton.
         this.areaSeries.setValueBinding(valueBinding);
         this.areaSeries.setData(this.createData(600, 700));
 
-        DateTimeCategoricalAxis horizontalAxis = new DateTimeCategoricalAxis(this.context);
+        DateTimeCategoricalAxis horizontalAxis = new DateTimeCategoricalAxis();
         horizontalAxis.setDateTimeComponent(DateTimeComponent.DAY_OF_YEAR);
-        horizontalAxis.setLabelMargin(res.getDimension(R.dimen.fifteendp));
+        horizontalAxis.setLabelMargin(Util.getDimen(TypedValue.COMPLEX_UNIT_DIP, 15));
         horizontalAxis.setLastLabelVisibility(AxisLastLabelVisibility.VISIBLE);
         horizontalAxis.setPlotMode(AxisPlotMode.ON_TICKS);
         horizontalAxis.setDateTimeFormat(new SimpleDateFormat("MMM-yyyy"));
@@ -135,34 +134,8 @@ public class MultipleAxes extends ExampleFragmentBase implements CompoundButton.
 
         chart.setChartPadding(20, 0, 20, 0);
 
-        ChartPalette light = ChartPalettes.light();
-        PaletteEntry axisEntry = light.getEntry(barAxis, 0).clone();
-        PaletteEntry seriesEntry = light.getEntry(barSeries, 0).clone();
-
-
-        String color = Integer.toHexString(seriesEntry.getFill());
-        color = "#" + color;
-        axisEntry.setCustomValue(Axis.LINE_COLOR_KEY, color);
-        axisEntry.setCustomValue(Axis.LABEL_COLOR, color);
-
-        ChartPalette newLight = new ChartPalette();
-        PaletteEntryCollection newCollection = new PaletteEntryCollection();
-        newCollection.setFamily(barAxis.paletteFamily());
-        newCollection.add(axisEntry);
-        newLight.seriesEntries().add(newCollection);
-        barAxis.setPalette(newLight);
-
-
-        axisEntry = light.getEntry(barSeries, 1).clone();
-        color = "#" + Integer.toHexString(axisEntry.getFill());
-        axisEntry.setCustomValue(Axis.LABEL_COLOR, color);
-        axisEntry.setCustomValue(Axis.LINE_COLOR_KEY, color);
-        newLight = new ChartPalette();
-        newCollection = new PaletteEntryCollection();
-        newCollection.setFamily(areaAxis.paletteFamily());
-        newCollection.add(axisEntry);
-        newLight.seriesEntries().add(newCollection);
-        areaAxis.setPalette(newLight);
+        this.updateAreaAxisColor();
+        this.updateBarAxisColor();
     }
 
     private ArrayList<DataClass> createData(int minValue, int maxValue) {
@@ -191,6 +164,7 @@ public class MultipleAxes extends ExampleFragmentBase implements CompoundButton.
     private void toggleVolume(boolean isChecked) {
         if (isChecked) {
             this.chart.getSeries().add(0, this.barSeries);
+            this.updateBarAxisColor();
             this.price.setEnabled(true);
         } else {
             this.chart.getSeries().remove(this.barSeries);
@@ -200,11 +174,24 @@ public class MultipleAxes extends ExampleFragmentBase implements CompoundButton.
 
     private void togglePrice(boolean isChecked) {
         if (isChecked) {
-            this.chart.getSeries().add(1, this.areaSeries);
+            this.chart.getSeries().add(this.areaSeries);
+            this.updateAreaAxisColor();
             this.volume.setEnabled(true);
         } else {
             this.chart.getSeries().remove(this.areaSeries);
             this.volume.setEnabled(false);
         }
+    }
+
+    private void updateBarAxisColor() {
+        int color = this.chart.getPalette().getEntry(this.barSeries, 0).getFill();
+        this.barAxis.setLabelTextColor(color);
+        this.barAxis.setLineColor(color);
+    }
+
+    private void updateAreaAxisColor() {
+        int color = this.chart.getPalette().getEntry(this.areaSeries, 1).getFill();
+        this.areaAxis.setLabelTextColor(color);
+        this.areaAxis.setLineColor(color);
     }
 }

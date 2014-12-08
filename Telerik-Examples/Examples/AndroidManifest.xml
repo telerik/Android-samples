@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.telerik.examples"
-    android:versionCode="2"
-    android:versionName="Q2 2014">
+    android:versionCode="1"
+    android:versionName="2014.2.0">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -45,6 +45,10 @@
         <activity
             android:name="com.telerik.examples.ViewCodeActivity"
             android:label="@string/title_activity_view_code"
+            android:theme="@style/BrandedActionBarTheme"></activity>
+        <activity
+            android:name="com.telerik.examples.SettingsActivity"
+            android:label="@string/title_activity_settings"
             android:theme="@style/BrandedActionBarTheme"></activity>
     </application>
 

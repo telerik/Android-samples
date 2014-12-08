@@ -38,7 +38,7 @@ public class HomeTabsAdapter extends FragmentStatePagerAdapter implements TabHos
         private final Class<?> clss;
         private final Bundle args;
 
-        TabInfo(String _tag, Class<?> _class, Bundle _args) {
+        TabInfo(Class<?> _class, Bundle _args) {
             clss = _class;
             args = _args;
         }
@@ -78,7 +78,7 @@ public class HomeTabsAdapter extends FragmentStatePagerAdapter implements TabHos
     public void addTab(TabHost.TabSpec tabSpec, Class<?> clss, Bundle args) {
         tabSpec.setContent(new DummyTabFactory(mContext));
 
-        final TabInfo info = new TabInfo(tabSpec.getTag(), clss, args);
+        final TabInfo info = new TabInfo(clss, args);
         mTabs.add(info);
         mTabHost.addTab(tabSpec);
         notifyDataSetChanged();
@@ -93,12 +93,7 @@ public class HomeTabsAdapter extends FragmentStatePagerAdapter implements TabHos
     @Override
     public Fragment getItem(int position) {
         final TabInfo info = mTabs.get(position);
-        final Fragment fragment = Fragment.instantiate(mContext, info.clss.getName(), info.args);
-        if (position == 0) {
-            //App.setControlsFragment((ControlsFragment) fragment);
-        }
-
-        return fragment;
+        return Fragment.instantiate(mContext, info.clss.getName(), info.args);
     }
 
     @Override

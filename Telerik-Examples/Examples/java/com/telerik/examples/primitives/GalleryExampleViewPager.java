@@ -5,7 +5,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * Created by ginev on 01/04/14.
  * <p/>
  * This custom ViewPager allows for disabling the scrolling between the separate pages.
  */

@@ -4,6 +4,7 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.app.ActionBar;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
@@ -34,6 +35,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.telerik.android.common.Util;
 import com.telerik.examples.common.ExamplesApplicationContext;
 import com.telerik.examples.common.TrackedApplication;
 import com.telerik.examples.common.contracts.TrackedActivity;
@@ -50,7 +52,6 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 
 public class ExampleGroupActivity extends FragmentActivity implements TransitionHandler,
         NavigationDrawerFragment.NavigationDrawerCallbacks,
@@ -58,15 +59,18 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
         PopupMenu.OnMenuItemClickListener,
         AbsListView.OnScrollListener,
         ExamplesGridView.OnOverScrollByHandler,
-        TrackedActivity{
+        TrackedActivity,
+        View.OnClickListener,
+        CompoundButton.OnCheckedChangeListener {
+
+    private float deltaOffset;
+    private int previousY = -1;
+    private int previousX = -1;
 
     private ViewPager viewPager;
-    private ExampleGroupFragmentAdapter viewPagerAdapter;
-    private NavigationDrawerFragment navigationDrawerFragment;
     private DrawerLayout drawerLayout;
     private View actionBarView;
     private ImageView tabPointer;
-    private Button btnShowNavigationDrawer;
 
     private AnimatorSet backgroundAnimator;
     private AnimatorSet logoAnimator;
@@ -85,11 +89,11 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
     private float previousTranslation = 0;
     private FrameLayout backgroundImage;
     private Button btnShowGroupMenu;
+    private Button btnShowNavigationDrawer;
 
     private ToggleButton btnSwitchLayout;
 
     private static final long ANIMATION_DURATION = 200;
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -101,77 +105,64 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.app = (ExamplesApplicationContext) this.getApplicationContext();
+    private void loadContent() {
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setContentView(R.layout.activity_example_group);
         } else {
             setContentView(R.layout.activity_example_group_horizontal);
         }
+    }
 
-        this.btnShowGroupMenu = (Button) this.findViewById(R.id.btnShowGroupMenu);
-        this.controlLogo = (ImageView) this.findViewById(R.id.controlLogo);
-        this.controlLabel = (TextView) this.findViewById(R.id.controlLabel);
-        this.allTab = (TextView) this.findViewById(R.id.tabAll);
-        this.allTab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(0);
-            }
-        });
-        this.favoritesTab = (TextView) this.findViewById(R.id.tabFavorites);
-        this.favoritesTab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(1);
-            }
-        });
+    private void showGroupMenu() {
+        PopupMenu menu = new PopupMenu(this, btnShowGroupMenu);
+        if (!app.isExampleInFavourites(app.selectedControl())) {
+            menu.inflate(R.menu.example_list_default);
+        } else {
+            menu.inflate(R.menu.example_list_in_favourites);
+        }
+        menu.setOnMenuItemClickListener(this);
+        menu.show();
+    }
+
+    public void onClick(View v) {
+        if (v == allTab) {
+            viewPager.setCurrentItem(0);
+        } else if (v == favoritesTab) {
+            viewPager.setCurrentItem(1);
+        } else if (v == btnShowNavigationDrawer) {
+            drawerLayout.openDrawer(Gravity.LEFT);
+        } else if (v == btnShowGroupMenu) {
+            this.showGroupMenu();
+        }
+    }
+
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        int mode = isChecked ? ExampleGroupListFragment.EXAMPLE_GROUP_GRID_MODE : ExampleGroupListFragment.EXAMPLE_GROUP_LIST_MODE;
+        swapExampleListViews(mode);
+    }
+
+    private void initUI() {
+        btnShowGroupMenu = Util.getLayoutPart(this, R.id.btnShowGroupMenu, Button.class);
+        controlLogo = Util.getLayoutPart(this, R.id.controlLogo, ImageView.class);
+        controlLabel = Util.getLayoutPart(this, R.id.controlLabel, TextView.class);
+        allTab = Util.getLayoutPart(this, R.id.tabAll, TextView.class);
+        allTab.setOnClickListener(this);
+        favoritesTab = Util.getLayoutPart(this, R.id.tabFavorites, TextView.class);
+        favoritesTab.setOnClickListener(this);
+        tabPointer = Util.getLayoutPart(this, R.id.tabPointer, ImageView.class);
+        backgroundImage = Util.getLayoutPart(this, R.id.imageBackground, FrameLayout.class);
+        btnSwitchLayout = Util.getLayoutPart(this, R.id.btnSwitchLayout, ToggleButton.class);
+        btnShowNavigationDrawer = Util.getLayoutPart(this, R.id.hamburger, Button.class);
+        drawerLayout = Util.getLayoutPart(this, R.id.drawer_layout, DrawerLayout.class);
+        btnShowNavigationDrawer.setOnClickListener(this);
+        btnSwitchLayout.setOnCheckedChangeListener(this);
+        btnShowGroupMenu.setOnClickListener(this);
+
+        viewPager = Util.getLayoutPart(this, R.id.pager, ViewPager.class);
         this.sections.put(ExampleGroupAllExamplesFragment.class, getResources().getString(R.string.allStringPascalCase));
         this.sections.put(ExampleGroupFavoriteExamplesFragment.class, getResources().getString(R.string.favoritesStringPascalCase));
-        this.tabPointer = (ImageView) this.findViewById(R.id.tabPointer);
-        this.backgroundImage = (FrameLayout) this.findViewById(R.id.imageBackground);
-        this.btnSwitchLayout = (ToggleButton) this.findViewById(R.id.btnSwitchLayout);
-        this.btnShowNavigationDrawer = (Button) this.findViewById(R.id.hamburger);
-        this.drawerLayout = (DrawerLayout) this.findViewById(R.id.drawer_layout);
-        this.btnShowNavigationDrawer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(Gravity.LEFT);
-            }
-        });
-
-        this.btnSwitchLayout.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                int mode = isChecked ? ExampleGroupListFragment.EXAMPLE_GROUP_GRID_MODE : ExampleGroupListFragment.EXAMPLE_GROUP_LIST_MODE;
-                swapExampleListViews(mode);
-            }
-        });
-        final ExampleGroupActivity thisActivity = this;
-        this.btnShowGroupMenu.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                PopupMenu menu = new PopupMenu(thisActivity, btnShowGroupMenu);
-                if (!app.isExampleInFavourites(app.selectedControl())) {
-                    menu.inflate(R.menu.example_list_default);
-                } else {
-                    menu.inflate(R.menu.example_list_in_favourites);
-                }
-                menu.setOnMenuItemClickListener(thisActivity);
-                menu.show();
-            }
-        });
-
-        final ActionBar actionBar = this.getActionBar();
-
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        this.viewPagerAdapter = new ExampleGroupFragmentAdapter(getSupportFragmentManager(), sections);
-        viewPager.setAdapter(this.viewPagerAdapter);
+        ExampleGroupFragmentAdapter viewPagerAdapter = new ExampleGroupFragmentAdapter(getSupportFragmentManager(), sections);
+        viewPager.setAdapter(viewPagerAdapter);
 
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -180,9 +171,8 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
             }
         });
 
-
-        this.navigationDrawerFragment = (NavigationDrawerFragment) this.getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        this.navigationDrawerFragment.setUp(R.id.navigation_drawer, this.drawerLayout);
+        NavigationDrawerFragment navigationDrawerFragment = (NavigationDrawerFragment) this.getFragmentManager().findFragmentById(R.id.navigation_drawer);
+        navigationDrawerFragment.setUp(R.id.navigation_drawer, this.drawerLayout);
 
         Window window = getWindow();
         View v = window.getDecorView();
@@ -190,13 +180,28 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
         this.actionBarView = v.findViewById(resId);
         this.actionBarView.setVisibility(View.GONE);
 
-        final Handler handler = new Handler();
+        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 initPageHeader(viewPager.getCurrentItem());
             }
         }, 20);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.app = (ExamplesApplicationContext) this.getApplicationContext();
+        this.loadContent();
+
+        this.initUI();
+
+        ActionBar actionBar = this.getActionBar();
+        if (actionBar != null) {
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        }
+
         this.updateExampleInfo();
         this.loadHeaderBackground();
         this.updatePointerColor();
@@ -296,9 +301,10 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
 
     private void updatePointerColor() {
         Triangle drawable = new Triangle();
-        int headerHeight = this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ?
-                (int) getResources().getDimension(R.dimen.example_group_header_height) :
-                (int) getResources().getDimension(R.dimen.example_group_header_horizontal_height);
+        Resources res = this.getResources();
+        int headerHeight = res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ?
+                (int) res.getDimension(R.dimen.example_group_header_height) :
+                (int) res.getDimension(R.dimen.example_group_header_horizontal_height);
         LayerDrawable layerDrawable = (LayerDrawable) this.backgroundImage.getBackground();
         BitmapDrawable bitmapDrawable = (BitmapDrawable) layerDrawable.getDrawable(0);
         Bitmap image = bitmapDrawable.getBitmap();
@@ -317,63 +323,77 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
         this.app.setBackgroundDrawableSafe(this.backgroundImage, layerDrawable);
     }
 
-    private float deltaOffset;
-    private float previousY = -1;
     @Override
     public boolean handleScrolling(View v, MotionEvent e) {
         if (e.getPointerCount() > 1) {
             return false;
         }
 
-        if (e.getAction() ==  MotionEvent.ACTION_UP){
+        if (e.getAction() == MotionEvent.ACTION_UP) {
             this.deltaOffset = 0;
             this.previousY = -1;
+            this.previousX = -1;
             if (this.rotationStarted) {
                 this.resetLogoAndBackground();
                 return true;
             }
         }
 
-
-
-        GridView typedView = (GridView) v;
-
-        if (typedView.getChildCount() == 0){
+        if (e.getAction() == MotionEvent.ACTION_CANCEL) {
+            if (this.rotationStarted) {
+                this.resetLogoAndBackground();
+            }
             return false;
         }
 
+        GridView typedView = (GridView) v;
+
+        if (typedView.getChildCount() == 0) {
+            return false;
+        }
+
+        if (this.previousY == -1) {
+            this.previousY = (int) e.getY();
+        }
+
+        if (this.previousX == -1) {
+            this.previousX = (int) e.getX();
+        }
+
+        float deltaX = e.getX() - this.previousX;
+        this.previousX = (int) e.getX();
+        float deltaY = e.getY() - this.previousY;
+        this.previousY = (int) e.getY();
+
         if (typedView.getChildAt(0).getTop() - typedView.getPaddingTop() == 0) {
-            if ((int)this.controlLogo.getRotationX() >= 0) {
+            if ((int) this.controlLogo.getRotationX() >= 0) {
 
-                if (this.previousY == -1){
-                    this.previousY = e.getY();
-                }
-
-                if (this.logoAnimator != null){
+                if (this.logoAnimator != null) {
                     this.logoAnimator.cancel();
                 }
 
-                if (this.backgroundAnimator != null){
+                if (this.backgroundAnimator != null) {
                     this.backgroundAnimator.cancel();
                 }
 
-                float deltaY = e.getY() - this.previousY;
-                this.previousY = e.getY();
+                if (deltaX > deltaY && !this.rotationStarted) {
+                    return false;
+                }
                 this.deltaOffset += deltaY;
                 this.rotationStarted = true;
-                float rotationX = Math.max(0, (float)(Math.atan(((this.deltaOffset / this.viewPager.getHeight()) * 10)) * 2/Math.PI)) * 180;
+                float rotationX = Math.max(0, (float) (Math.atan(((this.deltaOffset / this.viewPager.getHeight()) * 10)) * 2 / Math.PI)) * 180;
                 this.controlLogo.setRotationX(rotationX);
                 float scaleFactor = Math.max(1, 1 + this.controlLogo.getRotationX() / 1000);
 
                 this.backgroundImage.setScaleX(scaleFactor);
                 this.backgroundImage.setScaleY(scaleFactor);
-                if ((int)rotationX == 0){
+                if ((int) rotationX == 0) {
                     this.rotationStarted = false;
                     return false;
                 }
                 return true;
             }
-        }else{
+        } else {
             this.previousY = -1;
         }
         return false;
@@ -412,8 +432,8 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
         this.logoAnimator.start();
 
         this.backgroundAnimator = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.example_group_background_reset_animation);
-        this.backgroundAnimator .setTarget(this.backgroundImage);
-        this.backgroundAnimator .start();
+        this.backgroundAnimator.setTarget(this.backgroundImage);
+        this.backgroundAnimator.start();
         this.rotationStarted = false;
     }
 
@@ -425,7 +445,7 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
     @Override
     public void onOverScrollByHandler(int deltaX, int deltaY, int scrollX, int scrollY, int scrollRangeX, int scrollRangeY, int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent) {
 
-        float rotationX = Math.max(0, (float)(Math.atan(((((float)-scrollY) / this.viewPager.getHeight()) * 20)) * 2/Math.PI)) * 180;
+        float rotationX = Math.max(0, (float) (Math.atan(((((float) -scrollY) / this.viewPager.getHeight()) * 20)) * 2 / Math.PI)) * 180;
         this.controlLogo.setRotationX(rotationX);
         float scaleFactor = Math.max(1, 1 + this.controlLogo.getRotationX() / 1000);
 
@@ -465,12 +485,6 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
         public int getCount() {
             // Show 3 total pages.
             return this.classes.size();
-        }
-
-        public String getText(final int position) {
-            final String title = (new ArrayList<String>(this.classes.values())).get(position);
-
-            return title.toUpperCase(Locale.getDefault());
         }
     }
 }

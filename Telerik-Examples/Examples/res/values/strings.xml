@@ -2,8 +2,8 @@
 <resources>
 
     <string name="appName">Telerik Examples</string>
-    <string name="version_name">Q2 2014</string>
-    <string name="version_code">2014.2.0</string>
+    <string name="version_name">Q3 2014</string>
+    <string name="version_code">2014.3.0</string>
     <string name="homeString">Home</string>
     <string name="favoritesStringPascalCase">Favorites</string>
     <string name="aboutString">About</string>
@@ -20,24 +20,34 @@
     <string name="pie_series_title">International sales by country, 2014</string>
     <string name="area_chart_title">Monthly sales revenue, 2014</string>
     <string name="bar_series_title">Performance summary, 2014</string>
+    <string name="scatter_series_title">Mean hourly earnings in the UK (private vs public)</string>
+    <string name="bubble_series_title">Investments - Equities &amp; Mutual Funds</string>
     <string name="versionStringPascalCase">Version</string>
     <string name="emptyContentString">Already have any favorite demos? Add them here by choosing \'Add to Favorites\' from the overflow menu or the example context menu.</string>
     <string name="title_activity_view_code">View code</string>
+    <string name="title_activity_settings">Settings</string>
     <string name="action_settings">Settings</string>
     <string name="all_day_string">ALL DAY</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="empty_range_selection_text">Select period of stay</string>
     <string name="calendar_range_title">Need a place to stay?</string>
-    <string name="calendar_range_how_to_text">Tap on the dates of your check-in and check-out to select the period of your stay</string>
+    <string name="calendar_range_how_to_text">Drag over the period of your stay or tap on your check-in and check-out dates</string>
+    <string name="calendar_range_left_arrow_description">Tap to move to previous month</string>
+    <string name="calendar_range_right_arrow_description">Tap to move to next month</string>
     <string name="book_a_hotel_string">Book a hotel!</string>
-    <string name="tips_presenter_content">Telerik UI Examples shows scenarios developers can achieve using Telerik UI for Android – a fully customizable, native development toolset for building enterprise and consumer apps.</string>
+    <string name="tips_presenter_content">Newly added to the Telerik UI Examples are the Scatter and Bubble chart series.</string>
     <string name="tips_presenter_got_it_text">GOT IT!</string>
     <string name="isn_bold"><b>ISN</b></string>
     <string name="spinners_title">International Software Company</string>
-    <string name="range_select_btn_text">Range: 6 M</string>
     <string name="indicators_range_dialog_title">Range</string>
     <string name="indicators_custom_dialog_trends_title">SET TREND LINES</string>
     <string name="indicators_custom_dialog_indicators_title">SET INDICATORS</string>
+    <string name="user_statistics_setting">Send anonymous usage statistics</string>
+    <string name="analytics_message_send"><b>Send statistics</b></string>
+    <string name="analytics_message_dont_send">Do not send statistics</string>
+    <string name="analytics_message">It is our goal to always provide the best products and user experience to our customers. By enabling this option anonymous data will be collected and sent to Telerik detailing how the Telerik Examples application is being used. No information is collected that could be used to either identify or contact you. \nYou can change this anytime from the Settings menu.</string>
+    <string name="could_not_change_setting">Could not change setting</string>
+    <string name="analytics_message_title">Help us improve Telerik Examples</string>
 
     <string-array name="indicators_range_options">
         <item>1 month</item>

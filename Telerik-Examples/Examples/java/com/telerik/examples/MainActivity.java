@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import com.telerik.android.common.Util;
 import com.telerik.examples.common.ExamplesApplicationContext;
 import com.telerik.examples.common.TrackedApplication;
 import com.telerik.examples.common.contracts.TrackedActivity;
@@ -34,7 +35,7 @@ import com.telerik.examples.viewmodels.ExampleGroup;
 import java.util.HashMap;
 
 public class MainActivity extends FragmentActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks,
-        ActionBar.OnNavigationListener, TransitionHandler, SpinnerAdapter, TrackedActivity {
+        ActionBar.OnNavigationListener, TransitionHandler, SpinnerAdapter, TrackedActivity, FragmentManager.OnBackStackChangedListener {
 
     private ColorDrawable currentBgColor;
 
@@ -52,7 +53,6 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
     private ActionBar actionBar;
     private ExamplesApplicationContext app;
     private NavigationDrawerFragment mNavigationDrawerFragment;
-    private Fragment activeFragment;
     private TipsPresenter tipsPresenter;
     private int lastNavigationItemIndex = 1;
 
@@ -61,13 +61,16 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final Resources resources = getResources();
-        final ColorDrawable bgColorPrimary = new ColorDrawable(resources.getColor(R.color.primary_title_background));
-        final ColorDrawable bgColorSecondary = new ColorDrawable(resources.getColor(R.color.secondary_title_background));
+        Resources resources = getResources();
+        ColorDrawable bgColorPrimary = new ColorDrawable(resources.getColor(R.color.primary_title_background));
+        ColorDrawable bgColorSecondary = new ColorDrawable(resources.getColor(R.color.secondary_title_background));
         currentBgColor = bgColorPrimary;
 
         actionBar = getActionBar();
-        actionBar.setBackgroundDrawable(currentBgColor);
+
+        if (actionBar != null) {
+            actionBar.setBackgroundDrawable(currentBgColor);
+        }
 
         redFrom = Color.red(bgColorPrimary.getColor());
         redTo = Color.red(bgColorSecondary.getColor());
@@ -81,45 +84,35 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
         app = (ExamplesApplicationContext) this.getApplicationContext();
 
         setContentView(R.layout.activity_main);
-        this.activeFragment = getSupportFragmentManager().findFragmentById(R.id.container);
-        this.tipsPresenter = (TipsPresenter) this.findViewById(R.id.tipsPresenter);
+        this.tipsPresenter = Util.getLayoutPart(this, R.id.tipsPresenter, TipsPresenter.class);
 
         setupNavigationDrawer(savedInstanceState);
-        setupActionBar(savedInstanceState);
-
-        if (savedInstanceState == null) {
-            if (this.activeFragment instanceof ControlsFragment) {
-                this.tipsPresenter.scheduleShow();
-            }
-        } else {
-            if (this.activeFragment instanceof ControlsFragment) {
-                this.tipsPresenter.show();
-            }
-        }
+        setupActionBar();
 
         // Prevents the drawer from being opened at the time of the first launch.
-        ((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(Gravity.LEFT);
-        this.getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-            @Override
-            public void onBackStackChanged() {
-                activeFragment = getSupportFragmentManager().findFragmentById(R.id.container);
-                manageTipsPresenter(activeFragment);
-                invalidateActionbar();
-            }
-        });
+        Util.getLayoutPart(this, R.id.drawer_layout, DrawerLayout.class).closeDrawer(Gravity.LEFT);
+        this.getSupportFragmentManager().addOnBackStackChangedListener(this);
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
+        manageTipsPresenter(currentFragment);
+        invalidateActionbar();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("spinner_selection",  this.lastNavigationItemIndex);
+        outState.putInt("spinner_selection", this.lastNavigationItemIndex);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         this.lastNavigationItemIndex = savedInstanceState.getInt("spinner_selection", this.lastNavigationItemIndex);
-        if (this.activeFragment instanceof ControlsFragment){
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
+        if (currentFragment instanceof ControlsFragment) {
             this.actionBar.setSelectedNavigationItem(this.lastNavigationItemIndex);
         }
     }
@@ -130,9 +123,8 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
         if (intent.hasExtra("section")) {
             int selectedSection = intent.getIntExtra("section", 0);
             Fragment newFragment = this.getSectionFragment(selectedSection);
-            this.activeFragment = newFragment;
             this.app.loadFragment(this, newFragment, R.id.container, true);
-            this.manageTipsPresenter(this.activeFragment);
+            this.manageTipsPresenter(newFragment);
         }
     }
 
@@ -150,10 +142,11 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        boolean isAbout = activeFragment instanceof AboutFragment;
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
+        boolean isAbout = currentFragment instanceof AboutFragment;
         menu.findItem(R.id.action_about).setEnabled(!isAbout).setVisible(!isAbout);
-        if (this.activeFragment instanceof ExampleGroupListFragment) {
-            ExampleGroupListFragment typedFragment = (ExampleGroupListFragment) this.activeFragment;
+        if (currentFragment instanceof ExampleGroupListFragment) {
+            ExampleGroupListFragment typedFragment = (ExampleGroupListFragment) currentFragment;
             MenuItem item = menu.findItem(R.id.action_toggle_list_view);
             if (typedFragment.hasData()) {
                 item.setVisible(true);
@@ -162,7 +155,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
                 } else {
                     item.setIcon(R.drawable.example_group_toggle_layout_normal);
                 }
-            }else{
+            } else {
                 item.setVisible(false);
             }
         } else {
@@ -178,8 +171,9 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
             mNavigationDrawerFragment.selectNavigationDrawerSection(2);
             return true;
         } else if (id == R.id.action_toggle_list_view) {
-            if (this.activeFragment instanceof ExampleGroupListFragment) {
-                ExampleGroupListFragment typedFragment = (ExampleGroupListFragment) this.activeFragment;
+            Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
+            if (currentFragment instanceof ExampleGroupListFragment) {
+                ExampleGroupListFragment typedFragment = (ExampleGroupListFragment) currentFragment;
                 if (typedFragment.currentMode() == ExampleGroupListFragment.EXAMPLE_GROUP_LIST_MODE) {
                     typedFragment.setViewMode(ExampleGroupListFragment.EXAMPLE_GROUP_GRID_MODE);
                     item.setIcon(R.drawable.example_group_toggle_layout_normal);
@@ -194,6 +188,9 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 
                 return true;
             }
+        } else if (id == R.id.action_settings) {
+            this.app.showSettings(this);
+            return true;
         }
 
         return false;
@@ -202,12 +199,13 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
     @Override
     public boolean onNavigationItemSelected(int itemPosition, long itemId) {
         //THIS FUNCTIONALITY WILL BE USED IN THE NEXT VERSION OF THE EXAMPLES.
-        if (!(this.activeFragment instanceof ControlsFragment)) {
+        ControlsFragment controlsFragment = (ControlsFragment) this.getSupportFragmentManager().findFragmentById(R.id.container);
+
+        if (controlsFragment == null) {
             return false;
         }
 
-        ControlsFragment controlsFragment = (ControlsFragment) this.activeFragment;
-         this.lastNavigationItemIndex = itemPosition;
+        this.lastNavigationItemIndex = itemPosition;
         if (itemPosition == 0) {
             controlsFragment.showAll();
             app.trackFeature(TrackedApplication.HOME_CATEGORY, TrackedApplication.ACTION_BAR_SPINNER_ITEM_SELECTED + ": all");
@@ -237,10 +235,9 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 
         this.manageTipsPresenter(newFragment);
 
-        this.activeFragment = newFragment;
         this.app.loadFragment(this, newFragment, R.id.container, true);
         this.invalidateOptionsMenu();
-        app.trackFeature(TrackedApplication.HOME_CATEGORY, TrackedApplication.DRAWER_SECTION_SELECTED + ": " + this.activeFragment.getClass().getSimpleName());
+        app.trackFeature(TrackedApplication.HOME_CATEGORY, TrackedApplication.DRAWER_SECTION_SELECTED + ": " + newFragment.getClass().getSimpleName());
     }
 
     private void manageTipsPresenter(Fragment newFragment) {
@@ -293,7 +290,8 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 
     @Override
     public void updateTransition(float step) {
-        if (!(activeFragment instanceof AboutFragment))
+        Fragment currentFragment = this.getSupportFragmentManager().findFragmentById(R.id.container);
+        if (!(currentFragment instanceof AboutFragment))
             currentBgColor.setColor(calculateCurrentColor(step));
     }
 
@@ -303,7 +301,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
         invalidateOptionsMenu();
     }
 
-    private void setupActionBar(Bundle savedInstanceState) {
+    private void setupActionBar() {
         this.actionBar.setListNavigationCallbacks(this, this);
         this.invalidateActionbar();
     }
@@ -316,8 +314,11 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
         if (savedInstanceState == null) {
             int selectedSection = mNavigationDrawerFragment.selectedSection() == -1 ? 0 : mNavigationDrawerFragment.selectedSection();
             Fragment newFragment = this.getSectionFragment(selectedSection);
-            this.activeFragment = newFragment;
             this.app.loadFragment(this, newFragment, R.id.container, false);
+            this.manageTipsPresenter(newFragment);
+        } else {
+            Fragment currentFragment = this.getSupportFragmentManager().findFragmentById(R.id.container);
+            this.manageTipsPresenter(currentFragment);
         }
     }
 
@@ -326,10 +327,11 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
             this.actionBar.setTitle(R.string.appName);
             this.actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         } else {
-            if (this.activeFragment instanceof AboutFragment) {
+            Fragment currentFragment = this.getSupportFragmentManager().findFragmentById(R.id.container);
+            if (currentFragment instanceof AboutFragment) {
                 this.actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
                 this.actionBar.setTitle(R.string.aboutString);
-            } else if (this.activeFragment instanceof FavoritesFragment) {
+            } else if (currentFragment instanceof FavoritesFragment) {
                 this.actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
                 this.actionBar.setTitle(R.string.favoritesStringPascalCase);
             } else {
@@ -342,7 +344,8 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 
 
     private void invalidateBackground() {
-        if (activeFragment instanceof AboutFragment || mNavigationDrawerFragment.isDrawerOpen())
+        Fragment currentFragment = this.getSupportFragmentManager().findFragmentById(R.id.container);
+        if (currentFragment instanceof AboutFragment || mNavigationDrawerFragment.isDrawerOpen())
             currentBgColor.setColor(secondaryBgColor());
         else
             currentBgColor.setColor(primaryBgColor());

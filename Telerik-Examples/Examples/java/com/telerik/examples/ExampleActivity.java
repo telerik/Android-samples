@@ -32,24 +32,22 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.telerik.android.common.Util;
 import com.telerik.examples.common.ExamplesApplicationContext;
 import com.telerik.examples.common.InputBlocker;
 import com.telerik.examples.common.TrackedApplication;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
 import com.telerik.examples.common.fragments.GalleryExamplesFragment;
+import com.telerik.examples.common.licensing.KeysRetriever;
 import com.telerik.examples.primitives.AnimatedTextStrip;
 import com.telerik.examples.viewmodels.Example;
 import com.telerik.examples.viewmodels.GalleryExample;
 import com.telerik.widget.feedback.RadFeedback;
 
 import java.lang.reflect.Constructor;
+import java.security.InvalidParameterException;
 
-public class ExampleActivity extends FragmentActivity implements ExampleFragmentBase.ExampleLoadedListener, RadFeedback.OnSendFeedbackFinishedListener {
-    public final static String EXAMPLES_CATEGORY_NAME = "Examples";
-    public final static String FAVOURITE_CATEGORY_ADDED = "Favourites Added";
-    public final static String FAVOURITE_CATEGORY_REMOVED = "Favourites Removed";
-    public final static String EXAMPLE_INFO_CATEGORY = "Example info";
-
+public class ExampleActivity extends FragmentActivity implements ExampleFragmentBase.ExampleLoadedListener, RadFeedback.OnSendFeedbackFinishedListener, View.OnClickListener, View.OnTouchListener {
     private ExamplesApplicationContext app;
 
     private AnimatedTextStrip textStrip;
@@ -81,108 +79,47 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            this.setTheme(R.style.DarkTheme);
-
-        } else {
-            this.setTheme(R.style.DarkThemeLandscape);
-        }
+        this.initTheme();
 
         super.onCreate(savedInstanceState);
-        this.feedback = RadFeedback.instance();
-        TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
-        String telephonyId = telephonyManager.getDeviceId();
-        String androidId = Settings.Secure.getString(this.getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        String uniqueHash = telephonyId;
-        if (androidId != null) {
-            uniqueHash = String.format("%s", (telephonyId + androidId).hashCode());
-        }
-        this.feedback.init("<your-api-key-here>", "https://platform.telerik.com/feedback/api/v1", uniqueHash);
-        this.feedback.setOnFeedbackFinishedListener(this);
+        this.initFeedback();
         this.app = (ExamplesApplicationContext) this.getApplicationContext();
         this.getActionBar().hide();
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            setContentView(R.layout.activity_example);
-        } else {
-            setContentView(R.layout.activity_example_horizontal);
-        }
-        this.textStrip = (AnimatedTextStrip) this.findViewById(R.id.animatedTextStrip);
-        this.textStrip.setText(this.app.selectedExample().getHeaderText());
-        this.buttonAddRemoveFavourite = (Button) this.findViewById(R.id.btnAddFavourite);
-        this.buttonViewInfo = (Button) this.findViewById(R.id.btnViewInfo);
-        this.btnViewCode = (Button) this.findViewById(R.id.btnViewCode);
-        this.btnViewCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ExampleFragmentBase exampleFragment = (ExampleFragmentBase) getSupportFragmentManager().findFragmentById(R.id.exampleContainer);
-                app.showCode(ExampleActivity.this, exampleFragment.getSourceKey());
-                app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + exampleFragment.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_VIEW_CODE);
-            }
-        });
-        this.btnSendFeedback = (Button) this.findViewById(R.id.btnSendFeedback);
-        this.btnSendFeedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                feedback.show(ExampleActivity.this);
-                app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_SEND_FEEDBACK);
-            }
-        });
-        this.container = (FrameLayout) this.findViewById(R.id.container);
-        this.container.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getPointerCount() != 1 || !textStrip.isChecked()) {
-                    return true;
-                }
-                float scaleFactor = getExampleFragmentScaleFactor();
-                Matrix m = new Matrix();
-                m.setScale(scaleFactor, scaleFactor);
-                Rect r = new Rect();
-                container.getDrawingRect(r);
-                RectF floatRect = new RectF(r.left, r.top, r.right, r.bottom);
-                m.mapRect(floatRect);
-                if (floatRect.contains(event.getX(), event.getY())) {
-                    textStrip.setChecked(!textStrip.isChecked());
-                    return true;
-                }
-                return false;
-            }
-        });
-        this.menuContainer = (FrameLayout) this.findViewById(R.id.menuContainer);
-        this.descriptionPanel = (ScrollView) this.findViewById(R.id.descriptionPanel);
-        this.buttonsLayout = (LinearLayout) this.findViewById(R.id.buttonsLayout);
-        this.header = (TextView) this.findViewById(R.id.txtHeader);
-        this.description = (TextView) this.findViewById(R.id.txtDescription);
-        this.buttonNextExample = (Button) this.findViewById(R.id.btnNext);
-        this.buttonNextExample.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!v.isClickable()) {
-                    return;
-                }
-                setViewEnabled(buttonPrevExample, false);
-                setViewEnabled(buttonNextExample, false);
-                navigateToNextExample();
-                app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_NAVIGATE);
-            }
-        });
-        this.buttonPrevExample = (Button) this.findViewById(R.id.btnPrev);
-        this.buttonPrevExample.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!v.isClickable()) {
-                    return;
-                }
-                setViewEnabled(buttonPrevExample, false);
-                setViewEnabled(buttonNextExample, false);
-                navigateToPreviousExample();
-                app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_NAVIGATE);
-            }
-        });
+        this.loadContent();
+
+        this.initUI();
 
         this.loadExample(savedInstanceState);
         this.refreshNavigationButtons(this.app.selectedControl().getExamples().indexOf(this.app.selectedExample()));
+
+        this.setBackground();
+    }
+
+    private void initUI() {
+        this.textStrip = Util.getLayoutPart(this, R.id.animatedTextStrip, AnimatedTextStrip.class);
+        this.textStrip.setText(this.app.selectedExample().getHeaderText());
+        this.buttonAddRemoveFavourite = Util.getLayoutPart(this, R.id.btnAddFavourite, Button.class);
+        this.buttonAddRemoveFavourite.setOnClickListener(this);
+        this.buttonViewInfo = Util.getLayoutPart(this, R.id.btnViewInfo, Button.class);
+        this.buttonViewInfo.setOnClickListener(this);
+        this.btnViewCode = Util.getLayoutPart(this, R.id.btnViewCode, Button.class);
+        this.btnViewCode.setOnClickListener(this);
+        this.btnSendFeedback = Util.getLayoutPart(this, R.id.btnSendFeedback, Button.class);
+        this.btnSendFeedback.setOnClickListener(this);
+        this.container = Util.getLayoutPart(this, R.id.container, FrameLayout.class);
+        this.container.setOnTouchListener(this);
+        this.menuContainer = Util.getLayoutPart(this, R.id.menuContainer, FrameLayout.class);
+        this.descriptionPanel = Util.getLayoutPart(this, R.id.descriptionPanel, ScrollView.class);
+        this.buttonsLayout = Util.getLayoutPart(this, R.id.buttonsLayout, LinearLayout.class);
+        this.header = Util.getLayoutPart(this, R.id.txtHeader, TextView.class);
+        this.description = Util.getLayoutPart(this, R.id.txtDescription, TextView.class);
+        this.buttonNextExample = Util.getLayoutPart(this, R.id.btnNext, Button.class);
+        this.buttonNextExample.setOnClickListener(this);
+        this.buttonPrevExample = Util.getLayoutPart(this, R.id.btnPrev, Button.class);
+        this.buttonPrevExample.setOnClickListener(this);
+    }
+
+    private void setBackground() {
         ShapeDrawable.ShaderFactory sf = new ShapeDrawable.ShaderFactory() {
             @Override
             public Shader resize(int width, int height) {
@@ -204,33 +141,127 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         shaderPaint.setShape(new RectShape());
 
         this.app.setBackgroundDrawableSafe(this.menuContainer, shaderPaint);
-
-        final ExampleActivity thisActivity = this;
-        this.buttonViewInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                app.showInfo(thisActivity, app.selectedExample());
-                app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_VIEW_INFO);
-            }
-        });
-
-        this.buttonAddRemoveFavourite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Example currentExample = app.selectedExample();
-                if (app.isExampleInFavourites(currentExample)) {
-                    app.removeFavorite(currentExample);
-                    buttonAddRemoveFavourite.setBackgroundResource(R.drawable.example_favourite);
-                    app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + ExampleActivity.this.currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_REMOVE_FAVOURITE);
-                } else {
-                    app.addFavorite(currentExample);
-                    buttonAddRemoveFavourite.setBackgroundResource(R.drawable.example_remove_favourite);
-                    app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + ExampleActivity.this.currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_ADD_FAVOURITE);
-                }
-            }
-        });
     }
 
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getPointerCount() != 1 || !textStrip.isChecked()) {
+            return true;
+        }
+        float scaleFactor = getExampleFragmentScaleFactor();
+        Matrix m = new Matrix();
+        m.setScale(scaleFactor, scaleFactor);
+        Rect r = new Rect();
+        container.getDrawingRect(r);
+        RectF floatRect = new RectF(r.left, r.top, r.right, r.bottom);
+        m.mapRect(floatRect);
+        if (floatRect.contains(event.getX(), event.getY())) {
+            textStrip.setChecked(!textStrip.isChecked());
+            return true;
+        }
+        return false;
+    }
+
+    public void onClick(View v) {
+        if (v == this.btnViewCode) {
+            this.viewCode();
+        } else if (v == this.btnSendFeedback) {
+            this.sendFeedback();
+        } else if (v == this.buttonNextExample) {
+            this.nextExample();
+        } else if (v == this.buttonPrevExample) {
+            this.previousExample();
+        } else if (v == this.buttonViewInfo) {
+            this.viewInfo();
+        } else if (v == this.buttonAddRemoveFavourite) {
+            this.toggleFavorite();
+        }
+    }
+
+    private void toggleFavorite() {
+        Example currentExample = app.selectedExample();
+        if (app.isExampleInFavourites(currentExample)) {
+            app.removeFavorite(currentExample);
+            buttonAddRemoveFavourite.setBackgroundResource(R.drawable.example_favourite);
+            app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + ExampleActivity.this.currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_REMOVE_FAVOURITE);
+        } else {
+            app.addFavorite(currentExample);
+            buttonAddRemoveFavourite.setBackgroundResource(R.drawable.example_remove_favourite);
+            app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + ExampleActivity.this.currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_ADD_FAVOURITE);
+        }
+    }
+
+    private void viewInfo() {
+        app.showInfo(this, app.selectedExample());
+        app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_VIEW_INFO);
+    }
+
+    private void previousExample() {
+        if (!this.buttonPrevExample.isClickable()) {
+            return;
+        }
+        setViewEnabled(buttonPrevExample, false);
+        setViewEnabled(buttonNextExample, false);
+        navigateToPreviousExample();
+        app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_NAVIGATE);
+    }
+
+    private void nextExample() {
+        if (!this.buttonNextExample.isClickable()) {
+            return;
+        }
+        setViewEnabled(buttonPrevExample, false);
+        setViewEnabled(buttonNextExample, false);
+        navigateToNextExample();
+        app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_NAVIGATE);
+    }
+
+    private void sendFeedback() {
+        feedback.show(ExampleActivity.this);
+        app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_SEND_FEEDBACK);
+    }
+
+    private void viewCode() {
+        ExampleFragmentBase exampleFragment = (ExampleFragmentBase) getSupportFragmentManager().findFragmentById(R.id.exampleContainer);
+        app.showCode(ExampleActivity.this, exampleFragment.getSourceCodeModel());
+        app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + exampleFragment.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_VIEW_CODE);
+    }
+
+    private void loadContent() {
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_example);
+        } else {
+            setContentView(R.layout.activity_example_horizontal);
+        }
+    }
+
+    private void initTheme() {
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            this.setTheme(R.style.DarkTheme);
+
+        } else {
+            this.setTheme(R.style.DarkThemeLandscape);
+        }
+    }
+
+    private void initFeedback() {
+        this.feedback = RadFeedback.instance();
+        TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
+        String telephonyId = telephonyManager.getDeviceId();
+        String androidId = Settings.Secure.getString(this.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        String uniqueHash = telephonyId;
+        if (androidId != null) {
+            uniqueHash = String.format("%s", (telephonyId + androidId).hashCode());
+        }
+
+        try {
+            this.feedback.init(KeysRetriever.getFeedbackKey(), "https://platform.telerik.com/feedback/api/v1", uniqueHash);
+            this.feedback.setOnFeedbackFinishedListener(this);
+        } catch (InvalidParameterException ex) {
+            Log.w("Telerik Feedback", ex.getMessage());
+        }
+
+    }
 
     @Override
     protected void onResume() {
@@ -282,7 +313,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
                 public void onAnimationEnd(Animation animation) {
                     menuAnimation.setAnimationListener(null);
                     menuAnimation = null;
-                    enableDisableViewGroup(container, false);
+                    toggleViewGroupTouch(container, false);
                     textStrip.setClickable(true);
                 }
 
@@ -306,7 +337,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
                 public void onAnimationEnd(Animation animation) {
                     menuAnimation.setAnimationListener(null);
                     menuAnimation = null;
-                    enableDisableViewGroup(container, true);
+                    toggleViewGroupTouch(container, true);
                     textStrip.setClickable(true);
                 }
 
@@ -318,7 +349,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         }
     }
 
-    private void enableDisableViewGroup(ViewGroup viewGroup, boolean enabled) {
+    private void toggleViewGroupTouch(ViewGroup viewGroup, boolean enabled) {
         if (viewGroup instanceof InputBlocker) {
             InputBlocker blocker = (InputBlocker) viewGroup;
             blocker.setInterceptTouch(!enabled);
@@ -328,22 +359,22 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
             for (int i = 0; i < childCount; i++) {
                 View view = viewGroup.getChildAt(i);
                 if (view instanceof ViewGroup) {
-                    enableDisableViewGroup((ViewGroup) view, enabled);
+                    toggleViewGroupTouch((ViewGroup) view, enabled);
                 }
             }
         }
     }
 
     private void toggleSubMenu(boolean animate) {
-        if(this.currentExample != null) {
-            if(this.textStrip.isChecked()) {
+        if (this.currentExample != null) {
+            if (this.textStrip.isChecked()) {
                 this.currentExample.onExampleSuspended();
             } else {
                 this.currentExample.onExampleResumed();
             }
         }
 
-       if (this.menuAnimation == null && this.textStrip.isChecked()) {
+        if (this.menuAnimation == null && this.textStrip.isChecked()) {
             this.updateDescriptionPanelParams();
             if (animate) {
                 this.createMenuAnimation(false);
@@ -353,7 +384,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
                 float scaleFactor = this.getExampleFragmentScaleFactor();
                 this.container.setScaleX(scaleFactor);
                 this.container.setScaleY(scaleFactor);
-                this.enableDisableViewGroup(container, false);
+                this.toggleViewGroupTouch(container, false);
                 this.animateMenuButtons(true);
             }
 
@@ -365,12 +396,12 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
             } else {
                 this.container.setScaleX(1);
                 this.container.setScaleY(1);
-                this.enableDisableViewGroup(container, true);
+                this.toggleViewGroupTouch(container, true);
                 this.animateMenuButtons(false);
             }
         }
 
-        this.app.trackFeature(this.getClass().getName(), String.format("Example toolbar toggled"));
+        this.app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY, TrackedApplication.EXAMPLE_TOOLBAR_TOGGLED);
     }
 
     private void animateMenuButtons(boolean show) {
@@ -410,13 +441,15 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         } else {
             super.onBackPressed();
         }
+
+        this.currentExample.onBackPressed();
     }
 
     private void loadExample(Bundle savedInstanceState, boolean animate, int outTransition, int inTransition) {
         if (savedInstanceState == null) {
             Example selectedExample = this.app.selectedExample();
             try {
-                Class<?> fragmentClass = null;
+                Class<?> fragmentClass;
                 if (selectedExample instanceof GalleryExample) {
                     fragmentClass = GalleryExamplesFragment.class;
                 } else {
@@ -435,7 +468,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
                 }
 
             } catch (Exception e) {
-                Log.println(Log.ERROR, e.getMessage(), "Could not load selected example.");
+                Log.w("Could not load selected example.", e.getMessage());
             }
         } else {
             this.currentExample = (ExampleFragmentBase) this.getSupportFragmentManager().findFragmentById(R.id.exampleContainer);
@@ -481,7 +514,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         this.currentExample.setOnExampleLoadedListener(null);
         if (this.textStrip.isChecked()) {
             if (root instanceof ViewGroup) {
-                this.enableDisableViewGroup((ViewGroup) root, false);
+                this.toggleViewGroupTouch((ViewGroup) root, false);
             } else {
                 root.setClickable(false);
             }
@@ -518,7 +551,6 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         int id = item.getItemId();
 
         final Example selectedExample = this.app.selectedExample();
-        final String fragmentNameToTrack = app.extractClassName(selectedExample.getFragmentName(), 3);
 
         if (id == R.id.action_add_to_favorites) {
             this.app.addFavorite(selectedExample);

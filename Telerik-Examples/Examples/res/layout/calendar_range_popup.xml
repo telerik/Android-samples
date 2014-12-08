@@ -5,14 +5,65 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.telerik.widget.calendar.RadCalendarView
-        android:id="@+id/calendarView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/calendar_range_example_height"/>
+        android:layout_height="@dimen/calendar_range_example_height">
+
+        <com.telerik.widget.calendar.RadCalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableLayout
+            android:stretchColumns="0,1,2,3,4,5,6,7"
+            android:shrinkColumns="0"
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+            <TableRow android:layout_height="42dp">
+
+                <ImageButton
+                    android:clickable="false"
+                    android:layout_marginTop="@dimen/calendar_example_arrows_spacing"
+                    android:paddingRight="@dimen/calendar_example_arrows_spacing"
+                    android:paddingBottom="@dimen/calendar_example_arrows_spacing"
+                    android:contentDescription="@string/calendar_range_left_arrow_description"
+                    android:id="@+id/left_arrow"
+                    android:background="@color/transparent"
+                    android:src="@drawable/calendar_arrow_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View />
+
+                <View />
+
+                <View />
+
+                <View />
+
+                <View />
+
+                <View />
+
+                <ImageButton
+                    android:layout_marginTop="@dimen/calendar_example_arrows_spacing"
+                    android:paddingLeft="@dimen/calendar_example_arrows_spacing"
+                    android:paddingBottom="@dimen/calendar_example_arrows_spacing"
+                    android:contentDescription="@string/calendar_range_right_arrow_description"
+                    android:id="@+id/right_arrow"
+                    android:background="@color/transparent"
+                    android:src="@drawable/calendar_arrow_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+        </TableLayout>
+    </FrameLayout>
+
 
     <TextView
-        android:padding="@dimen/eighteendp"
-        android:textSize="@dimen/fourteenSp"
+        android:padding="18dp"
+        android:textSize="14sp"
         android:gravity="center_horizontal"
         android:background="@color/calendar_background_range_example"
         android:text="@string/calendar_range_how_to_text"
