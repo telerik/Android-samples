@@ -94,13 +94,6 @@ public class ChartExamples implements ExamplesProvider {
 
         chartExamples.put("Behaviors", result);
 
-        result.add(new PanAndZoomFragment());
-        result.add(new SelectionBehaviorFragment());
-        result.add(new TooltipBehaviorFragment());
-        result.add(new TrackBallBehaviorFragment());
-
-        chartExamples.put("Behaviors", result);
-
         result.add(new DateTimeContinuousAxisFragment());
         result.add(new MultipleAxesFragment());
 
