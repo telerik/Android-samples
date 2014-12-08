@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.telerik.manual.tests.R;
+import com.telerik.android.sdk.R;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.engine.series.combination.ChartSeriesCombineMode;
 import com.telerik.widget.chart.engine.view.ChartSeries;
@@ -22,10 +22,12 @@ import com.telerik.widget.palettes.PaletteEntry;
 import java.util.ArrayList;
 import java.util.Random;
 
+import activities.ExampleFragment;
+
 /**
  * Created by ginev on 11/21/2014.
  */
-public class PalettesFragment extends Fragment {
+public class PalettesFragment extends Fragment implements ExampleFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,6 +77,11 @@ public class PalettesFragment extends Fragment {
         chart.setPalette(defaultPaletteClone);
 
         return chart;
+    }
+
+    @Override
+    public String title() {
+        return "Palettes";
     }
 
     private ArrayList<DataEntity> getData() {

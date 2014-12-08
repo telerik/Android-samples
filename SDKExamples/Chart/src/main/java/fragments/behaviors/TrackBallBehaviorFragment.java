@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.telerik.manual.tests.R;
+import com.telerik.android.sdk.R;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.engine.series.combination.ChartSeriesCombineMode;
 import com.telerik.widget.chart.visualization.behaviors.ChartTrackBallBehavior;
@@ -20,10 +20,12 @@ import com.telerik.widget.chart.visualization.cartesianChart.series.categorical.
 import java.util.ArrayList;
 import java.util.Random;
 
+import activities.ExampleFragment;
+
 /**
  * Created by ginev on 11/21/2014.
  */
-public class TrackBallBehaviorFragment extends Fragment {
+public class TrackBallBehaviorFragment extends Fragment implements ExampleFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +84,11 @@ public class TrackBallBehaviorFragment extends Fragment {
         }
 
         return result;
+    }
+
+    @Override
+    public String title() {
+        return "Trackball";
     }
 
     public class DataEntity{

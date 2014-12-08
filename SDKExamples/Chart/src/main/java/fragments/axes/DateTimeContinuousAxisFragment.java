@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.telerik.manual.tests.R;
+import com.telerik.android.sdk.R;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.DateTimeContinuousAxis;
@@ -19,10 +19,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
+import activities.ExampleFragment;
+
 /**
  * Created by ginev on 11/20/2014.
  */
-public class DateTimeContinuousAxisFragment extends Fragment {
+public class DateTimeContinuousAxisFragment extends Fragment implements ExampleFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FrameLayout rootView = (FrameLayout) inflater.inflate(R.layout.fragment_datetime_continuous_axis, container, false);
@@ -71,6 +73,11 @@ public class DateTimeContinuousAxisFragment extends Fragment {
         }
 
         return result;
+    }
+
+    @Override
+    public String title() {
+        return "Date Time Continuous";
     }
 
     public class DataEntity{

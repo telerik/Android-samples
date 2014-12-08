@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.telerik.manual.tests.R;
+import com.telerik.android.sdk.R;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.visualization.pieChart.DoughnutSeries;
 import com.telerik.widget.chart.visualization.pieChart.PieSeries;
@@ -16,10 +16,12 @@ import com.telerik.widget.chart.visualization.pieChart.RadPieChartView;
 import java.util.ArrayList;
 import java.util.Random;
 
+import activities.ExampleFragment;
+
 /**
  * Created by ginev on 11/19/2014.
  */
-public class DoughnutSeriesFragment extends Fragment {
+public class DoughnutSeriesFragment extends Fragment implements ExampleFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -54,6 +56,11 @@ public class DoughnutSeriesFragment extends Fragment {
         }
 
         return result;
+    }
+
+    @Override
+    public String title() {
+        return "Doughnut series";
     }
 
     public class DataEntity {

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.telerik.manual.tests.R;
+import com.telerik.android.sdk.R;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.CategoricalAxis;
@@ -17,10 +17,12 @@ import com.telerik.widget.primitives.legend.RadLegendView;
 import java.util.ArrayList;
 import java.util.Random;
 
+import activities.ExampleFragment;
+
 /**
  * Created by ginev on 11/26/2014.
  */
-public class ChartLegendFragment extends Fragment {
+public class ChartLegendFragment extends Fragment implements ExampleFragment {
 
     private RadCartesianChartView chartView;
     private RadLegendView legendView;
@@ -68,6 +70,11 @@ public class ChartLegendFragment extends Fragment {
         }
 
         return result;
+    }
+
+    @Override
+    public String title() {
+        return "Chart legend";
     }
 
     public class DataEntity {
