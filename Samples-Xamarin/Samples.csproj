@@ -102,6 +102,21 @@
     <Compile Include="Fragments\Chart\Axes\DateTimeContinuousAxisFragment.cs" />
     <Compile Include="Fragments\Chart\Axes\MultipleAxesFragment.cs" />
     <Compile Include="Adapters\ExamplesAdapter.cs" />
+    <Compile Include="Adapters\CalendarExamples.cs" />
+    <Compile Include="Fragments\Calendar\InitCodeFragment.cs" />
+    <Compile Include="Fragments\Calendar\InitXmlFragment.cs" />
+    <Compile Include="Fragments\Calendar\Selection\SelectionSetRangeFragment.cs" />
+    <Compile Include="Fragments\Calendar\Selection\SelectionSetDatesFragment.cs" />
+    <Compile Include="Fragments\Calendar\Selection\SelectionChangedListenerFragment.cs" />
+    <Compile Include="Fragments\Calendar\Selection\SelectionChangedEventFragment.cs" />
+    <Compile Include="Fragments\Calendar\Selection\SelectionDisabledDatesFragment.cs" />
+    <Compile Include="Fragments\Calendar\DisplayDate\DisplayDateSetFragment.cs" />
+    <Compile Include="Fragments\Calendar\DisplayDate\DisplayDateChangeListener.cs" />
+    <Compile Include="Fragments\Calendar\DisplayDate\DisplayDateMinMaxValuesFragment.cs" />
+    <Compile Include="Fragments\Calendar\DisplayDate\DisplayDateChangeEventFragment.cs" />
+    <Compile Include="Fragments\Calendar\Selection\SelectionModesFragment.cs" />
+    <Compile Include="Fragments\Calendar\DisplayMode\DisplayModeFragment.cs" />
+    <Compile Include="Fragments\Calendar\DisplayMode\DisplayModeChangeListenerFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -121,6 +136,7 @@
     <AndroidResource Include="Resources\layout\list_item_group.axml" />
     <AndroidResource Include="Resources\layout\fragment_chart_legend_example.axml" />
     <AndroidResource Include="Resources\values\Styles.xml" />
+    <AndroidResource Include="Resources\layout\fragment_calendar_init_xml.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -134,5 +150,8 @@
     <Folder Include="Fragments\Chart\Annotations\" />
     <Folder Include="Adapters\" />
     <Folder Include="Fragments\Chart\Axes\" />
+    <Folder Include="Fragments\Calendar\Selection\" />
+    <Folder Include="Fragments\Calendar\DisplayDate\" />
+    <Folder Include="Fragments\Calendar\DisplayMode\" />
   </ItemGroup>
 </Project>

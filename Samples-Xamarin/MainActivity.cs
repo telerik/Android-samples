@@ -22,14 +22,13 @@ namespace Samples
 			SetContentView (Resource.Layout.Main);
 
 			this.listControls = (ListView) this.FindViewById(Resource.Id.listControls);
-			this.listControls.Adapter = new ControlsAdapter(this, 0);
+			ControlsAdapter currentAdapter = new ControlsAdapter (this, 0);
+			this.listControls.Adapter = currentAdapter;
 			this.listControls.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>  {
+				ControlActivity.currentProvider = (ExamplesProvider)currentAdapter.GetItem(e.Position);
 				Intent examplesActivity = new Intent(this, typeof(ControlActivity));
 				this.StartActivity(examplesActivity);
 			};
-
 		}
 	}
 }
-
-
