@@ -117,6 +117,8 @@
     <Compile Include="Fragments\Calendar\Selection\SelectionModesFragment.cs" />
     <Compile Include="Fragments\Calendar\DisplayMode\DisplayModeFragment.cs" />
     <Compile Include="Fragments\Calendar\DisplayMode\DisplayModeChangeListenerFragment.cs" />
+    <Compile Include="Fragments\Calendar\Scrolling\ScrollingModesFragment.cs" />
+    <Compile Include="Fragments\Calendar\Scrolling\ScrollingFlingSpeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -153,5 +155,6 @@
     <Folder Include="Fragments\Calendar\Selection\" />
     <Folder Include="Fragments\Calendar\DisplayDate\" />
     <Folder Include="Fragments\Calendar\DisplayMode\" />
+    <Folder Include="Fragments\Calendar\Scrolling\" />
   </ItemGroup>
 </Project>

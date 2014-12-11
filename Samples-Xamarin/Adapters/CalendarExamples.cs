@@ -57,6 +57,13 @@ namespace Samples
 
 			calendarExamples.Put ("Display Mode", result);
 
+			result = new ArrayList ();
+
+			result.Add (new ScrollingModesFragment());
+			result.Add (new ScrollingFlingSpeed());
+
+			calendarExamples.Put ("Scrolling", result);
+
 			return calendarExamples;
 		}
 	}
