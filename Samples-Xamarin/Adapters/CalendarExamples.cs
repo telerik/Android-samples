@@ -60,9 +60,21 @@ namespace Samples
 			result = new ArrayList ();
 
 			result.Add (new ScrollingModesFragment());
-			result.Add (new ScrollingFlingSpeed());
+			result.Add (new ScrollingFlingSpeedFragment());
+			result.Add (new ScrollingFrictionFragment());
+			result.Add (new ScrollingProgramatticallyFragment());
+			result.Add (new ScrollingDirectionFragment());
+			result.Add (new ScrollingSnapFragment());
 
 			calendarExamples.Put ("Scrolling", result);
+
+			result = new ArrayList ();
+
+			result.Add (new EventFragment());
+			result.Add (new EventAllDayFragment());
+			result.Add (new EventRenderModeFragment());
+
+			calendarExamples.Put ("Events", result);
 
 			return calendarExamples;
 		}
