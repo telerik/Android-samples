@@ -27,8 +27,8 @@ namespace Samples
 
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 			View rootView = inflater.Inflate(Resource.Layout.fragment_chart_legend_example, container, false);
-			this.chartView = (RadCartesianChartView) rootView.FindViewById(Resource.Id.chartView);
-			this.legendView = (RadLegendView) rootView.FindViewById(Resource.Id.legendView);
+			this.chartView = rootView.FindViewById(Resource.Id.chartView).JavaCast<RadCartesianChartView>();
+			this.legendView = rootView.FindViewById(Resource.Id.legendView).JavaCast<RadLegendView>();
 
 			this.prepareChart();
 

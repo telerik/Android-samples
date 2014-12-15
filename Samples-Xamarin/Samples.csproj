@@ -146,6 +146,7 @@
     <AndroidResource Include="Resources\layout\fragment_chart_legend_example.axml" />
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\layout\fragment_calendar_init_xml.xml" />
+    <AndroidResource Include="Resources\menu\calendar_display_modes.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -164,5 +165,6 @@
     <Folder Include="Fragments\Calendar\DisplayMode\" />
     <Folder Include="Fragments\Calendar\Scrolling\" />
     <Folder Include="Fragments\Calendar\Events\" />
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
 </Project>

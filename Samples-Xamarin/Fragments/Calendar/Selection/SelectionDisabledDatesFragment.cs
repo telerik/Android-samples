@@ -33,6 +33,10 @@ namespace Samples
 
 			public void Apply (Java.Lang.Object calendarCell)
 			{
+				if (calendarCell.Class.SimpleName == "CalendarMonthCell") {
+					return;
+				}
+
 				CalendarDayCell dayCell = calendarCell.JavaCast<CalendarDayCell> ();
 				if (dayCell.CellType != CalendarCellType.Date) {
 					return;

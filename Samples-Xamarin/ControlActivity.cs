@@ -24,7 +24,7 @@ namespace Samples
 			base.OnCreate (bundle);
 			this.SetContentView(Resource.Layout.activity_control);
 			this.expList = (ExpandableListView)this.FindViewById (Resource.Id.expListView);
-
+			this.Title = currentProvider.ControlName();
 			ExamplesAdapter ea = new ExamplesAdapter(currentProvider.Examples());
 			this.expList.SetAdapter(ea);
 			this.expList.ChildClick += (object sender, ExpandableListView.ChildClickEventArgs e) => {

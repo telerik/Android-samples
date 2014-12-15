@@ -27,6 +27,7 @@ namespace Samples
 			Android.Support.V4.App.FragmentTransaction ft = fm.BeginTransaction();
 			ft.Replace(Resource.Id.container, selectedExampleFragment);
 			ft.Commit();
+			this.Title = ((ExampleFragment)selectedExampleFragment).Title();
 			// Create your application here
 		}
 	}
