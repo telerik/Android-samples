@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Football Explorer</string>
+    <string name="welcomeMessage">Welcome!\nOpen the side drawer to explore the sample queries.</string>
+    <string name="selectAll">All matches since 1888</string>
+    <string name="selectAllBefore1900">Matches before 1900</string>
+    <string name="selectWinsAstonVilla1900_2000">Aston Villa wins between 1990 and 2000</string>
+    <string name="selectWinsLiverpool">All Liverpool wins since 1888</string>
+    <string name="selectSeason2013_2014">Season 2013-2014 matches</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
