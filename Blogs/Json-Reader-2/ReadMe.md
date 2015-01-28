@@ -1,6 +1,6 @@
 # Using Google Spreadsheets as a Data Source for Your Android App (Part 2)
 
-In Part 1 we saw how to treat any public Google spreadsheet as a queryable data table and get the response back as JSON.  
+In [Part 1](https://github.com/telerik/Android-samples/tree/master/Blogs/Json-Reader) we saw how to treat any public Google spreadsheet as a queryable data table and get the response back as JSON.  
 
 In this post, I’ll show you how to filter the data before pulling it from the server. This is very useful for situations in which you have to deal with large amounts of data.
 
