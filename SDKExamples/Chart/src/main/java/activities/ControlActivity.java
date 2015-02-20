@@ -18,13 +18,14 @@ import java.util.ResourceBundle;
  * Created by ginev on 12/5/2014.
  */
 public class ControlActivity extends FragmentActivity {
+    public static ExamplesProvider selectedControl;
     private ExpandableListView expList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control);
         this.expList = (ExpandableListView)this.findViewById(R.id.expListView);
-        final ExamplesAdapter ea = new ExamplesAdapter(new ChartExamples().examples());
+        final ExamplesAdapter ea = new ExamplesAdapter(selectedControl.examples());
         this.expList.setAdapter(ea);
         this.expList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override

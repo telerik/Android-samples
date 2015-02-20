@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.14.0'
+        classpath 'com.android.tools.build:gradle:1.0.1'
     }
 }
 apply plugin: 'android'
@@ -22,12 +22,12 @@ android {
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 19
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -39,10 +39,13 @@ android {
 }
 
 dependencies {
-
-    compile(name: 'Common-2014.3.1023-devRelease', ext: 'aar');
-    compile(name: 'Primitives-2014.3.1023-devRelease', ext: 'aar');
-    compile(name: 'Chart-2014.3.1023-devRelease', ext: 'aar');
-    compile(name: 'Input-2014.3.1023-devRelease', ext: 'aar');
-    compile 'com.android.support:appcompat-v7:19.0.0'
+    compile(name: 'Common-2015.1.220-dev-release', ext: 'aar');
+    compile(name: 'Data-2015.1.220-dev-release', ext: 'aar');
+    compile(name: 'Primitives-2015.1.220-dev-release', ext: 'aar');
+    compile(name: 'Chart-2015.1.220-dev-release', ext: 'aar');
+    compile(name: 'Input-2015.1.220-dev-release', ext: 'aar');
+    compile(name: 'List-2015.1.220-dev-release', ext: 'aar');
+    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:recyclerview-v7:21.0.3'
+    compile 'com.android.support:support-v4:21.0.3'
 }
