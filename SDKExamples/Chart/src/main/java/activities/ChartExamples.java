@@ -1,37 +1,35 @@
 package activities;
 
-import com.telerik.widget.chart.visualization.cartesianChart.axes.DateTimeContinuousAxis;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import fragments.annotations.GridLineAnnotationFragment;
-import fragments.annotations.PlotBandAnnotationFragment;
-import fragments.axes.DateTimeContinuousAxisFragment;
-import fragments.axes.MultipleAxesFragment;
-import fragments.behaviors.PanAndZoomFragment;
-import fragments.behaviors.SelectionBehaviorFragment;
-import fragments.behaviors.TooltipBehaviorFragment;
-import fragments.behaviors.TrackBallBehaviorFragment;
-import fragments.features.ChartLegendFragment;
-import fragments.features.GridFeatureFragment;
-import fragments.features.PalettesFragment;
-import fragments.series.AreaSeriesFragment;
-import fragments.series.CandleStickSeriesFragment;
-import fragments.series.DoughnutSeriesFragment;
-import fragments.series.HorizontalBarSeriesFragment;
-import fragments.series.IndicatorSeriesFragment;
-import fragments.series.LineSeriesFragment;
-import fragments.series.OhlcSeriesFragment;
-import fragments.series.PieSeriesFragment;
-import fragments.series.ScatterBubbleSeriesFragment;
-import fragments.series.ScatterPointSeriesFragment;
-import fragments.series.SplineAreaSeriesFragment;
-import fragments.series.SplineSeriesFragment;
-import fragments.series.StackAreaSeriesFragment;
-import fragments.series.StackBarSeriesFragment;
-import fragments.series.StackSplineAreaSeriesFragment;
-import fragments.series.VerticalBarSeriesFragment;
+import fragments.chart.annotations.GridLineAnnotationFragment;
+import fragments.chart.annotations.PlotBandAnnotationFragment;
+import fragments.chart.axes.DateTimeContinuousAxisFragment;
+import fragments.chart.axes.MultipleAxesFragment;
+import fragments.chart.behaviors.PanAndZoomFragment;
+import fragments.chart.behaviors.SelectionBehaviorFragment;
+import fragments.chart.behaviors.TooltipBehaviorFragment;
+import fragments.chart.behaviors.TrackBallBehaviorFragment;
+import fragments.chart.features.ChartLegendFragment;
+import fragments.chart.features.GridFeatureFragment;
+import fragments.chart.features.PalettesFragment;
+import fragments.chart.series.AreaSeriesFragment;
+import fragments.chart.series.CandleStickSeriesFragment;
+import fragments.chart.series.DoughnutSeriesFragment;
+import fragments.chart.series.HorizontalBarSeriesFragment;
+import fragments.chart.series.IndicatorSeriesFragment;
+import fragments.chart.series.LineSeriesFragment;
+import fragments.chart.series.OhlcSeriesFragment;
+import fragments.chart.series.PieSeriesFragment;
+import fragments.chart.series.ScatterBubbleSeriesFragment;
+import fragments.chart.series.ScatterPointSeriesFragment;
+import fragments.chart.series.SplineAreaSeriesFragment;
+import fragments.chart.series.SplineSeriesFragment;
+import fragments.chart.series.StackAreaSeriesFragment;
+import fragments.chart.series.StackBarSeriesFragment;
+import fragments.chart.series.StackSplineAreaSeriesFragment;
+import fragments.chart.series.VerticalBarSeriesFragment;
 
 /**
  * Created by ginev on 12/5/2014.

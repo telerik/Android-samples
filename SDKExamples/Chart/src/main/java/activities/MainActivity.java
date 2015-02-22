@@ -9,6 +9,8 @@ import android.widget.ListView;
 
 import com.telerik.android.sdk.R;
 
+import java.util.ResourceBundle;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -26,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent examplesActivity = new Intent(MainActivity.this, ControlActivity.class);
+                ControlActivity.selectedControl = (ExamplesProvider)listControls.getAdapter().getItem(position);
                 MainActivity.this.startActivity(examplesActivity);
             }
         });

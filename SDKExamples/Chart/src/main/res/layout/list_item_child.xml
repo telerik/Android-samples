@@ -3,8 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+        android:layout_marginLeft="48dp"
         android:id="@+id/txtExampleName"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="17dp" />
+        android:textSize="48dp" />
 </LinearLayout>

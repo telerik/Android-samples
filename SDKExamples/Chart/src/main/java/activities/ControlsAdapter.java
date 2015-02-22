@@ -20,6 +20,7 @@ public class ControlsAdapter extends ArrayAdapter {
     public ControlsAdapter(Context context, int resource) {
         super(context, resource);
         this.source.add(new ChartExamples());
+        this.source.add(new ListViewExamples());
     }
 
     @Override
