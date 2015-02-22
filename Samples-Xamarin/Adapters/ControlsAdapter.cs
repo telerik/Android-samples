@@ -14,6 +14,7 @@ namespace Samples
 
 			this.source.Add(new ChartExamples());
 			this.source.Add (new CalendarExamples ());
+			this.source.Add (new SideDrawerExamples ());
 		}
 
 

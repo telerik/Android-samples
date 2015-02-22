@@ -36,7 +36,5 @@ namespace Samples
 		public String Title() {
 			return "Selection decorators";
 		}
-
-
 	}
 }

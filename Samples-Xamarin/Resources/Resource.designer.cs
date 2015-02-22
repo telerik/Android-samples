@@ -1768,79 +1768,85 @@ namespace Samples
 			public const int default_trackball_item_content = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int feedback_comment = 2130903076;
+			public const int drawer_content = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int feedback_indicator = 2130903077;
+			public const int drawer_main_content = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int feedback_item = 2130903078;
+			public const int feedback_comment = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int fragment_calendar_example = 2130903079;
+			public const int feedback_indicator = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int fragment_calendar_init_xml = 2130903080;
+			public const int feedback_item = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int fragment_chart_example = 2130903081;
+			public const int fragment_calendar_example = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int fragment_chart_legend_example = 2130903082;
+			public const int fragment_calendar_init_xml = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int fragment_feedback_items = 2130903083;
+			public const int fragment_chart_example = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int legend_item_view = 2130903084;
+			public const int fragment_chart_legend_example = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int list_item_child = 2130903085;
+			public const int fragment_feedback_items = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int list_item_control = 2130903086;
+			public const int legend_item_view = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int list_item_group = 2130903087;
+			public const int list_item_child = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int list_progress_indicator = 2130903088;
+			public const int list_item_control = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int Main = 2130903089;
+			public const int list_item_group = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int main_menu_content = 2130903090;
+			public const int list_progress_indicator = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int main_menu_list_item = 2130903091;
+			public const int Main = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int ohlc_trackball_item_content = 2130903092;
+			public const int main_menu_content = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int popup_edit_details = 2130903093;
+			public const int main_menu_list_item = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int radchartbase = 2130903094;
+			public const int ohlc_trackball_item_content = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int radlegendcontrol = 2130903095;
+			public const int popup_edit_details = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int range_trackball_item_content = 2130903096;
+			public const int radchartbase = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int support_simple_spinner_dropdown_item = 2130903097;
+			public const int radlegendcontrol = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int tooltip_container = 2130903098;
+			public const int range_trackball_item_content = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int trackball_container = 2130903099;
+			public const int support_simple_spinner_dropdown_item = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int trial_message = 2130903100;
+			public const int tooltip_container = 2130903100;
+			
+			// aapt resource value: 0x7f03003d
+			public const int trackball_container = 2130903101;
+			
+			// aapt resource value: 0x7f03003e
+			public const int trial_message = 2130903102;
 			
 			static Layout()
 			{
