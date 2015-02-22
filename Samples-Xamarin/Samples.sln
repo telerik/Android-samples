@@ -14,7 +14,4 @@ Global
 		{D644C5FD-4257-41A0-922A-AF0D126FF0E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D644C5FD-4257-41A0-922A-AF0D126FF0E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Samples.csproj
-	EndGlobalSection
 EndGlobal

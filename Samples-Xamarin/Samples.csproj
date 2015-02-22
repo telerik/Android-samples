@@ -126,6 +126,10 @@
     <Compile Include="Fragments\Calendar\Events\EventAllDayFragment.cs" />
     <Compile Include="Fragments\Calendar\Events\EventFragment.cs" />
     <Compile Include="Fragments\Calendar\Events\EventRenderModeFragment.cs" />
+    <Compile Include="Fragments\Calendar\Events\ReadEventsFragment.cs" />
+    <Compile Include="Fragments\Calendar\Events\ReadEventsRangeFragment.cs" />
+    <Compile Include="Fragments\Calendar\Events\ReadEventsOptionsFragment.cs" />
+    <Compile Include="Fragments\Calendar\Selection\SelectionDecoratorsFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
