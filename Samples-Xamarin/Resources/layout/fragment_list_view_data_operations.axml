@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fragments.listview.ListViewGettingStartedFragment">
+
+
+    <LinearLayout
+        android:id="@+id/buttonsLayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/btnFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="Reset filter"
+            android:textOff="Apply filter"/>
+
+        <ToggleButton
+            android:id="@+id/btnGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="Reset grouping"
+            android:textOff="Apply grouping" />
+
+
+        <ToggleButton
+            android:id="@+id/btnSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="Reset sort"
+            android:textOff="Apply sort"/>
+
+    </LinearLayout>
+
+    <com.telerik.widget.list.RadListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonsLayer">
+
+    </com.telerik.widget.list.RadListView>
+
+</RelativeLayout>

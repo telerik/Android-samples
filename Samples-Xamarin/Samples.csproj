@@ -57,11 +57,20 @@
     <Reference Include="Telerik.Xamarin.Android.Primitives">
       <HintPath>lib\Telerik.Xamarin.Android.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Data">
+      <HintPath>lib\Telerik.Xamarin.Android.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.List">
+      <HintPath>lib\Telerik.Xamarin.Android.List.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>lib\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.AppCompat">
       <HintPath>lib\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <HintPath>lib\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +135,17 @@
     <Compile Include="Fragments\Calendar\Events\EventAllDayFragment.cs" />
     <Compile Include="Fragments\Calendar\Events\EventFragment.cs" />
     <Compile Include="Fragments\Calendar\Events\EventRenderModeFragment.cs" />
+    <Compile Include="Adapters\ListViewExamples.cs" />
+    <Compile Include="Fragments\ListView\ListViewGettingStartedFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewDataAutomaticLoadOnDemandFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewManualLoadOnDemandFragment.cs" />
+    <Compile Include="Fragments\ListView\MyListViewAdapter.cs" />
+    <Compile Include="Fragments\ListView\ListViewDataOperationsFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewItemAnimationFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewLayoutsFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewReorderFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewSwipeToExecuteFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewSwipeToRefreshFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -145,8 +165,22 @@
     <AndroidResource Include="Resources\layout\list_item_group.axml" />
     <AndroidResource Include="Resources\layout\fragment_chart_legend_example.axml" />
     <AndroidResource Include="Resources\values\Styles.xml" />
-    <AndroidResource Include="Resources\layout\fragment_calendar_init_xml.xml" />
     <AndroidResource Include="Resources\menu\calendar_display_modes.xml" />
+    <AndroidResource Include="Resources\layout\example_list_view_data_operations_item_layout.axml" />
+    <AndroidResource Include="Resources\layout\example_list_view_footer_layout.axml" />
+    <AndroidResource Include="Resources\layout\example_list_view_group_header.axml" />
+    <AndroidResource Include="Resources\layout\example_list_view_header_layout.axml" />
+    <AndroidResource Include="Resources\layout\example_list_view_item_animations_layout.axml" />
+    <AndroidResource Include="Resources\layout\example_list_view_item_layout.axml" />
+    <AndroidResource Include="Resources\layout\example_list_view_item_layouts.axml" />
+    <AndroidResource Include="Resources\layout\example_list_view_item_reorder_layout.axml" />
+    <AndroidResource Include="Resources\layout\example_list_view_item_swipe_layout.axml" />
+    <AndroidResource Include="Resources\layout\example_list_view_swipe_content.axml" />
+    <AndroidResource Include="Resources\layout\fragment_list_view_data_operations.axml" />
+    <AndroidResource Include="Resources\layout\fragment_list_view_example.axml" />
+    <AndroidResource Include="Resources\layout\fragment_list_view_item_animations.axml" />
+    <AndroidResource Include="Resources\layout\fragment_list_view_layouts.axml" />
+    <AndroidResource Include="Resources\layout\fragment_calendar_init_xml.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -166,5 +200,6 @@
     <Folder Include="Fragments\Calendar\Scrolling\" />
     <Folder Include="Fragments\Calendar\Events\" />
     <Folder Include="Resources\menu\" />
+    <Folder Include="Fragments\ListView\" />
   </ItemGroup>
 </Project>
