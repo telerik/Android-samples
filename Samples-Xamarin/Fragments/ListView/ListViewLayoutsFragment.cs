@@ -70,7 +70,7 @@ namespace Samples
 		}
 	}
 
-	class LayoutsListViewAdapter : ListViewDataSourceAdapter {
+	class LayoutsListViewAdapter : ListViewAdapter {
 
 		public LayoutsListViewAdapter(IList items) : base(items){
 
@@ -84,10 +84,10 @@ namespace Samples
 			return customHolder;
 		}
 
-		public override void OnBindItemViewHolder (ListViewHolder p0, Java.Lang.Object p1)
+		public override void onBindListViewHolder (ListViewHolder p0, int p1)
 		{
 			LayoutsViewHolder customVH = (LayoutsViewHolder)p0;
-			customVH.txtItemText.Text = p1.ToString();
+			customVH.txtItemText.Text = this.GetItem(p1).ToString();
 		}
 	}
 

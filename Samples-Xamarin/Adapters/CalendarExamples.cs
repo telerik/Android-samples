@@ -38,6 +38,7 @@ namespace Samples
 			result.Add (new SelectionSetDatesFragment());
 			result.Add (new SelectionSetRangeFragment());
 			result.Add (new SelectionDisabledDatesFragment());
+			result.Add (new SelectionDecoratorsFragment());
 
 			calendarExamples.Put ("Selection", result);
 
@@ -73,6 +74,8 @@ namespace Samples
 			result.Add (new EventFragment());
 			result.Add (new EventAllDayFragment());
 			result.Add (new EventRenderModeFragment());
+			result.Add (new ReadEventsFragment());
+			result.Add (new ReadEventsOptionsFragment());
 
 			calendarExamples.Put ("Events", result);
 

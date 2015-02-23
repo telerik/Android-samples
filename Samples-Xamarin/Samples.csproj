@@ -146,6 +146,12 @@
     <Compile Include="Fragments\ListView\ListViewReorderFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewSwipeToExecuteFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewSwipeToRefreshFragment.cs" />
+    <Compile Include="Fragments\Calendar\Events\ReadEventsFragment.cs" />
+    <Compile Include="Fragments\Calendar\Events\ReadEventsRangeFragment.cs" />
+    <Compile Include="Fragments\Calendar\Events\ReadEventsOptionsFragment.cs" />
+    <Compile Include="Fragments\Calendar\Selection\SelectionDecoratorsFragment.cs" />
+    <Compile Include="Fragments\SideDrawer\DrawerInitialSetupFragment.cs" />
+    <Compile Include="Adapters\SideDrawerExamples.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -181,6 +187,8 @@
     <AndroidResource Include="Resources\layout\fragment_list_view_item_animations.axml" />
     <AndroidResource Include="Resources\layout\fragment_list_view_layouts.axml" />
     <AndroidResource Include="Resources\layout\fragment_calendar_init_xml.axml" />
+    <AndroidResource Include="Resources\layout\drawer_content.xml" />
+    <AndroidResource Include="Resources\layout\drawer_main_content.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -201,5 +209,6 @@
     <Folder Include="Fragments\Calendar\Events\" />
     <Folder Include="Resources\menu\" />
     <Folder Include="Fragments\ListView\" />
+    <Folder Include="Fragments\SideDrawer\" />
   </ItemGroup>
 </Project>
