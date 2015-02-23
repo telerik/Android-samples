@@ -19,6 +19,13 @@ namespace Samples
 			EventReadAdapter adapter = new EventReadAdapter (calendarView);
 			calendarView.EventAdapter = adapter;
 
+			Calendar calendar = Calendar.Instance;
+			long start = calendar.TimeInMillis;
+			calendar.Add (CalendarField.Date, 7);
+			long end = calendar.TimeInMillis;
+
+			EventQueryToken token = adapter.EventsQueryToken;
+			token.SetRange (start, end);
 
 			adapter.ReadEventsAsync ();
 
@@ -26,12 +33,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Read events options";
+			return "Read events range";
 		}
-
-		void OnResult() {
-
-		}
-
 	}
 }

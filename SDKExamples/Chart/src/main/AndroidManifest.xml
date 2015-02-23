@@ -2,15 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.telerik.android.sdk"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="activities.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,13 +21,11 @@
             </intent-filter>
         </activity>
         <activity
-        android:name="activities.ControlActivity"
-        android:label="@string/title_activity_main" >
-    </activity>
+            android:name="activities.ControlActivity"
+            android:label="@string/title_activity_main"></activity>
         <activity
             android:name="activities.ExampleActivity"
-            android:label="@string/title_activity_main" >
-        </activity>
+            android:label="@string/title_activity_main"></activity>
     </application>
 
 </manifest>

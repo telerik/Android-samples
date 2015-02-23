@@ -21,6 +21,7 @@ public class ControlsAdapter extends ArrayAdapter {
         super(context, resource);
         this.source.add(new ChartExamples());
         this.source.add(new ListViewExamples());
+        this.source.add(new CalendarExamples());
     }
 
     @Override
