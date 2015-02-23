@@ -84,7 +84,7 @@ namespace Samples
 			return customHolder;
 		}
 
-		public override void onBindListViewHolder (ListViewHolder p0, int p1)
+		public override void OnBindListViewHolder (ListViewHolder p0, int p1)
 		{
 			LayoutsViewHolder customVH = (LayoutsViewHolder)p0;
 			customVH.txtItemText.Text = this.GetItem(p1).ToString();

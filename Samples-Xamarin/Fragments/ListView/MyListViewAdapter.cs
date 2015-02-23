@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace Samples
 {
-	public class MyListViewAdapter : ListViewDataSourceAdapter
+	public class MyListViewAdapter : ListViewAdapter
 	{
 		public MyListViewAdapter(IList items) : base(items){
 		}
@@ -18,14 +18,7 @@ namespace Samples
 			return customHolder;
 		}
 
-
-//		public override void OnBindViewHolder (Android.Support.V7.Widget.RecyclerView.ViewHolder p0, int p1)
-//		{
-//			MyCustomViewHolder customVH = (MyCustomViewHolder) p0;
-//			customVH.txtItemText.Text = this.GetItem(p1).ToString();
-//		}
-
-		public override void OnBindItemViewHolder (ListViewHolder p0, Java.Lang.Object p1)
+		public override void OnBindListViewHolder (ListViewHolder p0, int p1)
 		{
 			MyCustomViewHolder customVH = (MyCustomViewHolder) p0;
 			customVH.txtItemText.Text = p1.ToString();

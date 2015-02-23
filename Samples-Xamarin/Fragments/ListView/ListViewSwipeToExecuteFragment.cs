@@ -122,7 +122,7 @@ namespace Samples
 	}
 
 
-	class SwipeToExecuteListViewAdapter : ListViewDataSourceAdapter {
+	class SwipeToExecuteListViewAdapter : ListViewAdapter {
 
 		public SwipeToExecuteListViewAdapter(IList items) : base(items){
 		}
@@ -136,10 +136,10 @@ namespace Samples
 		}
 
 
-		public override void OnBindItemViewHolder (ListViewHolder p0, Java.Lang.Object p1)
+		public override void OnBindListViewHolder (ListViewHolder p0, int p1)
 		{
 			SwipeToExecuteCustomViewHolder customVH = (SwipeToExecuteCustomViewHolder) p0;
-			EmailMessage message = (EmailMessage) p1;
+			EmailMessage message = (EmailMessage)this.GetItem( p1);
 			customVH.txtTitle.Text = message.title;
 			customVH.txtContent.Text = message.content;
 		}

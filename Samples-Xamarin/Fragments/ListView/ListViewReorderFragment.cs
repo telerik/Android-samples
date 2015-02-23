@@ -64,7 +64,7 @@ namespace Samples
 
 	}
 
-	class ReorderListViewAdapter : ListViewDataSourceAdapter {
+	class ReorderListViewAdapter : ListViewAdapter {
 
 		public ReorderListViewAdapter(IList items) : base(items){
 
@@ -77,11 +77,10 @@ namespace Samples
 			ReorderCustomViewHolder customHolder = new ReorderCustomViewHolder(itemView);
 			return customHolder;
 		}
-
-		public override void OnBindItemViewHolder (ListViewHolder p0, Java.Lang.Object p1)
+		public override void OnBindListViewHolder (ListViewHolder p0, int p1)
 		{
 			ReorderCustomViewHolder customVH = (ReorderCustomViewHolder) p0;
-			customVH.txtItemText.Text = p1.ToString();
+			customVH.txtItemText.Text = this.GetItem(p1).ToString();
 		}
 	}
 
