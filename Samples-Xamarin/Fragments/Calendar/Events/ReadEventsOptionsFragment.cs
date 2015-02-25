@@ -34,7 +34,7 @@ namespace Samples
 
 			public void OnResult(Java.Lang.Object result)
 			{
-				EventReadAdapter.Calendar[] calendars = result.ToArray<EventReadAdapter.Calendar> ();
+				EventReadAdapter.CalendarInfo[] calendars = result.ToArray<EventReadAdapter.CalendarInfo> ();
 				string[] calendarIDs = new string[calendars.Length];
 				for (int i = 0; i < calendars.Length; i++) {
 					calendarIDs [i] = calendars [i].Id;
