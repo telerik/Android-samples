@@ -26,9 +26,9 @@ public class CalendarEventReadOptionsFragment extends Fragment implements Exampl
         final EventReadAdapter adapter = new EventReadAdapter(calendarView);
         calendarView.setEventAdapter(adapter);
 
-        EventReadAdapter.getAllCalendarsAsync(getActivity(), new GenericResultCallback<EventReadAdapter.Calendar[]>() {
+        EventReadAdapter.getAllCalendarsAsync(getActivity(), new GenericResultCallback<EventReadAdapter.CalendarInfo[]>() {
             @Override
-            public void onResult(EventReadAdapter.Calendar[] calendars) {
+            public void onResult(EventReadAdapter.CalendarInfo[] calendars) {
                 String[] calendarIDs = new String[calendars.length];
 
                 for (int i = 0; i < calendars.length; i++) {
