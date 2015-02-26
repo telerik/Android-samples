@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import fragments.listview.ListViewGettingStartedFragment;
-import fragments.listview.ListViewDataAutomaticLoadOnDemandFragment;
-import fragments.listview.ListViewDataManualLoadOnDemandFragment;
+import fragments.listview.ListViewLoadOnDemandFragment;
+import fragments.listview.ListViewSelectionFragment;
 import fragments.listview.ListViewDataOperationsFragment;
 import fragments.listview.ListViewItemAnimationFragment;
 import fragments.listview.ListViewLayoutsFragment;
@@ -29,21 +29,21 @@ public class ListViewExamples implements ExamplesProvider {
         ArrayList<ExampleFragment> examplesSet = new ArrayList<>();
 
         examplesSet.add(new ListViewGettingStartedFragment());
+        examplesSet.add(new ListViewLayoutsFragment());
+        examplesSet.add(new ListViewItemAnimationFragment());
+        examplesSet.add(new ListViewDataOperationsFragment());
 
-        examples.put("Binding", examplesSet);
+        examples.put("Features", examplesSet);
 
         examplesSet = new ArrayList<>();
 
         examplesSet.add(new ListViewReorderFragment());
         examplesSet.add(new ListViewSwipeToExecuteFragment());
         examplesSet.add(new ListViewSwipeToRefreshFragment());
-        examplesSet.add(new ListViewItemAnimationFragment());
-        examplesSet.add(new ListViewDataManualLoadOnDemandFragment());
-        examplesSet.add(new ListViewDataAutomaticLoadOnDemandFragment());
-        examplesSet.add(new ListViewDataOperationsFragment());
-        examplesSet.add(new ListViewLayoutsFragment());
+        examplesSet.add(new ListViewLoadOnDemandFragment());
+        examplesSet.add(new ListViewSelectionFragment());
 
-        examples.put("Features", examplesSet);
+        examples.put("Behaviors", examplesSet);
 
         return examples;
     }

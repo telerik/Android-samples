@@ -5,14 +5,14 @@
 
     <Button
         android:id="@+id/btnAction1"
-        android:text="Action1"
+        android:text="archive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|left"/>
+        android:layout_gravity="center_vertical|start"/>
 
     <Button
         android:id="@+id/btnAction2"
-        android:text="Action2"
+        android:text="delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|right"/>

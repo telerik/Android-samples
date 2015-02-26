@@ -37,7 +37,7 @@ public class ListViewSwipeToRefreshFragment extends Fragment implements ExampleF
         this.listView = (RadListView) rootView.findViewById(R.id.listView);
 
         for (int i = 0; i < 10; i++) {
-            source.add("Item " + (source.size() + i));
+            source.add("Item " + i);
         }
 
         this.listView.setAdapter(new MyListViewAdapter(source));
@@ -53,7 +53,7 @@ public class ListViewSwipeToRefreshFragment extends Fragment implements ExampleF
                     currentAdapter.add(i, dataPage.get(i));
                 }
 
-                srb.endRefresh(false);
+                srb.endRefresh(true);
             }
         });
         this.listView.addBehavior(srb);
@@ -63,8 +63,9 @@ public class ListViewSwipeToRefreshFragment extends Fragment implements ExampleF
 
     private ArrayList<String> getDataPage(int pageSize) {
         ArrayList<String> page = new ArrayList<>();
+        int sourceSize = source.size();
         for (int i = 0; i < pageSize; i++) {
-            page.add("Item " + (source.size() + i));
+            page.add("Item " + (sourceSize + i));
         }
         return page;
     }

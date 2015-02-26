@@ -6,13 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.telerik.android.sdk.R;
 import com.telerik.widget.list.ListViewAdapter;
-import com.telerik.widget.list.ListViewDataSourceAdapter;
 import com.telerik.widget.list.ListViewHolder;
 import com.telerik.widget.list.RadListView;
 import com.telerik.widget.list.SwipeExecuteBehavior;
@@ -57,11 +55,10 @@ public class ListViewSwipeToExecuteFragment extends Fragment implements ExampleF
         this.listView.setAdapter(new MyListViewAdapter(dataSource));
 
         final SwipeExecuteBehavior seb = new SwipeExecuteBehavior();
-
+        seb.setAutoDissolve(false);
         seb.addListener(new SwipeExecuteBehavior.SwipeExecuteListener() {
-            private View swipeView;
-            private Button action1;
-            private Button action2;
+            private int leftContentSize = -1;
+            private int rightContentSize = -1;
 
             @Override
             public void onSwipeStarted(int position) {
@@ -70,56 +67,35 @@ public class ListViewSwipeToExecuteFragment extends Fragment implements ExampleF
 
             @Override
             public void onSwipeProgressChanged(int position, int currentOffset, View swipeView) {
-                if (this.swipeView == null) {
-                    this.swipeView = swipeView;
-                    this.action1 = (Button) this.swipeView.findViewById(R.id.btnAction1);
-                    this.action2 = (Button) this.swipeView.findViewById(R.id.btnAction2);
+                if (this.leftContentSize == -1 || rightContentSize == -1) {
+                    leftContentSize = (((ViewGroup)swipeView).getChildAt(0)).getWidth();
+                    rightContentSize = (((ViewGroup)swipeView).getChildAt(1)).getWidth();
                 }
             }
 
             @Override
             public void onSwipeEnded(int position, int finalOffset) {
 
-                if (this.action1 == null || this.action2 == null) {
-                    seb.setSwipeOffset(0);
-                    return;
+                if(finalOffset > leftContentSize) {
+                    seb.setSwipeOffset(leftContentSize);
                 }
-
-                MyListViewAdapter adapter = ((MyListViewAdapter) listView.getAdapter());
-                EmailMessage item = (EmailMessage) adapter.getItem(position);
-                if (finalOffset > 0) {
-                    seb.setSwipeOffset(this.action1.getWidth());
-                    ListViewSwipeToExecuteFragment.this.toggleAction1(item);
-                    seb.endExecute();
+                else if(finalOffset < -rightContentSize) {
+                    seb.setSwipeOffset(-rightContentSize);
                 } else {
-                    seb.setSwipeOffset(-this.action2.getWidth());
-                    ListViewSwipeToExecuteFragment.this.toggleAction2(item);
-                    seb.endExecute();
+                    seb.setSwipeOffset(0);
                 }
-
-                this.swipeView = null;
-                this.action1 = null;
-                this.action2 = null;
             }
 
             @Override
             public void onExecuteFinished(int position) {
-
+                leftContentSize = -1;
+                rightContentSize = -1;
             }
         });
+
         this.listView.addBehavior(seb);
 
         return rootView;
-    }
-
-    private void toggleAction1(EmailMessage message) {
-        //Archive message
-        Toast.makeText(this.getActivity(), "Message archived", Toast.LENGTH_SHORT).show();
-    }
-
-    private void toggleAction2(EmailMessage message) {
-        //Delete message
-        Toast.makeText(this.getActivity(), "Message deleted", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -158,20 +134,30 @@ public class ListViewSwipeToExecuteFragment extends Fragment implements ExampleF
         public ListViewHolder onCreateSwipeContentHolder(ViewGroup viewGroup) {
             LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
             View swipeContentView = inflater.inflate(R.layout.example_list_view_swipe_content, viewGroup, false);
-            ListViewHolder vh = new ListViewHolder(swipeContentView);
+            MySwipeContentViewHolder vh = new MySwipeContentViewHolder(swipeContentView);
             return vh;
         }
 
         @Override
-        public void onBindSwipeContentHolder(ListViewHolder viewHolder, int position) {
-            View swipeContent = viewHolder.itemView;
+        public void onBindSwipeContentHolder(final ListViewHolder viewHolder, final int position) {
+            final EmailMessage currentMessage = (EmailMessage)getItem(position);
+            MySwipeContentViewHolder swipeContentHolder = (MySwipeContentViewHolder)viewHolder;
+            swipeContentHolder.action1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(((MySwipeContentViewHolder) viewHolder).itemView.getContext(), currentMessage.title + " successfully archived.", Toast.LENGTH_SHORT).show();
+                    notifySwipeExecuteFinished();
+                }
+            });
 
-            EmailMessage currentDataItem = (EmailMessage) this.getItem(position);
-            Button action1 = (Button) swipeContent.findViewById(R.id.btnAction1);
-            Button action2 = (Button) swipeContent.findViewById(R.id.btnAction2);
-
-            action1.setText("Archive " + currentDataItem.title);
-            action2.setText("Delete " + currentDataItem.title);
+            swipeContentHolder.action2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    remove(position);
+                    Toast.makeText(((MySwipeContentViewHolder) viewHolder).itemView.getContext(), currentMessage.title + " successfully deleted.", Toast.LENGTH_SHORT).show();
+                    notifySwipeExecuteFinished();
+                }
+            });
         }
     }
 
@@ -184,6 +170,18 @@ public class ListViewSwipeToExecuteFragment extends Fragment implements ExampleF
             super(itemView);
             this.txtTitle = (TextView) itemView.findViewById(R.id.txtTitle);
             this.txtContent = (TextView) itemView.findViewById(R.id.txtContent);
+        }
+    }
+
+    class MySwipeContentViewHolder extends ListViewHolder {
+
+        public Button action1;
+        public Button action2;
+
+        public MySwipeContentViewHolder(final View itemView) {
+            super(itemView);
+            this.action1 = (Button) itemView.findViewById(R.id.btnAction1);
+            this.action2 = (Button) itemView.findViewById(R.id.btnAction2);
         }
     }
 }

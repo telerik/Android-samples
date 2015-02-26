@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="fragments.listview.ListViewGettingStartedFragment">
 
-
     <LinearLayout
         android:id="@+id/buttonsLayer"
         android:layout_width="match_parent"

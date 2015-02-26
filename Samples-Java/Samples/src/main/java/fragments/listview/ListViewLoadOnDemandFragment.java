@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.telerik.android.sdk.R;
@@ -23,22 +24,39 @@ import activities.ExampleFragment;
 /**
  * Created by ginev on 2/20/2015.
  */
-public class ListViewDataAutomaticLoadOnDemandFragment extends Fragment implements ExampleFragment {
+public class ListViewLoadOnDemandFragment extends Fragment implements ExampleFragment {
     private RadListView listView;
     private ArrayList<String> source = new ArrayList<>();
     private AsyncTask dataLoader;
+    private Button btnManual;
+    private Button btnAutomatic;
 
-    public ListViewDataAutomaticLoadOnDemandFragment() {
+    public ListViewLoadOnDemandFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_list_view_example, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_list_view_on_demand, container, false);
         this.listView = (RadListView) rootView.findViewById(R.id.listView);
 
         final LoadOnDemandBehavior ldb = new LoadOnDemandBehavior();
-        ldb.setMode(LoadOnDemandBehavior.LoadOnDemandMode.AUTOMATIC);
+
+        this.btnManual = (Button) rootView.findViewById(R.id.btnManual);
+        this.btnManual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ldb.setMode(LoadOnDemandBehavior.LoadOnDemandMode.MANUAL);
+            }
+        });
+        this.btnAutomatic = (Button) rootView.findViewById(R.id.btnAutomatic);
+        this.btnAutomatic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ldb.setMode(LoadOnDemandBehavior.LoadOnDemandMode.AUTOMATIC);
+            }
+        });
+
         ldb.addListener(new LoadOnDemandBehavior.LoadOnDemandListener() {
             @Override
             public void onLoadStarted() {
@@ -115,7 +133,7 @@ public class ListViewDataAutomaticLoadOnDemandFragment extends Fragment implemen
 
     @Override
     public String title() {
-        return "Automatic load on demand";
+        return "Load on demand";
     }
 
     class MyListViewAdapter extends ListViewAdapter {

@@ -72,7 +72,7 @@ public class ListViewItemAnimationFragment extends Fragment implements ExampleFr
             @Override
             public void onClick(View v) {
                 MyListViewAdapter adapter = (MyListViewAdapter)listView.getAdapter();
-                adapter.add(0, "Item " + adapter.getItemCount());
+                adapter.add(0, "Item " + (adapter.getItemCount()+1));
             }
         });
         this.btnRemoveItem = (Button)rootView.findViewById(R.id.btnRemoveItem);
