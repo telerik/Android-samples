@@ -22,10 +22,11 @@
         </activity>
         <activity
             android:name="activities.ControlActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main"/>
         <activity
             android:name="activities.ExampleActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:theme="@style/NoActionBar"
+            android:label="@string/title_activity_main"/>
     </application>
 
 </manifest>

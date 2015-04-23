@@ -39,12 +39,12 @@ android {
 }
 
 dependencies {
-    compile(name: 'Common-2015.1.225-dev-release', ext: 'aar');
-    compile(name: 'Primitives-2015.1.225-dev-release', ext: 'aar');
-    compile(name: 'Chart-2015.1.225-dev-release', ext: 'aar');
-    compile(name: 'Input-2015.1.225-dev-release', ext: 'aar');
-    compile(name: 'Data-2015.1.225-dev-release', ext: 'aar');
-    compile(name: 'List-2015.1.225-dev-release', ext: 'aar');
+    compile(name: 'Common', ext: 'aar');
+    compile(name: 'Primitives', ext: 'aar');
+    compile(name: 'Chart', ext: 'aar');
+    compile(name: 'Input', ext: 'aar');
+    compile(name: 'Data', ext: 'aar');
+    compile(name: 'List', ext: 'aar');
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.android.support:recyclerview-v7:21.0.3'
     compile 'com.android.support:support-v4:21.0.3'

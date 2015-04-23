@@ -1,15 +1,20 @@
 package fragments.sidedrawer;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Debug;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
@@ -18,13 +23,11 @@ import com.telerik.android.primitives.widget.sidedrawer.DrawerChangeListener;
 import com.telerik.android.primitives.widget.sidedrawer.DrawerLocation;
 import com.telerik.android.primitives.widget.sidedrawer.DrawerTransition;
 import com.telerik.android.primitives.widget.sidedrawer.RadSideDrawer;
-import com.telerik.android.primitives.widget.sidedrawer.transitions.EmptyTransition;
+import com.telerik.android.primitives.widget.sidedrawer.SideDrawerToggle;
 import com.telerik.android.primitives.widget.sidedrawer.transitions.FallDownTransition;
-import com.telerik.android.primitives.widget.sidedrawer.transitions.OpenDoorTransition;
 import com.telerik.android.primitives.widget.sidedrawer.transitions.PushTransition;
 import com.telerik.android.primitives.widget.sidedrawer.transitions.RevealTransition;
 import com.telerik.android.primitives.widget.sidedrawer.transitions.ReverseSlideOutTransition;
-import com.telerik.android.primitives.widget.sidedrawer.transitions.RotateInTransition;
 import com.telerik.android.primitives.widget.sidedrawer.transitions.ScaleDownPusherTransition;
 import com.telerik.android.primitives.widget.sidedrawer.transitions.ScaleUpTransition;
 import com.telerik.android.primitives.widget.sidedrawer.transitions.SlideAlongTransition;
@@ -35,6 +38,7 @@ import activities.ExampleFragment;
 
 public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragment, DrawerChangeListener {
     private RadSideDrawer drawer;
+    private SideDrawerToggle drawerToggle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,15 +75,12 @@ public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragm
                 {
                         new SlideInOnTopTransition(),
                         new FallDownTransition(),
-                        new OpenDoorTransition(),
                         new PushTransition(),
                         new RevealTransition(),
                         new ReverseSlideOutTransition(),
-                        new RotateInTransition(),
                         new ScaleDownPusherTransition(),
                         new ScaleUpTransition(),
                         new SlideAlongTransition(),
-                        new EmptyTransition()
                 };
         ArrayAdapter<DrawerTransition> transitionsAdapter = new ArrayAdapter<DrawerTransition>(this.getActivity(), android.R.layout.simple_list_item_1, transitions);
         transitionsSpinner.setAdapter(transitionsAdapter);
@@ -94,6 +95,26 @@ public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragm
 
             }
         });
+
+        CheckBox closeOnBackPress = (CheckBox)result.findViewById(R.id.drawerCloseOnBackPress);
+        closeOnBackPress.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                drawer.setCloseOnBackPress(isChecked);
+            }
+        });
+
+        Toolbar toolbar = (Toolbar)result.findViewById(R.id.drawerToolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setBackgroundColor(Color.BLACK);
+        ActionBarActivity actionBarActivity = (ActionBarActivity) this.getActivity();
+        actionBarActivity.setSupportActionBar(toolbar);
+        ActionBar supportActionBar = actionBarActivity.getSupportActionBar();
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
+        supportActionBar.setHomeAsUpIndicator(R.drawable.hamburger);
+        supportActionBar.setDisplayShowTitleEnabled(true);
+
+        drawerToggle = new SideDrawerToggle(drawer, toolbar);
 
         return result;
     }
