@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item  android:drawable="@drawable/listview_layouts_button_bg"/>
+    <item>
+        <bitmap
+            android:src="@drawable/ic_listview_layouts_staggered"
+            android:gravity="center" />
+    </item>
+</layer-list>

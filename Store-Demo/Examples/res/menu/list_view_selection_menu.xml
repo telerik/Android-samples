@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/list_view_selection_example_fav_action"
+        android:icon="@drawable/ic_listview_selection_fav"
+        android:title="@string/list_view_selection_fav"
+        app:showAsAction="ifRoom"   />
+
+    <item android:id="@+id/list_view_selection_example_delete_action"
+        android:icon="@drawable/ic_listview_selection_delete"
+        android:title="@string/list_view_selection_delete"
+        app:showAsAction="ifRoom"  />
+</menu>

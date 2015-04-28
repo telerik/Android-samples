@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/listview_horizontal_scrolling_repeater"
+    android:orientation="vertical"
+    tools:context="com.telerik.examples.examples.listview.ListViewHorizontalScrollingFragment">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="16dp">
+
+        <FrameLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/listViewHorizontalLayoutHeaderColor">
+
+            <TextView
+                android:id="@+id/txtRecommended"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_gravity="center_horizontal"
+                android:text="RECOMMENDED RECIPES"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/tabPointer"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_below="@+id/header"
+            android:layout_gravity="bottom"
+            android:paddingBottom="8dp"
+            android:layout_marginLeft="50dp"
+            android:scaleType="center" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/txtDesserts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="16dp"
+        android:text="DESSERTS"
+        android:textColor="@color/white"
+        android:textSize="12dp" />
+
+    <com.telerik.widget.list.RadListView
+        android:id="@+id/lvFirst"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+    </com.telerik.widget.list.RadListView>
+
+    <TextView
+        android:id="@+id/txtPaleo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="16dp"
+        android:text="PALEO"
+        android:textColor="@color/white"
+        android:textSize="12dp" />
+
+    <com.telerik.widget.list.RadListView
+        android:id="@+id/lvSecond"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/lvFirst"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:scrollbarStyle="outsideOverlay">
+
+    </com.telerik.widget.list.RadListView>
+
+</LinearLayout>

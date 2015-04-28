@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/example_list_left_margin"
+        android:layout_marginRight="@dimen/example_list_right_margin">
+
+        <TextView
+            android:id="@+id/txtControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="roboto"
+            android:text="CONTROLS"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tips_font_size" />
+
+
+        <com.telerik.examples.primitives.ExamplesGridView
+            android:id="@+id/listControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtControls"
+            android:layout_marginTop="0dp"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:horizontalSpacing="@dimen/example_list_spacing"
+            android:paddingBottom="8dp"
+
+            android:paddingTop="8dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="@dimen/example_list_spacing">
+
+        </com.telerik.examples.primitives.ExamplesGridView>
+
+        <TextView
+            android:id="@+id/txtExamples"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/listControls"
+            android:layout_marginBottom="8dp"
+
+            android:layout_marginTop="8dp"
+            android:fontFamily="roboto"
+            android:text="EXAMPLES"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tips_font_size" />
+
+        <com.telerik.examples.primitives.ExamplesGridView
+            android:id="@+id/listExamples"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/txtExamples"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:horizontalSpacing="@dimen/example_list_spacing"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="none"
+            android:paddingBottom="16dp"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="@dimen/example_list_spacing" />
+
+
+        <TextView
+            android:id="@+id/emptyContentPresenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text=""
+            android:textColor="#454545"
+            android:textSize="17dp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</ScrollView>

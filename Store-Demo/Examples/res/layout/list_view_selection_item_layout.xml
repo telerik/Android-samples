@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_view_selection_item_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/item_layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/imgReorder"
+            android:contentDescription="@string/list_view_selection_reorder"
+            android:paddingStart="6dp"
+            android:paddingLeft="6dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:src="@drawable/ic_listview_selection_reorder"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:padding="8dp"
+                android:textColor="@color/list_view_example_selection_item_title"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="8dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textColor="@color/list_view_example_selection_item_content"
+                android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    <FrameLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:background="@color/list_view_example_selection_item_selected_state"
+        android:id="@+id/item_layout_deleted"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="@string/list_view_selection_deleted"
+            android:layout_gravity="start|center_vertical"
+            android:textSize="16sp"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="@string/list_view_selection_undo"
+            tools:ignore="UnusedAttribute"
+            android:fontFamily="sans-serif-medium"
+            android:id="@+id/item_deleted_undo"
+            android:layout_gravity="end|center_vertical"
+            android:textSize="14sp"
+            android:padding="16dp"
+            android:textColor="#3D5AFE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="@color/list_view_example_selection_line_separator_color" />
+</FrameLayout>

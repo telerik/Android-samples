@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/background"
+    android:background="@color/controlBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:elevation="2dp"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/controlIcon"
+        android:padding="10dp"
+        android:layout_height="@dimen/example_list_control_badge_size"
+        android:layout_width="@dimen/example_list_control_badge_size" />
+
+    <TextView
+        android:id="@+id/controlName"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

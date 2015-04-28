@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/list_view_example_reorder_bgcolor"
+    android:paddingStart="16dp"
+    android:paddingLeft="16dp"
+    android:paddingEnd="16dp"
+    android:paddingRight="16dp"
+    tools:context="com.telerik.examples.examples.listview.ListViewReorderFragment">
+
+    <TextView
+        android:id="@+id/header"
+        android:text="@string/list_view_reorder_header"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/menuContainer"
+        android:layout_below="@id/header"
+        android:layout_width="250dp"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/menuItemToDo"
+            android:background="@drawable/list_view_reorder_todo_selection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/toDoListText"
+                android:text="@string/list_view_reorder_btn_list1"
+                android:gravity="start"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:padding="12dp"
+                android:textSize="14sp"
+                android:textColor="@color/list_view_reorder_selectable_foreground"
+                android:background="@drawable/list_view_reorder_todo_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            </FrameLayout>
+        <FrameLayout
+            android:id="@+id/menuItemShopping"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/list_view_reorder_shopping_selection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/shoppingListText"
+                android:text="@string/list_view_reorder_btn_list2"
+                android:gravity="start"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:padding="12dp"
+                android:textSize="14sp"
+                android:textColor="@color/list_view_reorder_selectable_foreground"
+                android:background="@drawable/list_view_reorder_shopping_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <com.telerik.widget.list.RadListView
+        android:layout_below="@id/header"
+        android:layout_toEndOf="@id/menuContainer"
+        android:layout_toRightOf="@id/menuContainer"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.telerik.widget.list.RadListView>
+
+</RelativeLayout>

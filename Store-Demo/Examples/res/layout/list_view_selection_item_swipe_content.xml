@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/imgFavourite"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/list_view_selection_fav"
+            android:background="@drawable/list_view_selection_behind_fav"
+            android:padding="32dp"
+            android:src="@drawable/ic_listview_selection_fav"
+            android:layout_gravity="start|center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/imgDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/list_view_selection_delete"
+            android:background="@drawable/list_view_selection_behind_delete"
+            android:padding="32dp"
+            android:src="@drawable/ic_listview_selection_delete"
+            android:layout_gravity="end|center_vertical"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

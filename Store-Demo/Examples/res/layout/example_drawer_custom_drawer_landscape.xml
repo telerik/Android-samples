@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#dd3a3533"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refine"
+        android:textColor="#C64E31"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Courses"
+        android:textColor="#A88279"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:background="#55000000"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/all_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#FC8055"
+            android:gravity="center"
+            android:text="ALL"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:background="#9B6244" />
+
+        <TextView
+            android:id="@+id/mains_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="MAINS"
+            android:textColor="#FC8055"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:background="#9B6244" />
+
+
+        <TextView
+            android:id="@+id/desserts_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="DESSERTS"
+            android:textColor="#FC8055"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Calories"
+        android:textColor="#A88279"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0"
+            android:textColor="#FEFEFE"
+            android:textSize="15sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="23"
+            android:max="100"
+            android:progress="20"
+            android:progressDrawable="@drawable/orange_progress"
+            android:secondaryProgress="0"
+            android:thumb="@drawable/orange_thumb"
+            android:thumbOffset="0dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="1200+"
+            android:textColor="#FEFEFE"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Tastes"
+        android:textColor="#A88279"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48px"
+            android:layout_marginRight="48px"
+            android:layout_marginBottom="48px"
+            android:button="@null"
+            android:checked="true"
+            android:drawableLeft="@drawable/btn_check"
+            android:text="Salty"
+            android:textColor="#FEFEFE" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48px"
+            android:layout_marginRight="48px"
+            android:button="@null"
+            android:drawableLeft="@drawable/btn_check"
+            android:text="Sour"
+            android:textColor="#FEFEFE" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48px"
+            android:button="@null"
+            android:checked="true"
+            android:drawableLeft="@drawable/btn_check"
+            android:text="Spicy"
+            android:textColor="#FEFEFE" />
+    </LinearLayout>
+
+</LinearLayout>

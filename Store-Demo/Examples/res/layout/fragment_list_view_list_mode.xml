@@ -1,0 +1,85 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.telerik.examples.examples.listview.ListViewListModeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/listViewToolbarColor"
+            android:elevation="4dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtToolbarCaption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RECIPES"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/btnStaggeredLayout"
+                        style="@style/ListViewListModeRadioButton"
+                        android:background="@drawable/ic_listview_layouts_staggered_drawable" />
+
+                    <RadioButton
+                        android:id="@+id/btnWrapLayout"
+                        style="@style/ListViewListModeRadioButton"
+                        android:background="@drawable/ic_listview_layouts_wrap_drawable" />
+
+                    <RadioButton
+                        android:id="@+id/btnListLayout"
+                        style="@style/ListViewListModeRadioButton"
+                        android:background="@drawable/ic_listview_layouts_list_drawable" />
+                </RadioGroup>
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <com.telerik.widget.list.RadListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:paddingRight="-3dp"
+            android:paddingBottom="-3dp"
+            android:scrollbars="vertical">
+
+        </com.telerik.widget.list.RadListView>
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/btnShowSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="32dp"
+        android:background="@color/transparent"
+        android:src="@drawable/listview_layouts_fab" />
+</FrameLayout>

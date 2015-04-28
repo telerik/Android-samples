@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/drawer_radio_checked_circle"/>
+    <item>
+        <bitmap android:src="@drawable/ic_check_white" android:antialias="true" android:gravity="center"/>
+    </item>
+</layer-list>
+
+

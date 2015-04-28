@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/list_view_example_selection_bgcolor">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:background="#FFF2ED"
+        tools:ignore="UnusedAttribute"
+        android:elevation="4dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetLeft="0dp">
+
+        <FrameLayout
+            android:id="@+id/toolbarStandardModeContainer"
+            android:layout_width="400dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/header"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_gravity="start|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/list_view_selection_header"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/btnReorder"
+                android:src="@drawable/ic_listview_selection_reorder"
+                android:contentDescription="@string/list_view_selection_reorder"
+                android:paddingStart="16dp"
+                android:paddingLeft="16dp"
+                android:paddingEnd="16dp"
+                android:paddingRight="16dp"
+                android:layout_marginEnd="-16dp"
+                android:layout_marginRight="-16dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:id="@+id/menuContainer"
+        android:layout_below="@id/toolbar"
+        android:layout_width="400dp"
+        android:layout_height="?android:actionBarSize">
+        <TextView
+            android:id="@+id/menuItemAll"
+            android:text="@string/list_view_selection_btn_list1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/list_view_selection_menu_background"
+            android:textColor="@color/list_view_selection_selectable_foreground"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/menuItemFavorites"
+            android:text="@string/list_view_selection_btn_list2"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/list_view_selection_menu_background"
+            android:textColor="@color/list_view_selection_selectable_foreground"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <com.telerik.widget.list.RadListView
+        android:id="@+id/listView"
+        android:layout_below="@id/menuContainer"
+        android:layout_width="400dp"
+        android:layout_height="match_parent"/>
+
+    <View
+        android:id="@+id/lineSeparator"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/menuContainer"
+        android:layout_toRightOf="@id/menuContainer"
+        android:layout_below="@id/toolbar"
+        android:layout_gravity="start"
+        android:background="@color/list_view_example_selection_line_separator_color" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@id/toolbar"
+        android:layout_toEndOf="@id/lineSeparator"
+        android:layout_toRightOf="@id/lineSeparator"
+        android:id="@+id/selectedBlogPost"
+        android:padding="16dp"
+        android:layout_marginTop="-8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/selectedBlogPostTitle"
+            android:textSize="26sp"
+            android:padding="16dp"
+            android:textColor="@color/list_view_example_selection_selected_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/selectedBlogPostContent"
+            android:textColor="@color/list_view_example_selection_selected_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</RelativeLayout>
