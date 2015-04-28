@@ -36,6 +36,7 @@ public class AnimatedTextStrip extends ViewGroup {
     private View root;
     private TextView panelExampleNameLabel;
     private boolean animationFinished = false;
+    private boolean isClickable = true;
 
     public AnimatedTextStrip(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -48,6 +49,7 @@ public class AnimatedTextStrip extends ViewGroup {
         this.root = this.findViewById(R.id.root);
         this.animatablePanel = this.findViewById(R.id.panelExampleName);
         this.btnShowMenu = (ToggleButton) this.findViewById(R.id.btnShowMenu);
+        this.btnShowMenu.setClickable(false);
         this.panelExampleNameLabel = (TextView) this.findViewById(R.id.panelExampleNameLabel);
         this.setClipChildren(false);
     }
@@ -88,7 +90,8 @@ public class AnimatedTextStrip extends ViewGroup {
     @Override
     public void setClickable(boolean clickable) {
         super.setClickable(clickable);
-        this.btnShowMenu.setClickable(clickable);
+        this.isClickable = clickable;
+
     }
 
     public void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener listener) {
@@ -99,12 +102,37 @@ public class AnimatedTextStrip extends ViewGroup {
         }
     }
 
+    private boolean listensForUp = false;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (!this.isClickable) {
+            return false;
+        }
+
         float xCoord = event.getX();
         float yCoord = event.getY();
-        Rect checkButtonPosition = new Rect(this.btnShowMenu.getLeft(), this.btnShowMenu.getTop(), this.btnShowMenu.getRight(), this.btnShowMenu.getBottom());
-        return checkButtonPosition.contains((int) xCoord, (int) yCoord);
+
+        if (this.getWidth() - xCoord <= this.getHeight() && yCoord <= this.getHeight()) {
+
+            if (event.getPointerCount() != 1) {
+                return false;
+            }
+
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                this.listensForUp = true;
+                return true;
+            } else if (this.listensForUp && event.getAction() == MotionEvent.ACTION_UP) {
+                this.listensForUp = false;
+                this.btnShowMenu.setChecked(!this.btnShowMenu.isChecked());
+                return true;
+            }else if (event.getAction() == MotionEvent.ACTION_CANCEL){
+                this.listensForUp = false;
+            }
+
+        }
+
+        return false;
     }
 
     public boolean isChecked() {

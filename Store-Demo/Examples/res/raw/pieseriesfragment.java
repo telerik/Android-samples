@@ -17,7 +17,7 @@ import com.telerik.widget.chart.visualization.pieChart.PieSeriesLabelRenderer;
  */
 public class PieSeriesFragment extends PieFragment {
     class CustomLabelRenderer extends PieSeriesLabelRenderer {
-        CustomLabelRenderer(ChartSeries owner) {
+        CustomLabelRenderer(PieSeries owner) {
             super(owner);
         }
 

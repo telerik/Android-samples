@@ -21,12 +21,12 @@
                 android:background="@color/transparent"
                 android:padding="8dp"
                 android:id="@+id/btnUpCaret"
-                android:src="@drawable/up_caret"
+                android:src="@drawable/up_caret_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Spinner
                 android:id="@+id/calendarModesSpinner"
-                android:background="@drawable/abc_spinner_ab_holo_light"
+
                 android:layout_gravity="center_vertical"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content" />
@@ -54,8 +54,7 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/actionBar"
-        android:animateLayoutChanges="true" />
+        android:layout_below="@+id/actionBar" />
 
     <View
         android:id="@+id/calendarBottomBorder"

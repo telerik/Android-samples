@@ -1,5 +1,6 @@
 package com.telerik.examples;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
@@ -35,19 +36,25 @@ import android.widget.TextView;
 import com.telerik.android.common.Util;
 import com.telerik.examples.common.ExamplesApplicationContext;
 import com.telerik.examples.common.InputBlocker;
+import com.telerik.examples.common.TelerikActivityHelper;
 import com.telerik.examples.common.TrackedApplication;
+import com.telerik.examples.common.contracts.TrackedActivity;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
 import com.telerik.examples.common.fragments.GalleryExamplesFragment;
 import com.telerik.examples.common.licensing.KeysRetriever;
 import com.telerik.examples.primitives.AnimatedTextStrip;
 import com.telerik.examples.viewmodels.Example;
+import com.telerik.examples.viewmodels.ExampleGroup;
 import com.telerik.examples.viewmodels.GalleryExample;
 import com.telerik.widget.feedback.RadFeedback;
 
 import java.lang.reflect.Constructor;
 import java.security.InvalidParameterException;
+import java.util.HashMap;
+import java.util.Map;
 
-public class ExampleActivity extends FragmentActivity implements ExampleFragmentBase.ExampleLoadedListener, RadFeedback.OnSendFeedbackFinishedListener, View.OnClickListener, View.OnTouchListener {
+public class ExampleActivity extends FragmentActivity implements ExampleFragmentBase.ExampleLoadedListener, RadFeedback.OnSendFeedbackFinishedListener, View.OnClickListener, View.OnTouchListener , TrackedActivity
+{
     private ExamplesApplicationContext app;
 
     private AnimatedTextStrip textStrip;
@@ -68,6 +75,9 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
     private Button btnSendFeedback;
     private Button btnViewCode;
 
+    private ExampleGroup selectedControl;
+    private Example selectedExample;
+
     public ExampleActivity() {
     }
 
@@ -80,24 +90,40 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.initTheme();
-
         super.onCreate(savedInstanceState);
+        TelerikActivityHelper.updateActivityTaskDescription(this);
         this.initFeedback();
+        Intent intent = this.getIntent();
         this.app = (ExamplesApplicationContext) this.getApplicationContext();
-        this.getActionBar().hide();
+        if (savedInstanceState == null) {
+            this.selectedControl = this.app.findControlById(intent.getStringExtra(ExamplesApplicationContext.INTENT_CONTROL_ID));
+            this.selectedExample = this.app.findExampleById(this.selectedControl, intent.getStringExtra(ExamplesApplicationContext.INTENT_EXAMPLE_ID));
+            this.app.trackScreenOpened(this);
+        }else{
+            this.selectedControl = this.app.findControlById(savedInstanceState.getString(ExamplesApplicationContext.INTENT_CONTROL_ID));
+            this.selectedExample = this.app.findExampleById(this.selectedControl, savedInstanceState.getString(ExamplesApplicationContext.INTENT_EXAMPLE_ID));
+        }
         this.loadContent();
 
         this.initUI();
 
         this.loadExample(savedInstanceState);
-        this.refreshNavigationButtons(this.app.selectedControl().getExamples().indexOf(this.app.selectedExample()));
+        this.refreshNavigationButtons(this.selectedControl.getExamples().indexOf(this.selectedExample));
 
         this.setBackground();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString(ExamplesApplicationContext.INTENT_CONTROL_ID, this.selectedControl.getFragmentName());
+        outState.putString(ExamplesApplicationContext.INTENT_EXAMPLE_ID, this.selectedExample.getFragmentName());
+    }
+
     private void initUI() {
         this.textStrip = Util.getLayoutPart(this, R.id.animatedTextStrip, AnimatedTextStrip.class);
-        this.textStrip.setText(this.app.selectedExample().getHeaderText());
+        this.textStrip.setText(this.selectedExample.getHeaderText());
         this.buttonAddRemoveFavourite = Util.getLayoutPart(this, R.id.btnAddFavourite, Button.class);
         this.buttonAddRemoveFavourite.setOnClickListener(this);
         this.buttonViewInfo = Util.getLayoutPart(this, R.id.btnViewInfo, Button.class);
@@ -123,7 +149,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         ShapeDrawable.ShaderFactory sf = new ShapeDrawable.ShaderFactory() {
             @Override
             public Shader resize(int width, int height) {
-                String prefix = app.selectedControl().getShortFragmentName();
+                String prefix = ExampleActivity.this.selectedControl.getShortFragmentName();
                 return new LinearGradient(
                         0, 0, 0, height,
                         new int[]{
@@ -177,22 +203,30 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         }
     }
 
+    public void toggleExampleInfoMenuStripVisibility(boolean visible){
+        if (visible){
+            this.textStrip.setVisibility(View.VISIBLE);
+        }else{
+            this.textStrip.setVisibility(View.GONE);
+        }
+    }
+
     private void toggleFavorite() {
-        Example currentExample = app.selectedExample();
+        Example currentExample = this.selectedExample;
         if (app.isExampleInFavourites(currentExample)) {
             app.removeFavorite(currentExample);
             buttonAddRemoveFavourite.setBackgroundResource(R.drawable.example_favourite);
-            app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + ExampleActivity.this.currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_REMOVE_FAVOURITE);
+            app.trackEvent(TrackedApplication.EXAMPLE_SCREEN, TrackedApplication.EVENT_REMOVE_FAVOURITE);
         } else {
             app.addFavorite(currentExample);
             buttonAddRemoveFavourite.setBackgroundResource(R.drawable.example_remove_favourite);
-            app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + ExampleActivity.this.currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_ADD_FAVOURITE);
+            app.trackEvent(TrackedApplication.EXAMPLE_SCREEN, TrackedApplication.EVENT_ADD_FAVOURITE);
         }
     }
 
     private void viewInfo() {
-        app.showInfo(this, app.selectedExample());
-        app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_VIEW_INFO);
+        app.showInfo(this, this.selectedExample);
+        app.trackEvent(TrackedApplication.EXAMPLE_SCREEN, TrackedApplication.EVENT_SHOW_EXAMPLE_TOOLBAR);
     }
 
     private void previousExample() {
@@ -202,7 +236,10 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         setViewEnabled(buttonPrevExample, false);
         setViewEnabled(buttonNextExample, false);
         navigateToPreviousExample();
-        app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_NAVIGATE);
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put(TrackedApplication.PARAM_CONTROL_NAME, this.selectedControl.getShortFragmentName());
+        params.put(TrackedApplication.PARAM_EXAMPLE_NAME, this.selectedExample.getShortFragmentName());
+        app.trackEvent(TrackedApplication.EXAMPLE_SCREEN, TrackedApplication.EVENT_NAVIGATE_EXAMPLE, params);
     }
 
     private void nextExample() {
@@ -212,18 +249,20 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         setViewEnabled(buttonPrevExample, false);
         setViewEnabled(buttonNextExample, false);
         navigateToNextExample();
-        app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_NAVIGATE);
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put(TrackedApplication.PARAM_CONTROL_NAME, this.selectedControl.getShortFragmentName());
+        params.put(TrackedApplication.PARAM_EXAMPLE_NAME, this.selectedExample.getShortFragmentName());
+        app.trackEvent(TrackedApplication.EXAMPLE_SCREEN, TrackedApplication.EVENT_NAVIGATE_EXAMPLE, params);
     }
 
     private void sendFeedback() {
         feedback.show(ExampleActivity.this);
-        app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + currentExample.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_SEND_FEEDBACK);
+        app.trackEvent(TrackedApplication.EXAMPLE_SCREEN, TrackedApplication.EVENT_SEND_FEEDBACK);
     }
 
     private void viewCode() {
         ExampleFragmentBase exampleFragment = (ExampleFragmentBase) getSupportFragmentManager().findFragmentById(R.id.exampleContainer);
-        app.showCode(ExampleActivity.this, exampleFragment.getSourceCodeModel());
-        app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY + exampleFragment.getEQATECCategory(), TrackedApplication.EXAMPLE_TOOLBAR_VIEW_CODE);
+        app.showCode(ExampleActivity.this, this.selectedExample, exampleFragment.getSourceCodeModel());
     }
 
     private void loadContent() {
@@ -237,7 +276,6 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
     private void initTheme() {
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             this.setTheme(R.style.DarkTheme);
-
         } else {
             this.setTheme(R.style.DarkThemeLandscape);
         }
@@ -280,11 +318,11 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
 
     private void refreshNavigationButtons(int currentExampleIndex) {
         this.setViewEnabled(this.buttonPrevExample, currentExampleIndex > 0);
-        this.setViewEnabled(this.buttonNextExample, currentExampleIndex != this.app.selectedControl().getExamples().size() - 1);
+        this.setViewEnabled(this.buttonNextExample, currentExampleIndex != this.selectedControl.getExamples().size() - 1);
     }
 
     private void refreshFavouriteButton() {
-        Example currentExample = app.selectedExample();
+        Example currentExample = this.selectedExample;
         if (app.isExampleInFavourites(currentExample)) {
             buttonAddRemoveFavourite.setBackgroundDrawable(getResources().getDrawable(R.drawable.example_remove_favourite));
         } else {
@@ -380,6 +418,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
                 this.createMenuAnimation(false);
                 this.container.startAnimation(this.menuAnimation);
                 this.animateMenuButtons(true);
+                this.app.trackEvent(TrackedApplication.EXAMPLE_SCREEN, TrackedApplication.EVENT_SHOW_EXAMPLE_TOOLBAR);
             } else {
                 float scaleFactor = this.getExampleFragmentScaleFactor();
                 this.container.setScaleX(scaleFactor);
@@ -393,6 +432,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
                 this.createMenuAnimation(true);
                 this.container.startAnimation(this.menuAnimation);
                 this.animateMenuButtons(false);
+                this.app.trackEvent(TrackedApplication.EXAMPLE_SCREEN, TrackedApplication.EVENT_HIDE_EXAMPLE_TOOLBAR);
             } else {
                 this.container.setScaleX(1);
                 this.container.setScaleY(1);
@@ -400,8 +440,6 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
                 this.animateMenuButtons(false);
             }
         }
-
-        this.app.trackFeature(TrackedApplication.EXAMPLE_CATEGORY, TrackedApplication.EXAMPLE_TOOLBAR_TOGGLED);
     }
 
     private void animateMenuButtons(boolean show) {
@@ -436,18 +474,24 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
 
     @Override
     public void onBackPressed() {
+        if(this.currentExample.onBackPressed()) {
+            if (this.textStrip.isChecked()) {
+                this.textStrip.setChecked(!this.textStrip.isChecked());
+            }
+            return;
+        }
+
         if (this.textStrip.isChecked()) {
             this.textStrip.setChecked(!this.textStrip.isChecked());
         } else {
+            this.currentExample.unloadExample();
             super.onBackPressed();
         }
-
-        this.currentExample.onBackPressed();
     }
 
     private void loadExample(Bundle savedInstanceState, boolean animate, int outTransition, int inTransition) {
         if (savedInstanceState == null) {
-            Example selectedExample = this.app.selectedExample();
+            Example selectedExample = this.selectedExample;
             try {
                 Class<?> fragmentClass;
                 if (selectedExample instanceof GalleryExample) {
@@ -461,6 +505,11 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
                 Constructor<?> fragmentConstructor = fragmentClass.getConstructor();
                 Fragment instance = this.currentExample = (ExampleFragmentBase) fragmentConstructor.newInstance();
 
+                if (instance instanceof GalleryExamplesFragment){
+                    ((GalleryExamplesFragment)instance).setControlId(this.selectedControl.getFragmentName());
+                    ((GalleryExamplesFragment)instance).setExampleId(this.selectedExample.getFragmentName());
+                }
+
                 if (animate) {
                     this.app.loadFragment(this, instance, R.id.exampleContainer, false, outTransition, inTransition);
                 } else {
@@ -468,14 +517,14 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
                 }
 
             } catch (Exception e) {
-                Log.w("Could not load selected example.", e.getMessage());
+                Log.w("Could not load example.", e.getMessage());
             }
         } else {
             this.currentExample = (ExampleFragmentBase) this.getSupportFragmentManager().findFragmentById(R.id.exampleContainer);
         }
 
-        this.header.setText(this.app.selectedExample().getHeaderText());
-        this.description.setText(this.app.selectedExample().getDescriptionText());
+        this.header.setText(this.selectedExample.getHeaderText());
+        this.description.setText(this.selectedExample.getDescriptionText());
         this.currentExample.setOnExampleLoadedListener(this);
     }
 
@@ -484,27 +533,27 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
     }
 
     public void navigateToNextExample() {
-        int exampleCount = this.app.selectedControl().getExamples().size();
+        int exampleCount = this.selectedControl.getExamples().size();
 
         if (exampleCount == 1) {
             return;
         }
 
-        int indexOfNext = this.app.selectedControl().getExamples().indexOf(this.app.selectedExample()) + 1;
-        this.app.selectExample(this.app.selectedControl().getExamples().get(Math.min(exampleCount - 1, indexOfNext)));
+        int indexOfNext = this.selectedControl.getExamples().indexOf(this.selectedExample) + 1;
+        this.selectedExample = this.selectedControl.getExamples().get(Math.min(exampleCount - 1, indexOfNext));
         this.loadExample(null, true, R.anim.example_activity_left_out_transition, R.anim.example_activity_right_in_transition);
 
         this.refreshFavouriteButton();
     }
 
     public void navigateToPreviousExample() {
-        int exampleCount = this.app.selectedControl().getExamples().size();
+        int exampleCount = this.selectedControl.getExamples().size();
 
         if (exampleCount == 1) {
             return;
         }
-        int indexOfPrevious = this.app.selectedControl().getExamples().indexOf(this.app.selectedExample()) - 1;
-        this.app.selectExample(this.app.selectedControl().getExamples().get(Math.max(0, indexOfPrevious) % exampleCount));
+        int indexOfPrevious = this.selectedControl.getExamples().indexOf(this.selectedExample) - 1;
+        this.selectedExample = this.selectedControl.getExamples().get(Math.max(0, indexOfPrevious) % exampleCount);
         this.loadExample(null, true, R.anim.example_activity_right_out_transition, R.anim.example_activity_left_in_transition);
 
         this.refreshFavouriteButton();
@@ -519,7 +568,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
                 root.setClickable(false);
             }
         }
-        this.refreshNavigationButtons(this.app.selectedControl().getExamples().indexOf(this.app.selectedExample()));
+        this.refreshNavigationButtons(this.selectedControl.getExamples().indexOf(this.selectedExample));
     }
 
     private void setViewEnabled(View target, boolean enabled) {
@@ -550,7 +599,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        final Example selectedExample = this.app.selectedExample();
+        final Example selectedExample = this.selectedExample;
 
         if (id == R.id.action_add_to_favorites) {
             this.app.addFavorite(selectedExample);
@@ -571,5 +620,18 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
     @Override
     public void sendFeedbackFinished() {
 
+    }
+
+    @Override
+    public String getScreenName() {
+        return TrackedApplication.EXAMPLE_SCREEN;
+    }
+
+    @Override
+    public HashMap<String, Object> getAdditionalParameters() {
+        HashMap<String, Object> additionalParams = new HashMap<String, Object>();
+        additionalParams.put(TrackedApplication.PARAM_CONTROL_NAME, this.selectedControl.getShortFragmentName());
+        additionalParams.put(TrackedApplication.PARAM_EXAMPLE_NAME, this.selectedExample.getShortFragmentName());
+        return additionalParams;
     }
 }

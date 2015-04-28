@@ -12,16 +12,14 @@
         <com.telerik.widget.calendar.RadCalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
         <TableLayout
             android:stretchColumns="0,1,2,3,4,5,6,7"
             android:shrinkColumns="0"
             android:layout_width="match_parent"
             android:layout_height="42dp">
-
             <TableRow android:layout_height="42dp">
-
                 <ImageButton
                     android:clickable="false"
                     android:layout_marginTop="@dimen/calendar_example_arrows_spacing"
@@ -33,19 +31,12 @@
                     android:src="@drawable/calendar_arrow_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
                 <View />
-
                 <View />
-
                 <View />
-
                 <View />
-
                 <View />
-
                 <View />
-
                 <ImageButton
                     android:layout_marginTop="@dimen/calendar_example_arrows_spacing"
                     android:paddingLeft="@dimen/calendar_example_arrows_spacing"
@@ -57,8 +48,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </TableRow>
-        </TableLayout>
-    </FrameLayout>
+            </TableLayout>
+        </FrameLayout>
 
 
     <TextView

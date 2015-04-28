@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:background="@color/transparent"
     android:clipToPadding="false"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:elevation="5dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -35,7 +36,9 @@
             <Button
                 android:id="@+id/hamburger"
                 android:layout_width="wrap_content"
-                android:layout_height="?android:actionBarSize"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="19dp"
+                android:layout_marginRight="19dp"
                 android:layout_gravity="left|top"
                 android:background="@drawable/hamburger" />
         </LinearLayout>
@@ -76,16 +79,18 @@
             android:layout_gravity="right|top">
 
             <ToggleButton
+                android:gravity="left"
                 android:id="@+id/btnSwitchLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/example_group_toggle_layout"
                 android:textOff=""
-                android:textOn="" />
+                android:textOn=""                />
 
             <Button
+                android:gravity="left"
                 android:id="@+id/btnShowGroupMenu"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/example_group_action_button_width"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|right"
                 android:background="@drawable/example_group_show_menu" />

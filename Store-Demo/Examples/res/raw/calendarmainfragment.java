@@ -7,9 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -215,14 +213,6 @@ public class CalendarMainFragment extends ExampleFragmentBase {
             }
         });
         this.listEvents = (ListView) root.findViewById(R.id.listEvents);
-        HorizontalFlingListener listener = new HorizontalFlingListener();
-        final GestureDetector detector = new GestureDetector(getActivity().getApplicationContext(), listener);
-        this.listEvents.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                return detector.onTouchEvent(event);
-            }
-        });
         this.calendarModesSpinner = (Spinner) root.findViewById(R.id.calendarModesSpinner);
         this.calendarModesSpinner.setAdapter(new CalendarModesSpinnerAdapter());
         this.calendarModesSpinner.setSelection(SELECTION_MONTH);
@@ -317,24 +307,6 @@ public class CalendarMainFragment extends ExampleFragmentBase {
         dates.add(c.getTimeInMillis());
         calendarView.setDisplayDate(c.getTimeInMillis());
         calendarView.setSelectedDates(dates);
-    }
-
-    class HorizontalFlingListener extends GestureDetector.SimpleOnGestureListener {
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            float horizontalDistance = Math.abs(e1.getX() - e2.getX());
-            float verticalDistance = Math.abs(e1.getY() - e2.getY());
-
-            if (horizontalDistance > verticalDistance) {
-                if (e1.getX() > e2.getX()) {
-                    increaseDisplayDate();
-                } else {
-                    decreaseDisplayDate();
-                }
-                return true;
-            }
-            return super.onFling(e1, e2, velocityX, velocityY);
-        }
     }
 
     private Calendar getToday() {
@@ -493,6 +465,11 @@ public class CalendarMainFragment extends ExampleFragmentBase {
         }
 
         @Override
+        public int getViewTypeCount() {
+            return 1;
+        }
+
+        @Override
         public int getCount() {
             return 3;
         }
@@ -635,6 +612,11 @@ public class CalendarMainFragment extends ExampleFragmentBase {
             txtEventName.setText(events.get(position).getTitle());
 
             return rootView;
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return 1;
         }
     }
 }

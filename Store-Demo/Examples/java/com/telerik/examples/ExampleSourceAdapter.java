@@ -32,6 +32,11 @@ public class ExampleSourceAdapter extends BaseAdapter {
     }
 
     @Override
+    public int getViewTypeCount() {
+        return 1;
+    }
+
+    @Override
     public Object getItem(int position) {
         return this.getFileName(position);
     }
@@ -43,6 +48,15 @@ public class ExampleSourceAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View listItemView = this.inflater.inflate(R.layout.view_code_main_item, null);
+        TextView textView = (TextView) listItemView.findViewById(R.id.view_code_item_text);
+        textView.setText(this.getFileName(position));
+
+        return listItemView;
+    }
+
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
         View listItemView = this.inflater.inflate(R.layout.view_code_list_item, null);
         TextView textView = (TextView) listItemView.findViewById(R.id.view_code_item_text);
         textView.setText(this.getFileName(position));

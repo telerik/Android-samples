@@ -1,40 +1,95 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFFFF">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/headerListView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:choiceMode="singleChoice"
-        android:divider="@color/drawerDivider"
-        android:dividerHeight="1dp"
-        android:listSelector="@drawable/navigation_drawer_list_root_selector"/>
+        android:background="@color/telerikGreen"
+        android:orientation="horizontal"
+        android:paddingBottom="14dp"
+        android:paddingTop="15dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:src="@drawable/telerik_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="28dp"
+            android:text="@string/appName"
+            android:textColor="@color/white"
+            android:textSize="@dimen/drawer_caption_fontsize" />
+    </LinearLayout>
 
 
-
-    <TextView
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="?android:attr/textColorHint"
-        android:text="CONTROLS"
-        android:fontFamily="roboto"
-        android:textStyle="bold"/>
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="@color/drawerDivider" />
-
-    <ListView
-        android:id="@+id/controlsList"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:choiceMode="singleChoice"
-        android:divider="@color/drawerDivider"
-        android:listSelector="@drawable/navigation_drawer_list_root_selector"
-        android:dividerHeight="1dp"/>
+        android:layout_height="match_parent"
+        android:background="#FFFFFFFF"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.telerik.examples.primitives.ExamplesGridView
+                android:id="@+id/headerListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:choiceMode="singleChoice"
+                android:divider="@color/transparent"
+                android:dividerHeight="0px"
+                android:listSelector="@drawable/navigation_drawer_list_root_selector"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/drawerDivider" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="roboto"
+                android:text="Controls"
+                android:textAppearance="?android:attr/textAppearanceListItem"
+                android:textColor="?android:attr/textColorHint" />
+
+
+            <com.telerik.examples.primitives.ExamplesGridView
+                android:id="@+id/controlsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:choiceMode="singleChoice"
+                android:divider="@color/transparent"
+                android:dividerHeight="0px"
+                android:listSelector="@drawable/navigation_drawer_list_root_selector" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/drawerDivider" />
+
+            <com.telerik.examples.primitives.ExamplesGridView
+                android:id="@+id/footerList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:choiceMode="singleChoice"
+                android:divider="@color/transparent"
+                android:dividerHeight="0px"
+                android:listSelector="@drawable/navigation_drawer_list_root_selector" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
+

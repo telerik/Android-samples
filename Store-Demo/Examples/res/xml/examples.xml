@@ -2,127 +2,183 @@
 <Examples>
 
     <ExampleGroup
+        DrawerIcon="drawable/ic_nav_listview"
+        ExampleInfo="The Telerik ListView supports all the major functionality inherent for list control:\n
+- handling large sets of data through UI virtualization,\n
+- pull to refresh gesture to refresh the data source,\n
+- load on demand to update the data source with new items,\n
+- item selection,\n
+- filtering, grouping, sorting of the view model,\n
+- various layout strategies such as horizontal, vertical, wrapped and staggered lists,\n
+- swipe-to-execute,\n
+- item reordering,\n
+- animations etc.\n\nSome of the SideDrawer examples use the Flickr API but are not endorsed or certified by Flickr."
+        Fragment="listview"
+        HeaderText="ListView"
+        HomepageLogo="drawable/ic_listview_action_bar"
+        HomepageHeader="drawable/bg_listview"
+        Image="drawable/ic_list_listview"
+        Logo="drawable/ic_list_listview"
+        IsHighlighted="true"
+        IsNew="true"
+        ShortDescription="A powerful data list control with extended feature set.">
+        <Example
+            ExampleInfo="You can use the built-in Android layout managers to specify how the Telerik ListView positions its items.\n\nYou can use the LinearLayoutManager to show items in a vertical or horizontal scrolling list, the GridLayoutManager to show items in a grid and the StaggeredGridLayoutManager to display items in a staggered grid. For more advanced layout scenarios you can create a custom layout manager by extending the RecyclerView.LayoutManager class.\n\nTo switch between the different layout modes use the buttons located in the top-right corner of the page.\n\nThis example uses the Flickr API but is not endorsed or certified by Flickr."
+            Fragment="examples.listview.ListViewListModeFragment"
+            HeaderText="Layout Modes"
+            Image="drawable/screen_layout"
+            IsHighlighted="true"
+            ShortDescription="Supported layout modes in the Telerik ListView." />
+        <Example
+            ExampleInfo="Reordering items through a drag and drop gesture can be enabled by adding an ItemReorderBehavior to the list of behaviors."
+            Fragment="examples.listview.ListViewReorderFragment"
+            HeaderText="Item Reorder"
+            Image="drawable/screen_reorder"
+            IsHighlighted="true"
+            ShortDescription="Reordering of items in the Telerik ListView." />
+
+        <Example
+            ExampleInfo="The ListView supports horizontal and vertical scrolling in all of its layout modes.\n\nThis example uses the Flickr API but is not endorsed or certified by Flickr."
+            Fragment="examples.listview.ListViewHorizontalScrollingFragment"
+            HeaderText="Horizontal Scrolling"
+            Image="drawable/screen_horizontal_layout"
+            IsHighlighted="true"
+            ShortDescription="Horizontal and vertical scrolling in the Telerik ListView." />
+
+        <Example
+            ExampleInfo="The Telerik ListView provides support for both single and multiple selection. Selection can be enabled by adding a SelectionBehavior to the list of behaviors."
+            Fragment="examples.listview.ListViewSelectionFragment"
+            HeaderText="Selection"
+            Image="drawable/screen_selection"
+            IsHighlighted="true"
+            ShortDescription="Selection in the Telerik ListView." />
+
+    </ExampleGroup>
+
+    <ExampleGroup
         DrawerIcon="drawable/ic_nav_calendar"
-        ExampleInfo="
-    Telerik's RadCalendarView for Android is a widget which can be used for presenting events information, date picking and other general calendar usages.\n\n
-    It provides three different modes for date presentation:\n
-    - Year,\n
-    - Month,\n
-    - Week.\n\n
-    The different modes can be easily switched through intuitive gestures. There are also three selection modes:\n
-    - Single,\n
-    - Multiple,\n
-    - Range.\n\n
-    The dates that are presented can be easily restricted with providing Min and Max dates.\n\n
-    The examples for the control include:\n
-    - A first look example which demonstrates how events can be integrated\n
-    - A range selection example which demonstrates how this widget can be used for date picking.\n"
+        ExampleInfo="The Telerik CalendarView for Android can be used for presenting events information, date picking and other general calendar usages.\n\nIt provides three different modes for date presentation:\n- Year,\n- Month,\n- Week.\n\nThe different modes can be easily switched through intuitive gestures. There are also three selection modes:\n- Single,\n- Multiple,\n- Range.\n\nThe dates that are presented can be easily restricted with providing Min and Max dates.\n\nThe examples for the control include:\n- A first look example which demonstrates how events can be integrated\n- A range selection example which demonstrates how this widget can be used for date picking.\n"
         Fragment="calendar"
         HeaderText="Calendar"
+        IsHighlighted="true"
         HomepageLogo="drawable/ic_calendar_action_bar"
         HomepageHeader="drawable/bg_calendar"
         Image="drawable/ic_list_calendar"
         Logo="drawable/ic_list_calendar"
-        IsHighlighted="true"
-        IsNew="true"
-        ShortDescription="Calendar component that provides three different views: year, month and week">
+        ShortDescription="Calendar component with Year, Month and Week views.">
         <Example
-            ExampleInfo="
-    First look at Telerik's Calendar for Android. \n\n
-    The example demonstrates how the widget displays dates from one week, one month and one year depending on the current display mode.\n\n
-    The week view and the month view also show how events information can be integrated in the calendar cell's content.\n\n
-    By using intuitive gestures you can switch from Week to Month or from Month to Year and vice versa. The modes can also be changed through a Spinner.\n\n
-    The calendar follows your locale, so if you change the Language from your device's Settings, you will see that the names of the months and the days in the calendar will follow your change.\n"
+            ExampleInfo="First look at Telerik Calendar for Android.\n\nThe example demonstrates how the widget displays dates from one week, one month and one year depending on the current display mode.\n\nThe week view and the month view also show how events information can be integrated in the calendar cell's content.\n\nBy using intuitive gestures you can switch from Week to Month or from Month to Year and vice versa. The modes can also be changed through a Spinner.\n\nThe calendar follows your locale, so if you change the Language from your device's Settings, you will see that the names of the months and the days in the calendar will follow your change.\n"
             Fragment="examples.calendar.CalendarMainFragment"
             HeaderText="Calendar"
             Image="drawable/screen_calendar"
-            IsNew="true"
-            IsHighlighted="true"
-            ShortDescription="Demonstrates events and different time periods presentations - week, month, year" />
+            ShortDescription="Year, Month and Week views inside the Telerik CalendarView." />
         <Example
-            ExampleInfo="
-    Range Selection example for Telerik's Calendar for Android. \n\n
-    It demonstrates how the widget can be used inside a popup for picking dates. The example represents an excerpt from a hotel reservation app where you can use the calendar widget to select the range of your stay and book a hotel of your choice.\n\n
-    The calendar is configured to use range selection where you tap on the first and the last date and the whole range between them gets selected. The Min date is set to today, so that you can't make a reservation for a previous date.\n"
+            ExampleInfo="Range selection inside the Telerik CalendarView.\n\nIt demonstrates how the widget can be used inside a popup for picking dates. The example represents an excerpt from a hotel reservation app where you can use the calendar widget to select the range of your stay and book a hotel of your choice.\n\nThe calendar is configured to use range selection where you tap on the first and the last date and the whole range between them gets selected. The Min date is set to today, so that you can't make a reservation for a previous date.\n"
             Fragment="examples.calendar.CalendarRangeSelectionFragment"
             HeaderText="Range Selection"
             Image="drawable/screen_range_selection"
-            IsHighlighted="true"
-            IsNew="true"
-            ShortDescription="Easy selection of date ranges with calendar" />
+            ShortDescription="Range selection inside the Telerik CalendarView." />
     </ExampleGroup>
+
+    <ExampleGroup
+        DrawerIcon="drawable/ic_nav_sidedrawer"
+        ExampleInfo="If you have experience with the native Android NavigationDrawer then the Telerik SideDrawer would feel very familiar.\n\nThe SideDrawer is a panel that slides on top of the main application screen and presents the app’s navigation.\n\nThe goal of the control is to enable quick and easy navigation across all levels of your app.\n\nSome of the SideDrawer examples use the Flickr API but are not endorsed or certified by Flickr."
+        Fragment="drawer"
+        HeaderText="Side Drawer"
+        HomepageLogo="drawable/ic_sidedrawer_action_bar"
+        HomepageHeader="drawable/bg_sidedrawer"
+        Image="drawable/ic_list_sidedrawer"
+        Logo="drawable/ic_list_sidedrawer"
+        IsHighlighted="true"
+        IsNew="true"
+        ShortDescription="A slidable panel for presenting your app’s main navigation points.">
+        <Example
+            ExampleInfo="The Telerik SideDrawer can display any type of content and can be opened from any edge of the screen.\n\nFurther customization can be achieved through 11 predefined open/close animations.\n\nThis example uses the Flickr API but is not endorsed or certified by Flickr."
+            HeaderText="Side Drawer"
+            Fragment="examples.sidedrawer.DrawerFragment"
+            Image="drawable/screen_sidedrawer"
+            IsHighlighted="true"
+            ShortDescription="Displaying content inside the Telerik SideDrawer." />
+        <Example
+            ExampleInfo="The Telerik SideDrawer can display any type of content and can be opened from any edge of the screen.\n\nThis example uses the Flickr API but is not endorsed or certified by Flickr."
+            HeaderText="Custom Content"
+            Fragment="examples.sidedrawer.DrawerCustomContentFragment"
+            Image="drawable/screen_custom_content"
+            IsHighlighted="true"
+            ShortDescription="Custom content inside the Telerik SideDrawer." />
+        <Example
+            ExampleInfo="The Telerik SideDrawer can display any type of content and can be opened from any edge of the screen.\n\nThe control comes with 11 predefined open/close transitions."
+            HeaderText="Settings"
+            Fragment="examples.sidedrawer.SettingsFragment"
+            Image="drawable/screen_settings"
+            ShortDescription="Transitions and settings supported by the Telerik SideDrawer." />
+    </ExampleGroup>
+
     <ExampleGroup
         DrawerIcon="drawable/ic_nav_chart"
-        ExampleInfo="Telerik Chart for Android supports many different series types which can help you easily visualize your business sensitive data in your Android application.\n\n
-Built on a highly optimized rendering engine, Telerik Chart for Android also provides user interaction capabilities like Trackball, Tooltip, Pan &amp; Zoom and selection.\n\n
-Inspired and built according to the Holo design principles, Telerik Chart for Android nicely blends with the latest Android UX trends coming from Google. You can explore the different series types, as well as the interaction features by choosing an example from the list on the Chart homepage."
+        ExampleInfo="The Telerik Chart for Android supports all the essential series for visualizing your application data.\n\n- LineSeries,\n- SplineSeries,\n- FinancialSeries,\n- AreaSeries,\n- ScatterPointSeries,\n- SplineAreaSeries,\n- ScatterBubbleSeries,\n- BarSeries,\n- RangeBarSeries,\n- PieSeries,\n- DoughnutSeries,\n- IndicatorSeries.\n\nBuilt on top of a highly optimized rendering engine, the Telerik Chart provides smooth experience for all of its interaction capabilities such as Trackball, Tooltip, Pan &amp; Zoom and Selection.\n\nThe Telerik Chart is also compliant with the latest Holo design principles."
         Fragment="chart"
         HeaderText="Chart"
+        IsHighlighted="true"
         HomepageLogo="drawable/ic_chart_action_bar"
         HomepageHeader="drawable/bg_chart"
         Image="drawable/ic_list_chart"
         Logo="drawable/ic_list_chart"
-        IsHighlighted="true"
-        IsNew="true"
-        ShortDescription="Flexible and optimized Charting component that can be used to visualize different types of data">
+        ShortDescription="Flexible and optimized Charting library.">
         <GalleryExample
-            ExampleInfo="The scatter series are normally used to visualize the distribution of some quality over a numerical value range both horizontally and vertically. The scatter points are fully customizable and developers can customize every visual aspect."
+            ExampleInfo="A scatter chart is a two-dimensional graphical representation of a set of data where each x/y variable is represented on the graph as a dot. This type of chart can be used in to visually describe relationships between two numerical parameters or to represent distributions.\n\nThe difference between line and scatter charts is that line charts connect the data points to show every change, whereas the scatter is better suited to show a 'best fit' line. The data points are scattered about the line. The closer the data points are to the line the stronger the correlation or affect one variable has on the other.\n\nThe Bubble chart is a flavor of the scatter chart. In scatter charts, the x-axis displays one numeric field and the y-axis displays another, making it easy to see the relationship between the two values for all the items in the chart. In a bubble chart, a third numeric field controls the size of the data points."
             Fragment="Chart.ScatterSeries"
             HeaderText="Scatter Series"
             Image="drawable/screen_scatter_chart"
-            IsHighlighted="true"
-            IsNew="true"
-            ShortDescription="Use Scatter series to monitor distributions.">
+            ShortDescription="Plotting Scatter and Bubble series.">
             <Example
                 Fragment="examples.chart.series.scatter.ScatterFragment"
                 HeaderText="Scatter point series"
                 Image="drawable/scatter"
-                ShortDescription="Scatter point series description here." />
+                ShortDescription="Scatter point series." />
             <Example
                 Fragment="examples.chart.series.scatter.BubbleSeriesFragment"
                 HeaderText="Scatter bubble series"
                 Image="drawable/bubble"
-                ShortDescription="Scatter bubble series description here." />
+                ShortDescription="Scatter bubble series." />
         </GalleryExample>
 
         <GalleryExample
-            ExampleInfo="Line series are used to display a series of data points, typically to show trends over a period of time. One or more series of data can be used and the appearance for each series can be tailored to emphasize the data using unique colors, line thicknesses, shadow, pen style, and point marks."
+            ExampleInfo="Line charts are often used to plot changes in data over time, such as monthly temperature changes or daily changes in stock market prices.\n\nLine graphs have a vertical and a horizontal axis. If you are plotting changes in data over time, time is plotted along the horizontal axis and your other data is plotted as individual points along the vertical axis."
             Fragment="Chart.LineSeries"
             HeaderText="Line Series"
             Image="drawable/screen_line_chart"
-            IsNew="false"
-            ShortDescription="Use Line and Spline series to monitor trends.">
+            ShortDescription="Using Line and Spline series to monitor trends.">
             <Example
                 Fragment="examples.chart.series.line.LineSeriesFragment"
                 HeaderText="Line series"
                 Image="drawable/line_2"
-                ShortDescription="Line series description here." />
+                ShortDescription="Line series." />
             <Example
                 Fragment="examples.chart.series.line.MultipleLineSeriesFragment"
-                HeaderText="Multiple Line series"
+                HeaderText="Multiple Line series."
                 Image="drawable/line_4" />
             <Example
                 Fragment="examples.chart.series.line.SplineSeriesFragment"
-                HeaderText="Spline series"
+                HeaderText="Spline series."
                 Image="drawable/line_5" />
             <Example
                 Fragment="examples.chart.series.line.MultipleSplineSeriesFragment"
-                HeaderText="Multiple Spline series"
+                HeaderText="Multiple Spline series."
                 Image="drawable/line_7" />
         </GalleryExample>
 
         <GalleryExample
-            ExampleInfo="The Area Series can be plotted in several different ways. From the plain case with plotting a single series to more complicated scenarios including different series combinations. The currently supported scenarios include STACK, STACK100 and standard plotting mode."
+            ExampleInfo="Area charts are much like line charts, but they display different colors in the areas below the lines. This colorful and visual display distinguishes the data more clearly.\n\nThe Telerik Charting framework for Android supports STACK, STACK100 and standard plotting modes.\n\nStacked area charts display the trend of the contribution of each value over time or other category data.\n\n100% stacked area charts display the trend of the percentage that each value contributes over time or other category data."
             Fragment="Chart.AreaSeries"
             HeaderText="Area Series"
             Image="drawable/screen_area_chart"
-            IsNew="false"
             ShortDescription="Show trends on the same diagram with STACK, STACK100 and standard plotting mode.">
             <Example
                 Fragment="examples.chart.series.area.AreaFragment"
                 HeaderText="Area"
                 Image="drawable/area_1"
-                ShortDescription="Area series description here." />
+                ShortDescription="Area series." />
             <Example
                 Fragment="examples.chart.series.area.StackedAreaFragment"
                 HeaderText="stacked area"
@@ -145,11 +201,10 @@ Inspired and built according to the Holo design principles, Telerik Chart for An
                 Image="drawable/area_6" />
         </GalleryExample>
         <GalleryExample
-            ExampleInfo="Bar charts graphically summarize and display categories of data and let the user compare amounts or values between different categories. Bar charts are useful for comparing multiple series of data (i.e. providing snapshots of data at particular points in time). With Bar and RangeBar series you can easily visualize data points as bar blocks where the height of each bar denotes the magnitude of its data point. Styling has been made easy so you can quickly differentiate each bar."
+            ExampleInfo="Bar charts are one of the most common types of graph used to display data. Sometimes known as 'column charts', bar charts are most often used to show amounts or the number of times a value occurs.\n\nBar charts are useful for comparing multiple series of data (i.e. providing snapshots of data at particular points in time). With Bar and RangeBar series you can easily visualize data points as bar blocks where the height of each bar denotes the magnitude of its data point.\n\nStyling has been made easy so you can quickly differentiate each bar."
             Fragment="Chart.BarSeries"
             HeaderText="Bar Series"
             Image="drawable/screen_bar_chart"
-            IsNew="false"
             ShortDescription="Compare sets of data by visualizing the data points as vertical bars.">
             <Example
                 Fragment="examples.chart.series.bar.BarFragment"
@@ -190,11 +245,10 @@ Inspired and built according to the Holo design principles, Telerik Chart for An
                 Image="drawable/bar_9" />
         </GalleryExample>
         <GalleryExample
-            ExampleInfo="Pie charts are used to display the contribution of fractional parts to a whole. Each data point is a pie slice with arc size proportional to the magnitude of the point’s value. Pie and doughnut charts are most useful when you have to compare percentage values of different items that are part of the same series. Illustrating them as pie slices makes it easier for anyone to quickly understand the underlying data."
+            ExampleInfo="Pie charts are used to display the contribution of fractional parts to a whole.\n\nFor example, if a company has five divisions, and the pie chart shows profits per division, the sum of all the slices (divisions) is the sum of profits for the company.\n\nEach data point is a pie slice with arc size proportional to the magnitude of the point’s value.\n\nPie and doughnut charts are most useful when you have to compare percentage values of different items that are part of the same series."
             Fragment="Chart.PieSeries"
             HeaderText="Pie Series"
             Image="drawable/screen_pie_chart"
-            IsNew="false"
             ShortDescription="Each data point is a pie slice with arc size proportional to the magnitude of the point’s value.">
             <Example
                 Fragment="examples.chart.series.pie.PieSeriesFragment"
@@ -214,11 +268,10 @@ Inspired and built according to the Holo design principles, Telerik Chart for An
                 Image="drawable/pie_5" />
         </GalleryExample>
         <GalleryExample
-            ExampleInfo="Financial series are used to visualize the ohlc values of collected financial data for stock prices."
+            ExampleInfo="An open-high-low-close chart (also known as OHLC chart) is a type of chart typically used to illustrate movements in the price of a financial instrument over time.\n\nOpen-High-Low-Close (OHLC) bar charts provide volatility information that line charts lack.\n\nOHLC charts help you evaluate volatility by the height of the bars and the conviction of the buyers and sellers by the price range between the open and close marks.\n\nThe candlestick chart is another way of displaying market price data. Both charts show the exact same data, i.e. the opening, high, low, and closing prices during a particular time frame."
             Fragment="Chart.OhlcSeries"
             HeaderText="Financial Series"
             Image="drawable/screen_financial"
-            IsNew="true"
             ShortDescription="Financial series are used to visualize the ohlc values of collected financial data for stock prices.">
             <Example
                 HeaderText="Candlestick series"
@@ -240,38 +293,24 @@ Inspired and built according to the Holo design principles, Telerik Chart for An
             Fragment="examples.chart.behaviors.PanZoom"
             HeaderText="Pan and Zoom"
             Image="drawable/screen_pan_zoom"
-            IsHighlighted="true"
-            IsNew="false"
             ShortDescription="See the details in a data set by using pinch and pan gestures." />
         <Example
             ExampleInfo="You can feed various data types into the chart. Depending on the chart type, numerical data can be distributed on the X-axis over other numbers, categories or points in time. RadChart uses several types of axes to plot its data: Linear, Categorical, Logarithmic, DateTimeCategorical and DateTimeContinuous."
             Fragment="examples.chart.axes.MultipleAxes"
             HeaderText="Multiple axes"
             Image="drawable/screen_axes"
-            IsNew="false"
             ShortDescription="Plot any type of data using Linear, Numerical, Logarithmic, DateTime and Categorical axes." />
         <Example
             ExampleInfo="Annotations are visual elements that can be used to highlight certain areas on the chart and denote statistical significance. An annotation is an explanatory image, text or another visual element which can be anchored to a single point or a point range. The currently supported annotations are: Grid Line, Plot Band and Custom annotations."
             Fragment="examples.chart.annotations.WeatherData"
             HeaderText="Annotations"
             Image="drawable/screen_annotations"
-            IsNew="false"
             ShortDescription="Visual elements for highlighting certain areas and denoting statistical significance." />
         <Example
-            IsHighlighted="true"
             HeaderText="Indicators"
             Image="drawable/screen_indicators"
-            IsNew="true"
             ShortDescription="Indicators are used extensively to predict changes in stock trends or price patterns."
             ExampleInfo="Indicators are used extensively to predict changes in stock trends or price patterns by using specific algorithms and chart series to visualize them."
             Fragment="examples.chart.series.financial.IndicatorsFragment" />
-        <Example
-            IsHighlighted="true"
-            HeaderText="Live Data"
-            Image="drawable/screen_indicators"
-            IsNew="true"
-            ShortDescription="Demonstrates the ability of the chart to frequently refresh with new data."
-            ExampleInfo="This examples demonstrates how to use ObservableCollection to update the chart in real time."
-            Fragment="examples.chart.LiveDataFragment" />
     </ExampleGroup>
 </Examples>

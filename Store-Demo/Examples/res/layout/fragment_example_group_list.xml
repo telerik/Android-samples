@@ -8,7 +8,7 @@
         android:scrollbarStyle="outsideOverlay"
         android:stretchMode="columnWidth"
         android:scrollbars="none"
-        android:id="@+id/grid"
+        android:id="@+id/listExamples"
         android:padding="16dp"
         android:layout_marginTop="0dp"
         android:layout_width="match_parent"

@@ -31,19 +31,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:background="@color/controlBackground"
-            android:paddingLeft="42dp"
-            android:paddingRight="42dp"
+            android:textColor="@color/controlBackground"
+            android:background="@color/transparent"
+            android:paddingLeft="22dp"
+            android:paddingRight="0dp"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
             android:minHeight="0dp"
-            android:text="@string/tips_presenter_got_it_text"
-            android:textColor="?android:attr/textColorPrimaryInverseNoDisable" />
+            android:text="@string/tips_presenter_got_it_text" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_gravity="bottom"
-        android:background="@color/listItemBottomBorder" />
 </FrameLayout>

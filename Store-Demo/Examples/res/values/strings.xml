@@ -2,10 +2,12 @@
 <resources>
 
     <string name="appName">Telerik Examples</string>
-    <string name="version_name">Q3 2014</string>
-    <string name="version_code">2014.3.0</string>
+    <string name="drawerCaption">Telerik examples</string>
+    <string name="version_name">Q1 2015</string>
+    <string name="version_code">2015.1.0</string>
     <string name="homeString">Home</string>
     <string name="favoritesStringPascalCase">Favorites</string>
+    <string name="settingsString">Settings</string>
     <string name="aboutString">About</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -34,8 +36,23 @@
     <string name="calendar_range_how_to_text">Drag over the period of your stay or tap on your check-in and check-out dates</string>
     <string name="calendar_range_left_arrow_description">Tap to move to previous month</string>
     <string name="calendar_range_right_arrow_description">Tap to move to next month</string>
+    <string name="list_view_reorder_empty">No tasks</string>
+    <string name="list_view_reorder_header">TASKS</string>
+    <string name="list_view_reorder_btn_list1">TO DO LIST</string>
+    <string name="list_view_reorder_btn_list2">SHOPPING LIST</string>
+    <string name="list_view_reorder_complete">complete</string>
+    <string name="list_view_reorder_delete">delete</string>
+    <string name="list_view_selection_header">Reading list</string>
+    <string name="list_view_selection_header_in_reorder">Reorder</string>
+    <string name="list_view_selection_reorder">reorder</string>
+    <string name="list_view_selection_deleted">Deleted.</string>
+    <string name="list_view_selection_fav">fav</string>
+    <string name="list_view_selection_delete">del</string>
+    <string name="list_view_selection_undo">UNDO</string>
+    <string name="list_view_selection_btn_list1">ALL</string>
+    <string name="list_view_selection_btn_list2">FAVORITES</string>
     <string name="book_a_hotel_string">Book a hotel!</string>
-    <string name="tips_presenter_content">Newly added to the Telerik UI Examples are the Scatter and Bubble chart series.</string>
+    <string name="tips_presenter_content">Telerik Examples highlights the controls included in Telerik UI for Android. The current release demonstrates the ListView, Chart, Calendar and SideDrawer controls.</string>
     <string name="tips_presenter_got_it_text">GOT IT!</string>
     <string name="isn_bold"><b>ISN</b></string>
     <string name="spinners_title">International Software Company</string>
@@ -48,6 +65,8 @@
     <string name="analytics_message">It is our goal to always provide the best products and user experience to our customers. By enabling this option anonymous data will be collected and sent to Telerik detailing how the Telerik Examples application is being used. No information is collected that could be used to either identify or contact you. \nYou can change this anytime from the Settings menu.</string>
     <string name="could_not_change_setting">Could not change setting</string>
     <string name="analytics_message_title">Help us improve Telerik Examples</string>
+    <string name="list_view_layout_modes_dialog_title">Choose food type</string>
+    <string name="internet_connectivity_prompt">Internet connectivity is required for this example.</string>
 
     <string-array name="indicators_range_options">
         <item>1 month</item>

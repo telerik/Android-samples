@@ -21,6 +21,7 @@ import com.telerik.examples.primitives.ExampleViewPagerBase;
 import com.telerik.examples.primitives.ScrollingTab;
 import com.telerik.examples.primitives.ScrollingTabView;
 import com.telerik.examples.viewmodels.Example;
+import com.telerik.examples.viewmodels.ExampleGroup;
 import com.telerik.examples.viewmodels.ExampleSourceModel;
 import com.telerik.examples.viewmodels.GalleryExample;
 
@@ -34,8 +35,21 @@ public class GalleryExamplesFragment extends ExampleFragmentBase implements Acti
     private ExampleViewPagerBase viewPager;
     private ScrollingTabView tabView;
     protected ExamplesApplicationContext app;
+    private ExampleGroup selectedControl;
+    private Example selectedExample;
+    private String exampleId;
+    private String controlId;
 
     public GalleryExamplesFragment() {
+
+    }
+
+    public void setControlId(String id){
+        this.controlId = id;
+    }
+
+    public void setExampleId(String id){
+        this.exampleId = id;
     }
 
     @Override
@@ -66,8 +80,15 @@ public class GalleryExamplesFragment extends ExampleFragmentBase implements Acti
         this.tabView = (ScrollingTabView) result.findViewById(R.id.scrollingTabView);
         this.app = (ExamplesApplicationContext) getActivity().getApplicationContext();
 
+        if (savedInstanceState == null) {
+            this.selectedControl = this.app.findControlById(this.controlId);
+            this.selectedExample = this.app.findExampleById(this.selectedControl, this.exampleId);
+        }else{
+            this.selectedControl = this.app.findControlById(savedInstanceState.getString(ExamplesApplicationContext.INTENT_CONTROL_ID));
+            this.selectedExample = this.app.findExampleById(this.selectedControl, savedInstanceState.getString(ExamplesApplicationContext.INTENT_EXAMPLE_ID));
+        }
 
-        this.examples = ((GalleryExample) app.selectedExample()).getExamples();
+        this.examples = ((GalleryExample) this.selectedExample).getExamples();
 
         viewPager = (ExampleViewPagerBase) result.findViewById(R.id.pager);
 
@@ -93,6 +114,14 @@ public class GalleryExamplesFragment extends ExampleFragmentBase implements Acti
         tabView.setTabSelected(0);
         return result;
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(ExamplesApplicationContext.INTENT_CONTROL_ID, this.selectedControl.getFragmentName());
+        outState.putString(ExamplesApplicationContext.INTENT_EXAMPLE_ID, this.selectedExample.getFragmentName());
+    }
+
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
@@ -174,8 +203,8 @@ public class GalleryExamplesFragment extends ExampleFragmentBase implements Acti
         @Override
         public int getCount() {
             // Show 3 total pages.
-            if (app.selectedExample() instanceof GalleryExample) {
-                return ((GalleryExample) app.selectedExample()).getExamples().size();
+            if (selectedExample instanceof GalleryExample) {
+                return ((GalleryExample) selectedExample).getExamples().size();
             }
             return 0;
         }
@@ -183,11 +212,11 @@ public class GalleryExamplesFragment extends ExampleFragmentBase implements Acti
         @Override
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
-            return ((GalleryExample) app.selectedExample()).getExamples().get(position).getHeaderText().toUpperCase(l);
+            return ((GalleryExample) selectedExample).getExamples().get(position).getHeaderText().toUpperCase(l);
         }
 
         public int getImage(int position) {
-            return app.getDrawableResource(((GalleryExample) app.selectedExample()).getExamples().get(position).getImage());
+            return app.getDrawableResource(((GalleryExample) selectedExample).getExamples().get(position).getImage());
         }
     }
 }

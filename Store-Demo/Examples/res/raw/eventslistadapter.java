@@ -65,4 +65,9 @@ public class EventsListAdapter extends ArrayAdapter<Event> {
 
         return rootView;
     }
+    @Override
+    public int getViewTypeCount() {
+        return 1;
+    }
+
 }

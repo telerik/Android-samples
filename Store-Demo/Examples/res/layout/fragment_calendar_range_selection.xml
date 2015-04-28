@@ -66,10 +66,10 @@
 
             <Spinner
                 android:id="@+id/spinnerLocation"
-                style="@style/Widget.AppCompat.Base.Spinner"
+                style="@style/Widget.AppCompat.Spinner"
+                android:background="@drawable/actionbar_spinner_arrow"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:popupBackground="@drawable/abc_menu_dropdown_panel_holo_light">
+                android:layout_height="wrap_content">
 
             </Spinner>
 
@@ -109,10 +109,10 @@
 
                 <Spinner
                     android:id="@+id/spinnerDates"
-                    style="@style/Widget.AppCompat.Base.Spinner"
+                    style="@style/Widget.AppCompat.Spinner"
+                    android:background="@drawable/actionbar_spinner_arrow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:popupBackground="@drawable/abc_menu_dropdown_panel_holo_light" />
+                    android:layout_height="match_parent"/>
             </FrameLayout>
 
             <LinearLayout
@@ -148,10 +148,10 @@
 
                     <Spinner
                         android:id="@+id/spinnerGuests"
-                        style="@style/Widget.AppCompat.Base.Spinner"
+                        style="@style/Widget.AppCompat.Spinner"
+                        android:background="@drawable/actionbar_spinner_arrow"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:popupBackground="@drawable/abc_menu_dropdown_panel_holo_light" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -182,11 +182,11 @@
 
                     <Spinner
                         android:id="@+id/spinnerRooms"
-                        style="@style/Widget.AppCompat.Base.Spinner"
+                        style="@style/Widget.AppCompat.Spinner"
+                        android:background="@drawable/actionbar_spinner_arrow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:popupBackground="@drawable/abc_menu_dropdown_panel_holo_light" />
+                        android:layout_weight="1"/>
 
                 </LinearLayout>
             </LinearLayout>

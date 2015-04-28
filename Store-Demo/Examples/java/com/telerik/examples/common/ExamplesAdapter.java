@@ -24,12 +24,15 @@ public class ExamplesAdapter extends ArrayAdapter<Example> {
     public static final String FAVOURITES_FILTER_KEY = "favourites";
     public static final String ALL_FILTER_KEY = "all";
     public static final String HIGHLIGHTED_FILTER_KEY = "highlighted";
+    public static final String NOTHING_FILTER_KEY = "nothing";
+    public static final String HIGHLIGHTED_CONTROLS_FILTER_KEY = "highlighted_controls_only";
+    public static final String HIGHLIGHTED_EXAMPLES_FILTER_KEY = "highlighted_examples_only";
 
-    private final ExamplesApplicationContext app;
+    protected final ExamplesApplicationContext app;
     private final List<Example> source;
     private List<Example> filteredList;
-    private int listMode;
-    private final View.OnClickListener callBack;
+    protected int listMode;
+    protected final View.OnClickListener callBack;
     private ExamplesFilter filter;
     private boolean showControlBadge;
 
@@ -59,7 +62,7 @@ public class ExamplesAdapter extends ArrayAdapter<Example> {
         return this.filteredList.size();
     }
 
-    public void setListMode(int listMode){
+    public void setListMode(int listMode) {
         if (this.listMode != listMode) {
             this.listMode = listMode;
             this.notifyDataSetChanged();
@@ -96,7 +99,7 @@ public class ExamplesAdapter extends ArrayAdapter<Example> {
         ImageView badgeView = (ImageView) rootView.findViewById(R.id.badgeImage);
         ImageView badgeOverlay = (ImageView) rootView.findViewById(R.id.badgeOverlay);
 
-        if (showControlBadge && (!(example instanceof ExampleGroup) || (example instanceof GalleryExample))) {
+        if (!example.getIsNew() && showControlBadge && (!(example instanceof ExampleGroup) || (example instanceof GalleryExample))) {
             badgeOverlay.setVisibility(View.VISIBLE);
             badgeView.setVisibility(View.VISIBLE);
             badgeView.setImageResource(R.drawable.rhomb_green);
@@ -109,6 +112,11 @@ public class ExamplesAdapter extends ArrayAdapter<Example> {
             badgeOverlay.setVisibility(View.INVISIBLE);
             badgeView.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 1;
     }
 
     @Override
@@ -125,7 +133,10 @@ public class ExamplesAdapter extends ArrayAdapter<Example> {
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
             List<Example> filteredResults = new ArrayList<Example>();
-            if (constraint != ExamplesAdapter.ALL_FILTER_KEY) {
+            if (constraint == ExamplesAdapter.NOTHING_FILTER_KEY) {
+                results.count = 0;
+                results.values = filteredResults;
+            } else if (constraint != ExamplesAdapter.ALL_FILTER_KEY) {
                 this.filterExamples(filteredResults, source, constraint);
                 results.count = filteredResults.size();
                 results.values = filteredResults;
@@ -138,8 +149,12 @@ public class ExamplesAdapter extends ArrayAdapter<Example> {
 
         private void filterExamples(List<Example> result, List<Example> originalList, CharSequence filter) {
             for (Example example : originalList) {
-                if (filter == FAVOURITES_FILTER_KEY && app.isExampleInFavourites(example) ||
-                        filter == HIGHLIGHTED_FILTER_KEY && example.getIsHighlighted()) {
+                if (filter == ALL_FILTER_KEY ||
+                        filter == FAVOURITES_FILTER_KEY && app.isExampleInFavourites(example) || (
+                        example.getIsHighlighted() &&
+                                (filter == HIGHLIGHTED_FILTER_KEY ||
+                                        filter == HIGHLIGHTED_CONTROLS_FILTER_KEY && (example instanceof ExampleGroup && !(example instanceof GalleryExample)) ||
+                                        filter == HIGHLIGHTED_EXAMPLES_FILTER_KEY && (!(example instanceof ExampleGroup) && !(example instanceof GalleryExample))))) {
                     result.add(example);
                 }
 

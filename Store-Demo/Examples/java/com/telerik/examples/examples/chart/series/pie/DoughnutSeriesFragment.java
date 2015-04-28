@@ -11,6 +11,7 @@ import com.telerik.widget.chart.engine.dataPoints.DataPoint;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
 import com.telerik.widget.chart.visualization.common.ChartSeries;
 import com.telerik.widget.chart.visualization.pieChart.DoughnutSeries;
+import com.telerik.widget.chart.visualization.pieChart.PieSeries;
 import com.telerik.widget.chart.visualization.pieChart.PieSeriesLabelRenderer;
 import com.telerik.widget.chart.visualization.pieChart.RadPieChartView;
 
@@ -19,7 +20,7 @@ import com.telerik.widget.chart.visualization.pieChart.RadPieChartView;
  */
 public class DoughnutSeriesFragment extends PieFragment {
     class CustomLabelRenderer extends PieSeriesLabelRenderer {
-        CustomLabelRenderer(ChartSeries owner) {
+        CustomLabelRenderer(PieSeries owner) {
             super(owner);
         }
 

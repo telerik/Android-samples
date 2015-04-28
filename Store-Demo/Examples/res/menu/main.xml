@@ -1,16 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.telerik.examples.MainActivity"
     tools:ignore="AppCompatResource">
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"/>
-    <item
-        android:id="@+id/action_about"
-        android:title="@string/aboutString" />
-    <item
         android:id="@+id/action_toggle_list_view"
-        android:showAsAction="always"
+        app:showAsAction="always"
         android:icon="@drawable/example_group_toggle_layout"
         android:title="Toggle List Layout" />
 </menu>

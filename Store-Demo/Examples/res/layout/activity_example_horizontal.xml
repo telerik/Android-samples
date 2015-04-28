@@ -104,26 +104,21 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="-2dp">
+        android:background="@color/white"
+        android:elevation="4dp">
 
         <FrameLayout
             android:id="@+id/exampleContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="2dp"
             android:background="@color/white" />
 
-        <FrameLayout
-            android:id="@+id/bottomStripLine"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_gravity="bottom"
-            android:background="#7F454545" />
     </com.telerik.examples.common.InputBlocker>
 
     <com.telerik.examples.primitives.AnimatedTextStrip
         android:id="@+id/animatedTextStrip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom" />
+        android:layout_gravity="bottom"
+        android:elevation="5dp"/>
 </FrameLayout>

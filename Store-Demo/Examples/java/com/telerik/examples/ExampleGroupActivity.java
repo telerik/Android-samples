@@ -2,7 +2,7 @@ package com.telerik.examples;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
-import android.app.ActionBar;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -11,18 +11,16 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
@@ -37,6 +35,7 @@ import android.widget.ToggleButton;
 
 import com.telerik.android.common.Util;
 import com.telerik.examples.common.ExamplesApplicationContext;
+import com.telerik.examples.common.TelerikActivityHelper;
 import com.telerik.examples.common.TrackedApplication;
 import com.telerik.examples.common.contracts.TrackedActivity;
 import com.telerik.examples.common.contracts.TransitionHandler;
@@ -50,10 +49,11 @@ import com.telerik.examples.viewmodels.ExampleGroup;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class ExampleGroupActivity extends FragmentActivity implements TransitionHandler,
+public class ExampleGroupActivity extends ActionBarActivity implements TransitionHandler,
         NavigationDrawerFragment.NavigationDrawerCallbacks,
         ExampleGroupListFragment.AbsListViewScrollListener,
         PopupMenu.OnMenuItemClickListener,
@@ -69,7 +69,7 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
 
     private ViewPager viewPager;
     private DrawerLayout drawerLayout;
-    private View actionBarView;
+    //private View actionBarView;
     private ImageView tabPointer;
 
     private AnimatorSet backgroundAnimator;
@@ -93,17 +93,10 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
 
     private ToggleButton btnSwitchLayout;
 
+    private String controlIdentifier;
+    private ExampleGroup selectedControl;
+
     private static final long ANIMATION_DURATION = 200;
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        if (this.drawerLayout.isDrawerVisible(Gravity.LEFT)) {
-            this.actionBarView.setVisibility(View.VISIBLE);
-            this.actionBarView.setAlpha(1f);
-        }
-    }
 
     private void loadContent() {
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -115,7 +108,7 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
 
     private void showGroupMenu() {
         PopupMenu menu = new PopupMenu(this, btnShowGroupMenu);
-        if (!app.isExampleInFavourites(app.selectedControl())) {
+        if (!app.isExampleInFavourites(this.selectedControl)) {
             menu.inflate(R.menu.example_list_default);
         } else {
             menu.inflate(R.menu.example_list_in_favourites);
@@ -150,7 +143,9 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
         favoritesTab = Util.getLayoutPart(this, R.id.tabFavorites, TextView.class);
         favoritesTab.setOnClickListener(this);
         tabPointer = Util.getLayoutPart(this, R.id.tabPointer, ImageView.class);
+
         backgroundImage = Util.getLayoutPart(this, R.id.imageBackground, FrameLayout.class);
+
         btnSwitchLayout = Util.getLayoutPart(this, R.id.btnSwitchLayout, ToggleButton.class);
         btnShowNavigationDrawer = Util.getLayoutPart(this, R.id.hamburger, Button.class);
         drawerLayout = Util.getLayoutPart(this, R.id.drawer_layout, DrawerLayout.class);
@@ -164,6 +159,13 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
         ExampleGroupFragmentAdapter viewPagerAdapter = new ExampleGroupFragmentAdapter(getSupportFragmentManager(), sections);
         viewPager.setAdapter(viewPagerAdapter);
 
+        backgroundImage.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                initPageHeader(viewPager.getCurrentItem());
+            }
+        });
+
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -173,38 +175,36 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
 
         NavigationDrawerFragment navigationDrawerFragment = (NavigationDrawerFragment) this.getFragmentManager().findFragmentById(R.id.navigation_drawer);
         navigationDrawerFragment.setUp(R.id.navigation_drawer, this.drawerLayout);
+    }
 
-        Window window = getWindow();
-        View v = window.getDecorView();
-        int resId = getResources().getIdentifier("action_bar_container", "id", "android");
-        this.actionBarView = v.findViewById(resId);
-        this.actionBarView.setVisibility(View.GONE);
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                initPageHeader(viewPager.getCurrentItem());
-            }
-        }, 20);
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            drawerLayout.closeDrawer(Gravity.LEFT);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TelerikActivityHelper.updateActivityTaskDescription(this);
         this.app = (ExamplesApplicationContext) this.getApplicationContext();
+        Intent intent = this.getIntent();
+        this.controlIdentifier = intent.getStringExtra(ExamplesApplicationContext.INTENT_CONTROL_ID);
+        this.selectedControl = this.app.findControlById(this.controlIdentifier);
+
         this.loadContent();
-
         this.initUI();
-
-        ActionBar actionBar = this.getActionBar();
-        if (actionBar != null) {
-            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        }
 
         this.updateExampleInfo();
         this.loadHeaderBackground();
         this.updatePointerColor();
+
+        if (savedInstanceState == null){
+            this.app.trackScreenOpened(this);
+        }
     }
 
     private void initPageHeader(int position) {
@@ -212,56 +212,50 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
             favoritesTab.setTypeface(Typeface.create("roboto", Typeface.NORMAL));
             allTab.setTypeface(Typeface.create("roboto", Typeface.BOLD));
             animateTabPointer(allTab, ANIMATION_DURATION);
+            this.app.trackEvent(TrackedApplication.CONTROL_SCREEN, TrackedApplication.EVENT_SWIPE_SHOW_ALL);
         } else {
             allTab.setTypeface(Typeface.create("roboto", Typeface.NORMAL));
             favoritesTab.setTypeface(Typeface.create("roboto", Typeface.BOLD));
             animateTabPointer(favoritesTab, ANIMATION_DURATION);
+            this.app.trackEvent(TrackedApplication.CONTROL_SCREEN, TrackedApplication.EVENT_SWIPE_SHOW_FAVOURITES);
         }
     }
 
+
     private void updateExampleInfo() {
-        ExampleGroup control = this.app.selectedControl();
-        this.controlLogo.setImageResource(app.getDrawableResource(control.getHomePageLogoResource()));
-        this.controlLabel.setText(control.getHeaderText());
+        this.controlLogo.setImageResource(app.getDrawableResource(this.selectedControl.getHomePageLogoResource()));
+        this.controlLabel.setText(this.selectedControl.getHeaderText());
     }
 
     @Override
     public void updateTransition(float step) {
-        this.actionBarView.setAlpha(step);
-        if (step > 0f && this.actionBarView.getVisibility() == View.GONE) {
-            this.actionBarView.setVisibility(View.VISIBLE);
-        }
-
-        if (step == 0f && this.actionBarView.getVisibility() == View.VISIBLE) {
-            this.actionBarView.setVisibility(View.GONE);
-        }
     }
 
     @Override
-    public void onNavigationDrawerSectionSelected(int position) {
-        this.app.navigateToSection(this, position);
-        this.app.trackFeature(TrackedApplication.DRAWER_CATEGORY, TrackedApplication.DRAWER_SECTION_SELECTED + ": " + (position == 0 ? "home" : (position == 1 ? "favourites" : "about")));
+    public void onNavigationDrawerSectionSelected(String section) {
+        if (!section.equals(NavigationDrawerFragment.NAV_DRAWER_SECTION_SETTINGS)) {
+            this.app.navigateToSection(this, section);
+        } else {
+            this.app.showSettings(this);
+        }
     }
 
     @Override
     public void onNavigationDrawerControlSelected(ExampleGroup control) {
-        if (control == this.app.selectedControl()) {
+        if (control == this.selectedControl) {
             return;
         }
         this.app.openExample(this, control);
-        this.app.trackFeature(TrackedApplication.DRAWER_CATEGORY, TrackedApplication.DRAWER_CONTROL_SELECTED + ": " + control.getFragmentName());
     }
 
     @Override
     public void onNavigationDrawerOpened() {
-        this.actionBarView.setAlpha(1f);
-        this.app.trackFeature(TrackedApplication.CONTROL_CATEGORY + "_" + this.app.selectedControl().getFragmentName(), TrackedApplication.DRAWER_OPENED);
+        this.app.trackEvent(TrackedApplication.CONTROL_SCREEN, TrackedApplication.EVENT_DRAWER_OPENED);
     }
 
     @Override
     public void onNavigationDrawerClosed() {
-        this.actionBarView.setAlpha(0f);
-        this.actionBarView.setVisibility(View.GONE);
+        this.app.trackEvent(TrackedApplication.CONTROL_SCREEN, TrackedApplication.EVENT_DRAWER_CLOSED);
     }
 
     private void animateTabPointer(TextView view, long duration) {
@@ -295,16 +289,13 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
                 ((ExampleGroupListFragment) fragment).setViewMode(mode);
             }
         }
-        this.app.trackFeature(TrackedApplication.CONTROL_CATEGORY + "_" + this.app.selectedControl().getFragmentName(),
-                TrackedApplication.ACTION_BAR_LIST_LAYOUT_TOGGLED + ": " + (mode == ExampleGroupListFragment.EXAMPLE_GROUP_GRID_MODE ? "grid" : "list"));
+        this.app.trackEvent(TrackedApplication.CONTROL_SCREEN, TrackedApplication.EVENT_LIST_LAYOUT_CHANGED);
     }
 
     private void updatePointerColor() {
         Triangle drawable = new Triangle();
         Resources res = this.getResources();
-        int headerHeight = res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ?
-                (int) res.getDimension(R.dimen.example_group_header_height) :
-                (int) res.getDimension(R.dimen.example_group_header_horizontal_height);
+        int headerHeight = (int) res.getDimension(R.dimen.example_group_header_height);
         LayerDrawable layerDrawable = (LayerDrawable) this.backgroundImage.getBackground();
         BitmapDrawable bitmapDrawable = (BitmapDrawable) layerDrawable.getDrawable(0);
         Bitmap image = bitmapDrawable.getBitmap();
@@ -316,7 +307,7 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
     }
 
     private void loadHeaderBackground() {
-        ExampleGroup selectedGroup = this.app.selectedControl();
+        ExampleGroup selectedGroup = this.selectedControl;
         BitmapDrawable backgroundImage = (BitmapDrawable) this.getResources().getDrawable(this.app.getDrawableResource(selectedGroup.getHomePageHeaderResource()));
         backgroundImage.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
         LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]{backgroundImage});
@@ -402,16 +393,15 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         if (item.getItemId() == R.id.action_add_to_favorites) {
-            this.app.addFavorite(this.app.selectedControl());
-            this.app.trackFeature(TrackedApplication.CONTROL_CATEGORY + "_" + this.app.selectedControl().getFragmentName(), TrackedApplication.ACTION_BAR_MENU_FAVOURITE_ADDED);
+            this.app.addFavorite(this.selectedControl);
+            this.app.trackEvent(TrackedApplication.CONTROL_SCREEN, TrackedApplication.EVENT_ACTION_BAR_FAVORITE_ADD);
             return true;
         } else if (item.getItemId() == R.id.action_remove_from_favorites) {
-            this.app.removeFavorite(this.app.selectedControl());
-            this.app.trackFeature(TrackedApplication.CONTROL_CATEGORY + "_" + this.app.selectedControl().getFragmentName(), TrackedApplication.ACTION_BAR_MENU_FAVOURITE_REMOVED);
+            this.app.removeFavorite(this.selectedControl);
+            this.app.trackEvent(TrackedApplication.CONTROL_SCREEN, TrackedApplication.EVENT_ACTION_BAR_FAVORITE_REMOVE);
             return true;
         } else if (item.getItemId() == R.id.action_view_example_info) {
-            this.app.showInfo(this, this.app.selectedControl());
-            this.app.trackFeature(TrackedApplication.CONTROL_CATEGORY + "_" + this.app.selectedControl().getFragmentName(), TrackedApplication.ACTION_BAR_MENU_VIEW_INFO);
+            this.app.showInfo(this, this.selectedControl);
             return true;
         }
         return false;
@@ -454,8 +444,15 @@ public class ExampleGroupActivity extends FragmentActivity implements Transition
     }
 
     @Override
-    public String getCategoryName() {
-        return TrackedApplication.CONTROL_CATEGORY;
+    public String getScreenName() {
+        return TrackedApplication.CONTROL_SCREEN;
+    }
+
+    @Override
+    public HashMap<String, Object> getAdditionalParameters() {
+        HashMap<String, Object> additionalParams = new HashMap<String, Object>();
+        additionalParams.put(TrackedApplication.PARAM_CONTROL_NAME, this.selectedControl.getShortFragmentName());
+        return additionalParams;
     }
 
     public class ExampleGroupFragmentAdapter extends FragmentStatePagerAdapter {

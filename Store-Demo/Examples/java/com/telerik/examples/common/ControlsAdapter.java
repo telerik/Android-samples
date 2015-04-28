@@ -35,6 +35,11 @@ public class ControlsAdapter extends ArrayAdapter<Example> implements Filterable
     }
 
     @Override
+    public int getViewTypeCount() {
+        return 1;
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.example_list_item, parent, false);

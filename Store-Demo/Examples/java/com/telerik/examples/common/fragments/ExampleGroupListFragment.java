@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -25,19 +26,22 @@ import com.telerik.examples.common.contracts.TrackedActivity;
 import com.telerik.examples.primitives.ExamplesGridView;
 import com.telerik.examples.viewmodels.Example;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ExampleGroupListFragment extends Fragment implements View.OnClickListener, View.OnTouchListener, PopupMenu.OnMenuItemClickListener {
 
     public static final int EXAMPLE_GROUP_GRID_MODE = 1;
     public static final int EXAMPLE_GROUP_LIST_MODE = 2;
 
-    private int currentMode = EXAMPLE_GROUP_LIST_MODE;
-    protected ExamplesGridView gridView;
+    protected int currentMode = EXAMPLE_GROUP_LIST_MODE;
+    protected ExamplesGridView listExamples;
 
     protected ExamplesApplicationContext app;
     protected FragmentActivity parentActivity;
-    private TextView emptyContentString;
+    protected TextView emptyContentString;
 
-    private View initContent(LayoutInflater inflater, ViewGroup container) {
+    protected View initContent(LayoutInflater inflater, ViewGroup container) {
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             return inflater.inflate(R.layout.fragment_example_group_list, container, false);
         } else {
@@ -56,14 +60,14 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
         }
 
         this.emptyContentString = Util.getLayoutPart(root, R.id.emptyContentPresenter, TextView.class);
-        this.gridView = Util.getLayoutPart(root, R.id.grid, ExamplesGridView.class);
+        this.listExamples = Util.getLayoutPart(root, R.id.listExamples, ExamplesGridView.class);
 
         if (this.getActivity() instanceof ExamplesGridView.OnOverScrollByHandler) {
-            this.gridView.setOnOverScrollByHandler((ExamplesGridView.OnOverScrollByHandler) this.getActivity());
+            this.listExamples.setOnOverScrollByHandler((ExamplesGridView.OnOverScrollByHandler) this.getActivity());
         }
-        this.gridView.setOnTouchListener(this);
+        this.listExamples.setOnTouchListener(this);
         if (this.getActivity() instanceof AbsListView.OnScrollListener) {
-            this.gridView.setOnScrollListener((AbsListView.OnScrollListener) this.getActivity());
+            this.listExamples.setOnScrollListener((AbsListView.OnScrollListener) this.getActivity());
         }
         this.setViewMode(listMode);
         return root;
@@ -73,7 +77,7 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
         if (this.getActivity() == null) {
             return;
         }
-        if (this.gridView.getAdapter().getCount() == 0) {
+        if (this.listExamples.getAdapter().getCount() == 0) {
             this.emptyContentString.setVisibility(View.VISIBLE);
         } else {
             this.emptyContentString.setVisibility(View.GONE);
@@ -83,8 +87,8 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
     }
 
     public boolean hasData() {
-        if (this.gridView != null) {
-            return this.gridView.getAdapter() != null && this.gridView.getAdapter().getCount() > 0;
+        if (this.listExamples != null) {
+            return this.listExamples.getAdapter() != null && this.listExamples.getAdapter().getCount() > 0;
         }
 
         return false;
@@ -120,29 +124,29 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
         }
     }
 
-    private void turnOnGridMode() {
-        if (this.gridView.getAdapter() == null) {
-            ExamplesAdapter adapter = this.getAdapter(this.currentMode);
+    protected void turnOnGridMode() {
+        if (this.listExamples.getAdapter() == null) {
+            ExamplesAdapter adapter = this.getAdapter(this.listExamples, this.currentMode);
             adapter.registerDataSetObserver(new ExampleGroupDataSetObserver());
-            this.gridView.setAdapter(adapter);
+            this.listExamples.setAdapter(adapter);
         }
         int columns = this.getResources().getInteger(R.integer.example_list_fragment_columns_wrap);
-        this.gridView.setNumColumns(columns);
-        if (this.gridView.getAdapter() != null) {
-            ((ExamplesAdapter) this.gridView.getAdapter()).setListMode(this.currentMode);
+        this.listExamples.setNumColumns(columns);
+        if (this.listExamples.getAdapter() != null) {
+            ((ExamplesAdapter) this.listExamples.getAdapter()).setListMode(this.currentMode);
         }
     }
 
-    private void turnOnListMode() {
-        if (this.gridView.getAdapter() == null) {
-            ExamplesAdapter adapter = this.getAdapter(this.currentMode);
+    protected void turnOnListMode() {
+        if (this.listExamples.getAdapter() == null) {
+            ExamplesAdapter adapter = this.getAdapter(this.listExamples, this.currentMode);
             adapter.registerDataSetObserver(new ExampleGroupDataSetObserver());
-            this.gridView.setAdapter(adapter);
+            this.listExamples.setAdapter(adapter);
         }
         int columns = this.getResources().getInteger(R.integer.example_list_fragment_columns);
-        this.gridView.setNumColumns(columns);
-        if (this.gridView.getAdapter() != null) {
-            ((ExamplesAdapter) this.gridView.getAdapter()).setListMode(this.currentMode);
+        this.listExamples.setNumColumns(columns);
+        if (this.listExamples.getAdapter() != null) {
+            ((ExamplesAdapter) this.listExamples.getAdapter()).setListMode(this.currentMode);
         }
     }
 
@@ -150,7 +154,7 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
         return this.currentMode;
     }
 
-    protected ExamplesAdapter getAdapter(int mode) {
+    protected ExamplesAdapter getAdapter(GridView forLIst, int mode) {
         return null;
     }
 
@@ -171,10 +175,6 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
 
         } else {
             this.app.openExample(parentActivity, selectedExample);
-            TrackedActivity trackedActivity = (TrackedActivity) getActivity();
-            if (trackedActivity != null) {
-                app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_SELECTED + ": " + selectedExample.getFragmentName());
-            }
         }
     }
 
@@ -183,22 +183,29 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
             app.addFavorite(selectedExample);
             TrackedActivity trackedActivity = (TrackedActivity) getActivity();
             if (trackedActivity != null) {
-                app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_OVERFLOW_FAVOURITE_ADDED);
+                Map<String, Object> params = new HashMap<String, Object>();
+                if (selectedExample.getParentControl() != null) {
+                    params.put(TrackedApplication.PARAM_CONTROL_NAME, selectedExample.getParentControl().getShortFragmentName());
+                }
+                params.put(TrackedApplication.PARAM_EXAMPLE_NAME, selectedExample.getShortFragmentName());
+
+                app.trackEvent(trackedActivity.getScreenName(), TrackedApplication.EVENT_ADD_FAVOURITE);
             }
             return true;
         } else if (item.getItemId() == R.id.action_remove_from_favorites) {
             app.removeFavorite(selectedExample);
             TrackedActivity trackedActivity = (TrackedActivity) getActivity();
             if (trackedActivity != null) {
-                app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_OVERFLOW_FAVOURITE_REMOVED);
+                Map<String, Object> params = new HashMap<String, Object>();
+                if (selectedExample.getParentControl() != null) {
+                    params.put(TrackedApplication.PARAM_CONTROL_NAME, selectedExample.getParentControl().getShortFragmentName());
+                }
+                params.put(TrackedApplication.PARAM_EXAMPLE_NAME, selectedExample.getShortFragmentName());
+                app.trackEvent(trackedActivity.getScreenName(), TrackedApplication.EVENT_REMOVE_FAVOURITE);
             }
             return true;
         } else if (item.getItemId() == R.id.action_view_example_info) {
             app.showInfo(getActivity(), selectedExample);
-            TrackedActivity trackedActivity = (TrackedActivity) getActivity();
-            if (trackedActivity != null) {
-                app.trackFeature(trackedActivity.getCategoryName(), TrackedApplication.LIST_ITEM_OVERFLOW_VIEW_INFO);
-            }
             return true;
         }
 
@@ -217,7 +224,7 @@ public class ExampleGroupListFragment extends Fragment implements View.OnClickLi
         boolean handleScrolling(View v, MotionEvent event);
     }
 
-    private class ExampleGroupDataSetObserver extends DataSetObserver {
+    class ExampleGroupDataSetObserver extends DataSetObserver {
         @Override
         public void onInvalidated() {
             super.onInvalidated();

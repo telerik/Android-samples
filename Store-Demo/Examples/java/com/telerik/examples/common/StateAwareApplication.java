@@ -3,11 +3,21 @@ package com.telerik.examples.common;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.util.Log;
+
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.tagmanager.ContainerHolder;
+import com.google.android.gms.tagmanager.TagManager;
+import com.telerik.examples.R;
+import com.telerik.examples.common.google.ContainerHolderSingleton;
+import com.telerik.examples.common.google.TagManagerApi;
 
 public class StateAwareApplication extends Application implements Application.ActivityLifecycleCallbacks {
 
     private int resumedActivitiesCount = 0;
     private int stoppedActivitiesCount = 0;
+
 
     @Override
     public void onCreate() {

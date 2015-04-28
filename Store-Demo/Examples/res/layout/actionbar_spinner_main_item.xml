@@ -10,4 +10,5 @@
     android:text="Highlighted"
     android:textColor="@color/white"
     android:paddingLeft="0dp"
-    android:paddingRight="10dp" />
+    android:paddingRight="10dp"
+    android:width="@dimen/action_bar_drop_down_min_width"/>

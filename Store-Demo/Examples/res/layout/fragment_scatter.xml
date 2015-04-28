@@ -2,7 +2,6 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchParent.ExampleFragment">
-
     <TextView
         style="@style/WrapContent.ChartTitle"
         android:id="@+id/chartTitle"
@@ -14,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/verticalAxisTitle"
-        android:text="Earnings (GBP/hour)" />
+        android:text="Earnings (GBP/hour)"/>
 
     <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
         android:id="@+id/chart"
@@ -28,7 +27,7 @@
         android:text="Employee Age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" />
+        android:gravity="center"/>
 
     <com.telerik.widget.primitives.legend.RadLegendView
         android:layout_marginTop="15dp"
@@ -36,5 +35,5 @@
         android:id="@+id/scatterLegendView"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

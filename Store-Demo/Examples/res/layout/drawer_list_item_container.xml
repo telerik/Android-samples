@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/navigation_drawer_list_selector">
+    android:layout_height="wrap_content"
+    android:background="@drawable/navigation_drawer_list_bg_selector">
 
     <TextView
+        android:duplicateParentState="true"
         android:id="@+id/drawerItemTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,6 +13,6 @@
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingLeft="15dp"
         android:text="[Sample text goes here]"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textAppearance="?android:attr/textAppearanceListItem"
         android:textColor="@color/black" />
 </LinearLayout>

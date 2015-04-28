@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 
 import com.telerik.examples.R;
 import com.telerik.examples.common.ExamplesApplicationContext;
+import com.telerik.examples.common.TrackedApplication;
 
 public class TipsPresenter extends FrameLayout implements Button.OnClickListener {
 
@@ -80,6 +81,7 @@ public class TipsPresenter extends FrameLayout implements Button.OnClickListener
     public void onClick(View v) {
         this.setVisibility(GONE);
         this.app.setTipLearned(true);
+        this.app.trackEvent(TrackedApplication.HOME_SCREEN, TrackedApplication.EVENT_GOT_IT_CLICK);
     }
 
     private void showTip() {

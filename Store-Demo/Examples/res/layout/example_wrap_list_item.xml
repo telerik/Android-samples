@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:elevation="2dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -52,8 +53,8 @@
         <ImageView
             android:id="@+id/badgeImage"
             android:scaleType="fitCenter"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/example_list_control_badge_size"
+            android:layout_height="@dimen/example_list_control_badge_size"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="31dp"
             android:layout_gravity="bottom|right" />
@@ -61,18 +62,18 @@
         <ImageView
             android:id="@+id/badgeOverlay"
             android:scaleType="fitCenter"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/example_list_control_badge_size"
+            android:layout_height="@dimen/example_list_control_badge_size"
             android:padding="10dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="31dp"
             android:layout_gravity="bottom|right" />
 
-        <View
-            android:clickable="false"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/example_item_base_line_thickness"
-            android:layout_gravity="bottom"
-            android:background="@color/listItemBottomBorder" />
+        <!--<View-->
+            <!--android:clickable="false"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/example_item_base_line_thickness"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:background="@color/listItemBottomBorder" />-->
     </FrameLayout>
 </com.telerik.examples.primitives.SquareLinearLayout>

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:top="24dp"
-        android:left="34dp"
-        android:right="4dp"
-        android:bottom="10dp">
+    <item android:bottom="4dp" >
         <bitmap
-            android:gravity="top|left"
+            android:gravity="bottom|right"
             android:src="@drawable/icon_more" />
     </item>
 </layer-list>

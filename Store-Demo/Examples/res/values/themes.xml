@@ -2,13 +2,17 @@
 
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar"></style>
+    <style name="ApplicationTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
 
-    <style name="DarkTheme" parent="AppTheme">
+    <style name="DarkTheme" parent="ApplicationTheme">
         <item name="android:actionBarStyle">@style/ExamplesActivityActionBar</item>
         <item name="android:actionBarDivider">@drawable/tab_divider</item>
         <item name="scrollingTabViewStyle">@style/ScrollingTabViewStyle</item>
         <item name="scrollingTabStyle">@style/BarTabHorizontal</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="android:actionModeBackground">@color/list_view_example_selection_action_mode_background</item>
+        <item name="android:actionModeCloseDrawable">@drawable/up_caret_white</item>
     </style>
 
     <style name="DarkThemeLandscape" parent="DarkTheme">
@@ -28,8 +32,8 @@
 
     <style name="BrandedActionBarTheme" parent="DarkTheme">
         <item name="android:actionBarStyle">@style/MainActivityActionBar</item>
-        <item name="android:actionBarWidgetTheme">@style/AppTheme</item>
         <item name="android:actionDropDownStyle">@style/SpinnerDropDownStyle</item>
+        <item name="actionDropDownStyle">@style/SpinnerDropDownStyle</item>
     </style>
 
 </resources>

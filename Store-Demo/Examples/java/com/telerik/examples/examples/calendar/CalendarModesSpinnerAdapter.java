@@ -24,6 +24,11 @@ public class CalendarModesSpinnerAdapter extends BaseAdapter implements SpinnerA
     }
 
     @Override
+    public int getViewTypeCount() {
+        return 1;
+    }
+
+    @Override
     public int getCount() {
         return 3;
     }

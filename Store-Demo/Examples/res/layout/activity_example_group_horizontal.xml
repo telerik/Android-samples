@@ -18,7 +18,13 @@
             android:layout_marginTop="-16dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+        <RelativeLayout
+            android:elevation="4dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/example_group_header_height">
 
+        </RelativeLayout>
         <include
             android:id="@+id/exampleGroupTopHeader"
             layout="@layout/example_group_action_bar_horizontal" />
@@ -29,6 +35,5 @@
         android:name="com.telerik.examples.common.fragments.NavigationDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:layout_marginTop="?android:attr/actionBarSize" />
+        android:layout_gravity="start" />
 </android.support.v4.widget.DrawerLayout>

@@ -2,7 +2,9 @@
 <resources>
     <color name="drawerDivider">#FFD2D2D2</color>
     <color name="controlBackground">#FF00BBBC</color>
+    <color name="controlBackgroundHighlighted">#FF584B45</color>
     <color name="listItemBottomBorder">#FFBCBCBC</color>
+    <color name="telerikGreen">#2DB245</color>
 
     <color name="transparent">#00000000</color>
     <color name="white">#ffffffff</color>
@@ -37,6 +39,44 @@
     <color name="calendar_example_menu_color2">#ffae4887</color>
     <color name="calendar_example_menu_color3">#ffff818f</color>
     <color name="calendar_example_menu_color4">#fff0514e</color>
+    <!--Side Drawer-->
+    <color name="drawer_example_menu_color1">#ff1a2250</color>
+    <color name="drawer_example_menu_color2">#ff685d9e</color>
+    <color name="drawer_example_menu_color3">#ffc791ba</color>
+    <color name="drawer_example_menu_color4">#fff28e5e</color>
+    <!--ListView-->
+    <color name="listview_example_menu_color1">#ff16a3b1</color>
+    <color name="listview_example_menu_color2">#ff16a3b1</color>
+    <color name="listview_example_menu_color3">#ff93d1be</color>
+    <color name="listview_example_menu_color4">#fff29474</color>
     <color name="legend_bg">#bbffffff</color>
+
+    <color name="transparentBlack">#66000000</color>
+    <color name="transparentWhite">#FFFFFFFF</color>
+    <color name="listViewToolbarColor">#FF6E40</color>
+    <color name="listViewHorizontalLayoutHeaderColor">#E64A19</color>
+
+    <color name="list_view_example_reorder_bgcolor">#FFEEEEEE</color>
+    <color name="list_view_example_reorder_todo_background">#FF88D4C4</color>
+    <color name="list_view_example_reorder_todo_active_background">#FF00CCA1</color>
+    <color name="list_view_example_reorder_shopping_background">#FFF3C7B9</color>
+    <color name="list_view_example_reorder_shopping_active_background">#FFFF6E40</color>
+    <color name="list_view_example_reorder_complete_background">#FFFFA200</color>
+    <color name="list_view_example_reorder_delete_background">#FFE5503A</color>
+
+    <color name="list_view_example_selection_bgcolor">#FFE4D8D4</color>
+    <color name="list_view_example_selection_menu_foreground">#FFDAD3D0</color>
+    <color name="list_view_example_selection_action_mode_background">#FF5D4037</color>
+    <color name="list_view_example_selection_line_separator_color">#FFD2C7C3</color>
+    <color name="list_view_example_selection_behind_delete">#FFFF1744</color>
+    <color name="list_view_example_selection_behind_fav">#FFF3AF40</color>
+    <color name="list_view_example_selection_selected_title">#FF262120</color>
+    <color name="list_view_example_selection_selected_content">#C7262120</color>
+    <color name="list_view_example_selection_item_title">#FF262120</color>
+    <color name="list_view_example_selection_item_content">#8A262120</color>
+    <color name="list_view_example_selection_item_pressed_state">#16000000</color>
+    <color name="list_view_example_selection_item_normal_state">#E4D8D4</color>
+    <color name="list_view_example_selection_item_selected_state">#C2B0A9</color>
+
     <!--Gradient colors for the ExampleActivity background. Resolved automatically by applying the Fragment short name of each example group to the _example_menu_color# string.-->
 </resources>

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.telerik.examples.R;
 
-public class AboutFragment extends Fragment {
+public class AboutFragment extends Fragment implements NavigationDrawerFragment.SectionInfoProvider {
 
     private View rootView;
 
@@ -26,5 +26,10 @@ public class AboutFragment extends Fragment {
         final String descriptionText = getResources().getString(R.string.activity_about);
         final TextView descriptionTextView = (TextView) this.rootView.findViewById(R.id.descriptionTextView);
         descriptionTextView.setText(Html.fromHtml(descriptionText));
+    }
+
+    @Override
+    public String getSectionName() {
+        return NavigationDrawerFragment.NAV_DRAWER_SECTION_ABOUT;
     }
 }

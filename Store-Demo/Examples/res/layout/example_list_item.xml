@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/example_group_list_item_size"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:elevation="2dp">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -62,13 +63,13 @@
 
         <ImageView
             android:id="@+id/badgeImage"
-            android:layout_width="32dp"
-            android:layout_height="32dp" />
+            android:layout_width="@dimen/example_list_control_badge_size"
+            android:layout_height="@dimen/example_list_control_badge_size" />
 
         <ImageView
             android:id="@+id/badgeOverlay"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/example_list_control_badge_size"
+            android:layout_height="@dimen/example_list_control_badge_size"
             android:padding="10dp" />
 
     </FrameLayout>
@@ -83,10 +84,10 @@
         android:background="@drawable/ic_list_item_overflow"
         android:padding="16dp" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/example_item_base_line_thickness"
-        android:layout_gravity="bottom"
-        android:background="@color/listItemBottomBorder" />
+    <!--<View-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="@dimen/example_item_base_line_thickness"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:background="@color/listItemBottomBorder" />-->
 
 </FrameLayout>

@@ -10,6 +10,7 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
@@ -18,18 +19,34 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/appName"
         android:logo="@drawable/telerik_logo"
-        android:theme="@style/AppTheme"
+        android:theme="@style/ApplicationTheme"
         tools:replace="label">
+        <service tools:ignore="MissingRegistered" android:name="com.google.tagmanager.InstallReferrerService"/>
+        <receiver
+            tools:ignore="MissingRegistered"
+            android:name="com.google.tagmanager.InstallReferrerReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
         <activity
-            android:name="com.telerik.examples.MainActivity"
+            android:name="com.telerik.examples.LoadingActivity"
             android:label="@string/appName"
-            android:launchMode="singleTop"
+            android:noHistory="true"
             android:theme="@style/BrandedActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.telerik.examples.MainActivity"
+            android:label="@string/appName"
+            android:launchMode="singleTop"
+            android:theme="@style/BrandedActionBarTheme">
+
         </activity>
         <activity
             android:name="com.telerik.examples.ExampleGroupActivity"

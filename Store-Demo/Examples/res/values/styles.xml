@@ -28,14 +28,14 @@
         <item name="android:background">#FFFFFFFF</item>
     </style>
 
-    <style name="BarTabHorizontal" parent="android:Widget.Holo.ActionBar.TabView">
+    <style name="BarTabHorizontal" parent="Widget.AppCompat.ActionBar.TabView">
         <item name="android:background">@drawable/tab_selector</item>
         <item name="android:minHeight">76dp</item>
         <item name="android:minWidth">76dp</item>
         <item name="android:padding">0dp</item>
     </style>
 
-    <style name="BarTabVertical" parent="android:Widget.Holo.ActionBar.TabView">
+    <style name="BarTabVertical" parent="Widget.AppCompat.ActionBar.TabView">
         <item name="android:background">@drawable/tab_selector_horizontal</item>
         <item name="android:minHeight">76dp</item>
         <item name="android:minWidth">76dp</item>
@@ -65,18 +65,20 @@
     </style>
 
 
-    <style name="ExamplesActivityActionBar" parent="android:Widget.Holo.ActionBar">
+    <style name="ExamplesActivityActionBar" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">#FF252939</item>
         <item name="android:titleTextStyle">@style/ActionBarTitleTextStyle</item>
     </style>
 
-    <style name="MainActivityActionBar" parent="android:Widget.Holo.ActionBar">
+    <style name="MainActivityActionBar" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">#ff00BBBC</item>
         <item name="android:titleTextStyle">@style/ActionBarTitleTextStyle</item>
     </style>
 
     <style name="SpinnerDropDownStyle" parent="Widget.AppCompat.Light.Spinner.DropDown.ActionBar">
         <item name="android:background">@drawable/actionbar_spinner_arrow</item>
+        <item name="android:paddingRight">12dp</item>
+
     </style>
 
     <style name="ExampleMenuButton">
@@ -97,6 +99,20 @@
         <item name="android:button">@color/transparent</item>
         <item name="android:gravity">top|center</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ListViewListModeRadioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="android:button">@color/transparent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textOn">""</item>
+        <item name="android:textOff">""</item>
     </style>
 
     <style name="AnnotationsRadioButtonLandscape">
@@ -138,5 +154,22 @@
 
     <style name="PanZoomCheckboxLandscape" parent="PanZoomCheckbox">
         <item name="android:layout_marginBottom">2dp</item>
+    </style>
+
+    <style name="DrawerRadioButton">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_marginLeft">-5dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@drawable/drawer_radio_button</item>
+    </style>
+
+    <style name="DrawerPositionButton">
+        <item name="android:button">@drawable/drawer_position_button</item>
+        <item name="android:background">@drawable/drawer_position_button</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">#ffffff</item>
     </style>
 </resources>

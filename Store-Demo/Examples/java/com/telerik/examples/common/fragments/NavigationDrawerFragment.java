@@ -1,28 +1,36 @@
 package com.telerik.examples.common.fragments;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.GridView;
+import android.widget.TextView;
 
+import com.telerik.examples.ExampleGroupActivity;
 import com.telerik.examples.R;
 import com.telerik.examples.common.NavigationDrawerExamplesListAdapter;
 import com.telerik.examples.common.contracts.TransitionHandler;
+import com.telerik.examples.primitives.ExamplesGridView;
 import com.telerik.examples.viewmodels.ExampleGroup;
+
+import org.apache.http.NameValuePair;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -42,6 +50,11 @@ public class NavigationDrawerFragment extends Fragment {
      */
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
+    public static final String NAV_DRAWER_SECTION_HOME = "Home";
+    public static final String NAV_DRAWER_SECTION_ABOUT = "About";
+    public static final String NAV_DRAWER_SECTION_SETTINGS = "Settings";
+    public static final String NAV_DRAWER_SECTION_FAVORITES = "Favorites";
+
     /**
      * Handler for updating the background of the actionbar according to the drawer's level.
      */
@@ -58,11 +71,15 @@ public class NavigationDrawerFragment extends Fragment {
     private ActionBarDrawerToggle mDrawerToggle;
 
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerListView;
-    private ListView controlsList;
+    private ExamplesGridView headerList;
+    private ExamplesGridView controlsList;
+    private ExamplesGridView footerList;
     private View mFragmentContainerView;
+    private ArrayAdapter<String> headerListAdapter;
+    private ArrayAdapter<String> footerListAdapter;
 
-    private int mCurrentNavigationDrawerSection = 0;
+
+    private String mCurrentNavigationDrawerSection = null;
 
     private ActionBar actionBar;
 
@@ -73,14 +90,15 @@ public class NavigationDrawerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.bgTransitionHandler = (TransitionHandler) getActivity();
-        this.actionBar = getActivity().getActionBar();
 
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         if (savedInstanceState != null) {
-            mCurrentNavigationDrawerSection = savedInstanceState.getInt(STATE_SELECTED_POSITION);
+            mCurrentNavigationDrawerSection = savedInstanceState.getString(STATE_SELECTED_POSITION);
+        }else{
+            mCurrentNavigationDrawerSection = !(this.getActivity() instanceof ExampleGroupActivity) ? getResources().getString(R.string.homeString) : null;
         }
     }
 
@@ -88,14 +106,71 @@ public class NavigationDrawerFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // Indicate that this fragment would like to influence the set of actions in the action bar.
+
+        this.headerListAdapter = new SectionArrayAdapter(
+                this.getActivity(),
+                R.layout.drawer_list_item_container,
+                R.id.drawerItemTextView,
+                new String[]{
+                        getString(R.string.homeString),
+                        getString(R.string.favoritesStringPascalCase)
+                }
+        );
+
+        this.headerList.setAdapter(this.headerListAdapter);
+
+        this.footerListAdapter = new SectionArrayAdapter(
+                this.getActivity(),
+                R.layout.drawer_list_item_container,
+                R.id.drawerItemTextView,
+                new String[]{
+                        getString(R.string.settingsString),
+                        getString(R.string.aboutString)
+                }
+
+        );
+
+        this.footerList.setAdapter(this.footerListAdapter);
+
+        int selectedPosition = this.headerListAdapter.getPosition(mCurrentNavigationDrawerSection);
+        if (selectedPosition == -1) {
+            selectedPosition = this.footerListAdapter.getPosition(mCurrentNavigationDrawerSection);
+            this.footerList.setItemChecked(selectedPosition, true);
+        } else {
+            this.headerList.setItemChecked(selectedPosition, true);
+        }
+
         setHasOptionsMenu(true);
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        ActionBarActivity hostingActivity = (ActionBarActivity)this.getActivity();
+        FragmentManager supportFrMngr = hostingActivity.getSupportFragmentManager();
+        android.support.v4.app.Fragment currentFragment = supportFrMngr.findFragmentById(R.id.container);
+        if (currentFragment instanceof SectionInfoProvider){
+            String currentSection = ((SectionInfoProvider)currentFragment).getSectionName();
+            this.updateSelectedSection(currentSection);
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final LinearLayout mLayoutRoot = (LinearLayout) inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        mDrawerListView = (ListView) mLayoutRoot.findViewById(R.id.headerListView);
-        this.controlsList = (ListView) mLayoutRoot.findViewById(R.id.controlsList);
+        final View mLayoutRoot = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        this.headerList = (ExamplesGridView) mLayoutRoot.findViewById(R.id.headerListView);
+        this.headerList.expandWholeHeight = true;
+        this.controlsList = (ExamplesGridView) mLayoutRoot.findViewById(R.id.controlsList);
+        this.controlsList.expandWholeHeight = true;
+        this.footerList = (ExamplesGridView) mLayoutRoot.findViewById(R.id.footerList);
+        this.footerList.expandWholeHeight = true;
+        this.footerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectNavigationDrawerSection((String) parent.getItemAtPosition(position));
+            }
+        });
         this.controlsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -103,31 +178,26 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.headerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectNavigationDrawerSection(position);
+                selectNavigationDrawerSection((String) parent.getItemAtPosition(position));
             }
         });
 
         this.controlsList.setAdapter(new NavigationDrawerExamplesListAdapter(this.getActivity(), 0));
 
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                actionBar.getThemedContext(),
-                R.layout.drawer_list_item_container,
-                R.id.drawerItemTextView,
-                new String[]{
-                        getString(R.string.homeString),
-                        getString(R.string.favoritesStringPascalCase),
-                        getString(R.string.aboutString)
-                }
-        ));
-        mDrawerListView.setItemChecked(mCurrentNavigationDrawerSection, true);
         return mLayoutRoot;
     }
 
     public boolean isDrawerOpen() {
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
+    }
+
+    public void closeDrawer(){
+        if (this.mDrawerLayout != null){
+            this.mDrawerLayout.closeDrawer(Gravity.LEFT);
+        }
     }
 
     /**
@@ -140,12 +210,15 @@ public class NavigationDrawerFragment extends Fragment {
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
 
+        this.actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
+        if (this.actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+        }
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
 
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the navigation drawer and the action bar app icon.
@@ -197,14 +270,18 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    public int selectedSection() {
-        if (this.mDrawerListView == null) {
-            return -1;
-        }
-        return this.mDrawerListView.getSelectedItemPosition();
+    public String selectedSection() {
+        return this.mCurrentNavigationDrawerSection;
     }
 
-    public void selectNavigationDrawerControl(int position) {
+    public void updateSelectedSection(String section){
+        this.mCurrentNavigationDrawerSection = section;
+        this.refreshListControlSelection(this.headerList);
+        this.refreshListControlSelection(this.footerList);
+    }
+
+    private void selectNavigationDrawerControl(int position) {
+        this.updateSelectedSection(null);
         ExampleGroup control = (ExampleGroup) this.controlsList.getItemAtPosition(position);
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
@@ -214,14 +291,18 @@ public class NavigationDrawerFragment extends Fragment {
         }
     }
 
-    public void selectNavigationDrawerSection(int position) {
-        mCurrentNavigationDrawerSection = position;
+    private void selectNavigationDrawerSection(String section) {
+        if (this.mCurrentNavigationDrawerSection != null &&
+                this.mCurrentNavigationDrawerSection.equalsIgnoreCase(section)){
+            return;
+        }
+        this.updateSelectedSection(section);
 
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
         if (mCallbacks != null) {
-            mCallbacks.onNavigationDrawerSectionSelected(position);
+            mCallbacks.onNavigationDrawerSectionSelected(section);
         }
     }
 
@@ -244,7 +325,7 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(STATE_SELECTED_POSITION, mCurrentNavigationDrawerSection);
+        outState.putString(STATE_SELECTED_POSITION, mCurrentNavigationDrawerSection);
     }
 
     @Override
@@ -259,6 +340,24 @@ public class NavigationDrawerFragment extends Fragment {
         return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
+    private void refreshListControlSelection(GridView listControl) {
+        for (int i = 0; i < listControl.getChildCount(); i++) {
+            View currentView = listControl.getChildAt(i);
+            initContainerSelectionState(currentView);
+        }
+    }
+
+    private void initContainerSelectionState(View container) {
+        TextView txtItemText = (TextView) container.findViewById(R.id.drawerItemTextView);
+
+        if (mCurrentNavigationDrawerSection != null &&
+                (!mCurrentNavigationDrawerSection.equals(getResources().getString(R.string.settingsString)) && container.getTag().equals(mCurrentNavigationDrawerSection))) {
+            txtItemText.setTextColor(this.getActivity().getResources().getColor(R.color.telerikGreen));
+        } else {
+            txtItemText.setTextColor(this.getActivity().getResources().getColor(R.color.black));
+        }
+    }
+
     /**
      * Callbacks interface that all activities using this fragment must implement.
      */
@@ -266,12 +365,33 @@ public class NavigationDrawerFragment extends Fragment {
         /**
          * Called when an item in the navigation drawer sections list is selected.
          */
-        void onNavigationDrawerSectionSelected(int position);
+        void onNavigationDrawerSectionSelected(String section);
 
         void onNavigationDrawerControlSelected(ExampleGroup control);
 
         void onNavigationDrawerOpened();
 
         void onNavigationDrawerClosed();
+    }
+
+    class SectionArrayAdapter extends ArrayAdapter<String> {
+        public SectionArrayAdapter(Context context, int resource, int textViewResourceId, String[] objects) {
+            super(context, resource, textViewResourceId, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View rootView = super.getView(position, convertView, parent);
+
+            rootView.setTag(this.getItem(position));
+
+            initContainerSelectionState(rootView);
+
+            return rootView;
+        }
+    }
+
+    public interface SectionInfoProvider{
+        String getSectionName();
     }
 }

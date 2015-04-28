@@ -7,6 +7,7 @@ import android.widget.GridView;
 public class ExamplesGridView extends GridView {
 
     private OnOverScrollByHandler onOverScrollByHandler;
+    public boolean expandWholeHeight = false;
 
     public ExamplesGridView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -31,5 +32,15 @@ public class ExamplesGridView extends GridView {
 
     public interface OnOverScrollByHandler {
         void onOverScrollByHandler(int deltaX, int deltaY, int scrollX, int scrollY, int scrollRangeX, int scrollRangeY, int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        if (expandWholeHeight) {
+            super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST));
+        }else{
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        }
     }
 }

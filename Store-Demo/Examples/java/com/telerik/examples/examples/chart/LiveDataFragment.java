@@ -126,10 +126,9 @@ public class LiveDataFragment extends ExampleFragmentBase implements Runnable {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
+    public boolean onBackPressed() {
         this.isRunning = false;
+        return super.onBackPressed();
     }
 
     private class LiveData {

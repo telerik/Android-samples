@@ -23,6 +23,7 @@ import com.telerik.examples.MainActivity;
 import com.telerik.examples.R;
 import com.telerik.examples.SettingsActivity;
 import com.telerik.examples.ViewCodeActivity;
+import com.telerik.examples.common.fragments.NavigationDrawerFragment;
 import com.telerik.examples.viewmodels.Example;
 import com.telerik.examples.viewmodels.ExampleGroup;
 import com.telerik.examples.viewmodels.ExampleSourceModel;
@@ -49,8 +50,11 @@ public class ExamplesApplicationContext extends TrackedApplication implements Th
     private int openedExamplesCount = 0;
     private List<FavouritesChangedListener> favouritesChangedListeners = new ArrayList<FavouritesChangedListener>();
 
-    private ExampleGroup selectedControl;
-    private Example currentExample;
+    public static final String INTENT_CONTROL_ID = "CONTROL_ID";
+    public static final String INTENT_EXAMPLE_ID = "EXAMPLE_ID";
+    public static final String INTENT_SECTION_ID = "SECTION_ID";
+
+    public static final String INTENT_SOURCE_MODEL_ID = "SOURCE_MODEL";
 
     private static final String PREFS_NAME = "telerik_examples_preferences";
     private static final String FAVORITES = "favorites";
@@ -59,6 +63,7 @@ public class ExamplesApplicationContext extends TrackedApplication implements Th
     private static final String ANALYTICS_ACTIVE_KEY = "analytics_active";
     private static final String OPENED_EXAMPLES_COUNT_KEY = "opened_examples_count";
     private static final int OPEN_ANALYTICS_PROMPT_AFTER_COUNT = 3;
+
 
     private Thread.UncaughtExceptionHandler defaultUEHandler;
     private SharedPreferences.Editor editor;
@@ -250,71 +255,75 @@ public class ExamplesApplicationContext extends TrackedApplication implements Th
         return this.exampleGroups;
     }
 
-    public ExampleGroup selectedControl() {
-        return this.selectedControl;
-    }
-
-    public void selectControl(ExampleGroup controlExamples) {
-        this.selectedControl = controlExamples;
-    }
-
-    public Example selectedExample() {
-        return this.currentExample;
-    }
-
-    public void selectExample(Example example) {
-
-        if (example == null) {
-            this.currentExample = null;
-            return;
+    public ExampleGroup findControlById(String id) {
+        if (id == null) {
+            return null;
         }
-
-        if (example instanceof GalleryExample || !(example instanceof ExampleGroup)) {
-            if (this.selectedControl != null &&
-                    this.selectedControl != example &&
-                    !this.selectedControl.getExamples().contains(example)) {
-                throw new IllegalArgumentException("The provided example is not part of the currently selected control.");
-            } else {
-                this.currentExample = example;
+        for (Example group : this.exampleGroups) {
+            if (group.getFragmentName().equals(id)) {
+                return (ExampleGroup) group;
             }
-        } else {
-            this.selectedControl = (ExampleGroup) example;
         }
+
+        return null;
     }
 
-    public void showInfo(Activity callingActivity, Example example) {
-        this.initSelection(example);
-        Intent exampleInfoIntent = new Intent(callingActivity, ExampleInfoActivity.class);
-        callingActivity.startActivity(exampleInfoIntent);
-    }
+    public Example findExampleById(ExampleGroup parentControl, String id) {
+        if (id == null || parentControl == null) {
+            return null;
+        }
+        for (Example example : parentControl.getExamples()) {
+            if (example.getFragmentName().equals(id)) {
+                return example;
+            }
+        }
 
-    public void showCode(Activity callingActivity, ExampleSourceModel sourceModel) {
-        Intent viewCodeIntent = new Intent(callingActivity, ViewCodeActivity.class);
-        viewCodeIntent.putExtra("source_model", sourceModel);
-        callingActivity.startActivity(viewCodeIntent);
+        return null;
     }
 
     public void showSettings(Activity callingActivity) {
-        Intent viewCodeIntent = new Intent(callingActivity, SettingsActivity.class);
+        Intent settingsIntent = new Intent(this, SettingsActivity.class);
+        callingActivity.startActivity(settingsIntent);
+    }
+
+    public void showInfo(Activity callingActivity, Example example) {
+        Intent exampleInfoIntent = new Intent(callingActivity, ExampleInfoActivity.class);
+        if (example.getParentControl() != null) {
+            exampleInfoIntent.putExtra(ExamplesApplicationContext.INTENT_CONTROL_ID, example.getParentControl().getFragmentName());
+        }else{
+            exampleInfoIntent.putExtra(ExamplesApplicationContext.INTENT_CONTROL_ID, example.getFragmentName());
+        }
+        exampleInfoIntent.putExtra(ExamplesApplicationContext.INTENT_EXAMPLE_ID, example.getFragmentName());
+        callingActivity.startActivity(exampleInfoIntent);
+    }
+
+    public void showCode(Activity callingActivity,Example example, ExampleSourceModel sourceModel) {
+        Intent viewCodeIntent = new Intent(callingActivity, ViewCodeActivity.class);
+        viewCodeIntent.putExtra(ExamplesApplicationContext.INTENT_CONTROL_ID, example.getParentControl().getFragmentName());
+        viewCodeIntent.putExtra(ExamplesApplicationContext.INTENT_EXAMPLE_ID, example.getFragmentName());
+        viewCodeIntent.putExtra(ExamplesApplicationContext.INTENT_SOURCE_MODEL_ID, sourceModel);
         callingActivity.startActivity(viewCodeIntent);
     }
 
     public void openExample(Activity callingActivity, Example example) {
-        this.initSelection(example);
         if (example instanceof GalleryExample || !(example instanceof ExampleGroup)) {
             Intent exampleInfoIntent = new Intent(callingActivity, ExampleActivity.class);
+            exampleInfoIntent.putExtra(ExamplesApplicationContext.INTENT_CONTROL_ID, example.getParentControl().getFragmentName());
+            exampleInfoIntent.putExtra(ExamplesApplicationContext.INTENT_EXAMPLE_ID, example.getFragmentName());
             callingActivity.startActivity(exampleInfoIntent);
         } else {
             Intent exampleInfoIntent = new Intent(callingActivity, ExampleGroupActivity.class);
-            exampleInfoIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            exampleInfoIntent.putExtra(ExamplesApplicationContext.INTENT_CONTROL_ID, example.getFragmentName());
             callingActivity.startActivity(exampleInfoIntent);
         }
     }
 
-    public void navigateToSection(Activity callingActivity, int section) {
+    public void navigateToSection(Activity callingActivity, String section) {
         Intent mainActivity = new Intent(this, MainActivity.class);
-        mainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        mainActivity.putExtra("section", section);
+//        if (section.equals(NavigationDrawerFragment.NAV_DRAWER_SECTION_HOME)) {
+//            mainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        }
+        mainActivity.putExtra(ExamplesApplicationContext.INTENT_SECTION_ID, section);
         callingActivity.startActivity(mainActivity);
     }
 
@@ -329,14 +338,9 @@ public class ExamplesApplicationContext extends TrackedApplication implements Th
             transaction.setCustomAnimations(inTransition, outTransition, inTransition, outTransition);
             transaction.replace(containerId, fragment).commit();
         } else {
-            FragmentManager.BackStackEntry currentEntry = this.getBackStackEntryForFragment(supportFragmentManager, fragment);
-            if (currentEntry == null) {
-                FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-                transaction.setCustomAnimations(inTransition, outTransition, inTransition, outTransition);
-                transaction.replace(containerId, fragment).addToBackStack(fragment.getClass().getName()).commit();
-            } else {
-                supportFragmentManager.popBackStack(currentEntry.getId(), 0);
-            }
+            FragmentTransaction transaction = supportFragmentManager.beginTransaction();
+            transaction.setCustomAnimations(inTransition, outTransition, inTransition, outTransition);
+            transaction.replace(containerId, fragment).addToBackStack(fragment.getClass().getName()).commit();
         }
     }
 
@@ -364,29 +368,6 @@ public class ExamplesApplicationContext extends TrackedApplication implements Th
         }
     }
 
-    private FragmentManager.BackStackEntry getBackStackEntryForFragment(FragmentManager fragmentManager, Fragment entry) {
-        int entriesCount = fragmentManager.getBackStackEntryCount();
-
-        for (int i = 0; i < entriesCount; i++) {
-            FragmentManager.BackStackEntry backStackEntry = fragmentManager.getBackStackEntryAt(i);
-            if (entry.getClass().getName() == backStackEntry.getName()) {
-                return backStackEntry;
-            }
-        }
-
-        return null;
-    }
-
-    private void initSelection(Example example) {
-        if (example instanceof GalleryExample || !(example instanceof ExampleGroup)) {
-            this.selectControl(example.getParentControl());
-            this.selectExample(example);
-        } else {
-            this.selectExample(null);
-            this.selectControl((ExampleGroup) example);
-        }
-    }
-
     @Override
     public void uncaughtException(Thread thread, Throwable throwable) {
         trackException(throwable);
@@ -405,7 +386,7 @@ public class ExamplesApplicationContext extends TrackedApplication implements Th
         final XmlResourceParser parser = getResources().getXml(R.xml.examples);
         final RuntimeException ex = new RuntimeException("Cannot parse XML");
         try {
-            this.exampleGroups = XmlParser.parseXML(parser);
+            this.exampleGroups = ExamplesParser.parseXML(parser);
         } catch (XmlPullParserException e) {
             throw ex;
         } catch (IOException e) {

@@ -81,6 +81,11 @@ public class HotelListAdapter extends ArrayAdapter<Hotel> {
     }
 
     @Override
+    public int getViewTypeCount() {
+        return 1;
+    }
+
+    @Override
     public Hotel getItem(int position) {
         return this.hotels.get(position);
     }

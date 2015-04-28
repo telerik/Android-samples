@@ -14,13 +14,13 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
             <ImageView
                 android:src="@drawable/calendar_pic_1"
                 android:scaleType="fitXY"
                 android:layout_width="5000dp"
-                android:layout_height="5000dp"></ImageView>
-        </FrameLayout>
+                android:layout_height="5000dp">
+                </ImageView>
+            </FrameLayout>
     </com.telerik.widget.primitives.panels.RadScrollView>
 
 </FrameLayout>

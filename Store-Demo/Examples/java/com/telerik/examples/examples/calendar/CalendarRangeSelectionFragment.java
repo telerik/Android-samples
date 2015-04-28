@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,14 +17,13 @@ import com.telerik.android.common.Function;
 import com.telerik.examples.R;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
 import com.telerik.widget.calendar.CalendarAdapter;
-import com.telerik.widget.calendar.CalendarCell;
-import com.telerik.widget.calendar.CalendarFragment;
 import com.telerik.widget.calendar.CalendarSelectionMode;
 import com.telerik.widget.calendar.CalendarStyles;
 import com.telerik.widget.calendar.CalendarTextElement;
-import com.telerik.widget.calendar.CellDecorationsLayer;
 import com.telerik.widget.calendar.DateRange;
 import com.telerik.widget.calendar.RadCalendarView;
+import com.telerik.widget.calendar.ScrollMode;
+import com.telerik.widget.calendar.decorations.CircularRangeDecorator;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,8 +34,11 @@ import java.util.Locale;
  */
 public class CalendarRangeSelectionFragment extends ExampleFragmentBase {
 
-    private final static int purpleColor = Color.parseColor("#511749");
-    private final static int BACKGROUND_COLOR = Color.parseColor("#F2F2F2");
+    private static final int SELECTION_COLOR_MAIN = Color.parseColor("#C56BB9");
+    private static final int SELECTION_COLOR_SECONDARY = Color.parseColor("#E6BDE0");
+    private static final int PURPLE_COLOR = Color.parseColor("#511749");
+    private static final int BACKGROUND_COLOR = Color.parseColor("#F2F2F2");
+
     private Spinner spinnerLocation;
     private Spinner spinnerRange;
     private Spinner spinnerGuests;
@@ -136,30 +137,18 @@ public class CalendarRangeSelectionFragment extends ExampleFragmentBase {
                 calendarView.animateToNext();
             }
         });
+
         calendarView = (RadCalendarView) rootView.findViewById(R.id.calendarView);
         calendarView.setMinDate(Calendar.getInstance().getTimeInMillis());
         calendarView.setHorizontalScroll(true);
         calendarView.setShowGridLines(false);
-        calendarView.setCellDecorationsLayer(new CircleCellDecorationLayer(calendarView));
+        calendarView.setScrollMode(ScrollMode.None);
         updateHandledGestures(calendarView);
 
-        CalendarAdapter adapter = new CircleCellsCalendarAdapter(calendarView);
-        adapter.setStyle(CalendarStyles.light(getActivity()));
-        adapter.setTitleBackgroundColor(BACKGROUND_COLOR);
-        adapter.setTitleTextColor(purpleColor);
-
-        adapter.setDateCellBackgroundColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
-        adapter.setTodayCellBackgroundColor(BACKGROUND_COLOR);
-        adapter.setSelectedCellBackgroundColor(BACKGROUND_COLOR);
-        adapter.setDateTextPosition(CalendarTextElement.CENTER);
-
-        adapter.setDayNameBackgroundColor(BACKGROUND_COLOR);
-        adapter.setDayNameTextPosition(CalendarTextElement.CENTER);
-
-        calendarView.setAdapter(adapter);
-        calendarView.setCellDecorationsLayer(new CircleCellDecorationLayer(calendarView));
-
         calendarView.setSelectionMode(CalendarSelectionMode.Range);
+        CircularRangeDecorator decorator = new CircularRangeDecorator(calendarView);
+        calendarView.setCellDecorator(decorator);
+
         calendarView.setDateToColor(new Function<Long, Integer>() {
             @Override
             public Integer apply(Long argument) {
@@ -169,7 +158,7 @@ public class CalendarRangeSelectionFragment extends ExampleFragmentBase {
                 if (cellDate.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
                         cellDate.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
                         cellDate.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH)) {
-                    return purpleColor;
+                    return PURPLE_COLOR;
                 }
                 return null;
             }
@@ -204,6 +193,23 @@ public class CalendarRangeSelectionFragment extends ExampleFragmentBase {
                 dialogOpened = false;
             }
         });
+
+        CalendarAdapter adapter = calendarView.getAdapter();
+        adapter.setStyle(CalendarStyles.light(getActivity()));
+        adapter.setTitleBackgroundColor(BACKGROUND_COLOR);
+        adapter.setTitleTextColor(PURPLE_COLOR);
+        adapter.setTodayCellBorderColor(Color.TRANSPARENT);
+
+        adapter.setDateCellBackgroundColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
+        adapter.setTodayCellBackgroundColor(BACKGROUND_COLOR);
+        adapter.setSelectedCellBackgroundColor(BACKGROUND_COLOR);
+        adapter.setDateTextPosition(CalendarTextElement.CENTER);
+
+        adapter.setDayNameBackgroundColor(BACKGROUND_COLOR);
+        adapter.setDayNameTextPosition(CalendarTextElement.CENTER);
+
+        decorator.setColor(SELECTION_COLOR_SECONDARY);
+        decorator.setShapeColor(SELECTION_COLOR_MAIN);
     }
 
     @Override
@@ -281,35 +287,5 @@ public class CalendarRangeSelectionFragment extends ExampleFragmentBase {
 
     private int getDayCount(long millis) {
         return (int) (((millis / 1000) / 60) / 60) / 24;
-    }
-
-    class CircleCellsCalendarAdapter extends CalendarAdapter {
-
-        public CircleCellsCalendarAdapter(RadCalendarView owner) {
-            super(owner);
-        }
-
-        @Override
-        public CalendarFragment generateFragment() {
-            return new CircleCellFragment(this.owner);
-        }
-
-        class CircleCellFragment extends CalendarFragment {
-            public CircleCellFragment(RadCalendarView owner) {
-                super(owner);
-            }
-
-            @Override
-            protected void updateDecorationForCell(CalendarCell cell, CellDecorationsLayer renderer) {
-                if (isCurrentFragment())
-                    ((CircleCellDecorationLayer) renderer).addDecorationForCell(new Rect(
-                                    (cell.getLeft() + this.virtualXPosition - this.getLeft()),
-                                    (cell.getTop() + this.virtualYPosition - this.getTop()),
-                                    (cell.getRight() + this.virtualXPosition - this.getLeft()),
-                                    (cell.getBottom() + this.virtualYPosition - this.getTop())),
-                            cell.getDate()
-                    );
-            }
-        }
     }
 }

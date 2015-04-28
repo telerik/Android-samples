@@ -19,7 +19,7 @@ import com.telerik.widget.chart.visualization.pieChart.RadPieChartView;
 public class PieSeriesSecondFragment extends PieFragment {
 
     class CustomLabelRenderer extends PieSeriesLabelRenderer {
-        CustomLabelRenderer(ChartSeries owner) {
+        CustomLabelRenderer(PieSeries owner) {
             super(owner);
         }
 

@@ -4,24 +4,22 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <LinearLayout
         android:gravity="top"
         android:id="@+id/topData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" />
-
+        android:orientation="horizontal"/>
     <LinearLayout
         android:id="@+id/bottomData"
         android:layout_below="@+id/topData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"/>
 
     <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
         android:layout_below="@+id/bottomData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/chart" />
+        android:id="@+id/chart"/>
 </RelativeLayout>
