@@ -76,6 +76,8 @@ namespace Samples
 			result.Add (new EventRenderModeFragment());
 			result.Add (new ReadEventsFragment());
 			result.Add (new ReadEventsOptionsFragment());
+			result.Add (new EventsInlineDisplayModeFragment());
+			result.Add (new EventsPopupDisplayModeFragment());
 
 			calendarExamples.Put ("Events", result);
 

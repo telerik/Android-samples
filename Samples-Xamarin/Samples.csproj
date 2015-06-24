@@ -72,6 +72,9 @@
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
       <HintPath>lib\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.v8.RenderScript">
+      <HintPath>packages\Xamarin.Android.Support.v8.RenderScript.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v8.RenderScript.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -152,11 +155,14 @@
     <Compile Include="Fragments\Calendar\Selection\SelectionDecoratorsFragment.cs" />
     <Compile Include="Fragments\SideDrawer\DrawerInitialSetupFragment.cs" />
     <Compile Include="Adapters\SideDrawerExamples.cs" />
+    <Compile Include="Fragments\Calendar\Events\EventsPopupDisplayModeFragment.cs" />
+    <Compile Include="Fragments\Calendar\Events\EventsInlineDisplayModeFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
