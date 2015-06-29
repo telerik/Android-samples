@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.telerik.android.sdk.R;
+import com.telerik.widget.list.DeckOfCardsLayoutManager;
 import com.telerik.widget.list.ListViewAdapter;
 import com.telerik.widget.list.ListViewHolder;
 import com.telerik.widget.list.RadListView;
@@ -61,6 +62,14 @@ public class ListViewLayoutsFragment extends Fragment implements ExampleFragment
             public void onClick(View v) {
                 GridLayoutManager glm = new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, false);
                 listView.setLayoutManager(glm);
+            }
+        });
+        Button btnDeck = (Button)rootView.findViewById(R.id.btnDeck);
+        btnDeck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeckOfCardsLayoutManager dclm = new DeckOfCardsLayoutManager(getActivity());
+                listView.setLayoutManager(dclm);
             }
         });
 

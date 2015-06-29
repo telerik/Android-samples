@@ -14,7 +14,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AssemblyName>Samples</AssemblyName>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -64,13 +64,13 @@
       <HintPath>lib\Telerik.Xamarin.Android.List.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>lib\Xamarin.Android.Support.v4.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
-      <HintPath>lib\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v4.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
-      <HintPath>lib\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v7.RecyclerView.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v8.RenderScript">
       <HintPath>packages\Xamarin.Android.Support.v8.RenderScript.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v8.RenderScript.dll</HintPath>
@@ -157,6 +157,7 @@
     <Compile Include="Adapters\SideDrawerExamples.cs" />
     <Compile Include="Fragments\Calendar\Events\EventsPopupDisplayModeFragment.cs" />
     <Compile Include="Fragments\Calendar\Events\EventsInlineDisplayModeFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewDeckOfCardsFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -196,6 +197,8 @@
     <AndroidResource Include="Resources\layout\fragment_side_drawer_features.axml" />
     <AndroidResource Include="Resources\layout\side_drawer_features_drawer_content.axml" />
     <AndroidResource Include="Resources\layout\side_drawer_features_main_content.axml" />
+    <AndroidResource Include="Resources\layout\fragment_list_view_deck.axml" />
+    <AndroidResource Include="Resources\layout\example_list_view_deck_item_layout.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

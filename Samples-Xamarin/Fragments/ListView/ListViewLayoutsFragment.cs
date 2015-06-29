@@ -42,6 +42,12 @@ namespace Samples
 				GridLayoutManager glm = new GridLayoutManager(this.Activity, 3, GridLayoutManager.Vertical, false);
 				listView.SetLayoutManager(glm);
 			};
+
+			Button btnDeck = (Button)rootView.FindViewById(Resource.Id.btnDeck);
+			btnDeck.Click += (object sender, EventArgs e) => {
+				DeckOfCardsLayoutManager dclm = new DeckOfCardsLayoutManager(this.Activity);
+				listView.SetLayoutManager(dclm);
+			};
 		
 
 			ArrayList source = new ArrayList();

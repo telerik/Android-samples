@@ -8,7 +8,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#74d5"
+        android:background="#FF04dd55"
         android:layout_margin="8dp">
 
         <TextView

@@ -3,6 +3,7 @@ package activities;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fragments.listview.ListViewDeckOfCardsFragment;
 import fragments.listview.ListViewGettingStartedFragment;
 import fragments.listview.ListViewLoadOnDemandFragment;
 import fragments.listview.ListViewSelectionFragment;
@@ -30,6 +31,7 @@ public class ListViewExamples implements ExamplesProvider {
 
         examplesSet.add(new ListViewGettingStartedFragment());
         examplesSet.add(new ListViewLayoutsFragment());
+        examplesSet.add(new ListViewDeckOfCardsFragment());
         examplesSet.add(new ListViewItemAnimationFragment());
         examplesSet.add(new ListViewDataOperationsFragment());
 

@@ -1,43 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="fragments.listview.ListViewGettingStartedFragment">
-
-
     <LinearLayout
         android:id="@+id/buttonsLayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <Button
             android:id="@+id/btnLinear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Linear"/>
-
+            android:text="Linear" />
         <Button
             android:id="@+id/btnGrid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Grid"/>
-
-
+            android:text="Grid" />
         <Button
             android:id="@+id/btnStaggered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Staggered"/>
-
+            android:text="Staggered" />
+        <Button
+            android:id="@+id/btnDeck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DeckOfCards" />
     </LinearLayout>
-
     <com.telerik.widget.list.RadListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/buttonsLayer">
-
-    </com.telerik.widget.list.RadListView>
-
+        android:layout_below="@id/buttonsLayer" />
 </RelativeLayout>
