@@ -23,6 +23,7 @@ public class ControlsAdapter extends ArrayAdapter {
         this.source.add(new ListViewExamples());
         this.source.add(new CalendarExamples());
         this.source.add(new SideDrawerExamples());
+        this.source.add(new DataFormExamples());
     }
 
     @Override

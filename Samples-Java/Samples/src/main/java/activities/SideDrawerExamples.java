@@ -13,13 +13,13 @@ public class SideDrawerExamples implements ExamplesProvider {
 
     @Override
     public HashMap<String, ArrayList<ExampleFragment>> examples() {
-        HashMap<String, ArrayList<ExampleFragment>> chartExamples = new HashMap<String, ArrayList<ExampleFragment>>();
+        HashMap<String, ArrayList<ExampleFragment>> drawerExamples = new HashMap<String, ArrayList<ExampleFragment>>();
 
         ArrayList<ExampleFragment> result = new ArrayList<ExampleFragment>();
         result.add(new SideDrawerFeaturesFragment());
-        chartExamples.put("Features", result);
+        drawerExamples.put("Features", result);
 
 
-        return chartExamples;
+        return drawerExamples;
     }
 }
