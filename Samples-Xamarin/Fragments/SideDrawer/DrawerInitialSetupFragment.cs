@@ -18,15 +18,12 @@ namespace Samples
 		{
 			transitions.Add (new SlideInOnTopTransition ());
 			transitions.Add (new FallDownTransition());
-			transitions.Add (new OpenDoorTransition());
 			transitions.Add (new PushTransition());
 			transitions.Add (new RevealTransition());
 			transitions.Add (new ReverseSlideOutTransition());
-			transitions.Add (new RotateInTransition());
 			transitions.Add (new ScaleDownPusherTransition());
 			transitions.Add (new ScaleUpTransition());
 			transitions.Add (new SlideAlongTransition());
-			transitions.Add (new EmptyTransition());
 			ViewGroup rootView = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_side_drawer_features, null);
 
 			drawer = new RadSideDrawer (Activity);
