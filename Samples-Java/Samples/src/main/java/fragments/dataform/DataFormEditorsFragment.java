@@ -7,6 +7,6 @@ import activities.ExampleFragment;
 public class DataFormEditorsFragment extends Fragment implements ExampleFragment {
     @Override
     public String title() {
-        return null;
+        return "Editors";
     }
 }

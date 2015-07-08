@@ -17,15 +17,11 @@ import com.telerik.widget.list.ListViewDataSourceAdapter;
 import com.telerik.widget.list.ListViewHolder;
 import com.telerik.widget.list.RadListView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ginev on 2/20/2015.
- */
 public class ListViewDataOperationsFragment extends Fragment implements ExampleFragment {
 
     private RadListView listView;

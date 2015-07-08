@@ -7,6 +7,6 @@ import activities.ExampleFragment;
 public class DataFormValidationFragment extends Fragment implements ExampleFragment {
     @Override
     public String title() {
-        return null;
+        return "Validation";
     }
 }

@@ -1,0 +1,84 @@
+package fragments.dataform;
+
+import com.telerik.widget.dataform.engine.MailValidator;
+import com.telerik.widget.dataform.engine.NotifyPropertyChangedBase;
+import com.telerik.widget.dataform.engine.RangeValidator;
+import com.telerik.widget.dataform.visualization.annotations.DataFormProperty;
+import com.telerik.widget.dataform.visualization.editors.DataFormDateEditor;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Person extends NotifyPropertyChangedBase {
+    private Integer age;
+    private Boolean isEmployed;
+    private EmployeeType employeeType;
+    private String name;
+    private String mail;
+    private Long birthDate;
+
+    @DataFormProperty(label = "Age", index = 0, validator = RangeValidator.class)
+    public Integer getAge() {
+        return age;
+    }
+    public void setAge(Integer value) {
+        age = value;
+        notifyListeners("Age", value);
+    }
+
+    @DataFormProperty(label = "Employee Type", index = 1)
+    public EmployeeType getEmployeeType() {
+        return employeeType;
+    }
+    public void setEmployeeType(EmployeeType value) {
+        employeeType = value;
+        notifyListeners("EmployeeType", value);
+    }
+
+    @DataFormProperty(label = "Name", index = 0, columnIndex = 1)
+    public String getName() {
+        return name;
+    }
+    public void setName(String value) {
+        name = value;
+        notifyListeners("Name", value);
+    }
+
+    @DataFormProperty(label = "E-mail", index = 2, validator = MailValidator.class)
+    public String getMail() {
+        return mail;
+    }
+    public void setMail(String value) {
+        this.mail = value;
+        notifyListeners("Mail", value);
+    }
+
+    @DataFormProperty(label = "Employed", index = 2, columnIndex = 1)
+    public boolean getIsEmployed() {
+        return isEmployed;
+    }
+
+    public void setIsEmployed(boolean value) {
+        isEmployed = value;
+        notifyListeners("IsEmployed", value);
+    }
+
+    @DataFormProperty(label = "Birth Date", index = 1, columnIndex = 1, editor = DataFormDateEditor.class)
+    public long getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(long value) {
+        this.birthDate = value;
+        notifyListeners("BirthDate", value);
+    }
+
+    @Override
+    public String toString() {
+        DateFormat dateFormat = SimpleDateFormat.getDateInstance();
+
+        return String.format("Name: %s, Age: %s, Mail: %s, EmployeeType: %s, IsEmployed: %s, BirthDate: %s",
+                name, Integer.toString(age), mail, employeeType.toString(), Boolean.toString(isEmployed), dateFormat.format(new Date(birthDate)));
+    }
+}
