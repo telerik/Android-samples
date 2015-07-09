@@ -19,7 +19,6 @@ public class DataFormGettingStartedFragment extends Fragment implements ExampleF
     }
 
     @Nullable
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootLayout = (ViewGroup)inflater.inflate(R.layout.fragment_dataform_getting_started, null);

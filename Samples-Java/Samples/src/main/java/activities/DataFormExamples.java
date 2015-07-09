@@ -14,17 +14,15 @@ public class DataFormExamples implements ExamplesProvider {
     @Override
     public HashMap<String, ArrayList<ExampleFragment>> examples() {
 
-        HashMap<String, ArrayList<ExampleFragment>> dataFormExamples = new HashMap<String, ArrayList<ExampleFragment>>();
+        HashMap<String, ArrayList<ExampleFragment>> dataFormExamples = new HashMap<>();
 
-        ArrayList<ExampleFragment> result = new ArrayList<ExampleFragment>();
+        ArrayList<ExampleFragment> result = new ArrayList<>();
         result.add(new DataFormGettingStartedFragment());
         result.add(new DataFormFeaturesFragment());
         result.add(new DataFormEditorsFragment());
         result.add(new DataFormLayoutFragment());
         result.add(new DataFormValidationFragment());
-        result.add(new DataFormFeaturesFragment());
         dataFormExamples.put("Examples", result);
-
 
         return dataFormExamples;
     }
