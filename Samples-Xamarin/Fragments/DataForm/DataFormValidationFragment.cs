@@ -24,7 +24,7 @@ namespace Samples
 			RadDataForm dataForm = new RadDataForm(this.Activity);
 			dataForm.Entity = new Person();
 
-			dataForm.GetExistingEditorForProperty("Name").Property().Validator = new NonEmptyValidator();
+			//dataForm.GetExistingEditorForProperty("Name").Property().Validator = new NonEmptyValidator();
 
 			layoutRoot.AddView(dataForm);
 

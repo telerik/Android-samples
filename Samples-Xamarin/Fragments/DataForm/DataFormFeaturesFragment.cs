@@ -32,19 +32,20 @@ namespace Samples
 			CheckBox readOnly = (CheckBox)layoutRoot.FindViewById(Resource.Id.readOnly);
 			readOnly.SetOnCheckedChangeListener(this);
 
-			dataForm = layoutRoot.FindViewById<RadDataForm>(Resource.Id.dataForm);
+			dataForm = new RadDataForm (Activity);
+			layoutRoot.AddView (dataForm, 0);
 
 			person = new Person();
 			person.AddPropertyChangedListener(this);
 
 			dataForm.Entity = person;
 
-			RangeValidator validator = (RangeValidator) dataForm.GetExistingEditorForProperty("Age").Property().Validator;
-			validator.Max = new Java.Lang.Integer(30);
-			validator.Min = new Java.Lang.Integer(18);
+			//RangeValidator validator = (RangeValidator) dataForm.GetExistingEditorForProperty("Age").Property().Validator;
+			//validator.Max = new Java.Lang.Integer(30);
+			//validator.Min = new Java.Lang.Integer(18);
 
 			Spinner commitModes = (Spinner)layoutRoot.FindViewById(Resource.Id.commitModeSpinner);
-			commitModes.Adapter = new ArrayAdapter(Activity, Android.Resource.Layout.SimpleListItem1, Enum.GetValues(typeof(CommitMode)));
+			commitModes.Adapter = new ArrayAdapter(Activity, Android.Resource.Layout.SimpleListItem1, CommitMode.Values());
 			commitModes.OnItemSelectedListener = this;
 
 			personText = (TextView)layoutRoot.FindViewById(Resource.Id.personText);
@@ -65,7 +66,7 @@ namespace Samples
 		}
 
 		public void OnItemSelected(AdapterView parent, View view, int position, long id) {
-			dataForm.CommitMode = (CommitMode) Enum.GetValues (typeof(CommitMode)).GetValue (position);
+			dataForm.CommitMode = CommitMode.Values()[position];
 
 			if(dataForm.CommitMode == CommitMode.Manual) {
 				commitButton.Visibility = Android.Views.ViewStates.Visible;
