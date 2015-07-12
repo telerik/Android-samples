@@ -35,7 +35,7 @@ namespace Samples
 			RadCartesianChartView chart = new RadCartesianChartView(this.Activity);
 
 			DateTimeCategoricalAxis horizontalAxis = new DateTimeCategoricalAxis();
-			horizontalAxis.SetDateTimeFormat(new SimpleDateFormat("MM/dd"));
+			horizontalAxis.DateTimeFormat = new SimpleDateFormat("MM/dd");
 			horizontalAxis.DateTimeComponent = DateTimeComponent.Date;
 
 			LinearAxis verticalAxis = new LinearAxis();

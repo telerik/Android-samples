@@ -1,6 +1,5 @@
 ﻿using System;
 using Java.Util;
-using Com.Telerik.Widget.Calendar;
 using Com.Telerik.Android.Common;
 
 namespace Samples
@@ -10,7 +9,7 @@ namespace Samples
 		private HashMap sideDrawerExamples;
 
 		public SideDrawerExamples(){
-			this.sideDrawerExamples = this.getCalendarExamples();
+			this.sideDrawerExamples = this.getSideDrawerExamples();
 		}
 
 		public String ControlName() {
@@ -21,15 +20,15 @@ namespace Samples
 			return this.sideDrawerExamples;
 		}
 
-		private HashMap getCalendarExamples(){
-			HashMap calendarExamples = new HashMap();
+		private HashMap getSideDrawerExamples(){
+			HashMap sideDrawerExamples = new HashMap();
 			ArrayList result = new ArrayList();
 
 			result.Add (new DrawerInitialSetupFragment());
 
-			calendarExamples.Put ("Init", result);
+			sideDrawerExamples.Put ("Init", result);
 
-			return calendarExamples;
+			return sideDrawerExamples;
 		}
 	}
 }
