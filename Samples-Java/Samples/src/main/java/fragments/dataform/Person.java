@@ -11,12 +11,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Person extends NotifyPropertyChangedBase {
-    private Integer age;
-    private Boolean isEmployed;
-    private EmployeeType employeeType;
-    private String name;
-    private String mail;
-    private Long birthDate;
+    private Integer age = 18;
+    private Boolean isEmployed = false;
+    private EmployeeType employeeType = EmployeeType.PROGRAMMER;
+    private String name = "";
+    private String mail = "";
+    private Long birthDate = 0L;
 
     @DataFormProperty(label = "Age", index = 0, validator = RangeValidator.class)
     public Integer getAge() {
