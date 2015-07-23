@@ -37,7 +37,6 @@ import java.util.List;
  * A simple {@link android.app.Fragment} subclass.
  */
 public class ListViewSelectionFragment extends ExampleFragmentBase {
-
     static final long INVALID_ID = -1;
 
     private RadListView listView;

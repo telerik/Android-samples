@@ -16,8 +16,8 @@ public class BubbleSeriesFragment extends ScatterFragment {
     }
 
     @Override
-    protected void prepareScatterChart() {
-        super.prepareScatterChart();
+    protected void setupAxes() {
+        super.setupAxes();
 
         LinearAxis verticalAxis = (LinearAxis) this.cartesianChart.getVerticalAxis();
         verticalAxis.setLabelFormat("%s%%");

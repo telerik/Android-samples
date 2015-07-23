@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="activity_about"><![CDATA[Telerik Examples demonstrates scenarios developers can achieve using Telerik UI for Android - <b>a fully customizable native development toolset for building enterprise and consumer apps.]]></string>
+    <string name="activity_about"><![CDATA[This app shows scenarios developers can achieve using Telerik UI for Android.]]></string>
 
 </resources>

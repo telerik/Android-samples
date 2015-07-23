@@ -1,7 +1,6 @@
 package com.telerik.examples.examples.sidedrawer;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.googlecode.flickrjandroid.photos.PhotoList;
-import com.telerik.android.primitives.widget.sidedrawer.DrawerChangeListener;
 import com.telerik.android.primitives.widget.sidedrawer.RadSideDrawer;
 import com.telerik.examples.R;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
@@ -47,16 +45,6 @@ public class DrawerFragment extends ExampleFragmentBase implements View.OnClickL
 
         if(downloader != null) {
             downloader.cancel(true);
-        }
-    }
-
-    @Override
-    public void unloadExample() {
-        super.unloadExample();
-
-        RecipeMenuAdapter adapter = (RecipeMenuAdapter)mainList.getAdapter();
-        if(adapter != null) {
-            adapter.cancelDownloads();
         }
     }
 

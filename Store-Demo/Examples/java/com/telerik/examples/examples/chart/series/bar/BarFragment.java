@@ -5,6 +5,8 @@ import com.telerik.examples.examples.chart.ChartSelectionAndTooltipFragment;
 import com.telerik.examples.viewmodels.ExampleDataProvider;
 import com.telerik.widget.chart.engine.axes.common.AxisLabelFitMode;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
+import com.telerik.widget.chart.visualization.behaviors.ChartAnimationPanel;
+import com.telerik.widget.chart.visualization.behaviors.animations.ChartFadeAnimation;
 import com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.CategoricalAxis;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.LinearAxis;

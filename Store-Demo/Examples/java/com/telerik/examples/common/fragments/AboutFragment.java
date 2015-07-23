@@ -1,5 +1,7 @@
 package com.telerik.examples.common.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -26,6 +28,24 @@ public class AboutFragment extends Fragment implements NavigationDrawerFragment.
         final String descriptionText = getResources().getString(R.string.activity_about);
         final TextView descriptionTextView = (TextView) this.rootView.findViewById(R.id.descriptionTextView);
         descriptionTextView.setText(Html.fromHtml(descriptionText));
+        // Documentation tracking link. This will test how many developers view the documentation on their mobile device.
+        final TextView documentationLinkTextView = (TextView) this.rootView.findViewById(R.id.documentationTrackingLink);
+        documentationLinkTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View args) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://docs.telerik.com/devtools/android/introduction?utm_medium=mobile-app&utm_source=AndroidDemoApp&utm_campaign=dt-android-examples-app&utm_content=documentation-link"));
+                startActivity(browserIntent);
+            }
+        });
+        // Product page tracking link. This will test how many developers browse the product page on their mobile device.
+        final TextView productPageLinkTextView = (TextView) this.rootView.findViewById(R.id.productPageTrackingLink);
+        productPageLinkTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View args) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.telerik.com/android-ui?utm_medium=mobile-app&utm_source=AndroidDemoApp&utm_campaign=dt-android-examples-app&utm_content=product-link"));
+                startActivity(browserIntent);
+            }
+        });
     }
 
     @Override

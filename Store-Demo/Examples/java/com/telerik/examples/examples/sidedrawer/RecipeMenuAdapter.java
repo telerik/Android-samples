@@ -8,12 +8,12 @@ import android.widget.BaseAdapter;
 
 import com.googlecode.flickrjandroid.photos.Photo;
 import com.googlecode.flickrjandroid.photos.PhotoList;
-import com.telerik.examples.examples.listview.PhotoItemContainer;
+import com.telerik.examples.examples.listview.PhotoItemData;
 
 import java.util.ArrayList;
 
 public class RecipeMenuAdapter extends BaseAdapter {
-    ArrayList<PhotoItemContainer> photos;
+    ArrayList<PhotoItemData> photos;
     Context context;
     LayoutInflater inflater;
 
@@ -25,22 +25,16 @@ public class RecipeMenuAdapter extends BaseAdapter {
         this.photos = this.wrapPhotos(photos);
     }
 
-    private ArrayList<PhotoItemContainer> wrapPhotos(PhotoList list) {
-        ArrayList<PhotoItemContainer> result = new ArrayList<PhotoItemContainer>();
+    private ArrayList<PhotoItemData> wrapPhotos(PhotoList list) {
+        ArrayList<PhotoItemData> result = new ArrayList<PhotoItemData>();
 
         for(Photo photo : list) {
-            PhotoItemContainer container = new PhotoItemContainer();
+            PhotoItemData container = new PhotoItemData();
             container.setPhoto(photo);
             result.add(container);
         }
 
         return result;
-    }
-
-    public void cancelDownloads() {
-        for(PhotoItemContainer container : photos) {
-            container.cancelDownload();
-        }
     }
 
     @Override
@@ -60,7 +54,7 @@ public class RecipeMenuAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        PhotoItemContainer photo = (PhotoItemContainer)this.getItem(position);
+        PhotoItemData photo = (PhotoItemData) this.getItem(position);
         return new DrawerRecipeListItem(context, photo, parent.getMeasuredWidth());
     }
 }

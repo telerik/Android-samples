@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Examples>
+    <ExampleGroup
+        DrawerIcon="drawable/ic_nav_dataform"
+        ExampleInfo="The Telerik DataForm allows editing any object at run-time.\nDevelopers can specify pre-defined editors for each field of their object and also create custom editors with ease. The data form can commit the changes made to the object immediately, on lost focus or when the user explicitly chooses to commit them. The Telerik DataForm also supports validation, custom layouts and more."
+        Fragment="dataform"
+        HeaderText="DataForm"
+        HomepageLogo="drawable/ic_dataform_action_bar"
+        HomepageHeader="drawable/bg_dataform"
+        Image="drawable/ic_list_dataform"
+        Logo="drawable/ic_list_dataform"
+        IsHighlighted="true"
+        IsNew="true"
+        ShortDescription="A powerful data form control with a rich feature set.">
+        <Example
+            ExampleInfo="This example demonstrates a simple scenario using the Telerik DataForm."
+            Fragment="examples.dataform.DataFormFragment"
+            HeaderText="Data Form"
+            Image="drawable/screen_dataform"
+            IsHighlighted="true"
+            IsNew="true"
+            ShortDescription="Getting started with the Telerik DataForm."/>
+    </ExampleGroup>
+
+    <ExampleGroup
+            DrawerIcon="drawable/ic_nav_calendar"
+            ExampleInfo="The Telerik CalendarView for Android can be used for presenting events information, date picking and other general calendar usages.\n\nIt provides three different modes for date presentation:\n- Year,\n- Month,\n- Week.\n\nThe different modes can be easily switched through intuitive gestures. There are also three selection modes:\n- Single,\n- Multiple,\n- Range.\n\nThe dates that are presented can be easily restricted with providing Min and Max dates.\n\nThe examples for the control include:\n- A first look example which demonstrates how events can be integrated\n- A range selection example which demonstrates how this widget can be used for date picking."
+            Fragment="calendar"
+            HeaderText="Calendar"
+            HomepageLogo="drawable/ic_calendar_action_bar"
+            HomepageHeader="drawable/bg_calendar"
+            Image="drawable/ic_list_calendar"
+            Logo="drawable/ic_list_calendar"
+            ShortDescription="Calendar component with Year, Month and Week views.">
+        <Example
+                ExampleInfo="First look at Telerik Calendar for Android.\n\nThe example demonstrates how the widget displays dates from one week, one month and one year depending on the current display mode.\n\nThe week view and the month view also show how events information can be integrated in the calendar cell's content.\n\nBy using intuitive gestures you can switch from Week to Month or from Month to Year and vice versa. The modes can also be changed through a Spinner.\n\nThe calendar follows your locale, so if you change the Language from your device's Settings, you will see that the names of the months and the days in the calendar will follow your change."
+                Fragment="examples.calendar.CalendarMainFragment"
+                HeaderText="Calendar"
+                Image="drawable/screen_calendar"
+                ShortDescription="Year, Month and Week views inside the Telerik CalendarView." />
+        <Example
+                ExampleInfo="Range selection inside the Telerik CalendarView.\n\nIt demonstrates how the widget can be used inside a popup for picking dates. The example represents an excerpt from a hotel reservation app where you can use the calendar widget to select the range of your stay and book a hotel of your choice.\n\nThe calendar is configured to use range selection where you tap on the first and the last date and the whole range between them gets selected. The Min date is set to today, so that you can't make a reservation for a previous date."
+                Fragment="examples.calendar.CalendarRangeSelectionFragment"
+                HeaderText="Range Selection"
+                Image="drawable/screen_range_selection"
+                ShortDescription="Range selection inside the Telerik CalendarView." />
+        <Example
+                ExampleInfo="Inline events display mode example in Telerik CalendarView.\n\nThis example demonstrates how you can configure the calendar to display information about the events for a specific date in a list that animates in between the calendar cells.\n\nIn order to see the events for a date, tap on a date that is marked with a dot above its number. To close the events information tap anywhere outside the list with events."
+                Fragment="examples.calendar.CalendarInlineEventsFragment"
+                HeaderText="Inline Events"
+                Image="drawable/screen_inline_events"
+                IsHighlighted="true"
+                IsNew="true"
+                ShortDescription="Inline events in the Telerik CalendarView." />
+    </ExampleGroup>
 
     <ExampleGroup
         DrawerIcon="drawable/ic_nav_listview"
@@ -12,7 +65,7 @@
 - various layout strategies such as horizontal, vertical, wrapped and staggered lists,\n
 - swipe-to-execute,\n
 - item reordering,\n
-- animations etc.\n\nSome of the SideDrawer examples use the Flickr API but are not endorsed or certified by Flickr."
+- animations etc.\n\nSome of the ListView examples use the Flickr API but are not endorsed or certified by Flickr."
         Fragment="listview"
         HeaderText="ListView"
         HomepageLogo="drawable/ic_listview_action_bar"
@@ -20,14 +73,20 @@
         Image="drawable/ic_list_listview"
         Logo="drawable/ic_list_listview"
         IsHighlighted="true"
-        IsNew="true"
         ShortDescription="A powerful data list control with extended feature set.">
+        <Example
+            ExampleInfo="This example demonstrates the Deck of Cards layout manager for Telerik ListView.\n\nThis layout stacks items in a way which resembles a deck of cards, where one item is fully visible and others are shown in a perspective.\n\nThe example contains a list with recipes which you can like or dislike by swiping respectively to the right or to the left. You can also scroll forward or backward by swiping up and down."
+            Fragment="examples.listview.ListViewDeckOfCardsFragment"
+            HeaderText="Deck of Cards"
+            Image="drawable/screen_deck_of_cards"
+            IsHighlighted="true"
+            IsNew="true"
+            ShortDescription="Deck of Cards layout in the Telerik ListView." />
         <Example
             ExampleInfo="You can use the built-in Android layout managers to specify how the Telerik ListView positions its items.\n\nYou can use the LinearLayoutManager to show items in a vertical or horizontal scrolling list, the GridLayoutManager to show items in a grid and the StaggeredGridLayoutManager to display items in a staggered grid. For more advanced layout scenarios you can create a custom layout manager by extending the RecyclerView.LayoutManager class.\n\nTo switch between the different layout modes use the buttons located in the top-right corner of the page.\n\nThis example uses the Flickr API but is not endorsed or certified by Flickr."
             Fragment="examples.listview.ListViewListModeFragment"
             HeaderText="Layout Modes"
             Image="drawable/screen_layout"
-            IsHighlighted="true"
             ShortDescription="Supported layout modes in the Telerik ListView." />
         <Example
             ExampleInfo="Reordering items through a drag and drop gesture can be enabled by adding an ItemReorderBehavior to the list of behaviors."
@@ -42,7 +101,6 @@
             Fragment="examples.listview.ListViewHorizontalScrollingFragment"
             HeaderText="Horizontal Scrolling"
             Image="drawable/screen_horizontal_layout"
-            IsHighlighted="true"
             ShortDescription="Horizontal and vertical scrolling in the Telerik ListView." />
 
         <Example
@@ -56,45 +114,19 @@
     </ExampleGroup>
 
     <ExampleGroup
-        DrawerIcon="drawable/ic_nav_calendar"
-        ExampleInfo="The Telerik CalendarView for Android can be used for presenting events information, date picking and other general calendar usages.\n\nIt provides three different modes for date presentation:\n- Year,\n- Month,\n- Week.\n\nThe different modes can be easily switched through intuitive gestures. There are also three selection modes:\n- Single,\n- Multiple,\n- Range.\n\nThe dates that are presented can be easily restricted with providing Min and Max dates.\n\nThe examples for the control include:\n- A first look example which demonstrates how events can be integrated\n- A range selection example which demonstrates how this widget can be used for date picking.\n"
-        Fragment="calendar"
-        HeaderText="Calendar"
-        IsHighlighted="true"
-        HomepageLogo="drawable/ic_calendar_action_bar"
-        HomepageHeader="drawable/bg_calendar"
-        Image="drawable/ic_list_calendar"
-        Logo="drawable/ic_list_calendar"
-        ShortDescription="Calendar component with Year, Month and Week views.">
-        <Example
-            ExampleInfo="First look at Telerik Calendar for Android.\n\nThe example demonstrates how the widget displays dates from one week, one month and one year depending on the current display mode.\n\nThe week view and the month view also show how events information can be integrated in the calendar cell's content.\n\nBy using intuitive gestures you can switch from Week to Month or from Month to Year and vice versa. The modes can also be changed through a Spinner.\n\nThe calendar follows your locale, so if you change the Language from your device's Settings, you will see that the names of the months and the days in the calendar will follow your change.\n"
-            Fragment="examples.calendar.CalendarMainFragment"
-            HeaderText="Calendar"
-            Image="drawable/screen_calendar"
-            ShortDescription="Year, Month and Week views inside the Telerik CalendarView." />
-        <Example
-            ExampleInfo="Range selection inside the Telerik CalendarView.\n\nIt demonstrates how the widget can be used inside a popup for picking dates. The example represents an excerpt from a hotel reservation app where you can use the calendar widget to select the range of your stay and book a hotel of your choice.\n\nThe calendar is configured to use range selection where you tap on the first and the last date and the whole range between them gets selected. The Min date is set to today, so that you can't make a reservation for a previous date.\n"
-            Fragment="examples.calendar.CalendarRangeSelectionFragment"
-            HeaderText="Range Selection"
-            Image="drawable/screen_range_selection"
-            ShortDescription="Range selection inside the Telerik CalendarView." />
-    </ExampleGroup>
-
-    <ExampleGroup
         DrawerIcon="drawable/ic_nav_sidedrawer"
         ExampleInfo="If you have experience with the native Android NavigationDrawer then the Telerik SideDrawer would feel very familiar.\n\nThe SideDrawer is a panel that slides on top of the main application screen and presents the app’s navigation.\n\nThe goal of the control is to enable quick and easy navigation across all levels of your app.\n\nSome of the SideDrawer examples use the Flickr API but are not endorsed or certified by Flickr."
         Fragment="drawer"
-        HeaderText="Side Drawer"
+        HeaderText="SideDrawer"
         HomepageLogo="drawable/ic_sidedrawer_action_bar"
         HomepageHeader="drawable/bg_sidedrawer"
         Image="drawable/ic_list_sidedrawer"
         Logo="drawable/ic_list_sidedrawer"
         IsHighlighted="true"
-        IsNew="true"
         ShortDescription="A slidable panel for presenting your app’s main navigation points.">
         <Example
-            ExampleInfo="The Telerik SideDrawer can display any type of content and can be opened from any edge of the screen.\n\nFurther customization can be achieved through 11 predefined open/close animations.\n\nThis example uses the Flickr API but is not endorsed or certified by Flickr."
-            HeaderText="Side Drawer"
+            ExampleInfo="The Telerik SideDrawer can display any type of content and can be opened from any edge of the screen.\n\nFurther customization can be achieved through the predefined open/close animations.\n\nThis example uses the Flickr API but is not endorsed or certified by Flickr."
+            HeaderText="SideDrawer"
             Fragment="examples.sidedrawer.DrawerFragment"
             Image="drawable/screen_sidedrawer"
             IsHighlighted="true"
@@ -104,10 +136,9 @@
             HeaderText="Custom Content"
             Fragment="examples.sidedrawer.DrawerCustomContentFragment"
             Image="drawable/screen_custom_content"
-            IsHighlighted="true"
             ShortDescription="Custom content inside the Telerik SideDrawer." />
         <Example
-            ExampleInfo="The Telerik SideDrawer can display any type of content and can be opened from any edge of the screen.\n\nThe control comes with 11 predefined open/close transitions."
+            ExampleInfo="The Telerik SideDrawer can display any type of content and can be opened from any edge of the screen.\n\nThe control comes with many predefined open/close transitions."
             HeaderText="Settings"
             Fragment="examples.sidedrawer.SettingsFragment"
             Image="drawable/screen_settings"
@@ -276,14 +307,12 @@
             <Example
                 HeaderText="Candlestick series"
                 Image="drawable/financial_1"
-                IsNew="true"
                 ShortDescription="Candle sticks represent ohlc financial data using candle-like shapes."
                 ExampleInfo="Candle sticks are representing the open, high, low, close values of financial data using candle-like shapes, where empty candles represent periods where the close value is lesser than the open value."
                 Fragment="examples.chart.series.financial.CandlestickSeriesFragment" />
             <Example
                 HeaderText="Ohlc series"
                 Image="drawable/financial_2"
-                IsNew="true"
                 ShortDescription="Ohlc series represent ohlc data using stick figures."
                 ExampleInfo="Ohlc series represent ohlc data, by using stick figures. Every figure consists of 3 parts. There is one vertical stick representing the high and low values and two horizontal sticks representing the open and close values."
                 Fragment="examples.chart.series.financial.OhlcSeriesFragment" />

@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.tagmanager.ContainerHolder;
 import com.telerik.examples.ExampleActivity;
 import com.telerik.examples.ExampleGroupActivity;
 import com.telerik.examples.ExampleInfoActivity;
@@ -24,6 +25,7 @@ import com.telerik.examples.R;
 import com.telerik.examples.SettingsActivity;
 import com.telerik.examples.ViewCodeActivity;
 import com.telerik.examples.common.fragments.NavigationDrawerFragment;
+import com.telerik.examples.common.google.ContainerHolderSingleton;
 import com.telerik.examples.viewmodels.Example;
 import com.telerik.examples.viewmodels.ExampleGroup;
 import com.telerik.examples.viewmodels.ExampleSourceModel;
@@ -59,7 +61,7 @@ public class ExamplesApplicationContext extends TrackedApplication implements Th
     private static final String PREFS_NAME = "telerik_examples_preferences";
     private static final String FAVORITES = "favorites";
     private static final String TIP_LEARNED_KEY = "tip_learned";
-    private static final String ANALYTICS_LEARNED_KEY = "tip_learned";
+    private static final String ANALYTICS_LEARNED_KEY = "analytics_learned";
     private static final String ANALYTICS_ACTIVE_KEY = "analytics_active";
     private static final String OPENED_EXAMPLES_COUNT_KEY = "opened_examples_count";
     private static final int OPEN_ANALYTICS_PROMPT_AFTER_COUNT = 3;
@@ -224,6 +226,18 @@ public class ExamplesApplicationContext extends TrackedApplication implements Th
     }
 
     public boolean getTipLearned() {
+        ContainerHolder containerHolder = ContainerHolderSingleton.getContainerHolder();
+        if(containerHolder != null && containerHolder.getContainer() != null) {
+            String messageId = containerHolder.getContainer().getString(ContainerHolderSingleton.ANALYTICS_GOT_IT_ID);
+            if(messageId != null) {
+                String preferencesMessageId = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getString(ContainerHolderSingleton.ANALYTICS_GOT_IT_ID, null);
+                if(!messageId.equals(preferencesMessageId)) {
+                    editor.putString(ContainerHolderSingleton.ANALYTICS_GOT_IT_ID, messageId);
+                    editor.commit();
+                    this.tipLearned = false;
+                }
+            }
+        }
         return this.tipLearned;
     }
 

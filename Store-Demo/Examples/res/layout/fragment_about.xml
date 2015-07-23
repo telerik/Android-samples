@@ -21,5 +21,29 @@
             android:layout_marginTop="15dp"
             android:textSize="18sp"
             android:layout_marginRight="15dp" />
+
+        <TextView
+            android:id="@+id/productPageTrackingLink"
+            android:layout_below="@id/descriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/productPage"
+            android:textSize="18sp"
+            android:textColor="@color/aboutPageVersionNumberColor"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/documentationTrackingLink"
+            android:layout_below="@id/productPageTrackingLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/documentation"
+            android:textSize="18sp"
+            android:textColor="@color/aboutPageVersionNumberColor"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"/>
     </RelativeLayout>
 </FrameLayout>

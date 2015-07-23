@@ -2,4 +2,5 @@
 <resources>
     <integer name="example_controls_list_fragment_columns_wrap">4</integer>
     <integer name="example_controls_list_fragment_columns">4</integer>
+    <dimen name="data_form_list_width">300dp</dimen>
 </resources>

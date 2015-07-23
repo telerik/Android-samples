@@ -1,8 +1,11 @@
 package com.telerik.examples.examples.listview;
 
+import android.net.Uri;
+
 import com.googlecode.flickrjandroid.Flickr;
 import com.googlecode.flickrjandroid.FlickrException;
 import com.googlecode.flickrjandroid.photos.Extras;
+import com.googlecode.flickrjandroid.photos.Photo;
 import com.googlecode.flickrjandroid.photos.PhotoList;
 import com.googlecode.flickrjandroid.photos.SearchParameters;
 import com.telerik.examples.common.licensing.KeysRetriever;
@@ -32,6 +35,19 @@ public class FlickrHelper {
         }
 
         return breakfastPhotos;
+    }
+
+    public static Uri getPhotoDownloadUrl(Photo photo) {
+        if (photo.getLargeSize() != null) {
+            return Uri.parse(photo.getLargeSize().getSource());
+        } else if (photo.getLargeSquareSize() != null) {
+            return Uri.parse(photo.getLargeSquareSize().getSource());
+
+        } else if (photo.getMediumSize() != null) {
+            return Uri.parse(photo.getMediumSize().getSource());
+        }
+
+        return null;
     }
 }
 

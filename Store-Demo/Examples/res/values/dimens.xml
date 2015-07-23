@@ -39,6 +39,9 @@
     <dimen name="example_list_item_text_margin_right">16dp</dimen>
     <dimen name="example_list_item_text_margin_left">16dp</dimen>
     <dimen name="example_list_item_text_margin_bottom">8dp</dimen>
+    <dimen name="example_list_deck_recipe_title_size">12sp</dimen>
+    <dimen name="example_list_deck_recipe_category_size">10sp</dimen>
+    <dimen name="example_list_deck_recipe_padding">8dp</dimen>
 
     <dimen name="example_list_wrap_item_text_margin_top">12dp</dimen>
     <dimen name="example_list_wrap_item_text_margin_right">8dp</dimen>

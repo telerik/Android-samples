@@ -34,6 +34,11 @@
     <color name="chart_example_menu_color2">#ff004173</color>
     <color name="chart_example_menu_color3">#ff00a5c2</color>
     <color name="chart_example_menu_color4">#ff018e86</color>
+    <!--DataForm-->
+    <color name="dataform_example_menu_color1">#ff001337</color>
+    <color name="dataform_example_menu_color2">#ff004173</color>
+    <color name="dataform_example_menu_color3">#ff00a5c2</color>
+    <color name="dataform_example_menu_color4">#ff018e86</color>
     <!--Calendar-->
     <color name="calendar_example_menu_color1">#ff3f1e55</color>
     <color name="calendar_example_menu_color2">#ffae4887</color>
@@ -77,6 +82,9 @@
     <color name="list_view_example_selection_item_pressed_state">#16000000</color>
     <color name="list_view_example_selection_item_normal_state">#E4D8D4</color>
     <color name="list_view_example_selection_item_selected_state">#C2B0A9</color>
+
+    <color name="list_view_example_deck_title_background">#BD7937</color>
+    <color name="list_view_example_deck_recipe_title_background">#FF9E40</color>
 
     <!--Gradient colors for the ExampleActivity background. Resolved automatically by applying the Fragment short name of each example group to the _example_menu_color# string.-->
 </resources>

@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,31 +9,48 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:elevation="4dp"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:background="@color/controlBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/controlBackground"
+        android:elevation="4dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
-        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
         android:animateLayoutChanges="true"
         android:clipToPadding="false"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/txtInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/exampleInfoBackground"
-            android:elevation="2dp"
-            android:padding="16dp"
-            android:textSize="18dp" />
+            android:elevation="2dp">
+
+            <TextView
+                android:id="@+id/txtInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textSize="18dp" />
+
+
+            <TextView
+                android:id="@+id/documentationTrackingLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtInfo"
+                android:padding="16dp"
+                android:clickable="true"
+                android:text="@string/documentation_example_info"
+                android:textColor="@color/aboutPageVersionNumberColor"
+                android:textSize="18sp" />
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

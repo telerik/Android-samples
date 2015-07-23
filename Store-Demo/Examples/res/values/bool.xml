@@ -3,4 +3,5 @@
     <bool name="action_bar_embed_tabs_pre_jb">true</bool>
     <bool name="action_bar_embed_tabs">true</bool>
     <bool name="example_annotations_show_menu_landscape">false</bool>
+    <bool name="dual_pane">false</bool>
 </resources>

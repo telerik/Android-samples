@@ -33,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.telerik.android.common.Util;
 import com.telerik.examples.common.ExamplesApplicationContext;
 import com.telerik.examples.common.InputBlocker;
@@ -90,6 +91,7 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.initTheme();
+        Fresco.initialize(this);
         super.onCreate(savedInstanceState);
         TelerikActivityHelper.updateActivityTaskDescription(this);
         this.initFeedback();

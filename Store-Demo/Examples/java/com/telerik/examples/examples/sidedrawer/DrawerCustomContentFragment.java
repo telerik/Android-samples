@@ -112,16 +112,6 @@ public class DrawerCustomContentFragment extends ExampleFragmentBase implements 
         return drawer;
     }
 
-    @Override
-    public void unloadExample() {
-        super.unloadExample();
-
-        RecipeMenuAdapter adapter = (RecipeMenuAdapter)this.gridView.getAdapter();
-        if(adapter != null) {
-            adapter.cancelDownloads();
-        }
-    }
-
     private void setDrawerContent(int layoutId) {
         drawer.setDrawerContent(layoutId);
 
