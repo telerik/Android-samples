@@ -85,6 +85,8 @@ public class ChartExamples implements ExamplesProvider {
 
         chartExamples.put("Features", result);
 
+        result = new ArrayList<ExampleFragment>();
+
         result.add(new PanAndZoomFragment());
         result.add(new SelectionBehaviorFragment());
         result.add(new TooltipBehaviorFragment());
@@ -92,10 +94,14 @@ public class ChartExamples implements ExamplesProvider {
 
         chartExamples.put("Behaviors", result);
 
+        result = new ArrayList<ExampleFragment>();
+
         result.add(new DateTimeContinuousAxisFragment());
         result.add(new MultipleAxesFragment());
 
         chartExamples.put("Axes", result);
+
+        result = new ArrayList<ExampleFragment>();
 
         result.add(new GridLineAnnotationFragment());
         result.add(new PlotBandAnnotationFragment());
