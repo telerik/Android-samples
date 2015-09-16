@@ -8,4 +8,6 @@ This repository contains source code that relates to the following blog posts:
 
 [How to Build an Android App That Displays Live Accelerometer Data Using a Line Chart Control (part 2)](http://blogs.telerik.com/androidteam/posts/14-04-08/how-to-build-an-android-app-that-displays-live-accelerometer-data-using-a-line-chart-control-part-2)
 
-![](images/banner.png)
+<a href="http://www.telerik.com/download/android-ui" target="_blank">
+![TelerikUI-Download-Banner](images/banner.png "Download Telerik UI")
+</a>

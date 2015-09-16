@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="window_background">#FFFFFFFF</color>
+    <color name="app_bar_color">#FF75D438</color>
+    <color name="status_bar_color">#22000000</color>
+    <color name="groupHeaderTextColor">#FF75D438</color>
+</resources>
