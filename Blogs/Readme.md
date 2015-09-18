@@ -1,5 +1,7 @@
 This repository contains source code that relates to the following blog posts:
 
+[How to Create ListView with Groups and Parallax Effect](http://www.telerik.com/blogs/how-to-create-listview-with-groups-and-parallax-effect)
+
 [Using Google Spreadsheets as Data Source in Your Android App (Part 1)](http://blogs.telerik.com/androidteam/posts/15-01-21/google-spreadsheet-as-data-source-android)
 
 [Using Google Spreadsheets as a Data Source for Your Android App (Part 2)](http://blogs.telerik.com/androidteam/posts/15-01-26/google-spreadsheet-as-data-source-android-part-2)
