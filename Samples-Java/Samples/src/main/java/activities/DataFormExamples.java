@@ -13,7 +13,6 @@ public class DataFormExamples implements ExamplesProvider {
 
     @Override
     public HashMap<String, ArrayList<ExampleFragment>> examples() {
-
         HashMap<String, ArrayList<ExampleFragment>> dataFormExamples = new HashMap<>();
 
         ArrayList<ExampleFragment> result = new ArrayList<>();

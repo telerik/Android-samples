@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.telerik.android.sdk.R;
 import com.telerik.widget.dataform.engine.PropertyValidator;
-import com.telerik.widget.dataform.engine.ValidationCompletedCallback;
+import com.telerik.widget.dataform.engine.ValidationCompletedListener;
 import com.telerik.widget.dataform.engine.ValidationInfo;
 import com.telerik.widget.dataform.visualization.RadDataForm;
 
@@ -38,14 +38,13 @@ public class DataFormValidationFragment extends Fragment implements ExampleFragm
 
     public class NonEmptyValidator implements PropertyValidator {
         @Override
-        public void validate(Object o, ValidationCompletedCallback validationCompletedCallback) {
-
+        public void validate(Object o, String propertyName, ValidationCompletedListener validationCompletedCallback) {
             ValidationInfo info;
 
             if(o == null || o.toString().equals("")) {
-                info = new ValidationInfo(false, "This field can not be empty.", o);
+                info = new ValidationInfo(false, "This field can not be empty.", propertyName, o);
             } else {
-                info = new ValidationInfo(true, "The entered value is valid.", o);
+                info = new ValidationInfo(true, "The entered value is valid.", propertyName, o);
             }
 
             validationCompletedCallback.validationCompleted(info);

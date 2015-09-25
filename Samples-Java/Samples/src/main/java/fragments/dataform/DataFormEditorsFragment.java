@@ -1,6 +1,5 @@
 package fragments.dataform;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,12 +29,12 @@ public class DataFormEditorsFragment extends Fragment implements ExampleFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootLayout = (ViewGroup)inflater.inflate(R.layout.fragment_dataform_editors, null);
 
-        RadDataForm dataForm = new RadDataForm(this.getActivity());
+        final RadDataForm dataForm = new RadDataForm(this.getActivity());
         dataForm.getAdapter().setEditorProvider(new Function<EntityProperty, EntityPropertyEditor>() {
             @Override
             public EntityPropertyEditor apply(EntityProperty property) {
                 if(property.name().equals("EmployeeType")) {
-                    return new CustomEditor(getActivity(), property);
+                    return new CustomEditor(dataForm, property);
                 }
 
                 return null;
@@ -53,8 +52,15 @@ public class DataFormEditorsFragment extends Fragment implements ExampleFragment
         private EmployeeType type;
         private Button editorButton;
 
-        public CustomEditor(Context context, EntityProperty property) {
-            super(context, R.layout.dataform_custom_editor, R.id.custom_editor_header, R.id.custom_editor, R.id.custom_editor_validation_view, property);
+        public CustomEditor(RadDataForm dataForm, EntityProperty property) {
+            super(dataForm,
+                    dataForm.getEditorsMainLayout(),
+                    dataForm.getEditorsHeaderLayout(),
+                    R.id.data_form_text_viewer_header,
+                    R.layout.dataform_custom_editor,
+                    R.id.custom_editor,
+                    dataForm.getEditorsValidationLayout(),
+                    property);
 
             editorButton = (Button)editorView;
             editorButton.setOnClickListener(this);
@@ -88,12 +94,6 @@ public class DataFormEditorsFragment extends Fragment implements ExampleFragment
             fragment.addPropertyChangedListener(this);
             fragment.setType(initialValue);
             fragment.show(getActivity().getSupportFragmentManager(), "customEditor");
-        }
-
-        @Override
-        protected boolean supportsType(Class type) {
-            // Defining which types this editor supports is required.
-            return type == EmployeeType.class;
         }
 
         @Override
