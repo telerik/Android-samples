@@ -1,11 +1,7 @@
 package com.telerik.examples.examples.listview;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -37,8 +33,8 @@ public class ListViewHorizontalScrollingFragment extends ExampleFragmentBase {
     private FlickrPicturesDownloader picturesDownloader1;
     private FlickrPicturesDownloader picturesDownloader2;
 
-    private ArrayList<PhotoItemContainer> photoItems1 = new ArrayList<PhotoItemContainer>();
-    private ArrayList<PhotoItemContainer> photoItems2 = new ArrayList<PhotoItemContainer>();
+    private ArrayList<PhotoItemData> photoItems1 = new ArrayList<PhotoItemData>();
+    private ArrayList<PhotoItemData> photoItems2 = new ArrayList<PhotoItemData>();
 
     private int loadedPage1 = 0;
     private int loadedPage2 = 0;
@@ -148,20 +144,6 @@ public class ListViewHorizontalScrollingFragment extends ExampleFragmentBase {
     }
 
     @Override
-    public void unloadExample() {
-        super.unloadExample();
-
-        cancelDownloads(photoItems1);
-        cancelDownloads(photoItems2);
-    }
-
-    private void cancelDownloads(ArrayList<PhotoItemContainer> photos) {
-        for(PhotoItemContainer container : photos) {
-            container.cancelDownload();
-        }
-    }
-
-    @Override
     protected boolean usesInternet() {
         return true;
     }
@@ -197,7 +179,7 @@ public class ListViewHorizontalScrollingFragment extends ExampleFragmentBase {
             ListViewAdapter lva = (ListViewAdapter) this.associatedListView.getAdapter();
 
             for (Photo p : o) {
-                PhotoItemContainer container = new PhotoItemContainer();
+                PhotoItemData container = new PhotoItemData();
                 container.setPhoto(p);
                 container.setGroupKey(tag);
                 lva.add(container);

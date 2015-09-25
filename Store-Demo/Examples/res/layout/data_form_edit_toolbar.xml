@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/data_form_edit_commit_bar"
+android:background="#BF3136"
+android:layout_width="match_parent"
+android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_gravity="left|center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageView android:src="@drawable/icon_less"
+                android:scaleType="center"
+                android:layout_gravity="center_vertical|left"
+                android:id="@+id/data_form_cancel_button"
+                android:layout_width="40dp"
+                android:layout_height="match_parent" />
+            <TextView android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginLeft="15dp"
+                android:textStyle="bold"
+                android:text="Edit reservation"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:id="@+id/data_form_done_button"
+            android:text="DONE"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+</android.support.v7.widget.Toolbar>

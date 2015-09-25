@@ -1,12 +1,15 @@
 package com.telerik.examples;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.telerik.examples.common.ExamplesApplicationContext;
@@ -51,6 +54,23 @@ public class ExampleInfoActivity extends ActionBarActivity implements TrackedAct
         if (savedInstanceState == null){
             this.app.trackScreenOpened(this);
         }
+
+        // Documentation tracking link. This will test how many developers view the documentation on their mobile device.
+        final TextView documentationLinkTextView = (TextView) this.findViewById(R.id.documentationTrackingLink);
+        documentationLinkTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View args) {
+                // e.g. listview, sidedrawer, calendar etc.
+                String controlName = selectedControl.getHeaderText();
+
+                // sample documentation link: http://docs.telerik.com/devtools/android/controls/listview/listview-overview
+
+                String url = String.format("http://docs.telerik.com/devtools/android/controls/%1$s/%1$s-overview?utm_medium=mobile-app&utm_source=AndroidDemoApp&utm_campaign=dt-android-examples-app&utm_content=documentation-link", controlName);
+
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            }
+        });
     }
 
     @Override
@@ -104,7 +124,9 @@ public class ExampleInfoActivity extends ActionBarActivity implements TrackedAct
     public HashMap<String, Object> getAdditionalParameters() {
         HashMap<String, Object> additionalParams = new HashMap<String, Object>();
         additionalParams.put(TrackedApplication.PARAM_CONTROL_NAME, this.selectedControl.getShortFragmentName());
-        additionalParams.put(TrackedApplication.PARAM_EXAMPLE_NAME, this.selectedExample.getShortFragmentName());
+        if(this.selectedExample != null) {
+            additionalParams.put(TrackedApplication.PARAM_EXAMPLE_NAME, this.selectedExample.getShortFragmentName());
+        }
         return additionalParams;
     }
 }

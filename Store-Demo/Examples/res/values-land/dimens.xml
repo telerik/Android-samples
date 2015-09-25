@@ -7,4 +7,7 @@
     <dimen name="weather_data_button_padding_bottom">0dp</dimen>
     <dimen name="weather_data_button_padding_right">4dp</dimen>
     <dimen name="example_group_header_height">96dp</dimen>
+    <dimen name="example_list_deck_recipe_title_size">8sp</dimen>
+    <dimen name="example_list_deck_recipe_category_size">8sp</dimen>
+    <dimen name="example_list_deck_recipe_padding">8dp</dimen>
 </resources>

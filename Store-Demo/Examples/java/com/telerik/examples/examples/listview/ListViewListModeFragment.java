@@ -1,11 +1,11 @@
 package com.telerik.examples.examples.listview;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +24,6 @@ import com.googlecode.flickrjandroid.photos.PhotoList;
 import com.telerik.android.common.Function;
 import com.telerik.examples.R;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
-import com.telerik.widget.list.ListViewAdapter;
 import com.telerik.widget.list.ListViewDataSourceAdapter;
 import com.telerik.widget.list.RadListView;
 
@@ -36,7 +34,6 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class ListViewListModeFragment extends ExampleFragmentBase {
-
 
     private static final String BREAKFAST_STRING = "Breakfast";
     private static final String LUNCH_STRING = "Lunch";
@@ -55,21 +52,6 @@ public class ListViewListModeFragment extends ExampleFragmentBase {
 
     public ListViewListModeFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void unloadExample() {
-        super.unloadExample();
-
-        ListViewAdapter adapter = (ListViewAdapter)this.listView.getAdapter();
-        if(adapter == null) {
-            return;
-        }
-
-        ArrayList<PhotoItemContainer> photoItemContainers = (ArrayList<PhotoItemContainer>)adapter.getItems();
-        for(PhotoItemContainer container : photoItemContainers) {
-            container.cancelDownload();
-        }
     }
 
     @Override
@@ -156,7 +138,7 @@ public class ListViewListModeFragment extends ExampleFragmentBase {
                         adapter.addFilterDescriptor(new Function<Object, Boolean>() {
                             @Override
                             public Boolean apply(Object argument) {
-                                PhotoItemContainer photoItem = (PhotoItemContainer)argument;
+                                PhotoItemData photoItem = (PhotoItemData) argument;
                                 boolean passesFilter = false;
 
                                 for (String s: availableFilters){
@@ -197,12 +179,12 @@ public class ListViewListModeFragment extends ExampleFragmentBase {
             @Override
             protected Object doInBackground(Object[] params) {
                 int count = 10;
-                ArrayList<PhotoItemContainer> source = new ArrayList<PhotoItemContainer>();
+                ArrayList<PhotoItemData> source = new ArrayList<PhotoItemData>();
                 PhotoList breakfastPhotos = FlickrHelper.downloadPicturesForTag("breakfast", count, 0);
 
                 if (breakfastPhotos != null) {
                     for (Photo p : breakfastPhotos) {
-                        PhotoItemContainer cont = new PhotoItemContainer();
+                        PhotoItemData cont = new PhotoItemData();
                         cont.setGroupKey("breakfast");
                         cont.setPhoto(p);
                         source.add(cont);
@@ -213,7 +195,7 @@ public class ListViewListModeFragment extends ExampleFragmentBase {
 
                 if (lunch != null) {
                     for (Photo p : lunch) {
-                        PhotoItemContainer cont = new PhotoItemContainer();
+                        PhotoItemData cont = new PhotoItemData();
                         cont.setGroupKey("lunch");
                         cont.setPhoto(p);
                         source.add(cont);
@@ -224,7 +206,7 @@ public class ListViewListModeFragment extends ExampleFragmentBase {
 
                 if (dinnerPhotos != null) {
                     for (Photo p : dinnerPhotos) {
-                        PhotoItemContainer cont = new PhotoItemContainer();
+                        PhotoItemData cont = new PhotoItemData();
                         cont.setGroupKey("dinner");
                         cont.setPhoto(p);
                         source.add(cont);
@@ -249,7 +231,7 @@ public class ListViewListModeFragment extends ExampleFragmentBase {
                     adapter.addGroupDescriptor(new Function<Object, Object>() {
                         @Override
                         public Object apply(Object argument) {
-                            PhotoItemContainer container = (PhotoItemContainer) argument;
+                            PhotoItemData container = (PhotoItemData) argument;
                             return container.getGroupKey();
                         }
                     });

@@ -22,7 +22,7 @@ import java.util.Random;
 public class ScatterFragment extends ChartSelectionAndTooltipFragment {
     protected RadCartesianChartView cartesianChart;
     protected Random random = new Random();
-    protected final int dataLength = 20;
+    protected int dataLength = 20;
 
     public ScatterFragment() {
     }
@@ -39,14 +39,14 @@ public class ScatterFragment extends ChartSelectionAndTooltipFragment {
         this.cartesianChart = (RadCartesianChartView) this.chart;
         RadLegendView legend = Util.getLayoutPart(this.rootView, R.id.scatterLegendView, RadLegendView.class);
         legend.setLegendProvider(this.cartesianChart);
-        this.prepareScatterChart();
+        this.setupAxes();
 
         CartesianChartGrid grid = this.cartesianChart.getGrid();
         grid.setMajorLinesVisibility(GridLineVisibility.XY);
         grid.setStripLinesVisibility(GridLineVisibility.NONE);
     }
 
-    protected void prepareScatterChart() {
+    protected void setupAxes() {
         Function<Object, String> converter = new Function<Object, String>() {
             @Override
             public String apply(Object argument) {

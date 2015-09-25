@@ -3,4 +3,7 @@
     <integer name="example_list_fragment_columns">1</integer>
     <integer name="example_list_fragment_columns_wrap">3</integer>
     <dimen name="example_list_right_margin">82dp</dimen>
+    <dimen name="example_list_deck_recipe_title_size">9sp</dimen>
+    <dimen name="example_list_deck_recipe_category_size">10sp</dimen>
+    <dimen name="example_list_deck_recipe_padding">5dp</dimen>
 </resources>

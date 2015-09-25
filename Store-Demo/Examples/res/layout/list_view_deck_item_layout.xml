@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <FrameLayout android:layout_margin="24dp"
+        android:id="@+id/imageLayout"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:contentDescription="@string/list_view_deck_image_desc"
+            android:layout_margin="4dp"
+            android:adjustViewBounds="true"
+            android:id="@+id/deck_layout_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:baselineAligned="false"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_gravity="start|bottom"
+                android:gravity="start|bottom"
+                android:background="@color/list_view_example_deck_recipe_title_background"
+                android:layout_margin="12dp"
+                android:layout_weight="6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/example_list_deck_recipe_title_size"
+                    android:paddingLeft="@dimen/example_list_deck_recipe_padding"
+                    android:paddingRight="@dimen/example_list_deck_recipe_padding"
+                    android:paddingTop="@dimen/example_list_deck_recipe_padding"
+                    android:id="@+id/deck_layout_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/deck_layout_category"
+                    android:textSize="@dimen/example_list_deck_recipe_category_size"
+                    android:padding="@dimen/example_list_deck_recipe_padding"
+                    android:textStyle="italic"
+                    android:layout_below="@id/deck_layout_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+            </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

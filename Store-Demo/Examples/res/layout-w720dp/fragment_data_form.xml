@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#EBEBEB"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/dataform_list_fragment"
+        android:layout_alignParentLeft="true"
+        android:layout_width="@dimen/data_form_list_width"
+        android:layout_height="match_parent">
+        <include layout="@layout/fragment_data_form_list"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_toRightOf="@+id/dataform_list_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:background="#BF3136"
+            android:layout_width="match_parent"
+            android:layout_height="164dp"/>
+
+        <View
+            android:layout_gravity="left"
+            android:background="#BF3136"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <include layout="@layout/data_form_edit_toolbar"/>
+
+        <fragment android:id="@+id/data_form_edit_fragment_id"
+            android:layout_margin="68dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.telerik.examples.examples.dataform.DataFormEditFragment"/>
+
+    </FrameLayout>
+</RelativeLayout>

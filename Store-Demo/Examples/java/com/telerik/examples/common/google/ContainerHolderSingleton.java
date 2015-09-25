@@ -10,6 +10,9 @@ import com.google.android.gms.tagmanager.ContainerHolder;
  */
 public class ContainerHolderSingleton {
 
+    public static final String ANALYTICS_GOT_IT_MESSAGE = "android-got-it-message";
+    public static final String ANALYTICS_GOT_IT_ID = "android-got-it-id";
+
     private static ContainerHolder containerHolder;
 
     /**

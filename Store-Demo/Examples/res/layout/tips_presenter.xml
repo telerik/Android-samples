@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="roboto"
+            android:linksClickable="true"
             android:textSize="@dimen/tips_font_size"
             android:text="@string/tips_presenter_content" />
 

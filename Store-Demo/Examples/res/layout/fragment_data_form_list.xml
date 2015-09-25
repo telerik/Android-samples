@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content"
+android:layout_height="match_parent">
+
+<LinearLayout android:background="#EBEBEB"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar android:id="@+id/data_form_toolbar"
+        android:background="#772C2E"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginLeft="77dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@drawable/ic_dataform_calendar_white"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView android:id="@+id/reservation_date_spinner_item_text"
+                android:text="Fri, 12.06"
+                android:textColor="@color/white"
+                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/sidedrawer_navdrawer_bg">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginStart="78dp"
+            android:layout_marginLeft="78dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="30dp"
+                android:textColor="@color/white"
+                android:text="Reservations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:textColor="@color/grey_text_color"
+                android:textStyle="bold"
+                android:text="23 tables left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <com.telerik.widget.list.RadListView
+        android:layout_marginTop="25dp"
+        android:id="@+id/data_form_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
+
+<ImageView
+    android:id="@+id/data_form_new_button"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:src="@drawable/dataform_add"
+    android:layout_marginTop="132dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginStart="15dp"
+    android:layout_gravity="start" />
+</FrameLayout>
