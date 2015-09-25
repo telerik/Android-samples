@@ -18,7 +18,7 @@ public class Person extends NotifyPropertyChangedBase {
     private String mail = "";
     private Long birthDate = 0L;
 
-    @DataFormProperty(label = "Age", index = 0, validator = RangeValidator.class)
+    @DataFormProperty(label = "Age", index = 0, validator = RangeValidator.class, group = "Group 1")
     public Integer getAge() {
         return age;
     }
@@ -27,7 +27,7 @@ public class Person extends NotifyPropertyChangedBase {
         notifyListeners("Age", value);
     }
 
-    @DataFormProperty(label = "Employee Type", index = 1)
+    @DataFormProperty(label = "Employee Type", index = 1, group = "Group 1")
     public EmployeeType getEmployeeType() {
         return employeeType;
     }
@@ -36,7 +36,7 @@ public class Person extends NotifyPropertyChangedBase {
         notifyListeners("EmployeeType", value);
     }
 
-    @DataFormProperty(label = "Name", index = 0, columnIndex = 1)
+    @DataFormProperty(label = "Name", index = 0, columnIndex = 1, group = "Group 2")
     public String getName() {
         return name;
     }
@@ -45,7 +45,7 @@ public class Person extends NotifyPropertyChangedBase {
         notifyListeners("Name", value);
     }
 
-    @DataFormProperty(label = "E-mail", index = 2, validator = MailValidator.class)
+    @DataFormProperty(label = "E-mail", index = 2, validator = MailValidator.class, group = "Group 2")
     public String getMail() {
         return mail;
     }
@@ -54,7 +54,7 @@ public class Person extends NotifyPropertyChangedBase {
         notifyListeners("Mail", value);
     }
 
-    @DataFormProperty(label = "Employed", index = 2, columnIndex = 1)
+    @DataFormProperty(label = "Employed", index = 2, columnIndex = 1, group = "Group 3")
     public boolean getIsEmployed() {
         return isEmployed;
     }
@@ -64,7 +64,7 @@ public class Person extends NotifyPropertyChangedBase {
         notifyListeners("IsEmployed", value);
     }
 
-    @DataFormProperty(label = "Birth Date", index = 1, columnIndex = 1, editor = DataFormDateEditor.class)
+    @DataFormProperty(label = "Birth Date", index = 1, columnIndex = 1, editor = DataFormDateEditor.class, group = "Group 3")
     public long getBirthDate() {
         return birthDate;
     }
