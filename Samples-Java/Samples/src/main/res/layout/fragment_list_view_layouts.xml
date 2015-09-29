@@ -3,44 +3,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="fragments.listview.ListViewGettingStartedFragment">
-
-    <LinearLayout
-        android:id="@+id/buttonsLayer"
+    <HorizontalScrollView
+        android:id="@+id/buttonsScroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnLinear"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/buttonsLayer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Linear"/>
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnGrid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Grid"/>
+            <Button
+                android:id="@+id/btnLinear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Linear"/>
 
-        <Button
-            android:id="@+id/btnStaggered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Staggered"/>
+            <Button
+                android:id="@+id/btnGrid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grid"/>
 
-        <Button
-            android:id="@+id/btnDeck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DeckOfCards"/>
+            <Button
+                android:id="@+id/btnStaggered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Staggered"/>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnDeck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DeckOfCards"/>
+
+            <Button
+                android:id="@+id/btnSlide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Slide"/>
+
+            <Button
+                android:id="@+id/btnWrap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wrap"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
     <com.telerik.widget.list.RadListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/buttonsLayer">
+        android:layout_below="@id/buttonsScroll">
 
     </com.telerik.widget.list.RadListView>
 

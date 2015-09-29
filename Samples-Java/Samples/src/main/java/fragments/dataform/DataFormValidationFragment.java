@@ -29,7 +29,7 @@ public class DataFormValidationFragment extends Fragment implements ExampleFragm
         RadDataForm dataForm = new RadDataForm(this.getActivity());
         dataForm.setEntity(new Person());
 
-        dataForm.getExistingEditorForProperty("Name").property().setValidator(new NonEmptyValidator());
+        //dataForm.getExistingEditorForProperty("Name").property().setValidator(new NonEmptyValidator());
 
         layoutRoot.addView(dataForm);
 

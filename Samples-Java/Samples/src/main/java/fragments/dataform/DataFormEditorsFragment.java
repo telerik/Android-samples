@@ -66,7 +66,16 @@ public class DataFormEditorsFragment extends Fragment implements ExampleFragment
             editorButton.setOnClickListener(this);
 
             ((TextView)headerView).setText(property.getHeader());
+
         }
+//        public CustomEditor(Context context, EntityProperty property) {
+//            super(context, R.layout.dataform_custom_editor, R.id.custom_editor_header, R.id.custom_editor, R.id.custom_editor_validation_view, property);
+//
+//            editorButton = (Button)editorView;
+//            editorButton.setOnClickListener(this);
+//
+//            ((TextView)headerView).setText(property.getHeader());
+//        }
 
         @Override
         public Object value() {

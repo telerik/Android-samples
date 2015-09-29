@@ -12,17 +12,17 @@ using Android.Views;
 using Android.Widget;
 using Com.Telerik.Widget.List;
 using Android.Support.V7.Widget;
-using Android.Support.V4.App;
 using System.Collections;
+using Android;
+using Android.Support.V4.App;
 
 namespace Samples
 {
-	public class ListViewDeckOfCardsFragment : Fragment, ExampleFragment
+	public class ListViewSlideFragment : Fragment, ExampleFragment
 	{
-		private RadListView listView;
-		private DeckOfCardsLayoutManager deckOfCardsLayoutManager;
-		private int orientation = OrientationHelper.Vertical;
-		private bool reverseLayout = false;
+		RadListView listView;
+		SlideLayoutManager slideLayoutManager;
+		int orientation = OrientationHelper.Horizontal;
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -31,25 +31,16 @@ namespace Samples
 			// Create your fragment here
 		}
 
-		public ListViewDeckOfCardsFragment() {
-			// Required empty public constructor
-		}
-
-		public String Title(){
-			return "Deck of Cards Layout";
-		}
-
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			View rootView = inflater.Inflate(Resource.Layout.fragment_list_view_deck, container, false);
-
+			View rootView =  inflater.Inflate(Resource.Layout.fragment_list_view_slide, container, false);
 			listView = (RadListView)rootView.FindViewById(Resource.Id.listView).JavaCast<RadListView>();
 
-			CountryAdapter adapter = new CountryAdapter(getData());
+			CountryAdapter adapter = new CountryAdapter(GetData());
 			listView.SetAdapter(adapter);
 
-			deckOfCardsLayoutManager = new DeckOfCardsLayoutManager(Activity);
-			listView.SetLayoutManager(deckOfCardsLayoutManager);
+			slideLayoutManager = new SlideLayoutManager(Activity);
+			listView.SetLayoutManager(slideLayoutManager);
 
 			Button orientationBtn = (Button)rootView.FindViewById (Resource.Id.orientationBtn);
 			orientationBtn.Click += (object sender, EventArgs e) => {
@@ -58,53 +49,64 @@ namespace Samples
 				} else {
 					orientation = OrientationHelper.Vertical;
 				}
-				deckOfCardsLayoutManager = new DeckOfCardsLayoutManager(Activity, orientation, reverseLayout);
-				listView.SetLayoutManager(deckOfCardsLayoutManager);
+				slideLayoutManager = new SlideLayoutManager(Activity, orientation);
+				listView.SetLayoutManager(slideLayoutManager);
 			};
 
-			Button reverseBtn = (Button)rootView.FindViewById (Resource.Id.reverseBtn);
-			reverseBtn.Click += (object sender, EventArgs e) => {
-				reverseLayout = !reverseLayout;
-				deckOfCardsLayoutManager = new DeckOfCardsLayoutManager(Activity, orientation, reverseLayout);
-				listView.SetLayoutManager(deckOfCardsLayoutManager);
-			};
-
-			Button countBtn = (Button)rootView.FindViewById (Resource.Id.countBtn);
-			countBtn.Click += (object sender, EventArgs e) => {
-				if(deckOfCardsLayoutManager.PerspectiveItemsCount == 2) {
-					deckOfCardsLayoutManager.PerspectiveItemsCount = 5;
+			Button transitionBtn = (Button)rootView.FindViewById(Resource.Id.transitionBtn);
+			transitionBtn.Click += (object sender, EventArgs e) => {
+				if(slideLayoutManager.TransitionMode == SlideLayoutManager.Transition.SlideAway) {
+					slideLayoutManager.TransitionMode = SlideLayoutManager.Transition.SlideOver;
 				} else {
-					deckOfCardsLayoutManager.PerspectiveItemsCount = 2;
+					slideLayoutManager.TransitionMode = SlideLayoutManager.Transition.SlideAway;
 				}
 			};
 
-			Button perspectiveBtn = (Button)rootView.FindViewById(Resource.Id.perspectiveBtn);
-			perspectiveBtn.Click += (object sender, EventArgs e) => {
-				if(deckOfCardsLayoutManager.Perspective().TranslateStart != PerspectiveChangeInfo.DefaultTranslation) {
-					deckOfCardsLayoutManager.Perspective().TranslateStart = PerspectiveChangeInfo.DefaultTranslation;
-					deckOfCardsLayoutManager.Perspective().TranslateTop = PerspectiveChangeInfo.DefaultTranslation;
-					deckOfCardsLayoutManager.Perspective().TranslateEnd = PerspectiveChangeInfo.DefaultTranslation;
+			ToggleButton spacingBtn = (ToggleButton)rootView.FindViewById(Resource.Id.spacingBtn);
+			spacingBtn.CheckedChange += (object sender, CompoundButton.CheckedChangeEventArgs e) => {
+				if(e.IsChecked) {
+					slideLayoutManager.ItemSpacing = 50;
 				} else {
-					deckOfCardsLayoutManager.Perspective().TranslateStart = -50;
-					deckOfCardsLayoutManager.Perspective().TranslateTop = -50;
-					deckOfCardsLayoutManager.Perspective().TranslateEnd = -50;
+					slideLayoutManager.ItemSpacing = 0;
+				}
+			};
+
+			ToggleButton showPreviousButton = (ToggleButton)rootView.FindViewById(Resource.Id.showPrevBtn);
+			showPreviousButton.CheckedChange += (object sender, CompoundButton.CheckedChangeEventArgs e) => {
+				if(e.IsChecked) {
+					slideLayoutManager.PreviousItemPreview = 100;
+				} else {
+					slideLayoutManager.PreviousItemPreview = 0;
+				}
+			};
+
+			ToggleButton showNextButton = (ToggleButton)rootView.FindViewById(Resource.Id.showNextBtn);
+			showNextButton.CheckedChange += (object sender, CompoundButton.CheckedChangeEventArgs e) => {
+				if(e.IsChecked) {
+					slideLayoutManager.NextItemPreview = 100;
+				} else {
+					slideLayoutManager.NextItemPreview = 0;
 				}
 			};
 
 			Button previousBtn = (Button)rootView.FindViewById(Resource.Id.previousBtn);
 			previousBtn.Click += (object sender, EventArgs e) => {
-				deckOfCardsLayoutManager.ScrollToPrevious();
+				slideLayoutManager.ScrollToPrevious();
 			};
 
 			Button nextBtn = (Button)rootView.FindViewById(Resource.Id.nextBtn);
 			nextBtn.Click += (object sender, EventArgs e) => {
-				deckOfCardsLayoutManager.ScrollToNext();
+				slideLayoutManager.ScrollToNext();
 			};
 
 			return rootView;
 		}
 
-		private ArrayList getData() {
+		public String Title(){
+			return "Slide Layout";
+		}
+
+		private ArrayList GetData() {
 			ArrayList source = new ArrayList();
 
 			Country sourceItem = new Country();
@@ -304,46 +306,6 @@ namespace Samples
 			source.Add(sourceItem);
 
 			return source;
-		}
-	}
-
-	public class Country : Java.Lang.Object {
-		public String name;
-		public String capital;
-		public int population;
-	}
-
-	public class CountryViewHolder : ListViewHolder {
-
-		public TextView txtName;
-		public TextView txtCapital;
-		public TextView txtPopulation;
-
-		public CountryViewHolder(View itemView) : base(itemView) {
-
-			this.txtName = (TextView) itemView.FindViewById(Resource.Id.name);
-			this.txtCapital = (TextView) itemView.FindViewById(Resource.Id.capital);
-			this.txtPopulation = (TextView) itemView.FindViewById(Resource.Id.population);
-		}
-	}
-
-	public class CountryAdapter : ListViewAdapter {
-		public CountryAdapter(IList items) :base(items) {
-		}
-
-		public override Android.Support.V7.Widget.RecyclerView.ViewHolder OnCreateViewHolder (ViewGroup parent, int viewType) {
-			LayoutInflater inflater = LayoutInflater.From(parent.Context);
-			View itemView = inflater.Inflate(Resource.Layout.example_list_view_deck_item_layout, parent, false);
-			return new CountryViewHolder(itemView);
-		}
-
-		public override void OnBindListViewHolder(ListViewHolder holder, int position) {
-			CountryViewHolder vh = (CountryViewHolder) holder;
-			Country item = (Country) GetItem(position);
-
-			vh.txtName.Text = item.name;
-			vh.txtCapital.Text = Java.Lang.String.Format("Capital: %s", item.capital);
-			vh.txtPopulation.Text = Java.Lang.String.Format("Population: %,d", item.population);
 		}
 	}
 }

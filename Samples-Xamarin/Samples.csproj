@@ -42,27 +42,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Telerik.Xamarin.Android.Chart">
-      <HintPath>lib\Telerik.Xamarin.Android.Chart.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Common">
-      <HintPath>lib\Telerik.Xamarin.Android.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Feedback">
-      <HintPath>lib\Telerik.Xamarin.Android.Feedback.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Input">
-      <HintPath>lib\Telerik.Xamarin.Android.Input.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Primitives">
-      <HintPath>lib\Telerik.Xamarin.Android.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Data">
-      <HintPath>lib\Telerik.Xamarin.Android.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.List">
-      <HintPath>lib\Telerik.Xamarin.Android.List.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>packages\Xamarin.Android.Support.v4.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
@@ -75,6 +54,27 @@
     <Reference Include="Xamarin.Android.Support.v8.RenderScript">
       <HintPath>packages\Xamarin.Android.Support.v8.RenderScript.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v8.RenderScript.dll</HintPath>
     </Reference>
+-    <Reference Include="Telerik.Xamarin.Android.Chart">
+-      <HintPath>lib\Telerik.Xamarin.Android.Chart.dll</HintPath>
+-    </Reference>
+-    <Reference Include="Telerik.Xamarin.Android.Common">
+-      <HintPath>lib\Telerik.Xamarin.Android.Common.dll</HintPath>
+-    </Reference>
+-    <Reference Include="Telerik.Xamarin.Android.Feedback">
+-      <HintPath>lib\Telerik.Xamarin.Android.Feedback.dll</HintPath>
+-    </Reference>
+-    <Reference Include="Telerik.Xamarin.Android.Input">
+-      <HintPath>lib\Telerik.Xamarin.Android.Input.dll</HintPath>
+-    </Reference>
+-    <Reference Include="Telerik.Xamarin.Android.Primitives">
+-      <HintPath>lib\Telerik.Xamarin.Android.Primitives.dll</HintPath>
+-    </Reference>
+-    <Reference Include="Telerik.Xamarin.Android.Data">
+-      <HintPath>lib\Telerik.Xamarin.Android.Data.dll</HintPath>
+-    </Reference>
+-    <Reference Include="Telerik.Xamarin.Android.List">
+-      <HintPath>lib\Telerik.Xamarin.Android.List.dll</HintPath>
+-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -158,6 +158,9 @@
     <Compile Include="Fragments\Calendar\Events\EventsPopupDisplayModeFragment.cs" />
     <Compile Include="Fragments\Calendar\Events\EventsInlineDisplayModeFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewDeckOfCardsFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewWrapFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewSlideFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewStickyHeadersFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -205,6 +208,9 @@
     <AndroidResource Include="Resources\layout\fragment_dataform_getting_started.axml" />
     <AndroidResource Include="Resources\layout\fragment_dataform_validation.axml" />
     <AndroidResource Include="Resources\layout\fragment_dataform_features.axml" />
+    <AndroidResource Include="Resources\layout\fragment_list_view_wrap.axml" />
+    <AndroidResource Include="Resources\layout\fragment_list_view_slide.axml" />
+    <AndroidResource Include="Resources\layout\fragment_list_view_sticky_headers.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
