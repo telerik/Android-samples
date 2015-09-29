@@ -988,39 +988,15 @@ namespace Samples
 		public partial class Color
 		{
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f090045
-			public const int abc_background_cache_hint_selector_material_dark = 2131296325;
-			
-			// aapt resource value: 0x7f090046
-			public const int abc_background_cache_hint_selector_material_light = 2131296326;
-=======
 			// aapt resource value: 0x7f0c0049
 			public const int abc_background_cache_hint_selector_material_dark = 2131492937;
 			
 			// aapt resource value: 0x7f0c004a
 			public const int abc_background_cache_hint_selector_material_light = 2131492938;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0c0000
 			public const int abc_input_method_navigation_guard = 2131492864;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f090047
-			public const int abc_primary_text_disable_only_material_dark = 2131296327;
-			
-			// aapt resource value: 0x7f090048
-			public const int abc_primary_text_disable_only_material_light = 2131296328;
-			
-			// aapt resource value: 0x7f090049
-			public const int abc_primary_text_material_dark = 2131296329;
-			
-			// aapt resource value: 0x7f09004a
-			public const int abc_primary_text_material_light = 2131296330;
-			
-			// aapt resource value: 0x7f09004b
-			public const int abc_search_url_text = 2131296331;
-=======
 			// aapt resource value: 0x7f0c004b
 			public const int abc_primary_text_disable_only_material_dark = 2131492939;
 			
@@ -1035,7 +1011,6 @@ namespace Samples
 			
 			// aapt resource value: 0x7f0c004f
 			public const int abc_search_url_text = 2131492943;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0c0001
 			public const int abc_search_url_text_normal = 2131492865;
@@ -1046,19 +1021,11 @@ namespace Samples
 			// aapt resource value: 0x7f0c0003
 			public const int abc_search_url_text_selected = 2131492867;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f09004c
-			public const int abc_secondary_text_material_dark = 2131296332;
-			
-			// aapt resource value: 0x7f09004d
-			public const int abc_secondary_text_material_light = 2131296333;
-=======
 			// aapt resource value: 0x7f0c0050
 			public const int abc_secondary_text_material_dark = 2131492944;
 			
 			// aapt resource value: 0x7f0c0051
 			public const int abc_secondary_text_material_light = 2131492945;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0c0004
 			public const int accent_material_dark = 2131492868;
@@ -1078,13 +1045,8 @@ namespace Samples
 			// aapt resource value: 0x7f0c0009
 			public const int background_material_light = 2131492873;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f090043
-			public const int black = 2131296323;
-=======
 			// aapt resource value: 0x7f0c0047
 			public const int black = 2131492935;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0c000a
 			public const int bright_foreground_disabled_material_dark = 2131492874;
@@ -1131,16 +1093,8 @@ namespace Samples
 			// aapt resource value: 0x7f0c003d
 			public const int grey_text_color = 2131492925;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f09003c
-			public const int dark_grey_text_color = 2131296316;
-			
-			// aapt resource value: 0x7f09003a
-			public const int data_form_list_selected = 2131296314;
-=======
 			// aapt resource value: 0x7f0c0039
 			public const int groupHeaderTextColor = 2131492921;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0c0016
 			public const int highlighted_text_material_dark = 2131492886;
@@ -1154,13 +1108,8 @@ namespace Samples
 			// aapt resource value: 0x7f0c0019
 			public const int hint_foreground_material_light = 2131492889;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f09003b
-			public const int grey_text_color = 2131296315;
-=======
 			// aapt resource value: 0x7f0c003f
 			public const int light_blue = 2131492927;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0c0040
 			public const int light_grey = 2131492928;
@@ -1177,19 +1126,11 @@ namespace Samples
 			// aapt resource value: 0x7f0c0037
 			public const int listItemTextColor = 2131492919;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f09003d
-			public const int light_blue = 2131296317;
-			
-			// aapt resource value: 0x7f09003e
-			public const int light_grey = 2131296318;
-=======
 			// aapt resource value: 0x7f0c001c
 			public const int material_blue_grey_800 = 2131492892;
 			
 			// aapt resource value: 0x7f0c001d
 			public const int material_blue_grey_900 = 2131492893;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0c001e
 			public const int material_blue_grey_950 = 2131492894;
@@ -1245,19 +1186,11 @@ namespace Samples
 			// aapt resource value: 0x7f0c002c
 			public const int secondary_text_default_material_light = 2131492908;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f090042
-			public const int progress_bar_background = 2131296322;
-			
-			// aapt resource value: 0x7f090044
-			public const int red = 2131296324;
-=======
 			// aapt resource value: 0x7f0c002d
 			public const int secondary_text_disabled_material_dark = 2131492909;
 			
 			// aapt resource value: 0x7f0c002e
 			public const int secondary_text_disabled_material_light = 2131492910;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0c0035
 			public const int selectionColor = 2131492917;
@@ -1286,19 +1219,11 @@ namespace Samples
 			// aapt resource value: 0x7f0c0053
 			public const int switch_thumb_material_light = 2131492947;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f090040
-			public const int status_open_color = 2131296320;
-			
-			// aapt resource value: 0x7f090041
-			public const int status_resolved_color = 2131296321;
-=======
 			// aapt resource value: 0x7f0c0031
 			public const int switch_thumb_normal_material_dark = 2131492913;
 			
 			// aapt resource value: 0x7f0c0032
 			public const int switch_thumb_normal_material_light = 2131492914;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0c0041
 			public const int text_editor_background = 2131492929;
@@ -1306,13 +1231,8 @@ namespace Samples
 			// aapt resource value: 0x7f0c0033
 			public const int transparent = 2131492915;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f09003f
-			public const int text_editor_background = 2131296319;
-=======
 			// aapt resource value: 0x7f0c0046
 			public const int view_feedback_item_comments_background = 2131492934;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0c0045
 			public const int view_feedback_item_text_color = 2131492933;
@@ -1950,67 +1870,6 @@ namespace Samples
 			// aapt resource value: 0x7f07002b
 			public const int Year = 2131165227;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f020034
-			public const int data_form_list_item_states = 2130837556;
-			
-			// aapt resource value: 0x7f020035
-			public const int data_form_segment_checked = 2130837557;
-			
-			// aapt resource value: 0x7f020036
-			public const int data_form_segment_item = 2130837558;
-			
-			// aapt resource value: 0x7f020037
-			public const int data_form_segment_unchecked = 2130837559;
-			
-			// aapt resource value: 0x7f020038
-			public const int dataform_number_picker_background = 2130837560;
-			
-			// aapt resource value: 0x7f020039
-			public const int done_button = 2130837561;
-			
-			// aapt resource value: 0x7f02003a
-			public const int events_popup_bg = 2130837562;
-			
-			// aapt resource value: 0x7f02003b
-			public const int feedback_prompt_background = 2130837563;
-			
-			// aapt resource value: 0x7f02003c
-			public const int gingerbread_background = 2130837564;
-			
-			// aapt resource value: 0x7f02003d
-			public const int hamburger = 2130837565;
-			
-			// aapt resource value: 0x7f02003e
-			public const int hmb = 2130837566;
-			
-			// aapt resource value: 0x7f02003f
-			public const int ic_done = 2130837567;
-			
-			// aapt resource value: 0x7f020040
-			public const int ic_feedback_sync = 2130837568;
-			
-			// aapt resource value: 0x7f020041
-			public const int ic_send = 2130837569;
-			
-			// aapt resource value: 0x7f020042
-			public const int Icon = 2130837570;
-			
-			// aapt resource value: 0x7f020043
-			public const int pressable_item_background = 2130837571;
-			
-			// aapt resource value: 0x7f020044
-			public const int selectable_item_background = 2130837572;
-			
-			// aapt resource value: 0x7f020045
-			public const int shade_bottom = 2130837573;
-			
-			// aapt resource value: 0x7f020046
-			public const int shade_corner = 2130837574;
-			
-			// aapt resource value: 0x7f020047
-			public const int shade_right = 2130837575;
-=======
 			// aapt resource value: 0x7f0700ff
 			public const int action0 = 2131165439;
 			
@@ -2055,7 +1914,6 @@ namespace Samples
 			
 			// aapt resource value: 0x7f07004f
 			public const int action_mode_close_button = 2131165263;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070122
 			public const int action_refresh = 2131165474;
@@ -2204,16 +2062,6 @@ namespace Samples
 			// aapt resource value: 0x7f07007d
 			public const int contentHolder = 2131165309;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00f5
-			public const int action_refresh = 2131427573;
-			
-			// aapt resource value: 0x7f0b00f4
-			public const int action_send = 2131427572;
-			
-			// aapt resource value: 0x7f0b00f3
-			public const int action_settings = 2131427571;
-=======
 			// aapt resource value: 0x7f07005b
 			public const int contentPanel = 2131165275;
 			
@@ -2222,7 +2070,6 @@ namespace Samples
 			
 			// aapt resource value: 0x7f07005f
 			public const int custom = 2131165279;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f07005e
 			public const int customPanel = 2131165278;
@@ -2233,13 +2080,8 @@ namespace Samples
 			// aapt resource value: 0x7f0700a5
 			public const int custom_editor_header = 2131165349;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b009e
-			public const int areaText = 2131427486;
-=======
 			// aapt resource value: 0x7f0700a7
 			public const int custom_editor_validation_view = 2131165351;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700cc
 			public const int dataForm = 2131165388;
@@ -2247,19 +2089,6 @@ namespace Samples
 			// aapt resource value: 0x7f07008c
 			public const int data_form_autocomplete_editor = 2131165324;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00c8
-			public const int bottomButtons = 2131427528;
-			
-			// aapt resource value: 0x7f0b00ad
-			public const int btnAction1 = 2131427501;
-			
-			// aapt resource value: 0x7f0b00ae
-			public const int btnAction2 = 2131427502;
-			
-			// aapt resource value: 0x7f0b00cb
-			public const int btnAddItem = 2131427531;
-=======
 			// aapt resource value: 0x7f07008d
 			public const int data_form_checkbox_editor = 2131165325;
 			
@@ -2271,54 +2100,10 @@ namespace Samples
 			
 			// aapt resource value: 0x7f070094
 			public const int data_form_editor_container = 2131165332;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070091
 			public const int data_form_editor_group_container = 2131165329;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00d3
-			public const int btnDeck = 2131427539;
-			
-			// aapt resource value: 0x7f0b00bf
-			public const int btnFilter = 2131427519;
-			
-			// aapt resource value: 0x7f0b00d1
-			public const int btnGrid = 2131427537;
-			
-			// aapt resource value: 0x7f0b00c0
-			public const int btnGroup = 2131427520;
-			
-			// aapt resource value: 0x7f0b00d0
-			public const int btnLinear = 2131427536;
-			
-			// aapt resource value: 0x7f0b00cc
-			public const int btnRemoveItem = 2131427532;
-			
-			// aapt resource value: 0x7f0b00cf
-			public const int btnSetFade = 2131427535;
-			
-			// aapt resource value: 0x7f0b00cd
-			public const int btnSetScale = 2131427533;
-			
-			// aapt resource value: 0x7f0b00ce
-			public const int btnSetSlide = 2131427534;
-			
-			// aapt resource value: 0x7f0b00c1
-			public const int btnSort = 2131427521;
-			
-			// aapt resource value: 0x7f0b00d2
-			public const int btnStaggered = 2131427538;
-			
-			// aapt resource value: 0x7f0b00be
-			public const int buttonsLayer = 2131427518;
-			
-			// aapt resource value: 0x7f0b00b3
-			public const int calendar = 2131427507;
-			
-			// aapt resource value: 0x7f0b00a7
-			public const int capital = 2131427495;
-=======
 			// aapt resource value: 0x7f070098
 			public const int data_form_expandable_group_expand_button = 2131165336;
 			
@@ -2360,36 +2145,10 @@ namespace Samples
 			
 			// aapt resource value: 0x7f070092
 			public const int data_form_text_viewer_header = 2131165330;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700a3
 			public const int data_form_time_editor = 2131165347;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00b5
-			public const int chartView = 2131427509;
-			
-			// aapt resource value: 0x7f0b00ef
-			public const int chart_data_point_content_container = 2131427567;
-			
-			// aapt resource value: 0x7f0b00e4
-			public const int chart_layout_root = 2131427556;
-			
-			// aapt resource value: 0x7f0b0096
-			public const int chart_tooltip_category = 2131427478;
-			
-			// aapt resource value: 0x7f0b00ee
-			public const int chart_tooltip_pointer = 2131427566;
-			
-			// aapt resource value: 0x7f0b0097
-			public const int chart_tooltip_value = 2131427479;
-			
-			// aapt resource value: 0x7f0b009f
-			public const int chart_trackball_category = 2131427487;
-			
-			// aapt resource value: 0x7f0b00a1
-			public const int chart_trackball_value = 2131427489;
-=======
 			// aapt resource value: 0x7f0700a4
 			public const int data_form_toggle_editor = 2131165348;
 			
@@ -2413,29 +2172,18 @@ namespace Samples
 			
 			// aapt resource value: 0x7f07001c
 			public const int dialog = 2131165212;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f07000d
 			public const int disableHome = 2131165197;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b009a
-			public const int closeText = 2131427482;
-=======
 			// aapt resource value: 0x7f070117
 			public const int drawerLocationSpinner = 2131165463;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070116
 			public const int drawerTapOutsideButton = 2131165462;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00b8
-			public const int commitModeSpinner = 2131427512;
-=======
 			// aapt resource value: 0x7f070118
 			public const int drawerTransitionsSpinner = 2131165464;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f07001d
 			public const int dropdown = 2131165213;
@@ -2443,22 +2191,6 @@ namespace Samples
 			// aapt resource value: 0x7f070080
 			public const int editCommentPanel = 2131165312;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00c6
-			public const int countBtn = 2131427526;
-			
-			// aapt resource value: 0x7f0b0091
-			public const int custom_editor = 2131427473;
-			
-			// aapt resource value: 0x7f0b0090
-			public const int custom_editor_header = 2131427472;
-			
-			// aapt resource value: 0x7f0b0092
-			public const int custom_editor_validation_view = 2131427474;
-			
-			// aapt resource value: 0x7f0b00b7
-			public const int dataForm = 2131427511;
-=======
 			// aapt resource value: 0x7f07006c
 			public const int edit_query = 2131165292;
 			
@@ -2473,7 +2205,6 @@ namespace Samples
 			
 			// aapt resource value: 0x7f07007a
 			public const int expListView = 2131165306;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070051
 			public const int expand_activities_button = 2131165265;
@@ -2487,37 +2218,6 @@ namespace Samples
 			// aapt resource value: 0x7f070119
 			public const int groupHeaderText = 2131165465;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b0081
-			public const int data_form_list_editor = 2131427457;
-			
-			// aapt resource value: 0x7f0b0084
-			public const int data_form_number_picker_editor = 2131427460;
-			
-			// aapt resource value: 0x7f0b0082
-			public const int data_form_number_picker_header = 2131427458;
-			
-			// aapt resource value: 0x7f0b0086
-			public const int data_form_radio_group = 2131427462;
-			
-			// aapt resource value: 0x7f0b0087
-			public const int data_form_root_layout = 2131427463;
-			
-			// aapt resource value: 0x7f0b0088
-			public const int data_form_seekbar_editor = 2131427464;
-			
-			// aapt resource value: 0x7f0b0089
-			public const int data_form_spinner_editor = 2131427465;
-			
-			// aapt resource value: 0x7f0b008a
-			public const int data_form_switch_editor = 2131427466;
-			
-			// aapt resource value: 0x7f0b008b
-			public const int data_form_text_editor = 2131427467;
-			
-			// aapt resource value: 0x7f0b008c
-			public const int data_form_text_viewer = 2131427468;
-=======
 			// aapt resource value: 0x7f0700ad
 			public const int highText = 2131165357;
 			
@@ -2535,21 +2235,10 @@ namespace Samples
 			
 			// aapt resource value: 0x7f070019
 			public const int ifRoom = 2131165209;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070052
 			public const int image = 2131165266;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b008d
-			public const int data_form_time_editor = 2131427469;
-			
-			// aapt resource value: 0x7f0b008e
-			public const int data_form_toggle_editor = 2131427470;
-			
-			// aapt resource value: 0x7f0b008f
-			public const int data_form_validation_message_view = 2131427471;
-=======
 			// aapt resource value: 0x7f0700b7
 			public const int imageView = 2131165367;
 			
@@ -2558,18 +2247,12 @@ namespace Samples
 			
 			// aapt resource value: 0x7f07010a
 			public const int info = 2131165450;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700f3
 			public const int inline_event_end = 2131165427;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00b6
-			public const int dataform_custom_editor_list = 2131427510;
-=======
 			// aapt resource value: 0x7f0700f2
 			public const int inline_event_start = 2131165426;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700f4
 			public const int inline_event_title = 2131165428;
@@ -2583,16 +2266,6 @@ namespace Samples
 			// aapt resource value: 0x7f07011d
 			public const int itemWeek = 2131165469;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00ea
-			public const int drawerLocationSpinner = 2131427562;
-			
-			// aapt resource value: 0x7f0b00e9
-			public const int drawerTapOutsideButton = 2131427561;
-			
-			// aapt resource value: 0x7f0b00eb
-			public const int drawerTransitionsSpinner = 2131427563;
-=======
 			// aapt resource value: 0x7f07011f
 			public const int itemYear = 2131165471;
 			
@@ -2601,7 +2274,6 @@ namespace Samples
 			
 			// aapt resource value: 0x7f070049
 			public const int left = 2131165257;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700f5
 			public const int legendItemIconView = 2131165429;
@@ -2612,13 +2284,8 @@ namespace Samples
 			// aapt resource value: 0x7f070114
 			public const int legendListView = 2131165460;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00e5
-			public const int emptyContent = 2131427557;
-=======
 			// aapt resource value: 0x7f0700c9
 			public const int legendView = 2131165385;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070104
 			public const int line1 = 2131165444;
@@ -2632,19 +2299,11 @@ namespace Samples
 			// aapt resource value: 0x7f07008a
 			public const int listComments = 2131165322;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00ec
-			public const int groupHeaderText = 2131427564;
-			
-			// aapt resource value: 0x7f0b0098
-			public const int highText = 2131427480;
-=======
 			// aapt resource value: 0x7f0700fa
 			public const int listControls = 2131165434;
 			
 			// aapt resource value: 0x7f0700a9
 			public const int listItemDescription = 2131165353;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700a8
 			public const int listItemTitle = 2131165352;
@@ -2664,27 +2323,12 @@ namespace Samples
 			// aapt resource value: 0x7f070115
 			public const int lockDrawerButton = 2131165461;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00a2
-			public const int imageView = 2131427490;
-=======
 			// aapt resource value: 0x7f0700b0
 			public const int lowText = 2131165360;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700cf
 			public const int manualCommit = 2131165391;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00d6
-			public const int inline_event_end = 2131427542;
-			
-			// aapt resource value: 0x7f0b00d5
-			public const int inline_event_start = 2131427541;
-			
-			// aapt resource value: 0x7f0b00d7
-			public const int inline_event_title = 2131427543;
-=======
 			// aapt resource value: 0x7f070102
 			public const int media_actions = 2131165442;
 			
@@ -2693,21 +2337,10 @@ namespace Samples
 			
 			// aapt resource value: 0x7f070016
 			public const int middle = 2131165206;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700ef
 			public const int minItemSpacingBtn = 2131165423;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00f1
-			public const int itemMonth = 2131427569;
-			
-			// aapt resource value: 0x7f0b00f0
-			public const int itemWeek = 2131427568;
-			
-			// aapt resource value: 0x7f0b00f2
-			public const int itemYear = 2131427570;
-=======
 			// aapt resource value: 0x7f07001f
 			public const int multiply = 2131165215;
 			
@@ -2716,24 +2349,10 @@ namespace Samples
 			
 			// aapt resource value: 0x7f0700fd
 			public const int navItemsLayout = 2131165437;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700fe
 			public const int navigationItemText = 2131165438;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00d8
-			public const int legendItemIconView = 2131427544;
-			
-			// aapt resource value: 0x7f0b00d9
-			public const int legendItemTitleView = 2131427545;
-			
-			// aapt resource value: 0x7f0b00e7
-			public const int legendListView = 2131427559;
-			
-			// aapt resource value: 0x7f0b00b4
-			public const int legendView = 2131427508;
-=======
 			// aapt resource value: 0x7f07001a
 			public const int never = 2131165210;
 			
@@ -2745,24 +2364,10 @@ namespace Samples
 			
 			// aapt resource value: 0x7f07000b
 			public const int normal = 2131165195;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f07010c
 			public const int number_picker_minus = 2131165452;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00dd
-			public const int listControls = 2131427549;
-			
-			// aapt resource value: 0x7f0b0094
-			public const int listItemDescription = 2131427476;
-			
-			// aapt resource value: 0x7f0b0093
-			public const int listItemTitle = 2131427475;
-			
-			// aapt resource value: 0x7f0b00bd
-			public const int listItems = 2131427517;
-=======
 			// aapt resource value: 0x7f07010e
 			public const int number_picker_plus = 2131165454;
 			
@@ -2774,35 +2379,16 @@ namespace Samples
 			
 			// aapt resource value: 0x7f0700d8
 			public const int orientationBtn = 2131165400;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070057
 			public const int parentPanel = 2131165271;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00c2
-			public const int listView = 2131427522;
-=======
 			// aapt resource value: 0x7f0700d0
 			public const int personText = 2131165392;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700db
 			public const int perspectiveBtn = 2131165403;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00e8
-			public const int lockDrawerButton = 2131427560;
-			
-			// aapt resource value: 0x7f0b009b
-			public const int lowText = 2131427483;
-			
-			// aapt resource value: 0x7f0b00ba
-			public const int manualCommit = 2131427514;
-			
-			// aapt resource value: 0x7f0b00de
-			public const int menuList = 2131427550;
-=======
 			// aapt resource value: 0x7f0700bd
 			public const int population = 2131165373;
 			
@@ -2814,21 +2400,10 @@ namespace Samples
 			
 			// aapt resource value: 0x7f0700dc
 			public const int previousBtn = 2131165404;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070083
 			public const int progressBar = 2131165315;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00a6
-			public const int name = 2131427494;
-			
-			// aapt resource value: 0x7f0b00e0
-			public const int navItemsLayout = 2131427552;
-			
-			// aapt resource value: 0x7f0b00e1
-			public const int navigationItemText = 2131427553;
-=======
 			// aapt resource value: 0x7f070006
 			public const int progress_circular = 2131165190;
 			
@@ -2837,18 +2412,12 @@ namespace Samples
 			
 			// aapt resource value: 0x7f070064
 			public const int radio = 2131165284;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700ce
 			public const int readOnly = 2131165390;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00ca
-			public const int nextBtn = 2131427530;
-=======
 			// aapt resource value: 0x7f070113
 			public const int renderSurface = 2131165459;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700d9
 			public const int reverseBtn = 2131165401;
@@ -2856,37 +2425,6 @@ namespace Samples
 			// aapt resource value: 0x7f07004a
 			public const int right = 2131165258;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b0083
-			public const int number_picker_minus = 2131427459;
-			
-			// aapt resource value: 0x7f0b0085
-			public const int number_picker_plus = 2131427461;
-			
-			// aapt resource value: 0x7f0b0099
-			public const int openText = 2131427481;
-			
-			// aapt resource value: 0x7f0b00c4
-			public const int orientationBtn = 2131427524;
-			
-			// aapt resource value: 0x7f0b00bb
-			public const int personText = 2131427515;
-			
-			// aapt resource value: 0x7f0b00c7
-			public const int perspectiveBtn = 2131427527;
-			
-			// aapt resource value: 0x7f0b00a8
-			public const int population = 2131427496;
-			
-			// aapt resource value: 0x7f0b00e2
-			public const int popup_event_time = 2131427554;
-			
-			// aapt resource value: 0x7f0b00e3
-			public const int popup_event_title = 2131427555;
-			
-			// aapt resource value: 0x7f0b00c9
-			public const int previousBtn = 2131427529;
-=======
 			// aapt resource value: 0x7f0700f1
 			public const int rootView = 2131165425;
 			
@@ -2910,7 +2448,6 @@ namespace Samples
 			
 			// aapt resource value: 0x7f070074
 			public const int search_close_btn = 2131165300;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070070
 			public const int search_edit_frame = 2131165296;
@@ -2924,16 +2461,6 @@ namespace Samples
 			// aapt resource value: 0x7f070072
 			public const int search_plate = 2131165298;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00b9
-			public const int readOnly = 2131427513;
-			
-			// aapt resource value: 0x7f0b00e6
-			public const int renderSurface = 2131427558;
-			
-			// aapt resource value: 0x7f0b00c5
-			public const int reverseBtn = 2131427525;
-=======
 			// aapt resource value: 0x7f070073
 			public const int search_src_text = 2131165299;
 			
@@ -2942,18 +2469,12 @@ namespace Samples
 			
 			// aapt resource value: 0x7f070078
 			public const int select_dialog_listview = 2131165304;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070063
 			public const int shortcut = 2131165283;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00d4
-			public const int rootView = 2131427540;
-=======
 			// aapt resource value: 0x7f070010
 			public const int showCustom = 2131165200;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070011
 			public const int showHome = 2131165201;
@@ -3009,137 +2530,66 @@ namespace Samples
 			// aapt resource value: 0x7f070056
 			public const int title = 2131165270;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00ed
-			public const int text1 = 2131427565;
-=======
 			// aapt resource value: 0x7f070059
 			public const int title_template = 2131165273;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700aa
 			public const int tooltip_content_container = 2131165354;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b0095
-			public const int tooltip_content_container = 2131427477;
-=======
 			// aapt resource value: 0x7f07004c
 			public const int top = 2131165260;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f07007c
 			public const int topLabel = 2131165308;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00c3
-			public const int topButtons = 2131427523;
-=======
 			// aapt resource value: 0x7f070058
 			public const int topPanel = 2131165272;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f0700b5
 			public const int trackball_points_list = 2131165365;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00a0
-			public const int trackball_points_list = 2131427488;
-			
-			// aapt resource value: 0x7f0b00af
-			public const int txtAuthor = 2131427503;
-=======
 			// aapt resource value: 0x7f0700ea
 			public const int transitionBtn = 2131165418;
 			
 			// aapt resource value: 0x7f0700c4
 			public const int txtAuthor = 2131165380;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f07007b
 			public const int txtAuthorName = 2131165307;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00b0
-			public const int txtCommentText = 2131427504;
-			
-			// aapt resource value: 0x7f0b00b2
-			public const int txtCommentsCount = 2131427506;
-=======
 			// aapt resource value: 0x7f0700c5
 			public const int txtCommentText = 2131165381;
 			
 			// aapt resource value: 0x7f0700c7
 			public const int txtCommentsCount = 2131165383;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070089
 			public const int txtCommentsLabel = 2131165321;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00ac
-			public const int txtContent = 2131427500;
-			
-			// aapt resource value: 0x7f0b00db
-			public const int txtControlName = 2131427547;
-=======
 			// aapt resource value: 0x7f0700c1
 			public const int txtContent = 2131165377;
 			
 			// aapt resource value: 0x7f0700f8
 			public const int txtControlName = 2131165432;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070085
 			public const int txtDate = 2131165317;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00df
-			public const int txtDescription = 2131427551;
-=======
 			// aapt resource value: 0x7f0700fc
 			public const int txtDescription = 2131165436;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070081
 			public const int txtEditComment = 2131165313;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00da
-			public const int txtExampleName = 2131427546;
-			
-			// aapt resource value: 0x7f0b00dc
-			public const int txtFeatureName = 2131427548;
-=======
 			// aapt resource value: 0x7f0700f7
 			public const int txtExampleName = 2131165431;
 			
 			// aapt resource value: 0x7f0700f9
 			public const int txtFeatureName = 2131165433;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070087
 			public const int txtFeedbackText = 2131165319;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00a9
-			public const int txtGroupHeader = 2131427497;
-			
-			// aapt resource value: 0x7f0b00a4
-			public const int txtItemCategory = 2131427492;
-			
-			// aapt resource value: 0x7f0b00a3
-			public const int txtItemName = 2131427491;
-			
-			// aapt resource value: 0x7f0b00a5
-			public const int txtItemPrice = 2131427493;
-			
-			// aapt resource value: 0x7f0b00aa
-			public const int txtItemText = 2131427498;
-			
-			// aapt resource value: 0x7f0b00bc
-			public const int txtNoItems = 2131427516;
-=======
 			// aapt resource value: 0x7f0700be
 			public const int txtGroupHeader = 2131165374;
 			
@@ -3157,24 +2607,15 @@ namespace Samples
 			
 			// aapt resource value: 0x7f0700d1
 			public const int txtNoItems = 2131165393;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070086
 			public const int txtStatus = 2131165318;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b00b1
-			public const int txtText = 2131427505;
-			
-			// aapt resource value: 0x7f0b00ab
-			public const int txtTitle = 2131427499;
-=======
 			// aapt resource value: 0x7f0700c6
 			public const int txtText = 2131165382;
 			
 			// aapt resource value: 0x7f0700c0
 			public const int txtTitle = 2131165376;
->>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f070009
 			public const int up = 2131165193;
@@ -3194,19 +2635,11 @@ namespace Samples
 			// aapt resource value: 0x7f07001e
 			public const int wrap_content = 2131165214;
 			
-<<<<<<< Updated upstream
-			// aapt resource value: 0x7f0b009c
-			public const int xText = 2131427484;
-			
-			// aapt resource value: 0x7f0b009d
-			public const int yText = 2131427485;
-=======
 			// aapt resource value: 0x7f0700b1
 			public const int xText = 2131165361;
 			
 			// aapt resource value: 0x7f0700b2
 			public const int yText = 2131165362;
->>>>>>> Stashed changes
 			
 			static Id()
 			{
@@ -3352,246 +2785,6 @@ namespace Samples
 			public const int data_form_date_editor = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-<<<<<<< Updated upstream
-			public const int data_form_list_editor = 2130903074;
-			
-			// aapt resource value: 0x7f030023
-			public const int data_form_list_editor_item = 2130903075;
-			
-			// aapt resource value: 0x7f030024
-			public const int data_form_number_picker = 2130903076;
-			
-			// aapt resource value: 0x7f030025
-			public const int data_form_radio_group_editor = 2130903077;
-			
-			// aapt resource value: 0x7f030026
-			public const int data_form_root_layout = 2130903078;
-			
-			// aapt resource value: 0x7f030027
-			public const int data_form_seek_bar_editor = 2130903079;
-			
-			// aapt resource value: 0x7f030028
-			public const int data_form_segmented_editor = 2130903080;
-			
-			// aapt resource value: 0x7f030029
-			public const int data_form_spinner_editor = 2130903081;
-			
-			// aapt resource value: 0x7f03002a
-			public const int data_form_switch_editor = 2130903082;
-			
-			// aapt resource value: 0x7f03002b
-			public const int data_form_text_editor = 2130903083;
-			
-			// aapt resource value: 0x7f03002c
-			public const int data_form_text_viewer = 2130903084;
-			
-			// aapt resource value: 0x7f03002d
-			public const int data_form_time_editor = 2130903085;
-			
-			// aapt resource value: 0x7f03002e
-			public const int data_form_toggle_button_editor = 2130903086;
-			
-			// aapt resource value: 0x7f03002f
-			public const int data_form_validation_view = 2130903087;
-			
-			// aapt resource value: 0x7f030030
-			public const int dataform_custom_editor = 2130903088;
-			
-			// aapt resource value: 0x7f030031
-			public const int dataform_custom_editor_list_item = 2130903089;
-			
-			// aapt resource value: 0x7f030032
-			public const int default_tooltip_content = 2130903090;
-			
-			// aapt resource value: 0x7f030033
-			public const int default_tooltip_ohlc_content = 2130903091;
-			
-			// aapt resource value: 0x7f030034
-			public const int default_tooltip_scatter_bubble_content = 2130903092;
-			
-			// aapt resource value: 0x7f030035
-			public const int default_tooltip_scatter_content = 2130903093;
-			
-			// aapt resource value: 0x7f030036
-			public const int default_trackball_content = 2130903094;
-			
-			// aapt resource value: 0x7f030037
-			public const int default_trackball_item_content = 2130903095;
-			
-			// aapt resource value: 0x7f030038
-			public const int drawer_blur_fade_layer = 2130903096;
-			
-			// aapt resource value: 0x7f030039
-			public const int example_list_view_data_operations_item_layout = 2130903097;
-			
-			// aapt resource value: 0x7f03003a
-			public const int example_list_view_deck_item_layout = 2130903098;
-			
-			// aapt resource value: 0x7f03003b
-			public const int example_list_view_footer_layout = 2130903099;
-			
-			// aapt resource value: 0x7f03003c
-			public const int example_list_view_group_header = 2130903100;
-			
-			// aapt resource value: 0x7f03003d
-			public const int example_list_view_header_layout = 2130903101;
-			
-			// aapt resource value: 0x7f03003e
-			public const int example_list_view_item_animations_layout = 2130903102;
-			
-			// aapt resource value: 0x7f03003f
-			public const int example_list_view_item_layout = 2130903103;
-			
-			// aapt resource value: 0x7f030040
-			public const int example_list_view_item_layouts = 2130903104;
-			
-			// aapt resource value: 0x7f030041
-			public const int example_list_view_item_reorder_layout = 2130903105;
-			
-			// aapt resource value: 0x7f030042
-			public const int example_list_view_item_swipe_layout = 2130903106;
-			
-			// aapt resource value: 0x7f030043
-			public const int example_list_view_swipe_content = 2130903107;
-			
-			// aapt resource value: 0x7f030044
-			public const int feedback_comment = 2130903108;
-			
-			// aapt resource value: 0x7f030045
-			public const int feedback_indicator = 2130903109;
-			
-			// aapt resource value: 0x7f030046
-			public const int feedback_item = 2130903110;
-			
-			// aapt resource value: 0x7f030047
-			public const int fragment_calendar_example = 2130903111;
-			
-			// aapt resource value: 0x7f030048
-			public const int fragment_calendar_init_xml = 2130903112;
-			
-			// aapt resource value: 0x7f030049
-			public const int fragment_chart_example = 2130903113;
-			
-			// aapt resource value: 0x7f03004a
-			public const int fragment_chart_legend_example = 2130903114;
-			
-			// aapt resource value: 0x7f03004b
-			public const int fragment_dataform_custom_editor = 2130903115;
-			
-			// aapt resource value: 0x7f03004c
-			public const int fragment_dataform_features = 2130903116;
-			
-			// aapt resource value: 0x7f03004d
-			public const int fragment_dataform_getting_started = 2130903117;
-			
-			// aapt resource value: 0x7f03004e
-			public const int fragment_dataform_validation = 2130903118;
-			
-			// aapt resource value: 0x7f03004f
-			public const int fragment_feedback_items = 2130903119;
-			
-			// aapt resource value: 0x7f030050
-			public const int fragment_list_view_data_operations = 2130903120;
-			
-			// aapt resource value: 0x7f030051
-			public const int fragment_list_view_deck = 2130903121;
-			
-			// aapt resource value: 0x7f030052
-			public const int fragment_list_view_example = 2130903122;
-			
-			// aapt resource value: 0x7f030053
-			public const int fragment_list_view_item_animations = 2130903123;
-			
-			// aapt resource value: 0x7f030054
-			public const int fragment_list_view_layouts = 2130903124;
-			
-			// aapt resource value: 0x7f030055
-			public const int fragment_side_drawer_features = 2130903125;
-			
-			// aapt resource value: 0x7f030056
-			public const int inline_event = 2130903126;
-			
-			// aapt resource value: 0x7f030057
-			public const int legend_item_view = 2130903127;
-			
-			// aapt resource value: 0x7f030058
-			public const int list_item_child = 2130903128;
-			
-			// aapt resource value: 0x7f030059
-			public const int list_item_control = 2130903129;
-			
-			// aapt resource value: 0x7f03005a
-			public const int list_item_group = 2130903130;
-			
-			// aapt resource value: 0x7f03005b
-			public const int list_progress_indicator = 2130903131;
-			
-			// aapt resource value: 0x7f03005c
-			public const int Main = 2130903132;
-			
-			// aapt resource value: 0x7f03005d
-			public const int main_menu_content = 2130903133;
-			
-			// aapt resource value: 0x7f03005e
-			public const int main_menu_list_item = 2130903134;
-			
-			// aapt resource value: 0x7f03005f
-			public const int navigation_drawer_content = 2130903135;
-			
-			// aapt resource value: 0x7f030060
-			public const int navigation_item_view = 2130903136;
-			
-			// aapt resource value: 0x7f030061
-			public const int ohlc_trackball_item_content = 2130903137;
-			
-			// aapt resource value: 0x7f030062
-			public const int on_demand_automatic = 2130903138;
-			
-			// aapt resource value: 0x7f030063
-			public const int on_demand_manual = 2130903139;
-			
-			// aapt resource value: 0x7f030064
-			public const int popup_edit_details = 2130903140;
-			
-			// aapt resource value: 0x7f030065
-			public const int popup_event = 2130903141;
-			
-			// aapt resource value: 0x7f030066
-			public const int radchartbase = 2130903142;
-			
-			// aapt resource value: 0x7f030067
-			public const int radlegendcontrol = 2130903143;
-			
-			// aapt resource value: 0x7f030068
-			public const int range_trackball_item_content = 2130903144;
-			
-			// aapt resource value: 0x7f030069
-			public const int side_drawer_features_drawer_content = 2130903145;
-			
-			// aapt resource value: 0x7f03006a
-			public const int side_drawer_features_main_content = 2130903146;
-			
-			// aapt resource value: 0x7f03006b
-			public const int simple_empty_content = 2130903147;
-			
-			// aapt resource value: 0x7f03006c
-			public const int simple_group_header_item = 2130903148;
-			
-			// aapt resource value: 0x7f03006d
-			public const int simple_list_item = 2130903149;
-			
-			// aapt resource value: 0x7f03006e
-			public const int support_simple_spinner_dropdown_item = 2130903150;
-			
-			// aapt resource value: 0x7f03006f
-			public const int tooltip_container = 2130903151;
-			
-			// aapt resource value: 0x7f030070
-			public const int trackball_container = 2130903152;
-			
-			// aapt resource value: 0x7f030071
-			public const int trial_message = 2130903153;
-=======
 			public const int data_form_decimal_editor = 2130903074;
 			
 			// aapt resource value: 0x7f030023
@@ -3902,7 +3095,6 @@ namespace Samples
 			
 			// aapt resource value: 0x7f030089
 			public const int trial_message = 2130903177;
->>>>>>> Stashed changes
 			
 			static Layout()
 			{
