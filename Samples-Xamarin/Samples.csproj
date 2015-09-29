@@ -43,37 +43,37 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>packages\Xamarin.Android.Support.v4.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v4.22.2.1.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
-      <HintPath>packages\Xamarin.Android.Support.v7.RecyclerView.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v7.RecyclerView.22.2.1.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.AppCompat">
-      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.22.2.1.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v8.RenderScript">
-      <HintPath>packages\Xamarin.Android.Support.v8.RenderScript.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v8.RenderScript.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v8.RenderScript.22.2.1.0\lib\MonoAndroid403\Xamarin.Android.Support.v8.RenderScript.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Chart">
-      <HintPath>lib\Telerik.Xamarin.Android.Chart.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Chart.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Common">
-      <HintPath>lib\Telerik.Xamarin.Android.Common.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Common.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Feedback">
-      <HintPath>lib\Telerik.Xamarin.Android.Feedback.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Feedback.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Input">
-      <HintPath>lib\Telerik.Xamarin.Android.Input.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Primitives">
-      <HintPath>lib\Telerik.Xamarin.Android.Primitives.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Data">
-      <HintPath>lib\Telerik.Xamarin.Android.Data.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Data.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.List">
-      <HintPath>lib\Telerik.Xamarin.Android.List.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.List.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
