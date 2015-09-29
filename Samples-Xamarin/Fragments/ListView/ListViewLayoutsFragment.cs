@@ -30,6 +30,7 @@ namespace Samples
 			for (int i = 0; i < 50; i++) {
 				source.Add(this.getRandomText());
 			}
+			this.listView.SetAdapter(new LayoutsListViewAdapter(source));
 
 			Button btnLinear = (Button)rootView.FindViewById(Resource.Id.btnLinear);
 			btnLinear.Click += (object sender, EventArgs e) => {
@@ -114,7 +115,7 @@ namespace Samples
 		}
 	}
 
-	class MyWrapAdapter : MyListViewAdapter {
+	class MyWrapAdapter : LayoutsListViewAdapter {
 		public MyWrapAdapter(IList items) : base(items) {
 			
 		}

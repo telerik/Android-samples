@@ -39,7 +39,7 @@ namespace Samples
 			wrapLayoutManager = new WrapLayoutManager(Activity);
 			this.listView.SetLayoutManager(wrapLayoutManager);
 
-			MyWrapAdapter myWrapAdapter = new MyWrapAdapter(GetData());
+			MyWrapLayoutAdapter myWrapAdapter = new MyWrapLayoutAdapter(GetData());
 			this.listView.SetAdapter(myWrapAdapter);
 
 			Button orientationBtn = (Button)rootView.FindViewById (Resource.Id.orientationBtn);
@@ -93,8 +93,8 @@ namespace Samples
 			return "Wrap Layout";
 		}
 
-		class MyWrapAdapter : ListViewAdapter {
-			public MyWrapAdapter(IList items):base(items){
+		class MyWrapLayoutAdapter : ListViewAdapter {
+			public MyWrapLayoutAdapter(IList items):base(items){
 			}
 
 			public override void OnBindListViewHolder(ListViewHolder holder, int position) {
