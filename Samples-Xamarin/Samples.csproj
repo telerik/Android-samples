@@ -158,17 +158,6 @@
     <Compile Include="Fragments\Calendar\Events\EventsPopupDisplayModeFragment.cs" />
     <Compile Include="Fragments\Calendar\Events\EventsInlineDisplayModeFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewDeckOfCardsFragment.cs" />
-    <Compile Include="Fragments\DataForm\CustomEditorFragment.cs" />
-    <Compile Include="Fragments\DataForm\CustomEditor.cs" />
-    <Compile Include="Fragments\DataForm\Person.cs" />
-    <Compile Include="Fragments\DataForm\EmployeeType.cs" />
-    <Compile Include="Fragments\DataForm\CustomAdapter.cs" />
-    <Compile Include="Fragments\DataForm\DataFormEditorsFragment.cs" />
-    <Compile Include="Fragments\DataForm\DataFormGettingStartedFragment.cs" />
-    <Compile Include="Fragments\DataForm\DataFormValidationFragment.cs" />
-    <Compile Include="Fragments\DataForm\NonEmptyValidator.cs" />
-    <Compile Include="Fragments\DataForm\DataFormFeaturesFragment.cs" />
-    <Compile Include="Adapters\DataFormExamples.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -237,6 +226,5 @@
     <Folder Include="Resources\menu\" />
     <Folder Include="Fragments\ListView\" />
     <Folder Include="Fragments\SideDrawer\" />
-    <Folder Include="Fragments\DataForm\" />
   </ItemGroup>
 </Project>
