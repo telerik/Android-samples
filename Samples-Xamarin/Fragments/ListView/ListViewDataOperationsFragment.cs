@@ -225,7 +225,7 @@ namespace Samples
 		}
 	}
 
-	public class ShoppingListItem : Java.Lang.Object {
+	class ShoppingListItem : Java.Lang.Object {
 		public System.String category;
 		public int price;
 		public System.String name;

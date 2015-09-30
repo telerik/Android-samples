@@ -9,7 +9,7 @@ namespace Samples
 
 		public ListViewExamples ()
 		{
-			this.listViewExamples = this.getChartExamples();
+			this.listViewExamples = this.getListViewExamples();
 		}
 
 		public String ControlName() {
@@ -20,7 +20,7 @@ namespace Samples
 			return this.listViewExamples;
 		}
 
-		private HashMap getChartExamples(){
+		private HashMap getListViewExamples(){
 
 			HashMap examples = new HashMap();
 
@@ -29,6 +29,8 @@ namespace Samples
 			examplesSet.Add(new ListViewGettingStartedFragment());
 			examplesSet.Add(new ListViewLayoutsFragment());
 			examplesSet.Add(new ListViewDeckOfCardsFragment());
+			examplesSet.Add(new ListViewSlideFragment());
+			examplesSet.Add(new ListViewWrapFragment());
 			examplesSet.Add(new ListViewItemAnimationFragment());
 			examplesSet.Add(new ListViewDataOperationsFragment());
 
@@ -41,6 +43,7 @@ namespace Samples
 			examplesSet.Add(new ListViewSwipeToRefreshFragment());
 			examplesSet.Add(new ListViewManualLoadOnDemandFragment());
 			examplesSet.Add(new ListViewDataAutomaticLoadOnDemandFragment());
+			examplesSet.Add (new ListViewStickyHeadersFragment ());
 
 			examples.Put("Behaviors", examplesSet);
 

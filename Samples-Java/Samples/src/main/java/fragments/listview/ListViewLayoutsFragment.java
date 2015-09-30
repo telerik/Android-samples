@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.telerik.android.sdk.R;
@@ -17,6 +19,8 @@ import com.telerik.widget.list.DeckOfCardsLayoutManager;
 import com.telerik.widget.list.ListViewAdapter;
 import com.telerik.widget.list.ListViewHolder;
 import com.telerik.widget.list.RadListView;
+import com.telerik.widget.list.SlideLayoutManager;
+import com.telerik.widget.list.WrapLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +45,19 @@ public class ListViewLayoutsFragment extends Fragment implements ExampleFragment
         View rootView = inflater.inflate(R.layout.fragment_list_view_layouts, container, false);
         this.listView = (RadListView)rootView.findViewById(R.id.listView);
 
+        final ArrayList<String> source = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            source.add(this.getRandomText());
+        }
+        this.listView.setAdapter(new MyListViewAdapter(source));
+
         Button btnLinear = (Button)rootView.findViewById(R.id.btnLinear);
         btnLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             listView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+                listView.setLayoutManager(llm);
+                listView.setAdapter(new MyListViewAdapter(source));
             }
         });
         Button btnStaggered = (Button)rootView.findViewById(R.id.btnStaggered);
@@ -54,6 +66,7 @@ public class ListViewLayoutsFragment extends Fragment implements ExampleFragment
             public void onClick(View v) {
                 StaggeredGridLayoutManager slm = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
                 listView.setLayoutManager(slm);
+                listView.setAdapter(new MyListViewAdapter(source));
             }
         });
         Button btnGrid = (Button)rootView.findViewById(R.id.btnGrid);
@@ -62,6 +75,7 @@ public class ListViewLayoutsFragment extends Fragment implements ExampleFragment
             public void onClick(View v) {
                 GridLayoutManager glm = new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, false);
                 listView.setLayoutManager(glm);
+                listView.setAdapter(new MyListViewAdapter(source));
             }
         });
         Button btnDeck = (Button)rootView.findViewById(R.id.btnDeck);
@@ -70,14 +84,29 @@ public class ListViewLayoutsFragment extends Fragment implements ExampleFragment
             public void onClick(View v) {
                 DeckOfCardsLayoutManager dclm = new DeckOfCardsLayoutManager(getActivity());
                 listView.setLayoutManager(dclm);
+                listView.setAdapter(new MyListViewAdapter(source));
             }
         });
 
-        ArrayList<String> source = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            source.add(this.getRandomText());
-        }
-        this.listView.setAdapter(new MyListViewAdapter(source));
+        Button btnSlide = (Button)rootView.findViewById(R.id.btnSlide);
+        btnSlide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SlideLayoutManager slm = new SlideLayoutManager(getActivity());
+                listView.setLayoutManager(slm);
+                listView.setAdapter(new MyListViewAdapter(source));
+            }
+        });
+
+        Button btnWrap = (Button)rootView.findViewById(R.id.btnWrap);
+        btnWrap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WrapLayoutManager wlm = new WrapLayoutManager(getActivity());
+                listView.setLayoutManager(wlm);
+                listView.setAdapter(new MyWrapAdapter(source));
+            }
+        });
         return rootView;
     }
 
@@ -85,7 +114,7 @@ public class ListViewLayoutsFragment extends Fragment implements ExampleFragment
         Random r = new Random();
         StringBuilder sb = new StringBuilder();
 
-        int wordCount = 10 + r.nextInt(30);
+        int wordCount = 5 + r.nextInt(30);
 
         for (int i = 0; i < wordCount; i++){
             sb.append("word ");
@@ -117,6 +146,19 @@ public class ListViewLayoutsFragment extends Fragment implements ExampleFragment
         public void onBindViewHolder(ListViewHolder holder, int position) {
             MyCustomViewHolder customVH = (MyCustomViewHolder)holder;
             customVH.txtItemText.setText(this.getItem(position).toString());
+        }
+    }
+
+    class MyWrapAdapter extends MyListViewAdapter {
+        public MyWrapAdapter(List items) {
+            super(items);
+        }
+
+        @Override
+        public void onBindViewHolder(ListViewHolder holder, int position) {
+            super.onBindViewHolder(holder, position);
+            int size = 200 + (position % 5) * 50;
+            holder.itemView.setLayoutParams(new FrameLayout.LayoutParams(size, size));
         }
     }
 

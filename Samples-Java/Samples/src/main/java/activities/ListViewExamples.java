@@ -11,8 +11,11 @@ import fragments.listview.ListViewDataOperationsFragment;
 import fragments.listview.ListViewItemAnimationFragment;
 import fragments.listview.ListViewLayoutsFragment;
 import fragments.listview.ListViewReorderFragment;
+import fragments.listview.ListViewSlideFragment;
+import fragments.listview.ListViewStickyHeadersFragment;
 import fragments.listview.ListViewSwipeToExecuteFragment;
 import fragments.listview.ListViewSwipeToRefreshFragment;
+import fragments.listview.ListViewWrapFragment;
 
 /**
  * Created by ginev on 2/20/2015.
@@ -32,6 +35,8 @@ public class ListViewExamples implements ExamplesProvider {
         examplesSet.add(new ListViewGettingStartedFragment());
         examplesSet.add(new ListViewLayoutsFragment());
         examplesSet.add(new ListViewDeckOfCardsFragment());
+        examplesSet.add(new ListViewSlideFragment());
+        examplesSet.add(new ListViewWrapFragment());
         examplesSet.add(new ListViewItemAnimationFragment());
         examplesSet.add(new ListViewDataOperationsFragment());
 
@@ -44,6 +49,7 @@ public class ListViewExamples implements ExamplesProvider {
         examplesSet.add(new ListViewSwipeToRefreshFragment());
         examplesSet.add(new ListViewLoadOnDemandFragment());
         examplesSet.add(new ListViewSelectionFragment());
+        examplesSet.add(new ListViewStickyHeadersFragment());
 
         examples.put("Behaviors", examplesSet);
 
