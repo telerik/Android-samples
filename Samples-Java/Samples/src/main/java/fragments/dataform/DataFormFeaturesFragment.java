@@ -49,8 +49,8 @@ public class DataFormFeaturesFragment extends Fragment implements ExampleFragmen
         dataForm.setEntity(person);
 
         RangeValidator validator = (RangeValidator) dataForm.getExistingEditorForProperty("Age").property().getValidator();
-        validator.max = 30;
-        validator.min = 18;
+        validator.setMax(30);
+        validator.setMin(18);
 
         Spinner commitModes = (Spinner)layoutRoot.findViewById(R.id.commitModeSpinner);
         commitModes.setAdapter(new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, CommitMode.values()));
