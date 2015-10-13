@@ -5,26 +5,23 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.TextView;
 
-import com.telerik.android.common.Util;
 import com.telerik.examples.R;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
 import com.telerik.widget.dataform.visualization.RadDataForm;
-import com.telerik.widget.dataform.visualization.editors.DataFormSpinnerEditor;
-import com.telerik.widget.dataform.visualization.editors.adapters.EditorSpinnerAdapter;
 import com.telerik.widget.list.RadListView;
 import com.telerik.widget.list.SelectionBehavior;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 
 public class DataFormFragment extends ExampleFragmentBase implements View.OnClickListener, OnEditEndListener, SelectionBehavior.SelectionChangedListener {
-    private List<Reservation> reservations;
-    private List<Reservation> result = new ArrayList<>();
+    private static List<Reservation> reservations;
     private boolean newItem;
     private DataFormEditFragment editFragment;
     private ReservationAdapter adapter;
@@ -32,7 +29,19 @@ public class DataFormFragment extends ExampleFragmentBase implements View.OnClic
     private SelectionBehavior selection;
 
     public static Reservation getCurrentReservation() {
+        if(reservations == null) {
+            reservations = createReservationList();
+        }
+
+        if(current == null) {
+            current = reservations.get(0);
+        }
+
         return current;
+    }
+
+    public DataFormFragment() {
+        this.setRetainInstance(true);
     }
 
     @Override
@@ -42,6 +51,12 @@ public class DataFormFragment extends ExampleFragmentBase implements View.OnClic
         RadListView listView = (RadListView) rootView.findViewById(R.id.data_form_main_list);
         if(reservations == null) {
             reservations = createReservationList();
+        }
+
+        TextView dateText = (TextView)rootView.findViewById(R.id.reservation_date_spinner_item_text);
+        if(dateText != null) {
+            DateFormat format = new SimpleDateFormat("EEE, dd.MM");
+            dateText.setText(format.format(Calendar.getInstance().getTime()));
         }
 
         adapter = new ReservationAdapter(reservations);
@@ -69,12 +84,13 @@ public class DataFormFragment extends ExampleFragmentBase implements View.OnClic
         return rootView;
     }
 
-    public List<Reservation> createReservationList() {
+    public static List<Reservation> createReservationList() {
+        List<Reservation> result = new ArrayList<>();
         Reservation reservation = new Reservation();
         reservation.setCreatorName("Rachel Nabors");
         reservation.setCreatorPhone("359-555-1236");
-        reservation.setReservationDate(new GregorianCalendar(2015, 6, 12).getTimeInMillis());
-        reservation.setReservationTime(new GregorianCalendar(2015, 6, 12, 19, 30).getTimeInMillis());
+        reservation.setReservationDate(Calendar.getInstance().getTimeInMillis());
+        reservation.setReservationTime(Calendar.getInstance().getTimeInMillis());
         reservation.setNumberOfGuests(10);
         reservation.setTableNumber(10);
         result.add(reservation);

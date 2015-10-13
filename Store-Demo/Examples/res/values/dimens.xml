@@ -53,4 +53,7 @@
     <dimen name="example_group_bar_tabs_font_size">13sp</dimen>
 
     <dimen name="example_side_drawer_width">304dp</dimen>
+
+    <dimen name="list_view_slide_item_width">-1.0px</dimen>
+    <dimen name="list_view_slide_item_fab_margin">12dp</dimen>
 </resources>

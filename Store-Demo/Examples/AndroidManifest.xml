@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.telerik.examples"
-    android:versionCode="10"
-    android:versionName="2015.2.0">
+    android:versionCode="11"
+    android:versionName="2015.3.0">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -21,10 +21,9 @@
         android:logo="@drawable/telerik_logo"
         android:theme="@style/ApplicationTheme"
         tools:replace="label">
-        <service tools:ignore="MissingRegistered" android:name="com.google.tagmanager.InstallReferrerService"/>
+        <service android:name="com.google.android.gms.tagmanager.InstallReferrerService"/>
         <receiver
-            tools:ignore="MissingRegistered"
-            android:name="com.google.tagmanager.InstallReferrerReceiver"
+            android:name="com.google.android.gms.tagmanager.InstallReferrerReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />

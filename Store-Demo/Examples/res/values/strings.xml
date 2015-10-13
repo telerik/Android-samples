@@ -3,8 +3,8 @@
 
     <string name="appName">Telerik Examples</string>
     <string name="drawerCaption">Telerik examples</string>
-    <string name="version_name">Q2 2015</string>
-    <string name="version_code">2015.2.0</string>
+    <string name="version_name">Q3 2015</string>
+    <string name="version_code">2015.3.0</string>
     <string name="homeString">Home</string>
     <string name="favoritesStringPascalCase">Favorites</string>
     <string name="settingsString">Settings</string>
@@ -53,6 +53,9 @@
     <string name="list_view_selection_btn_list2">FAVORITES</string>
     <string name="list_view_deck_title">NEW RECIPES</string>
     <string name="list_view_deck_image_desc">Recipe</string>
+    <string name="list_view_slide_image_desc">Destination</string>
+    <string name="list_view_slide_enquiry">SEND ENQUIRY</string>
+    <string name="list_view_slide_attractions">Attractions</string>
     <string name="book_a_hotel_string">Book a hotel!</string>
     <string name="tips_presenter_content">Telerik Examples highlights the controls included in Telerik UI for Android - Chart, Calendar, DataForm, ListView and SideDrawer.</string>
     <string name="tips_presenter_got_it_text">GOT IT!</string>

@@ -158,7 +158,7 @@ public class ListViewReorderFragment extends ExampleFragmentBase {
             int visibleViewsCount = listView.getLayoutManager().getChildCount();
             for (int i = 0; i < visibleViewsCount; i++) {
                 View child = listView.getLayoutManager().getChildAt(i);
-                int pos = listView.getChildPosition(child);
+                int pos = listView.getChildAdapterPosition(child);
                 if (pos == position) {
                     reorderView = child;
                     reorderView.setActivated(true);

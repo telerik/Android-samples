@@ -1,21 +1,16 @@
 package com.telerik.examples.examples.dataform;
 
-import com.telerik.widget.dataform.engine.PropertyValidator;
-import com.telerik.widget.dataform.engine.ValidationCompletedCallback;
-import com.telerik.widget.dataform.engine.ValidationInfo;
+import com.telerik.widget.dataform.engine.PropertyValidatorBase;
 
-public class TableNumberValidator implements PropertyValidator {
+public class TableNumberValidator extends PropertyValidatorBase {
+    public TableNumberValidator() {
+        this.setNegativeMessage("Please select a table from 1 to 50.");
+    }
+
     @Override
-    public void validate(Object input, ValidationCompletedCallback callback) {
+    protected boolean validateCore(Object input, String propertyName) {
         Integer tableNumber = (Integer)input;
 
-        ValidationInfo info;
-        if(tableNumber == null || (tableNumber < 1 || tableNumber > 50)) {
-            info = new ValidationInfo(false, "Please select a table from 1 to 50.", tableNumber);
-        } else {
-            info = new ValidationInfo(true, "The selected table is available.", tableNumber);
-        }
-
-        callback.validationCompleted(info);
+        return tableNumber != null && tableNumber >= 1 && tableNumber <= 50;
     }
 }

@@ -1,50 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/phoneImage"
-        android:layout_centerInParent="true"
-        android:layout_alignParentLeft="true"
-        android:layout_gravity="center_vertical"
         android:src="@drawable/ic_dataform_phone"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        style="@style/DataFormImageView"/>
+        style="@style/DataFormImageView"
+        android:layout_width="0dp"
+        android:layout_weight="1"/>
 
-    <TextView
-        android:layout_centerInParent="true"
-        android:id="@+id/callButton"
-        android:textColor="#BF3136"
-        android:textStyle="bold"
-        android:text="CALL"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_toRightOf="@+id/phoneImage"
-        android:layout_toLeftOf="@+id/callButton"
-        android:paddingBottom="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView android:id="@+id/data_form_text_viewer_header"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content">
         <EditText
             android:inputType="phone"
             android:id="@+id/data_form_text_editor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+    </FrameLayout>
 
-        <com.telerik.widget.dataform.visualization.viewers.DataFormValidationView android:id="@+id/data_form_validation_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-</RelativeLayout>
+    <TextView
+        android:layout_gravity="bottom"
+        android:gravity="center_horizontal"
+        android:id="@+id/callButton"
+        android:textColor="#BF3136"
+        android:textStyle="bold"
+        android:layout_marginBottom="2dp"
+        android:text="CALL"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content" />
+</LinearLayout>

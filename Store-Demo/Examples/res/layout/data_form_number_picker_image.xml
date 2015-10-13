@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="center_vertical"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="15dp">
+
+    <ImageView
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_dataform_guests_number"/>
+
+    <com.telerik.widget.numberpicker.RadNumberPicker
+        android:layout_marginLeft="6dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
+        android:id="@+id/data_form_number_picker_editor"
+        android:background="@drawable/dataform_number_picker_background"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

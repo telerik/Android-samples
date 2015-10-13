@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <EditText
+        android:inputType="none"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:editable="false"
+        android:id="@+id/data_form_time_editor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginStart="-4dp"/>
+</FrameLayout>
+

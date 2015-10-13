@@ -1,11 +1,14 @@
 package com.telerik.examples.examples.dataform;
 
 import com.telerik.examples.R;
+import com.telerik.widget.dataform.engine.MinimumLengthValidator;
 import com.telerik.widget.dataform.engine.NonEmptyValidator;
 import com.telerik.widget.dataform.engine.NotifyPropertyChangedBase;
 import com.telerik.widget.dataform.engine.PhoneValidator;
+import com.telerik.widget.dataform.engine.RangeValidator;
 import com.telerik.widget.dataform.visualization.annotations.DataFormProperty;
 import com.telerik.widget.dataform.visualization.editors.DataFormDateEditor;
+import com.telerik.widget.dataform.visualization.editors.DataFormNumberPickerEditor;
 import com.telerik.widget.dataform.visualization.editors.DataFormSpinnerEditor;
 import com.telerik.widget.dataform.visualization.editors.DataFormTimeEditor;
 
@@ -17,12 +20,18 @@ public class Reservation extends NotifyPropertyChangedBase {
     private long reservationDate = Calendar.getInstance().getTimeInMillis();
     private long reservationTime = Calendar.getInstance().getTimeInMillis();
     private int numberOfGuests = 1;
-    private String tableSection = "Patio";
+    private String tableSection = "patio";
     private int tableNumber = 1;
-    private String origin = "In Person";
+    private String origin = "in-person";
     private boolean cancelled;
 
-    @DataFormProperty(label = " ", index = 0, columnSpan = 2, editorLayout = R.layout.reservation_text_editor, validator = NonEmptyValidator.class)
+    @DataFormProperty(label = " ",
+            index = 0,
+            editorLayout = R.layout.reservation_editor_layout,
+            coreEditorLayout = R.layout.reservation_text_editor,
+            headerLayout = R.layout.reservation_editor_collapsed_header,
+            validator = NonEmptyValidator.class,
+            group = "group1")
     public String getCreatorName() {
         return creatorName;
     }
@@ -32,7 +41,13 @@ public class Reservation extends NotifyPropertyChangedBase {
         notifyListeners("CreatorName", creatorName);
     }
 
-    @DataFormProperty(label = " ", index = 1, columnSpan = 2, validator = PhoneValidator.class, editorLayout = R.layout.reservation_phone_editor)
+    @DataFormProperty(label = " ",
+            index = 1,
+            validator = PhoneValidator.class,
+            editorLayout = R.layout.reservation_editor_layout,
+            coreEditorLayout = R.layout.reservation_phone_editor,
+            headerLayout = R.layout.reservation_editor_collapsed_header,
+            group = "group1")
     public String getCreatorPhone() {
         return creatorPhone;
     }
@@ -42,7 +57,13 @@ public class Reservation extends NotifyPropertyChangedBase {
         notifyListeners("CreatorPhone", creatorPhone);
     }
 
-    @DataFormProperty(label = "Date", index = 2, editor = DataFormDateEditor.class, editorLayout = R.layout.reservation_date_editor, validator = FutureDateValidator.class)
+    @DataFormProperty(label = "Date",
+            index = 2,
+            coreEditorLayout = R.layout.reservation_date_editor,
+            editorLayout = R.layout.reservation_editor_layout,
+            editor = DataFormDateEditor.class,
+            validator = FutureDateValidator.class,
+            group = "Reservation Date")
     public long getReservationDate() {
         return reservationDate;
     }
@@ -52,7 +73,12 @@ public class Reservation extends NotifyPropertyChangedBase {
         notifyListeners("ReservationDate", reservationDate);
     }
 
-    @DataFormProperty(label = "Time", index = 2, columnIndex = 1, editor = DataFormTimeEditor.class)
+    @DataFormProperty(label = "Time",
+            coreEditorLayout = R.layout.reservation_time_editor,
+            editorLayout = R.layout.reservation_editor_layout,
+            index = 2,
+            editor = DataFormTimeEditor.class,
+            group = "Reservation Date")
     public long getReservationTime() {
         return reservationTime;
     }
@@ -62,7 +88,14 @@ public class Reservation extends NotifyPropertyChangedBase {
         notifyListeners("ReservationTime", reservationTime);
     }
 
-    @DataFormProperty(label = " ", index = 3, columnSpan = 2, editor = DataFormNumberPickerEditor.class)
+    @DataFormProperty(label = " ",
+            index = 3,
+            editor = DataFormNumberPickerEditor.class,
+            editorLayout = R.layout.reservation_editor_layout,
+            coreEditorLayout = R.layout.data_form_number_picker_image,
+            headerLayout = R.layout.reservation_editor_collapsed_header,
+            converter = DoubleToIntConverter.class,
+            group = "group3")
     public int getNumberOfGuests() {
         return numberOfGuests;
     }
@@ -72,7 +105,14 @@ public class Reservation extends NotifyPropertyChangedBase {
         notifyListeners("NumberOfGuests", numberOfGuests);
     }
 
-    @DataFormProperty(label = "Section", index = 4, editorLayout = R.layout.reservation_spinner_editor, editor = DataFormSpinnerEditor.class)
+    @DataFormProperty(label = "Section",
+            index = 4,
+            editor = DataFormSpinnerEditor.class,
+            editorLayout = R.layout.reservation_editor_layout,
+            coreEditorLayout = R.layout.reservation_spinner_editor,
+            columnIndex = 1,
+            group = "TABLE DETAILS",
+            headerLayout = R.layout.reservation_table_editor_header)
     public String getTableSection() {
         return tableSection;
     }
@@ -82,7 +122,13 @@ public class Reservation extends NotifyPropertyChangedBase {
         notifyListeners("TableSection", tableSection);
     }
 
-    @DataFormProperty(label = "Table", index = 4, columnIndex = 1, editor = DataFormSpinnerEditor.class)
+    @DataFormProperty(label = "Table",
+            index = 4,
+            editorLayout = R.layout.reservation_editor_layout,
+            editor = DataFormSpinnerEditor.class,
+            coreEditorLayout = R.layout.reservation_spinner_editor,
+            group = "TABLE DETAILS",
+            headerLayout = R.layout.reservation_table_editor_header)
     public int getTableNumber() {
         return tableNumber;
     }
@@ -92,7 +138,11 @@ public class Reservation extends NotifyPropertyChangedBase {
         notifyListeners("TableNumber", tableNumber);
     }
 
-    @DataFormProperty(index = 5, columnSpan = 2, editorLayout = R.layout.reservation_spinner_editor_no_image, editor = DataFormSpinnerEditor.class)
+    @DataFormProperty(index = 5,
+            editorLayout = R.layout.reservation_editor_layout_no_image,
+            coreEditorLayout = R.layout.reservation_spinner_editor_no_image,
+            editor = DataFormSpinnerEditor.class,
+            group = "group5", headerLayout = R.layout.reservation_origin_header)
     public String getOrigin() {
         return origin;
     }
@@ -102,7 +152,10 @@ public class Reservation extends NotifyPropertyChangedBase {
         notifyListeners("Origin", origin);
     }
 
-    @DataFormProperty(editor = CancelButtonEditor.class, index = 6, columnSpan = 2)
+    @DataFormProperty(editor = CancelButtonEditor.class,
+            editorLayout = R.layout.reservation_editor_layout_no_image,
+            index = 6,
+            group = "group5")
     public boolean getCancelled() {
         return cancelled;
     }
