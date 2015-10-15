@@ -42,6 +42,7 @@ namespace Samples
 			examplesSet.Add(new ListViewSwipeToExecuteFragment());
 			examplesSet.Add(new ListViewSwipeToRefreshFragment());
 			examplesSet.Add(new ListViewManualLoadOnDemandFragment());
+			examplesSet.Add(new ListViewSelectionFragment());
 			examplesSet.Add(new ListViewDataAutomaticLoadOnDemandFragment());
 			examplesSet.Add (new ListViewStickyHeadersFragment ());
 

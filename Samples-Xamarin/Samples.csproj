@@ -161,6 +161,7 @@
     <Compile Include="Fragments\ListView\ListViewWrapFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewSlideFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewStickyHeadersFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewSelectionFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -211,6 +212,7 @@
     <AndroidResource Include="Resources\layout\fragment_list_view_wrap.axml" />
     <AndroidResource Include="Resources\layout\fragment_list_view_slide.axml" />
     <AndroidResource Include="Resources\layout\fragment_list_view_sticky_headers.axml" />
+    <AndroidResource Include="Resources\layout\fragment_list_view_selection_example.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
