@@ -175,6 +175,7 @@
     <Compile Include="Fragments\Dataform\DataFormGroupLayoutFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormPlaceholderLayoutFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormValidationBehaviorFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormValidationModeFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -232,6 +233,7 @@
     <AndroidResource Include="Resources\layout\dataform_group_placeholder_layout.xml" />
     <AndroidResource Include="Resources\layout\fragment_dataform_grouping.xml" />
     <AndroidResource Include="Resources\layout\dataform_placeholder_layout.xml" />
+    <AndroidResource Include="Resources\layout\fragment_dataform_validation_mode.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
