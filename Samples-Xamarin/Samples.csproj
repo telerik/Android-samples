@@ -171,6 +171,10 @@
     <Compile Include="Adapters\DataFormExamples.cs" />
     <Compile Include="Fragments\Dataform\DataFormFeaturesFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormEditorsFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormValidationFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormGroupLayoutFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormPlaceholderLayoutFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormValidationBehaviorFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -224,6 +228,10 @@
     <AndroidResource Include="Resources\layout\fragment_list_view_selection_example.axml" />
     <AndroidResource Include="Resources\values\Colors.xml" />
     <AndroidResource Include="Resources\layout\fragment_dataform_editors.axml" />
+    <AndroidResource Include="Resources\layout\dataform_custom_group.xml" />
+    <AndroidResource Include="Resources\layout\dataform_group_placeholder_layout.xml" />
+    <AndroidResource Include="Resources\layout\fragment_dataform_grouping.xml" />
+    <AndroidResource Include="Resources\layout\dataform_placeholder_layout.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
