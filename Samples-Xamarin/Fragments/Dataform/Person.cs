@@ -27,6 +27,7 @@ namespace Samples
 			set 
 			{
 				age = value;
+				NotifyListeners ("Age", value);
 			}
 		}
 
@@ -40,6 +41,7 @@ namespace Samples
 			set 
 			{
 				employeeType = value;
+				NotifyListeners ("EmployeeType", Java.Lang.String.ValueOf(value.ToString()));
 			}
 		}
 
@@ -50,6 +52,7 @@ namespace Samples
 			}
 			set {
 				name = value;
+				NotifyListeners ("Name", value);
 			}
 		}
 
@@ -60,6 +63,7 @@ namespace Samples
 			}
 			set {
 				this.mail = value;
+				NotifyListeners ("Mail", value);
 			}
 		}
 
@@ -70,6 +74,7 @@ namespace Samples
 			}
 			set {
 				isEmployed = value;
+				NotifyListeners ("IsEmployed", value);
 			}
 		}
 
@@ -80,6 +85,7 @@ namespace Samples
 			}
 			set {
 				this.birthDate = value;
+				NotifyListeners ("BirthDate", value);
 			}
 		}
 
