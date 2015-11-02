@@ -16,7 +16,6 @@ namespace Samples
 			this.source.Add (new CalendarExamples ());
 			this.source.Add (new ListViewExamples ());
 			this.source.Add (new SideDrawerExamples ());
-			this.source.Add (new DataFormExamples ());
 
 		}
 
