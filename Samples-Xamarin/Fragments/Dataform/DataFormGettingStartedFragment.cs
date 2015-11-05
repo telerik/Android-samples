@@ -12,7 +12,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Com.Telerik.Widget.Dataform.Visualization;
-using DataFormEntities;
+using Com.Telerik.Widget.Dataform.Engine;
 
 namespace Samples
 {
@@ -24,7 +24,8 @@ namespace Samples
 
 			RadDataForm dataForm = new RadDataForm(this.Activity);
 			dataForm.LayoutManager = new DataFormLinearLayoutManager (this.Activity);
-			dataForm.Entity = new XamarinEntity (new Person ());
+
+			dataForm.SetEntity(new Person());
 
 			rootLayout.AddView(dataForm);
 

@@ -14,8 +14,10 @@ using Android.Widget;
 using Com.Telerik.Widget.Dataform.Engine;
 using Com.Telerik.Widget.Dataform.Visualization;
 using Com.Telerik.Widget.Dataform.Visualization.Core;
-using DataFormEntities;
 using Com.Telerik.Android.Common;
+using Com.Telerik.Widget.Dataform.Visualization.Editors;
+using System.Reflection;
+using Java.Util;
 
 namespace Samples
 {
@@ -29,8 +31,9 @@ namespace Samples
 			dataForm = new RadDataForm(this.Activity);
 			dataForm.Adapter.SetEditorProvider(this);
 
-			dataForm.Entity = new XamarinEntity(new Person());
-			dataForm.LayoutManager = new DataFormLinearLayoutManager (this.Activity);
+			dataForm.SetEntity (new Person ());
+
+			dataForm.LayoutManager = new DataFormLinearLayoutManager(this.Activity);
 
 			rootLayout.AddView(dataForm);
 
@@ -39,9 +42,9 @@ namespace Samples
 
 		public Java.Lang.Object Apply (Java.Lang.Object p0) {
 			IEntityProperty property = (IEntityProperty)p0;
-			if(property.Name().Equals("EmployeeType")) {
-				return new CustomEditor(dataForm, property);
-			}
+//			if(property.Name().Equals("EmployeeType")) {
+//				return new CustomEditor(dataForm, property);
+//			}
 
 			return null;
 		}
@@ -72,7 +75,7 @@ namespace Samples
 			}
 
 			public override Java.Lang.Object Value() {
-				return Java.Lang.String.ValueOf(type.ToString());
+				return type.ToString();
 			}
 
 			protected override void ApplyEntityValueToEditor(Java.Lang.Object o) {
@@ -82,7 +85,8 @@ namespace Samples
 				}
 
 				this.editorButton.Text = o.ToString();
-				type = (EmployeeType)Enum.Parse(typeof(EmployeeType), o.ToString());
+				//type = (EmployeeType)Enum.Parse(typeof(EmployeeType), o.ToString());
+				type = (EmployeeType)Enum.Parse(type.GetType(), o.ToString());
 			}
 
 			public void OnClick(View v) {
@@ -97,7 +101,7 @@ namespace Samples
 			}
 
 			public void OnPropertyChanged(String s, Java.Lang.Object o) {
-				if(o.ToString().Equals(type.ToString())) {
+				if(o.ToString() == type.ToString()) {
 					return;
 				}
 

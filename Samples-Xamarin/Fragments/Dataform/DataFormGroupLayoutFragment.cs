@@ -13,7 +13,7 @@ using Android.Widget;
 
 using Com.Telerik.Widget.Dataform.Visualization;
 using Com.Telerik.Android.Common;
-using DataFormEntities;
+using Com.Telerik.Widget.Dataform.Engine;
 
 namespace Samples
 {
@@ -30,7 +30,7 @@ namespace Samples
 			groupManager.CreateGroup = this;
 
 			dataForm.LayoutManager = groupManager;
-			dataForm.Entity = new XamarinEntity(new Person());
+			dataForm.SetEntity(new Person());
 
 			rootLayout.AddView(dataForm);
 

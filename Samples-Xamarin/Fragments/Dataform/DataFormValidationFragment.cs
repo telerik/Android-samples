@@ -14,7 +14,7 @@ using Android.Widget;
 
 using Com.Telerik.Widget.Dataform.Visualization;
 using Com.Telerik.Widget.Dataform.Engine;
-using DataFormEntities;
+using Com.Telerik.Widget.Dataform.Visualization.Editors;
 
 namespace Samples
 {
@@ -25,11 +25,11 @@ namespace Samples
 			ViewGroup layoutRoot = (ViewGroup) inflater.Inflate(Resource.Layout.fragment_dataform_validation, null);
 
 			RadDataForm dataForm = new RadDataForm(this.Activity);
-			dataForm.Entity = new XamarinEntity(new Person());
+			dataForm.SetEntity (new Person ());
 
 			dataForm.GetExistingEditorForProperty ("Name").Property ().Validator = new NonEmptyValidator();
 
-			layoutRoot.AddView(dataForm);
+			layoutRoot.AddView(dataForm, 0);
 
 			return layoutRoot;
 		}

@@ -14,7 +14,6 @@ using Com.Telerik.Widget.Dataform.Visualization;
 using Com.Telerik.Widget.Dataform.Visualization.Editors;
 using Com.Telerik.Widget.Dataform.Visualization.Core;
 using Com.Telerik.Widget.Dataform.Engine;
-using DataFormEntities;
 
 namespace Samples
 {
@@ -40,10 +39,7 @@ namespace Samples
 			person = new Person();
 			person.AddPropertyChangedListener(this);
 
-			dataForm.Entity = new XamarinEntity(person);
-
-			DataFormSpinnerEditor editor = Android.Runtime.Extensions.JavaCast<DataFormSpinnerEditor> (dataForm.GetExistingEditorForProperty("EmployeeType"));
-			editor.Adapter = new Com.Telerik.Widget.Dataform.Visualization.Editors.Adapters.EditorSpinnerAdapter (this.Activity, new Java.Lang.Object[] { "PROGRAMMER", "MANAGER", "SUPPORT", "MARKETING" });
+			dataForm.SetEntity (person);
 
 			RangeValidator validator = (RangeValidator) dataForm.GetExistingEditorForProperty("Age").Property().Validator;
 			validator.Max = 30;

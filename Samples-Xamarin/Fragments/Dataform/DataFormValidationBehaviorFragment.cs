@@ -13,7 +13,6 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V4.View;
 
-using DataFormEntities;
 using Com.Telerik.Widget.Dataform.Engine;
 using Com.Telerik.Widget.Dataform.Visualization;
 using Com.Telerik.Widget.Dataform.Visualization.Core;
@@ -33,7 +32,7 @@ namespace Samples
 			dataForm.LayoutManager = new DataFormLinearLayoutManager(this.Activity);
 			Person person = new Person();
 			person.Name = "Joe";
-			dataForm.Entity = new XamarinEntity(person);
+			dataForm.SetEntity(person);
 
 			EntityPropertyEditor nameEditor = Android.Runtime.Extensions.JavaCast<EntityPropertyEditor>(dataForm.GetExistingEditorForProperty("Name"));
 			nameEditor.Property().Validator = new NonEmptyValidator();

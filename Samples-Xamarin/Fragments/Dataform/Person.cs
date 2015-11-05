@@ -1,7 +1,6 @@
 ﻿using System;
 using Com.Telerik.Widget.Dataform.Engine;
 using Com.Telerik.Widget.Dataform.Visualization.Editors;
-using DataFormEntities;
 using Java.Text;
 using Java.Util;
 
@@ -31,7 +30,7 @@ namespace Samples
 			}
 		}
 
-		[DataFormAttribute(Label = "Employee Type", Index = 1, Group = "Group 1", Editor = typeof(DataFormSpinnerEditor))]
+		[DataFormAttribute(Label = "Employee Type", Index = 1, Group = "Group 1")]
 		public EmployeeType EmployeeType 
 		{
 			get 

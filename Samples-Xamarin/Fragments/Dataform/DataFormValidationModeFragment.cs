@@ -13,7 +13,9 @@ using Android.Widget;
 
 using Com.Telerik.Widget.Dataform.Visualization;
 using Com.Telerik.Widget.Dataform.Visualization.Core;
-using DataFormEntities;
+using Com.Telerik.Widget.Dataform.Engine;
+using Com.Telerik.Widget.Dataform.Visualization.Editors;
+using Com.Telerik.Widget.Dataform.Visualization.Editors.Adapters;
 
 namespace Samples
 {
@@ -43,7 +45,7 @@ namespace Samples
 			Person joe = new Person();
 			joe.Name = "Joe";
 			joe.Mail = "joe@mailservice.com";
-			dataForm.Entity = new XamarinEntity(joe);
+			dataForm.SetEntity (joe);
 
 			validateButton = (Button)rootLayout.FindViewById(Resource.Id.data_form_validate_button);
 			validateButton.SetOnClickListener(this);
