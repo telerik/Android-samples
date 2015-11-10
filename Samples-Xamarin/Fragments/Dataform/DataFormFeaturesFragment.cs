@@ -34,7 +34,6 @@ namespace Samples
 			readOnly.SetOnCheckedChangeListener(this);
 
 			dataForm = Android.Runtime.Extensions.JavaCast<RadDataForm>(layoutRoot.FindViewById(Resource.Id.dataForm));
-			dataForm.LayoutManager = new DataFormLinearLayoutManager (this.Activity);
 
 			person = new Person();
 			person.AddPropertyChangedListener(this);

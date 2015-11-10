@@ -28,6 +28,7 @@ namespace Samples
 			result.Add (new DataFormGettingStartedFragment());
 			result.Add (new DataFormFeaturesFragment ());
 			result.Add (new DataFormEditorsFragment ());
+			result.Add (new DataFormValidationFragment ());
 			result.Add (new DataFormGroupLayoutFragment ());
 			result.Add (new DataFormPlaceholderLayoutFragment ());
 			result.Add (new DataFormValidationBehaviorFragment ());

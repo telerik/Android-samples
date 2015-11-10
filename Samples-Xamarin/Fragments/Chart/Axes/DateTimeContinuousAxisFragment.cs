@@ -61,7 +61,7 @@ namespace Samples
 				DataEntity entity = new DataEntity();
 				entity.value = numberGenerator.NextInt(10) + 1;
 				Calendar date = Calendar.Instance;
-				date.Set(Calendar.Month, startingMonth++);
+				date.Set(CalendarField.Month, startingMonth++);
 				entity.date = date;
 				if (i == 2 || i == 6){
 					continue;

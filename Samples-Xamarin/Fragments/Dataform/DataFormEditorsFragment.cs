@@ -33,8 +33,6 @@ namespace Samples
 
 			dataForm.SetEntity (new Person ());
 
-			dataForm.LayoutManager = new DataFormLinearLayoutManager(this.Activity);
-
 			rootLayout.AddView(dataForm);
 
 			return rootLayout;

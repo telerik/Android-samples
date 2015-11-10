@@ -29,7 +29,7 @@ namespace Samples
 
 			dataForm.GetExistingEditorForProperty ("Name").Property ().Validator = new NonEmptyValidator();
 
-			layoutRoot.AddView(dataForm, 0);
+			layoutRoot.AddView(dataForm);
 
 			return layoutRoot;
 		}

@@ -97,7 +97,7 @@ namespace Samples
 				ohlc.open = ohlc.low + r.NextInt((int)ohlc.high - (int)ohlc.low);
 				ohlc.close = ohlc.low + r.NextInt((int)ohlc.high - (int)ohlc.low);
 				Calendar date = Calendar.Instance;
-				date.Set(Calendar.Month, month++);
+				date.Set(CalendarField.Month, month++);
 				ohlc.date = date;
 
 				data.Add(ohlc);

@@ -23,7 +23,6 @@ namespace Samples
 			ViewGroup rootLayout = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_dataform_getting_started, null);
 
 			RadDataForm dataForm = new RadDataForm(this.Activity);
-			dataForm.LayoutManager = new DataFormLinearLayoutManager (this.Activity);
 
 			dataForm.SetEntity(new Person());
 
