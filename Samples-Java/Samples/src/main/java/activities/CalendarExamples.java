@@ -15,8 +15,6 @@ import fragments.calendar.events.CalendarEventCreationFragment;
 import fragments.calendar.events.CalendarEventInlineMode;
 import fragments.calendar.events.CalendarEventPopupMode;
 import fragments.calendar.events.CalendarEventReadFragment;
-import fragments.calendar.events.CalendarEventReadOptionsFragment;
-import fragments.calendar.events.CalendarEventReadRangeFragment;
 import fragments.calendar.events.CalendarEventRenderModeFragment;
 import fragments.calendar.scrolling.CalendarScrollingDirectionFragment;
 import fragments.calendar.scrolling.CalendarScrollingFlingSpeedFragment;
@@ -82,8 +80,6 @@ public class CalendarExamples implements ExamplesProvider {
         result.add(new CalendarEventCreationFragment());
         result.add(new CalendarEventRenderModeFragment());
         result.add(new CalendarEventReadFragment());
-        result.add(new CalendarEventReadOptionsFragment());
-        result.add(new CalendarEventReadRangeFragment());
         result.add(new CalendarEventInlineMode());
         result.add(new CalendarEventPopupMode());
 
