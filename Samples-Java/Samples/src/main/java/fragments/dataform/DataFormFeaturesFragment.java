@@ -53,7 +53,7 @@ public class DataFormFeaturesFragment extends Fragment implements ExampleFragmen
         validator.setMin(18);
 
         Spinner commitModes = (Spinner)layoutRoot.findViewById(R.id.commitModeSpinner);
-        commitModes.setAdapter(new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, CommitMode.values()));
+        commitModes.setAdapter(new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, CommitMode.values()));
         commitModes.setOnItemSelectedListener(this);
 
         personText = (TextView)layoutRoot.findViewById(R.id.personText);

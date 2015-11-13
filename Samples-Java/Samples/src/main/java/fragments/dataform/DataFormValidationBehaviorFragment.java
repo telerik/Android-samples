@@ -41,7 +41,8 @@ public class DataFormValidationBehaviorFragment extends Fragment implements Exam
         nameEditor.property().setValidator(new NonEmptyValidator());
         nameEditor.setValidationViewBehavior(new ValidationAnimationBehavior(this.getActivity()));
 
-        ((EntityPropertyEditor) dataForm.getExistingEditorForProperty("Mail")).setValidationViewBehavior(new BlinkValidationBehavior(this.getActivity()));
+        EntityPropertyEditor mailEditor = (EntityPropertyEditor) dataForm.getExistingEditorForProperty("Mail");
+        mailEditor.setValidationViewBehavior(new BlinkValidationBehavior(this.getActivity()));
 
         rootLayout.addView(dataForm);
 
