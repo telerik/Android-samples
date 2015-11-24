@@ -17,7 +17,7 @@ namespace Samples
 		private string mail = "";
 		private long birthDate = 0L;
 
-		[@DataFormProperty(Label = "Age", Index = 0, Validator = typeof(RangeValidator), Group = "Group 1")]
+		[DataFormProperty(Label = "Age", Index = 0, Validator = typeof(RangeValidator), Group = "Group 1")]
 		public int Age 
 		{
 			get 
@@ -31,7 +31,7 @@ namespace Samples
 			}
 		}
 
-		[@DataFormProperty(Label = "Employee Type", Index = 1, Group = "Group 1")]
+		[DataFormProperty(Label = "Employee Type", Index = 1, Group = "Group 1")]
 		public EmployeeType EmployeeType 
 		{
 			get 
@@ -45,7 +45,7 @@ namespace Samples
 			}
 		}
 
-		[@DataFormProperty(Label = "Name", Index = 0, ColumnIndex = 1, Group = "Group 2")]
+		[DataFormProperty(Label = "Name", Index = 0, ColumnIndex = 1, Group = "Group 2")]
 		public string Name {
 			get {
 				return name;
@@ -56,7 +56,7 @@ namespace Samples
 			}
 		}
 
-		[@DataFormProperty(Label = "E-mail", Index = 2, Validator = typeof(MailValidator), Group = "Group 2")]
+		[DataFormProperty(Label = "E-mail", Index = 2, Validator = typeof(MailValidator), Group = "Group 2")]
 		public string Mail {
 			get{
 				return mail;
@@ -67,7 +67,7 @@ namespace Samples
 			}
 		}
 
-		[@DataFormProperty(Label = "Employed", Index = 2, ColumnIndex = 1, Group = "Group 3")]
+		[DataFormProperty(Label = "Employed", Index = 2, ColumnIndex = 1, Group = "Group 3")]
 		public bool IsEmployed {
 			get {
 				return isEmployed;
@@ -78,7 +78,7 @@ namespace Samples
 			}
 		}
 
-		[@DataFormProperty(Label = "Birth Date", Index = 1, ColumnIndex = 1, Editor = typeof(DataFormDateEditor), Group = "Group 3")]
+		[DataFormProperty(Label = "Birth Date", Index = 1, ColumnIndex = 1, Editor = typeof(DataFormDateEditor), Group = "Group 3")]
 		public long BirthDate {
 			get{
 				return birthDate;
