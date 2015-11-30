@@ -162,6 +162,17 @@
     <Compile Include="Fragments\ListView\ListViewSlideFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewStickyHeadersFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewSelectionFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormGettingStartedFragment.cs" />
+    <Compile Include="Fragments\Dataform\Person.cs" />
+    <Compile Include="Fragments\Dataform\EmployeeType.cs" />
+    <Compile Include="Adapters\DataFormExamples.cs" />
+    <Compile Include="Fragments\Dataform\DataFormFeaturesFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormEditorsFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormValidationFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormGroupLayoutFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormPlaceholderLayoutFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormValidationBehaviorFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormValidationModeFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -213,6 +224,13 @@
     <AndroidResource Include="Resources\layout\fragment_list_view_slide.axml" />
     <AndroidResource Include="Resources\layout\fragment_list_view_sticky_headers.axml" />
     <AndroidResource Include="Resources\layout\fragment_list_view_selection_example.axml" />
+    <AndroidResource Include="Resources\values\Colors.xml" />
+    <AndroidResource Include="Resources\layout\fragment_dataform_editors.axml" />
+    <AndroidResource Include="Resources\layout\dataform_custom_group.xml" />
+    <AndroidResource Include="Resources\layout\dataform_group_placeholder_layout.xml" />
+    <AndroidResource Include="Resources\layout\fragment_dataform_grouping.xml" />
+    <AndroidResource Include="Resources\layout\dataform_placeholder_layout.xml" />
+    <AndroidResource Include="Resources\layout\fragment_dataform_validation_mode.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -234,5 +252,6 @@
     <Folder Include="Resources\menu\" />
     <Folder Include="Fragments\ListView\" />
     <Folder Include="Fragments\SideDrawer\" />
+    <Folder Include="Fragments\Dataform\" />
   </ItemGroup>
 </Project>
