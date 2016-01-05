@@ -1,0 +1,83 @@
+{
+  "isReadOnly": false,
+  "commitMode": "immediate",
+  "validationMode": "immediate",
+  "properties":
+  [
+    {
+      "name": "name",
+      "displayName": "Your Name"
+    },
+    {
+      "name": "username",
+      "editor": "text"
+    },
+    {
+      "name": "password",
+      "editor": "password",
+      "validator": "MinimumLength",
+      "validatorParams": {
+        "length": 5,
+        "errorMessage": "Password must be at least 5 letters",
+        "successMessage": "Password looks good"
+      }
+    },
+    {
+      "name": "phone",
+      "editor": "phone"
+    },
+    {
+      "name": "age",
+      "displayName": "Your Age",
+      "editor": "stepper",
+      "editorParams":
+      {
+        "minimum": 18,
+        "maximum": 70
+      }
+    },
+    {
+      "name": "gender",
+      "displayName": "Your Gender",
+      "editor": "picker",
+      "valuesProvider": ["male", "female"]
+    },
+    {
+      "name": "grade",
+      "editor": "decimal"
+    },
+    {
+      "name": "email",
+      "editor": "email",
+      "displayName": "Your Email"
+    },
+    {
+      "name": "isMinor",
+      "editor": "switch"
+    },
+    {
+      "name": "iq",
+      "editor": "slider",
+      "validator": "Range",
+      "validatorParams": {
+        "min": 60,
+        "max": 200,
+        "errorMessage": "IQ can't be less than 60 or more than 200"
+      }
+    },
+    {
+      "name": "city",
+      "editor": "segmentededitor",
+      "valuesProvider": ["New York", "Las Vegas", "Los Angeles"]
+    },
+    {
+      "name": "birthDate",
+      "editor": "datepicker"
+    },
+    {
+      "name": "country",
+      "editor": "list",
+      "valuesProvider": ["USA", "UK", "Other"]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "John Doe",
+  "username": "john",
+  "password": "doe",
+  "phone": "+359899999999",
+  "age": 21,
+  "gender": "Male",
+  "grade": 4.60,
+  "email": "john.doe@example.com",
+  "isMinor": false,
+  "city": "New York",
+  "country": "USA",
+  "iq": 142,
+  "birthDate": null
+}
