@@ -41,6 +41,9 @@ public class DataFormFeaturesFragment extends Fragment implements ExampleFragmen
         CheckBox readOnly = (CheckBox)layoutRoot.findViewById(R.id.readOnly);
         readOnly.setOnCheckedChangeListener(this);
 
+        personText = (TextView)layoutRoot.findViewById(R.id.personText);
+        personText.setText(person.toString());
+
         dataForm = (RadDataForm)layoutRoot.findViewById(R.id.dataForm);
 
         person = new Person();
@@ -55,8 +58,6 @@ public class DataFormFeaturesFragment extends Fragment implements ExampleFragmen
         Spinner commitModes = (Spinner)layoutRoot.findViewById(R.id.commitModeSpinner);
         commitModes.setAdapter(new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, CommitMode.values()));
         commitModes.setOnItemSelectedListener(this);
-
-        personText = (TextView)layoutRoot.findViewById(R.id.personText);
 
         commitButton = (Button) layoutRoot.findViewById(R.id.manualCommit);
         commitButton.setOnClickListener(this);

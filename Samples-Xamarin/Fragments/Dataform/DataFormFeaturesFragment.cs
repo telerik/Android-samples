@@ -33,6 +33,9 @@ namespace Samples
 			CheckBox readOnly = (CheckBox)layoutRoot.FindViewById(Resource.Id.readOnly);
 			readOnly.SetOnCheckedChangeListener(this);
 
+			personText = (TextView)layoutRoot.FindViewById(Resource.Id.personText);
+			personText.Text = person.ToString();
+
 			dataForm = Android.Runtime.Extensions.JavaCast<RadDataForm>(layoutRoot.FindViewById(Resource.Id.dataForm));
 
 			person = new Person();
@@ -47,8 +50,6 @@ namespace Samples
 			Spinner commitModes = (Spinner)layoutRoot.FindViewById(Resource.Id.commitModeSpinner);
 			commitModes.Adapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleSpinnerItem, CommitMode.Values());
 			commitModes.OnItemSelectedListener = this;
-
-			personText = (TextView)layoutRoot.FindViewById(Resource.Id.personText);
 
 			commitButton = (Button) layoutRoot.FindViewById(Resource.Id.manualCommit);
 			commitButton.SetOnClickListener(this);

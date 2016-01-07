@@ -29,6 +29,7 @@ public class DataFormPlaceholderLayoutFragment extends Fragment implements Examp
         ViewGroup rootLayout = (ViewGroup)inflater.inflate(R.layout.fragment_dataform_grouping, null);
 
         RadDataForm dataForm = new RadDataForm(this.getActivity());
+        dataForm.setFillViewport(true);
         dataForm.setLayoutManager(new DataFormPlaceholderLayoutManager(this.getActivity(), R.layout.dataform_placeholder_layout));
         dataForm.setEntity(new Person());
 
