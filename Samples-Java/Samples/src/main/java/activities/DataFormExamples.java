@@ -27,6 +27,7 @@ public class DataFormExamples implements ExamplesProvider {
         result.add(new DataFormValidationBehaviorFragment());
         result.add(new DataFormValidationModeFragment());
 
+        result.add(new DataFormJsonEditFragment());
         result.add(new DataFormSchemaSetupFragment());
 
         dataFormExamples.put("Examples", result);

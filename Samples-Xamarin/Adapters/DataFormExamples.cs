@@ -33,6 +33,8 @@ namespace Samples
 			result.Add (new DataFormPlaceholderLayoutFragment ());
 			result.Add (new DataFormValidationBehaviorFragment ());
 			result.Add (new DataFormValidationModeFragment ());
+			result.Add (new DataFormJsonEditFragment ());
+			result.Add (new DataFormSchemaSetupFragment ());
 
 			dataFormExamples.Put ("Init", result);
 

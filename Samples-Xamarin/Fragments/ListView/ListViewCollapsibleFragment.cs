@@ -16,9 +16,13 @@ using Android.Support.V4.App;
 
 namespace Samples
 {
-	public class ListViewStickyHeadersFragment : Fragment, ExampleFragment
+	public class ListViewCollapsibleFragment : Fragment, ExampleFragment
 	{
 		RadListView listView;
+
+		public String Title(){
+			return "Collapsible Groups";
+		}
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -29,21 +33,17 @@ namespace Samples
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			View rootView = inflater.Inflate(Resource.Layout.fragment_list_view_sticky_headers, container, false);
+			View rootView = inflater.Inflate(Resource.Layout.fragment_list_view_collapsible, container, false);
 			this.listView = (RadListView)rootView.FindViewById(Resource.Id.listView).JavaCast<RadListView>();
 
-			StickyHeaderBehavior stickyHeaders = new StickyHeaderBehavior ();
-			this.listView.AddBehavior (stickyHeaders);
+			CollapsibleGroupsBehavior collapsibleGroupsBehavior = new CollapsibleGroupsBehavior ();
+			this.listView.AddBehavior (collapsibleGroupsBehavior);
 
-			MyDataListViewAdapter dataListViewAdapter = new MyDataListViewAdapter (GetData ());
+			ListViewDataSourceAdapter dataListViewAdapter = new ListViewDataSourceAdapter (GetData ());
 			dataListViewAdapter.AddGroupDescriptor (new MyGroupDescriptor ());
 			this.listView.SetAdapter (dataListViewAdapter);
 
 			return rootView;
-		}
-
-		public String Title(){
-			return "Sticky Headers";
 		}
 
 		private ArrayList GetData() {
@@ -172,73 +172,12 @@ namespace Samples
 			return source;
 		}
 
+
 		class MyGroupDescriptor : Java.Lang.Object, Com.Telerik.Android.Common.IFunction{
 
 			public Java.Lang.Object Apply(Java.Lang.Object o1){
 				ShoppingListItem currentItem = (ShoppingListItem) o1;
-				// Show only items that belong to the drinks category
 				return currentItem.category;
-			}
-		}
-
-		class MyDataListViewAdapter : ListViewDataSourceAdapter {
-
-			public MyDataListViewAdapter(System.Collections.IList items) : base(items){
-			}
-
-
-			public override void OnBindGroupViewHolder(ListViewHolder holder, Java.Lang.Object groupKey) {
-				GroupItemViewHolder vh = (GroupItemViewHolder) holder;
-				vh.txtGroupHeader.Text = groupKey.ToString().ToUpper();
-			}
-
-
-			public override void OnBindItemViewHolder(ListViewHolder holder, Java.Lang.Object entity) {
-				ItemViewHolder vh = (ItemViewHolder) holder;
-				ShoppingListItem item = (ShoppingListItem) entity;
-				vh.txtItemCategory.Text = Java.Lang.String.Format("Category: %s", item.category);
-				vh.txtItemName.Text = item.name;
-				vh.txtItemPrice.Text = Java.Lang.String.Format("Price: $%d", item.price);
-			}
-
-
-			public override ListViewHolder OnCreateGroupViewHolder(ViewGroup parent, int viewType) {
-				LayoutInflater inflater = LayoutInflater.From(parent.Context);
-				View itemView = inflater.Inflate(Resource.Layout.example_list_view_group_header, parent, false);
-				GroupItemViewHolder customHolder = new GroupItemViewHolder(itemView);
-				return customHolder;
-			}
-
-
-			public override ListViewHolder OnCreateItemViewHolder(ViewGroup parent, int viewType) {
-				LayoutInflater inflater = LayoutInflater.From(parent.Context);
-				View itemView = inflater.Inflate(Resource.Layout.example_list_view_data_operations_item_layout, parent, false);
-				ItemViewHolder customHolder = new ItemViewHolder(itemView);
-				return customHolder;
-			}
-		}
-
-		class ItemViewHolder : ListViewHolder {
-
-			public TextView txtItemName;
-			public TextView txtItemPrice;
-			public TextView txtItemCategory;
-
-			public ItemViewHolder(View itemView) : base(itemView){
-
-				this.txtItemName = (TextView) itemView.FindViewById(Resource.Id.txtItemName);
-				this.txtItemPrice = (TextView) itemView.FindViewById(Resource.Id.txtItemPrice);
-				this.txtItemCategory = (TextView) itemView.FindViewById(Resource.Id.txtItemCategory);
-			}
-		}
-
-		class GroupItemViewHolder : ListViewHolder {
-
-			public TextView txtGroupHeader;
-
-			public GroupItemViewHolder(View itemView) : base(itemView){
-
-				this.txtGroupHeader = (TextView) itemView.FindViewById(Resource.Id.txtGroupHeader);
 			}
 		}
 
@@ -246,6 +185,11 @@ namespace Samples
 			public System.String category;
 			public int price;
 			public System.String name;
+
+			public override string ToString ()
+			{
+				return name;
+			}
 		}
 	}
 }

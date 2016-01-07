@@ -18,8 +18,7 @@
       "validator": "MinimumLength",
       "validatorParams": {
         "length": 5,
-        "errorMessage": "Password must be at least 5 letters",
-        "successMessage": "Password looks good"
+        "errorMessage": "Password must be at least 5 letters"
       }
     },
     {
@@ -49,11 +48,8 @@
     {
       "name": "email",
       "editor": "email",
+      "validator": "MailValidator",
       "displayName": "Your Email"
-    },
-    {
-      "name": "isMinor",
-      "editor": "switch"
     },
     {
       "name": "iq",
@@ -73,11 +69,6 @@
     {
       "name": "birthDate",
       "editor": "datepicker"
-    },
-    {
-      "name": "country",
-      "editor": "list",
-      "valuesProvider": ["USA", "UK", "Other"]
     }
   ]
 }

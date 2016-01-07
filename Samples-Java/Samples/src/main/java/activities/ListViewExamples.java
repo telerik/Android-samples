@@ -3,6 +3,7 @@ package activities;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fragments.listview.ListViewCollapsibleFragment;
 import fragments.listview.ListViewDeckOfCardsFragment;
 import fragments.listview.ListViewGettingStartedFragment;
 import fragments.listview.ListViewLoadOnDemandFragment;
@@ -50,6 +51,7 @@ public class ListViewExamples implements ExamplesProvider {
         examplesSet.add(new ListViewLoadOnDemandFragment());
         examplesSet.add(new ListViewSelectionFragment());
         examplesSet.add(new ListViewStickyHeadersFragment());
+        examplesSet.add(new ListViewCollapsibleFragment());
 
         examples.put("Behaviors", examplesSet);
 

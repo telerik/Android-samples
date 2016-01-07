@@ -26,25 +26,26 @@ namespace Samples
 
 			ArrayList examplesSet = new ArrayList();
 
-			examplesSet.Add(new ListViewGettingStartedFragment());
-			examplesSet.Add(new ListViewLayoutsFragment());
-			examplesSet.Add(new ListViewDeckOfCardsFragment());
-			examplesSet.Add(new ListViewSlideFragment());
-			examplesSet.Add(new ListViewWrapFragment());
-			examplesSet.Add(new ListViewItemAnimationFragment());
-			examplesSet.Add(new ListViewDataOperationsFragment());
+			examplesSet.Add (new ListViewGettingStartedFragment());
+			examplesSet.Add (new ListViewLayoutsFragment());
+			examplesSet.Add (new ListViewDeckOfCardsFragment());
+			examplesSet.Add (new ListViewSlideFragment());
+			examplesSet.Add (new ListViewWrapFragment());
+			examplesSet.Add (new ListViewItemAnimationFragment());
+			examplesSet.Add (new ListViewDataOperationsFragment());
 
 			examples.Put("Features", examplesSet);
 
 			examplesSet = new ArrayList();
 
-			examplesSet.Add(new ListViewReorderFragment());
-			examplesSet.Add(new ListViewSwipeToExecuteFragment());
-			examplesSet.Add(new ListViewSwipeToRefreshFragment());
-			examplesSet.Add(new ListViewManualLoadOnDemandFragment());
-			examplesSet.Add(new ListViewSelectionFragment());
-			examplesSet.Add(new ListViewDataAutomaticLoadOnDemandFragment());
+			examplesSet.Add (new ListViewReorderFragment());
+			examplesSet.Add (new ListViewSwipeToExecuteFragment());
+			examplesSet.Add (new ListViewSwipeToRefreshFragment());
+			examplesSet.Add (new ListViewManualLoadOnDemandFragment());
+			examplesSet.Add (new ListViewSelectionFragment());
+			examplesSet.Add (new ListViewDataAutomaticLoadOnDemandFragment());
 			examplesSet.Add (new ListViewStickyHeadersFragment ());
+			examplesSet.Add (new ListViewCollapsibleFragment ());
 
 			examples.Put("Behaviors", examplesSet);
 

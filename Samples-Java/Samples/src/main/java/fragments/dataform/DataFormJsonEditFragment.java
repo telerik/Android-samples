@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.telerik.android.sdk.R;
-import com.telerik.widget.dataform.engine.DataFormMetadata;
 import com.telerik.widget.dataform.visualization.RadDataForm;
 
 import org.json.JSONException;
@@ -25,30 +24,27 @@ import java.io.Writer;
 
 import activities.ExampleFragment;
 
-public class DataFormSchemaSetupFragment extends Fragment implements ExampleFragment {
+
+public class DataFormJsonEditFragment extends Fragment implements ExampleFragment {
+
 
     @Override
     public String title() {
-        return "Json Schema setup";
+        return "Json Object Editing";
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup layoutRoot = (ViewGroup) inflater.inflate(R.layout.fragment_data_form_schema_setup, container, false);
+        ViewGroup layoutRoot = (ViewGroup)inflater.inflate(R.layout.fragment_data_form_json_edit, container, false);
         RadDataForm dataForm = new RadDataForm(this.getActivity());
 
-        String json = loadJSONFromAsset(R.raw.person_extended);
+        String json = loadJSONFromAsset(R.raw.person);
 
         try {
             JSONObject jsonObject = new JSONObject(json);
             dataForm.setEntity(jsonObject);
-
-            String schema = loadJSONFromAsset(R.raw.person_schema);
-            JSONObject jsonSchema = new JSONObject(schema);
-            DataFormMetadata metadata = new DataFormMetadata(jsonSchema);
-            dataForm.setMetadata(metadata);
         } catch (JSONException e) {
             Log.e("json", "error parsing json", e);
         }
@@ -56,7 +52,6 @@ public class DataFormSchemaSetupFragment extends Fragment implements ExampleFrag
         layoutRoot.addView(dataForm);
 
         return layoutRoot;
-
     }
 
     public String loadJSONFromAsset(int asset) {
@@ -82,6 +77,5 @@ public class DataFormSchemaSetupFragment extends Fragment implements ExampleFrag
         }
         return json;
     }
-
 
 }
