@@ -44,10 +44,10 @@ namespace Samples
 
 			LinearAxis verticalAxis = new LinearAxis();
 			//The values in the linear axis will not have values after the decimal point.
+			verticalAxis.LabelFormat = "%.0f";
 			CategoricalAxis horizontalAxis = new CategoricalAxis();
-			horizontalAxis.LabelFormat = "%.0f";
-			barSeries.VerticalAxis = verticalAxis;
-			barSeries.HorizontalAxis = horizontalAxis;
+			chart.VerticalAxis = verticalAxis;
+			chart.HorizontalAxis = horizontalAxis;
 
 			//Bind series to data
 			barSeries.Data = this.getData();
