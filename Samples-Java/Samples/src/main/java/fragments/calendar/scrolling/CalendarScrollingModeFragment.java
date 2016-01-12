@@ -12,9 +12,6 @@ import com.telerik.widget.calendar.ScrollMode;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarScrollingModeFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -27,6 +24,6 @@ public class CalendarScrollingModeFragment extends Fragment implements ExampleFr
 
     @Override
     public String title() {
-        return "Mode";
+        return "Scroll mode";
     }
 }

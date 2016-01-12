@@ -7,7 +7,7 @@ namespace Samples
 {
 	public class DataFormExamples : Java.Lang.Object, ExamplesProvider
 	{
-		private HashMap dataFormExamples;
+		private LinkedHashMap dataFormExamples;
 
 		public DataFormExamples(){
 			this.dataFormExamples = this.getDataFormExamples();
@@ -17,12 +17,12 @@ namespace Samples
 			return "Data Form";
 		}
 
-		public HashMap Examples(){
+		public LinkedHashMap Examples(){
 			return this.dataFormExamples;
 		}
 
-		private HashMap getDataFormExamples(){
-			HashMap dataFormExamples = new HashMap();
+		private LinkedHashMap getDataFormExamples(){
+			LinkedHashMap dataFormExamples = new LinkedHashMap();
 			ArrayList result = new ArrayList();
 
 			result.Add (new DataFormGettingStartedFragment());
@@ -36,7 +36,7 @@ namespace Samples
 			result.Add (new DataFormJsonEditFragment ());
 			result.Add (new DataFormSchemaSetupFragment ());
 
-			dataFormExamples.Put ("Init", result);
+			dataFormExamples.Put ("Features", result);
 
 			return dataFormExamples;
 		}

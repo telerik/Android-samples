@@ -16,9 +16,6 @@ import java.util.List;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarEventAllDayFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -42,6 +39,6 @@ public class CalendarEventAllDayFragment extends Fragment implements ExampleFrag
 
     @Override
     public String title() {
-        return "All day";
+        return "All day event";
     }
 }

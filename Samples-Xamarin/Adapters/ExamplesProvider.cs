@@ -6,7 +6,7 @@ namespace Samples
 	public interface ExamplesProvider
 	{
 		String ControlName();
-		HashMap Examples();
+		LinkedHashMap Examples();
 	}
 }
 

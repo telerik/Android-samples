@@ -15,9 +15,6 @@ import java.util.List;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarSelectionListenerFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -38,7 +35,7 @@ public class CalendarSelectionListenerFragment extends Fragment implements Examp
                 log += "Dates added:\n";
                 for (long date : datesAdded) {
                     calendar.setTimeInMillis(date);
-                    log += calendar.getTime().toString() + "\n";
+                    log += getValue(calendar) + "\n";
                 }
                 log += datesAdded.size() + "\n";
 
@@ -47,7 +44,7 @@ public class CalendarSelectionListenerFragment extends Fragment implements Examp
                 log += "\nDates removed:\n";
                 for (long date : datesRemoved) {
                     calendar.setTimeInMillis(date);
-                    log += calendar.getTime().toString() + "\n";
+                    log += getValue(calendar) + "\n";
                 }
                 log += datesRemoved.size() + "\n";
 
@@ -56,7 +53,7 @@ public class CalendarSelectionListenerFragment extends Fragment implements Examp
                 log += "\nNew selection:\n";
                 for (long date : newSelection) {
                     calendar.setTimeInMillis(date);
-                    log += calendar.getTime().toString() + "\n";
+                    log += getValue(calendar) + "\n";
                 }
                 log += newSelection.size() + "\n";
 
@@ -65,7 +62,7 @@ public class CalendarSelectionListenerFragment extends Fragment implements Examp
                 log += "\nOld selection:\n";
                 for (long date : oldSelection) {
                     calendar.setTimeInMillis(date);
-                    log += calendar.getTime().toString() + "\n";
+                    log += getValue(calendar) + "\n";
                 }
                 log += oldSelection.size() + "\n";
 
@@ -76,8 +73,13 @@ public class CalendarSelectionListenerFragment extends Fragment implements Examp
         return calendarView;
     }
 
+    private String getValue(Calendar calendar) {
+        return String.format("%d-%d-%d", calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
+    }
+
+
     @Override
     public String title() {
-        return "Listener";
+        return "Selection listener";
     }
 }

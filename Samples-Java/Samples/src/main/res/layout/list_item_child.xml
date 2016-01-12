@@ -3,9 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:layout_marginLeft="48dp"
         android:id="@+id/txtExampleName"
+        android:paddingLeft="@dimen/list_item_margin_horizontal"
+        android:paddingRight="@dimen/list_item_margin_horizontal"
+        android:paddingTop="@dimen/list_item_margin_vertical"
+        android:paddingBottom="@dimen/list_item_margin_vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="48dp" />
+        android:textSize="@dimen/menu_text_size" />
 </LinearLayout>

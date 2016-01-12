@@ -17,9 +17,6 @@ import java.util.List;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarEventCreationFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -50,6 +47,6 @@ public class CalendarEventCreationFragment extends Fragment implements ExampleFr
 
     @Override
     public String title() {
-        return "Creation";
+        return "Creating events";
     }
 }

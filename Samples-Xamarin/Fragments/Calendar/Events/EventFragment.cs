@@ -28,7 +28,7 @@ namespace Samples
 			calendar.Add (CalendarField.Hour, 1);
 			end = calendar.TimeInMillis;
 			Event newEvent2 = new Event("Walk to work", start, end);
-			newEvent2.EventColor = Android.Graphics.Color.Beige;
+			newEvent2.EventColor = Android.Graphics.Color.Green;
 
 			IList<Event> events = new List<Event> ();
 			events.Add (newEvent);
@@ -40,7 +40,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Events";
+			return "Creating events";
 		}
 	}
 }

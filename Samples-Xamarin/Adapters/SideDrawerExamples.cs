@@ -6,7 +6,7 @@ namespace Samples
 {
 	public class SideDrawerExamples : Java.Lang.Object, ExamplesProvider {
 
-		private HashMap sideDrawerExamples;
+		private LinkedHashMap sideDrawerExamples;
 
 		public SideDrawerExamples(){
 			this.sideDrawerExamples = this.getSideDrawerExamples();
@@ -16,12 +16,12 @@ namespace Samples
 			return "Side Drawer";
 		}
 
-		public HashMap Examples(){
+		public LinkedHashMap Examples(){
 			return this.sideDrawerExamples;
 		}
 
-		private HashMap getSideDrawerExamples(){
-			HashMap sideDrawerExamples = new HashMap();
+		private LinkedHashMap getSideDrawerExamples(){
+			LinkedHashMap sideDrawerExamples = new LinkedHashMap();
 			ArrayList result = new ArrayList();
 
 			result.Add (new DrawerInitialSetupFragment());

@@ -1,6 +1,4 @@
-﻿<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.telerik.examples.MainActivity">
+﻿<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:title="Week"
         android:id="@+id/itemWeek" />

@@ -40,7 +40,7 @@ namespace Samples
 			log += "Dates added:\n";
 			foreach (long date in datesAdded) {
 				calendar.TimeInMillis = date;
-				log += calendar.Time.ToString() + "\n";
+				log += GetValue(calendar) + "\n";
 			}
 			log += datesAdded.Count + "\n";
 
@@ -49,7 +49,7 @@ namespace Samples
 			log += "\nDates removed:\n";
 			foreach (long date in datesRemoved) {
 				calendar.TimeInMillis = date;
-				log += calendar.Time.ToString() + "\n";
+				log += GetValue(calendar) + "\n";
 			}
 			log += datesRemoved.Count + "\n";
 
@@ -58,7 +58,7 @@ namespace Samples
 			log += "\nNew selection:\n";
 			foreach (long date in newSelection) {
 				calendar.TimeInMillis = date;
-				log += calendar.Time.ToString() + "\n";
+				log += GetValue(calendar) + "\n";
 			}
 			log += newSelection.Count + "\n";
 
@@ -67,11 +67,15 @@ namespace Samples
 			log += "\nOld selection:\n";
 			foreach (long date in oldSelection) {
 				calendar.TimeInMillis = date;
-				log += calendar.Time.ToString() + "\n";
+				log += GetValue(calendar) + "\n";
 			}
 			log += oldSelection.Count + "\n";
 
 			Toast.MakeText (this.Activity, log, ToastLength.Long).Show ();
+		}
+
+		private String GetValue(Calendar calendar) {
+			return String.Format ("{0}-{1}-{2}", calendar.Get (CalendarField.Year), calendar.Get (CalendarField.Month) + 1, calendar.Get (CalendarField.DayOfMonth));
 		}
 	}
 }

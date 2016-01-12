@@ -1,21 +1,14 @@
 package activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBarActivity;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 
 import com.telerik.android.sdk.R;
 
-/**
- * Created by ginev on 12/5/2014.
- */
-public class ExampleActivity extends ActionBarActivity{
+public class ExampleActivity extends AppCompatActivity{
 
     static Fragment selectedExampleFragment = null;
 
@@ -24,16 +17,14 @@ public class ExampleActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_example);
 
+        String title = String.format("%s - %s", ControlActivity.selectedControl.controlName(), ((ExampleFragment) selectedExampleFragment).title());
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
+
         FragmentManager fm = ExampleActivity.this.getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+        FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.container, selectedExampleFragment);
         ft.commit();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
     }
 }

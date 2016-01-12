@@ -5,7 +5,7 @@ namespace Samples
 {
 	public class ChartExamples : Java.Lang.Object, ExamplesProvider {
 
-		private HashMap chartExamples;
+		private LinkedHashMap chartExamples;
 
 		public ChartExamples(){
 
@@ -18,12 +18,12 @@ namespace Samples
 		}
 
 
-		public HashMap Examples(){
+		public LinkedHashMap Examples(){
 			return this.chartExamples;
 		}
 
-		private HashMap getChartExamples(){
-			HashMap chartExamples = new HashMap();
+		private LinkedHashMap getChartExamples(){
+			LinkedHashMap chartExamples = new LinkedHashMap();
 
 			ArrayList result = new ArrayList();
 
@@ -40,7 +40,6 @@ namespace Samples
 			result.Add(new SplineAreaSeriesFragment());
 			result.Add(new SplineSeriesFragment());
 			result.Add(new StackAreaSeriesFragment());
-			result.Add(new StackBarSeriesFragment());
 			result.Add(new StackBarSeriesFragment());
 			result.Add(new StackSplineAreaSeriesFragment());
 			result.Add(new VerticalBarSeriesFragment());

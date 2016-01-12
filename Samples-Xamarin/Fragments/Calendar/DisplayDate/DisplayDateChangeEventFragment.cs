@@ -23,7 +23,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Display Date Change Event";
+			return "Display date changed event";
 		}
 
 		public void OnDisplayDateChanged (long oldValue, long newValue)

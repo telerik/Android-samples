@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="Samples.Samples">
-	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="23" />
-	<application android:label="Samples" android:theme="@style/AppTheme"></application>
-	<uses-permission android:name="android.permission.READ_CALENDAR" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="@string/app_name">
+	<uses-sdk android:minSdkVersion="9" android:targetSdkVersion="23" />
 	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="android.permission.READ_CALENDAR" />
+	<application android:allowBackup="true" android:icon="@drawable/Icon" android:theme="@style/AppTheme" android:label="@string/app_name" />
 </manifest>

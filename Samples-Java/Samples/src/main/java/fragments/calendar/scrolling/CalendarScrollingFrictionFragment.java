@@ -12,9 +12,6 @@ import com.telerik.widget.calendar.ScrollMode;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarScrollingFrictionFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -34,6 +31,6 @@ public class CalendarScrollingFrictionFragment extends Fragment implements Examp
 
     @Override
     public String title() {
-        return "Friction";
+        return "Scrolling friction";
     }
 }

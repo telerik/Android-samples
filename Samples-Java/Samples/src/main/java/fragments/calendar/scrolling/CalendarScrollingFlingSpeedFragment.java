@@ -12,9 +12,6 @@ import com.telerik.widget.calendar.ScrollMode;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarScrollingFlingSpeedFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -29,6 +26,6 @@ public class CalendarScrollingFlingSpeedFragment extends Fragment implements Exa
 
     @Override
     public String title() {
-        return "Fling speed";
+        return "Scrolling fling speed";
     }
 }

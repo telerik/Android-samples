@@ -10,20 +10,18 @@ import com.telerik.android.sdk.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by ginev on 12/5/2014.
- */
 public class ControlsAdapter extends ArrayAdapter {
 
     private ArrayList<ExamplesProvider> source = new ArrayList<ExamplesProvider>();
 
     public ControlsAdapter(Context context, int resource) {
         super(context, resource);
-        this.source.add(new ChartExamples());
-        this.source.add(new ListViewExamples());
+
         this.source.add(new CalendarExamples());
-        this.source.add(new SideDrawerExamples());
+        this.source.add(new ChartExamples());
         this.source.add(new DataFormExamples());
+        this.source.add(new ListViewExamples());
+        this.source.add(new SideDrawerExamples());
     }
 
     @Override

@@ -1,7 +1,7 @@
 package activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import fragments.chart.annotations.GridLineAnnotationFragment;
 import fragments.chart.annotations.PlotBandAnnotationFragment;
@@ -31,12 +31,9 @@ import fragments.chart.series.StackBarSeriesFragment;
 import fragments.chart.series.StackSplineAreaSeriesFragment;
 import fragments.chart.series.VerticalBarSeriesFragment;
 
-/**
- * Created by ginev on 12/5/2014.
- */
 public class ChartExamples implements ExamplesProvider {
 
-    private HashMap<String, ArrayList<ExampleFragment>> chartExamples;
+    private LinkedHashMap<String, ArrayList<ExampleFragment>> chartExamples;
 
     public ChartExamples(){
         this.chartExamples = this.getChartExamples();
@@ -48,12 +45,12 @@ public class ChartExamples implements ExamplesProvider {
     }
 
     @Override
-    public HashMap<String, ArrayList<ExampleFragment>> examples(){
+    public LinkedHashMap<String, ArrayList<ExampleFragment>> examples(){
         return this.chartExamples;
     }
 
-    private HashMap<String, ArrayList<ExampleFragment>> getChartExamples(){
-        HashMap<String, ArrayList<ExampleFragment>> chartExamples = new HashMap<String, ArrayList<ExampleFragment>>();
+    private LinkedHashMap<String, ArrayList<ExampleFragment>> getChartExamples(){
+        LinkedHashMap<String, ArrayList<ExampleFragment>> chartExamples = new LinkedHashMap<String, ArrayList<ExampleFragment>>();
 
         ArrayList<ExampleFragment> result = new ArrayList<ExampleFragment>();
 
@@ -70,7 +67,6 @@ public class ChartExamples implements ExamplesProvider {
         result.add(new SplineAreaSeriesFragment());
         result.add(new SplineSeriesFragment());
         result.add(new StackAreaSeriesFragment());
-        result.add(new StackBarSeriesFragment());
         result.add(new StackBarSeriesFragment());
         result.add(new StackSplineAreaSeriesFragment());
         result.add(new VerticalBarSeriesFragment());

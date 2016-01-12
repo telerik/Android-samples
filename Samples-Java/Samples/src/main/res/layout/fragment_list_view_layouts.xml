@@ -1,9 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="fragments.listview.ListViewGettingStartedFragment">
+    android:layout_height="match_parent">
     <HorizontalScrollView
         android:id="@+id/buttonsScroll"
         android:layout_width="match_parent"
@@ -57,9 +55,6 @@
     <com.telerik.widget.list.RadListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/buttonsScroll">
-
-    </com.telerik.widget.list.RadListView>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

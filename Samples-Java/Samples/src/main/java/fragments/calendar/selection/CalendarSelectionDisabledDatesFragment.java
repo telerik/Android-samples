@@ -18,9 +18,6 @@ import java.util.Calendar;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarSelectionDisabledDatesFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -43,7 +40,11 @@ public class CalendarSelectionDisabledDatesFragment extends Fragment implements 
 
                 this.calendar.setTimeInMillis(dayCell.getDate());
 
-                dayCell.setSelectable(!(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY));
+                if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
+                    dayCell.setSelectable(false);
+                } else {
+                    dayCell.setSelectable(true);
+                }
             }
         });
 
@@ -52,6 +53,6 @@ public class CalendarSelectionDisabledDatesFragment extends Fragment implements 
 
     @Override
     public String title() {
-        return "Disabled dates";
+        return "Selection disabled dates";
     }
 }

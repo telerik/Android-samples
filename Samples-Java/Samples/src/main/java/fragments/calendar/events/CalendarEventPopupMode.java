@@ -19,9 +19,6 @@ import java.util.List;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarEventPopupMode extends Fragment implements ExampleFragment {
 
     @Override

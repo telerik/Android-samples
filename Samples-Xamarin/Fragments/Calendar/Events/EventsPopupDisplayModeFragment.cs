@@ -51,7 +51,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Popup display mode";
+			return "Popup mode";
 		}
 	}
 }

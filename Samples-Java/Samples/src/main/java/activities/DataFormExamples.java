@@ -1,7 +1,7 @@
 package activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import fragments.dataform.DataFormGroupLayoutFragment;
 import fragments.dataform.*;
@@ -13,8 +13,8 @@ public class DataFormExamples implements ExamplesProvider {
     }
 
     @Override
-    public HashMap<String, ArrayList<ExampleFragment>> examples() {
-        HashMap<String, ArrayList<ExampleFragment>> dataFormExamples = new HashMap<>();
+    public LinkedHashMap<String, ArrayList<ExampleFragment>> examples() {
+        LinkedHashMap<String, ArrayList<ExampleFragment>> dataFormExamples = new LinkedHashMap<>();
 
         ArrayList<ExampleFragment> result = new ArrayList<>();
         result.add(new DataFormGettingStartedFragment());
@@ -30,7 +30,7 @@ public class DataFormExamples implements ExamplesProvider {
         result.add(new DataFormJsonEditFragment());
         result.add(new DataFormSchemaSetupFragment());
 
-        dataFormExamples.put("Examples", result);
+        dataFormExamples.put("Features", result);
 
         return dataFormExamples;
     }

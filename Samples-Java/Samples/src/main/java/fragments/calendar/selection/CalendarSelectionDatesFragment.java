@@ -42,6 +42,6 @@ public class CalendarSelectionDatesFragment extends Fragment implements ExampleF
 
     @Override
     public String title() {
-        return "Dates";
+        return "Set selected dates";
     }
 }

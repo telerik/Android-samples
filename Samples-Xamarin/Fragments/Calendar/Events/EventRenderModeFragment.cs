@@ -34,7 +34,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Event Render Mode";
+			return "Event render mode Shape";
 		}
 	}
 }

@@ -1,7 +1,7 @@
 package activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import fragments.listview.ListViewCollapsibleFragment;
 import fragments.listview.ListViewDeckOfCardsFragment;
@@ -18,9 +18,6 @@ import fragments.listview.ListViewSwipeToExecuteFragment;
 import fragments.listview.ListViewSwipeToRefreshFragment;
 import fragments.listview.ListViewWrapFragment;
 
-/**
- * Created by ginev on 2/20/2015.
- */
 public class ListViewExamples implements ExamplesProvider {
     @Override
     public String controlName() {
@@ -28,8 +25,8 @@ public class ListViewExamples implements ExamplesProvider {
     }
 
     @Override
-    public HashMap<String, ArrayList<ExampleFragment>> examples() {
-        HashMap<String, ArrayList<ExampleFragment>> examples = new HashMap<>();
+    public LinkedHashMap<String, ArrayList<ExampleFragment>> examples() {
+        LinkedHashMap<String, ArrayList<ExampleFragment>> examples = new LinkedHashMap<>();
 
         ArrayList<ExampleFragment> examplesSet = new ArrayList<>();
 

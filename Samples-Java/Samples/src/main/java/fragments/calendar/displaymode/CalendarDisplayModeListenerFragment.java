@@ -13,9 +13,6 @@ import com.telerik.widget.calendar.RadCalendarView;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarDisplayModeListenerFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -23,8 +20,8 @@ public class CalendarDisplayModeListenerFragment extends Fragment implements Exa
         RadCalendarView calendarView = new RadCalendarView(getActivity());
         calendarView.setOnDisplayModeChangedListener(new RadCalendarView.OnDisplayModeChangedListener() {
             @Override
-            public void onDisplayModeChanged(CalendarDisplayMode calendarDisplayMode, CalendarDisplayMode calendarDisplayMode2) {
-                String msg = calendarDisplayMode2.name();
+            public void onDisplayModeChanged(CalendarDisplayMode oldValue, CalendarDisplayMode newValue) {
+                String msg = newValue.name();
 
                 Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
             }
@@ -35,6 +32,6 @@ public class CalendarDisplayModeListenerFragment extends Fragment implements Exa
 
     @Override
     public String title() {
-        return "Listener";
+        return "Display mode changed listener";
     }
 }

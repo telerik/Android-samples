@@ -27,7 +27,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Scrolling Friction";
+			return "Scrolling friction";
 		}
 	}
 }

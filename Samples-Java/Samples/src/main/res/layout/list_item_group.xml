@@ -3,12 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#7fa87f">
+    android:background="@color/list_item_group_background">
 
     <TextView
         android:id="@+id/txtFeatureName"
-        android:layout_marginLeft="24dp"
+        android:paddingLeft="@dimen/list_item_margin_horizontal"
+        android:paddingRight="@dimen/list_item_margin_horizontal"
+        android:paddingTop="@dimen/list_item_margin_vertical"
+        android:paddingBottom="@dimen/list_item_margin_vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="48dp" />
+        android:textColor="@color/list_item_group_text_color"
+        android:textSize="@dimen/menu_text_size" />
 </LinearLayout>

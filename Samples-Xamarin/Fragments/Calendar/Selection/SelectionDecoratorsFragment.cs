@@ -26,7 +26,7 @@ namespace Samples
 			decorator.Scale = 1f;
 			decorator.ShapeScale = .77f;
 			decorator.Color = Android.Graphics.Color.Magenta;
-			decorator.ShapeColor = Android.Graphics.Color.Maroon;
+			decorator.ShapeColor = Android.Graphics.Color.DarkGray;
 
 			calendarView.CellDecorator = decorator;
 

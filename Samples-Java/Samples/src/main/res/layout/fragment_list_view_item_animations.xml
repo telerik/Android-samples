@@ -1,32 +1,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="fragments.listview.ListViewGettingStartedFragment">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/buttonsLayer"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnAddItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add item" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnRemoveItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Remove item" />
+            <Button
+                android:id="@+id/btnAddItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add item" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnRemoveItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove item" />
+
+        </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -44,7 +43,6 @@
                 android:layout_height="wrap_content"
                 android:text="Slide animation" />
 
-
             <Button
                 android:id="@+id/btnSetFade"
                 android:layout_width="wrap_content"
@@ -58,8 +56,6 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/buttonsLayer">
-
-    </com.telerik.widget.list.RadListView>
+        android:layout_below="@id/buttonsLayer" />
 
 </RelativeLayout>

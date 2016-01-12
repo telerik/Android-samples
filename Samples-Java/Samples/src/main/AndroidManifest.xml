@@ -8,9 +8,11 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:label="@string/app_name">
         <activity
             android:name="activities.MainActivity"
+            android:theme="@style/AppTheme"
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,11 +22,12 @@
         </activity>
         <activity
             android:name="activities.ControlActivity"
-            android:label="@string/title_activity_main"/>
+            android:theme="@style/AppTheme"
+            android:label="@string/title_activity_control"/>
         <activity
             android:name="activities.ExampleActivity"
-            android:theme="@style/NoActionBar"
-            android:label="@string/title_activity_main"/>
+            android:theme="@style/AppTheme"
+            android:label="@string/title_activity_example"/>
     </application>
 
 </manifest>

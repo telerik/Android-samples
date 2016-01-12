@@ -20,7 +20,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Display Mode'Change Listener";
+			return "Display mode changed listener";
 		}
 
 		private class DisplayModeChangeListener : Java.Lang.Object, Com.Telerik.Widget.Calendar.RadCalendarView.IOnDisplayModeChangedListener
@@ -34,12 +34,7 @@ namespace Samples
 
 			public void OnDisplayModeChanged (CalendarDisplayMode oldValue, CalendarDisplayMode newValue)
 			{
-				string msg = "";
-				if (newValue == CalendarDisplayMode.Year) {
-					msg = "Year mode";
-				} else if (newValue == CalendarDisplayMode.Month) {
-					msg = "Month mode";
-				}
+				string msg = newValue.Name ();
 
 				Toast.MakeText (this.context, msg, ToastLength.Long).Show ();
 			}

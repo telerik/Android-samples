@@ -237,6 +237,14 @@
     <AndroidResource Include="Resources\layout\fragment_list_view_collapsible.axml" />
     <AndroidResource Include="Resources\layout\fragment_data_form_json_edit.axml" />
     <AndroidResource Include="Resources\layout\fragment_data_form_schema_setup.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\values\Dimens.xml" />
+    <AndroidResource Include="Resources\values-w600dp\Dimens.xml" />
+    <AndroidResource Include="Resources\values-w820dp\Dimens.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
@@ -258,6 +266,8 @@
     <Folder Include="Fragments\ListView\" />
     <Folder Include="Fragments\SideDrawer\" />
     <Folder Include="Fragments\Dataform\" />
+    <Folder Include="Resources\values-w600dp\" />
+    <Folder Include="Resources\values-w820dp\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>

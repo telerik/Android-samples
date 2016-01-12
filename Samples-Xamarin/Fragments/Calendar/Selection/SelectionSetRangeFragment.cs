@@ -25,7 +25,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Selection set range";
+			return "Set selection range";
 		}
 	}
 }

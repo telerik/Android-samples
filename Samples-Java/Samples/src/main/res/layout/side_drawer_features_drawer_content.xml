@@ -15,13 +15,12 @@
                 android:text="Lock drawer: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
-        <ToggleButton
-            android:id="@+id/lockDrawerButton"
-            android:textOn="locked"
-            android:textOff="unlocked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <ToggleButton
+                android:id="@+id/lockDrawerButton"
+                android:textOn="locked"
+                android:textOff="unlocked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout

@@ -47,7 +47,7 @@ public class ListViewGettingStartedFragment extends Fragment implements ExampleF
 
     @Override
     public String title() {
-        return "Header and Footer";
+        return "Getting started";
     }
 
     class MyListViewAdapter extends ListViewAdapter {

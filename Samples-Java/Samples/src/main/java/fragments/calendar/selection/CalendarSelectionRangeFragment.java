@@ -15,9 +15,6 @@ import java.util.Calendar;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarSelectionRangeFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -39,6 +36,6 @@ public class CalendarSelectionRangeFragment extends Fragment implements ExampleF
 
     @Override
     public String title() {
-        return "Range";
+        return "Set selection range";
     }
 }

@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/red"
             android:textSize="25sp" />
+
     </FrameLayout>
 
 </LinearLayout>

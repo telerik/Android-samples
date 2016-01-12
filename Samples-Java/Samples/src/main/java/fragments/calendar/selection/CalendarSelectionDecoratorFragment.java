@@ -16,9 +16,6 @@ import com.telerik.widget.calendar.decorations.RangeDecorator;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarSelectionDecoratorFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -44,6 +41,6 @@ public class CalendarSelectionDecoratorFragment extends Fragment implements Exam
 
     @Override
     public String title() {
-        return "Decorator";
+        return "Selection decorators";
     }
 }

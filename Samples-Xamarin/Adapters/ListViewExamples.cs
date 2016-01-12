@@ -5,7 +5,7 @@ namespace Samples
 {
 	public class ListViewExamples : Java.Lang.Object, ExamplesProvider
 	{
-		private HashMap listViewExamples;
+		private LinkedHashMap listViewExamples;
 
 		public ListViewExamples ()
 		{
@@ -16,13 +16,13 @@ namespace Samples
 			return "ListView";
 		}
 
-		public HashMap Examples(){
+		public LinkedHashMap Examples(){
 			return this.listViewExamples;
 		}
 
-		private HashMap getListViewExamples(){
+		private LinkedHashMap getListViewExamples(){
 
-			HashMap examples = new HashMap();
+			LinkedHashMap examples = new LinkedHashMap();
 
 			ArrayList examplesSet = new ArrayList();
 
@@ -42,8 +42,8 @@ namespace Samples
 			examplesSet.Add (new ListViewSwipeToExecuteFragment());
 			examplesSet.Add (new ListViewSwipeToRefreshFragment());
 			examplesSet.Add (new ListViewManualLoadOnDemandFragment());
-			examplesSet.Add (new ListViewSelectionFragment());
 			examplesSet.Add (new ListViewDataAutomaticLoadOnDemandFragment());
+			examplesSet.Add (new ListViewSelectionFragment());
 			examplesSet.Add (new ListViewStickyHeadersFragment ());
 			examplesSet.Add (new ListViewCollapsibleFragment ());
 

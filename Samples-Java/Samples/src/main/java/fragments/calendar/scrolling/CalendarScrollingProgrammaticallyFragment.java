@@ -13,9 +13,6 @@ import com.telerik.widget.calendar.ScrollMode;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarScrollingProgrammaticallyFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -28,7 +25,7 @@ public class CalendarScrollingProgrammaticallyFragment extends Fragment implemen
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     if (event.getX() <= calendarView.getWidth() / 2) {
                         calendarView.animateToPrevious();
                     } else {
@@ -36,7 +33,7 @@ public class CalendarScrollingProgrammaticallyFragment extends Fragment implemen
                     }
                 }
 
-                return false;
+                return true;
             }
         });
 
@@ -45,6 +42,6 @@ public class CalendarScrollingProgrammaticallyFragment extends Fragment implemen
 
     @Override
     public String title() {
-        return "Programmatically";
+        return "Scroll programmatically";
     }
 }

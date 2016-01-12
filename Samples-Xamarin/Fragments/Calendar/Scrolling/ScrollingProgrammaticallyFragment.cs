@@ -14,7 +14,6 @@ namespace Samples
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			RadCalendarView calendarView = new RadCalendarView (Activity);
-
 			calendarView.ScrollMode = ScrollMode.None;
 			calendarView.HorizontalScroll = true;
 			calendarView.SetOnTouchListener(new TouchListener());
@@ -23,7 +22,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Scrolling Programmatically";
+			return "Scroll programmatically";
 		}
 
 		private class TouchListener : Java.Lang.Object, View.IOnTouchListener
@@ -32,7 +31,7 @@ namespace Samples
 			{
 				RadCalendarView calendarView = v as RadCalendarView;
 				if (e.Action == MotionEventActions.Up) {
-					if (e.GetX () < v.Width / 2) {
+					if (e.GetX () < calendarView.Width / 2) {
 						calendarView.AnimateToPrevious ();
 					} else {
 						calendarView.AnimateToNext ();

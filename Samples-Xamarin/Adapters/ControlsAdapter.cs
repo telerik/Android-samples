@@ -12,11 +12,11 @@ namespace Samples
 
 		public ControlsAdapter(Context context, int resource) : base(context, resource) {
 
-			this.source.Add(new ChartExamples());
 			this.source.Add (new CalendarExamples ());
+			this.source.Add (new ChartExamples());
+			this.source.Add (new DataFormExamples ());
 			this.source.Add (new ListViewExamples ());
 			this.source.Add (new SideDrawerExamples ());
-			this.source.Add (new DataFormExamples ());
 
 		}
 

@@ -8,18 +8,16 @@ namespace Samples
 {
 	public class DisplayDateSetFragment : Android.Support.V4.App.Fragment, ExampleFragment
 	{
-		RadCalendarView calendarView;
-
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			calendarView = new RadCalendarView (Activity);
-			calendarView.DisplayDate = new GregorianCalendar (2022, 10, 1).TimeInMillis;
+			RadCalendarView calendarView = new RadCalendarView (Activity);
+			calendarView.DisplayDate = new GregorianCalendar (2022, Calendar.October, 1).TimeInMillis;
 
 			return calendarView;
 		}
 
 		public String Title() {
-			return "Display Date Set";
+			return "Set display date";
 		}
 	}
 }

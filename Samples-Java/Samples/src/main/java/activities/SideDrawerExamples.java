@@ -1,7 +1,7 @@
 package activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import fragments.sidedrawer.SideDrawerFeaturesFragment;
 
@@ -12,12 +12,12 @@ public class SideDrawerExamples implements ExamplesProvider {
     }
 
     @Override
-    public HashMap<String, ArrayList<ExampleFragment>> examples() {
-        HashMap<String, ArrayList<ExampleFragment>> drawerExamples = new HashMap<String, ArrayList<ExampleFragment>>();
+    public LinkedHashMap<String, ArrayList<ExampleFragment>> examples() {
+        LinkedHashMap<String, ArrayList<ExampleFragment>> drawerExamples = new LinkedHashMap<String, ArrayList<ExampleFragment>>();
 
         ArrayList<ExampleFragment> result = new ArrayList<ExampleFragment>();
         result.add(new SideDrawerFeaturesFragment());
-        drawerExamples.put("Features", result);
+        drawerExamples.put("Init", result);
 
 
         return drawerExamples;

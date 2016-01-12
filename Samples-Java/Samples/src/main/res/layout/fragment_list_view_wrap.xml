@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="fragments.listview.ListViewWrapFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <HorizontalScrollView
         android:layout_width="match_parent"

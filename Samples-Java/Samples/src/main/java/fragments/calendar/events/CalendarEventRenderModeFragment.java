@@ -17,9 +17,6 @@ import java.util.List;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarEventRenderModeFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -44,6 +41,6 @@ public class CalendarEventRenderModeFragment extends Fragment implements Example
 
     @Override
     public String title() {
-        return "Render mode";
+        return "Event render mode Shape";
     }
 }

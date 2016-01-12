@@ -4,7 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff">
-
+    <android.support.v7.widget.Toolbar
+        android:background="#212121"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/drawerToolbar" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -13,25 +17,40 @@
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    <Spinner
-        android:layout_gravity="right|top"
-        android:id="@+id/drawerLocationSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <Spinner
+            android:layout_gravity="right|top"
+            android:id="@+id/drawerLocationSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <TextView
-        android:text="Set the drawer transition: "
-        android:layout_gravity="center_vertical"
+        <TextView
+            android:text="Set the drawer transition: "
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Spinner
+            android:layout_gravity="right|center_vertical"
+            android:id="@+id/drawerTransitionsSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Spinner
-        android:layout_gravity="right|center_vertical"
-        android:id="@+id/drawerTransitionsSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Set the drawer transition: "
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:text="Close on back press"
+            android:layout_gravity="right|center_vertical"
+            android:checked="true"
+            android:id="@+id/drawerCloseOnBackPress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>

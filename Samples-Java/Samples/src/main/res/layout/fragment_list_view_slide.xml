@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="fragments.listview.ListViewSlideFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:layout_margin="12dp"
         android:text="Features:"
@@ -30,14 +30,12 @@
                 android:textOff="Add spacing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
             <ToggleButton
                 android:id="@+id/showPrevBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="Hide previous"
                 android:textOff="Show previous"/>
-
             <ToggleButton
                 android:id="@+id/showNextBtn"
                 android:layout_width="wrap_content"

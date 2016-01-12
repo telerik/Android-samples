@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +39,7 @@ import activities.ExampleFragment;
 
 public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragment, DrawerChangeListener {
     private RadSideDrawer drawer;
-    private SideDrawerToggle drawerToggle;
+    DrawerTransition[] transitions;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragm
 
     private View loadMainContent(LayoutInflater inflater) {
         View result = inflater.inflate(R.layout.side_drawer_features_main_content, null);
+
         Spinner locationSpinner = (Spinner)result.findViewById(R.id.drawerLocationSpinner);
         ArrayAdapter<DrawerLocation> locationAdapter = new ArrayAdapter<DrawerLocation>(this.getActivity(), android.R.layout.simple_list_item_1, DrawerLocation.values());
         locationSpinner.setAdapter(locationAdapter);
@@ -71,7 +73,7 @@ public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragm
         });
 
         Spinner transitionsSpinner = (Spinner)result.findViewById(R.id.drawerTransitionsSpinner);
-        final DrawerTransition[] transitions = new DrawerTransition[]
+        transitions = new DrawerTransition[]
                 {
                         new SlideInOnTopTransition(),
                         new FallDownTransition(),
@@ -106,15 +108,16 @@ public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragm
 
         Toolbar toolbar = (Toolbar)result.findViewById(R.id.drawerToolbar);
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setBackgroundColor(Color.BLACK);
-        ActionBarActivity actionBarActivity = (ActionBarActivity) this.getActivity();
-        actionBarActivity.setSupportActionBar(toolbar);
-        ActionBar supportActionBar = actionBarActivity.getSupportActionBar();
-        supportActionBar.setDisplayHomeAsUpEnabled(true);
-        supportActionBar.setHomeAsUpIndicator(R.drawable.hamburger);
-        supportActionBar.setDisplayShowTitleEnabled(true);
 
-        drawerToggle = new SideDrawerToggle(drawer, toolbar);
+        AppCompatActivity actionBarActivity = (AppCompatActivity) this.getActivity();
+        ActionBar supportActionBar = actionBarActivity.getSupportActionBar();
+        if(supportActionBar != null) {
+            String title = (String) supportActionBar.getTitle();
+            toolbar.setTitle(title);
+            supportActionBar.hide();
+        }
+
+        SideDrawerToggle toggle = new SideDrawerToggle(drawer, toolbar);
 
         return result;
     }

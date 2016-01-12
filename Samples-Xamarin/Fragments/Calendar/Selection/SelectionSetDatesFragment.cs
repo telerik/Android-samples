@@ -29,7 +29,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Selection set dates";
+			return "Set selected dates";
 		}
 	}
 }

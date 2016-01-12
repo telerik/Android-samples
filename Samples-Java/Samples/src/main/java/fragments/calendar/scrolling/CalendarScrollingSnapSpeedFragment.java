@@ -11,9 +11,6 @@ import com.telerik.widget.calendar.RadCalendarView;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarScrollingSnapSpeedFragment extends Fragment implements ExampleFragment {
 
     @Override

@@ -9,9 +9,9 @@ namespace Samples
 
 		private Java.Lang.Object[] keys;
 
-		private HashMap source;
+		private LinkedHashMap source;
 
-		public ExamplesAdapter(HashMap source){
+		public ExamplesAdapter(LinkedHashMap source){
 			this.source = source;
 
 			Java.Lang.Object[] k = new Java.Lang.Object[source.Size ()];

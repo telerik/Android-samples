@@ -74,7 +74,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Stack spline series";
+			return "Stack spline area series";
 		}
 
 		public class CategoryBinding : DataPointBinding{

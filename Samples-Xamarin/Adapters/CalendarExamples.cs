@@ -7,22 +7,22 @@ namespace Samples
 {
 	public class CalendarExamples : Java.Lang.Object, ExamplesProvider {
 
-		private HashMap calendarExamples;
+		private LinkedHashMap calendarExamples;
 
 		public CalendarExamples(){
-			this.calendarExamples = this.getCalendarExamples();
+			this.calendarExamples = this.GetCalendarExamples();
 		}
 
 		public String ControlName() {
 			return "Calendar";
 		}
 
-		public HashMap Examples(){
+		public LinkedHashMap Examples(){
 			return this.calendarExamples;
 		}
 
-		private HashMap getCalendarExamples(){
-			HashMap calendarExamples = new HashMap();
+		private LinkedHashMap GetCalendarExamples(){
+			LinkedHashMap calendarExamples = new LinkedHashMap();
 			ArrayList result = new ArrayList();
 
 			result.Add (new InitCodeFragment());
@@ -32,22 +32,10 @@ namespace Samples
 
 			result = new ArrayList ();
 
-			result.Add (new SelectionModesFragment());
-			result.Add (new SelectionChangedListenerFragment());
-			result.Add (new SelectionChangedEventFragment());
-			result.Add (new SelectionSetDatesFragment());
-			result.Add (new SelectionSetRangeFragment());
-			result.Add (new SelectionDisabledDatesFragment());
-			result.Add (new SelectionDecoratorsFragment());
-
-			calendarExamples.Put ("Selection", result);
-
-			result = new ArrayList ();
-
 			result.Add (new DisplayDateSetFragment());
 			result.Add (new DisplayDateChangeListenerFragment());
-			result.Add (new DisplayDateChangeEventFragment());
 			result.Add (new DisplayDateMinMaxValuesFragment());
+			//result.Add (new DisplayDateChangeEventFragment());
 
 			calendarExamples.Put ("Display Date", result);
 
@@ -60,26 +48,38 @@ namespace Samples
 
 			result = new ArrayList ();
 
-			result.Add (new ScrollingModesFragment());
+			result.Add (new EventFragment());
+			result.Add (new EventAllDayFragment());
+			result.Add (new EventRenderModeFragment());
+			result.Add (new ReadEventsFragment());
+			//result.Add (new ReadEventsOptionsFragment());
+			result.Add (new EventsInlineDisplayModeFragment());
+			result.Add (new EventsPopupDisplayModeFragment());
+
+			calendarExamples.Put ("Events", result);
+
+			result = new ArrayList ();
+
+			result.Add (new ScrollingDirectionFragment());
 			result.Add (new ScrollingFlingSpeedFragment());
 			result.Add (new ScrollingFrictionFragment());
+			result.Add (new ScrollingModesFragment());
 			result.Add (new ScrollingProgramatticallyFragment());
-			result.Add (new ScrollingDirectionFragment());
 			result.Add (new ScrollingSnapFragment());
 
 			calendarExamples.Put ("Scrolling", result);
 
 			result = new ArrayList ();
 
-			result.Add (new EventFragment());
-			result.Add (new EventAllDayFragment());
-			result.Add (new EventRenderModeFragment());
-			result.Add (new ReadEventsFragment());
-			result.Add (new ReadEventsOptionsFragment());
-			result.Add (new EventsInlineDisplayModeFragment());
-			result.Add (new EventsPopupDisplayModeFragment());
+			result.Add (new SelectionChangedListenerFragment());
+			//result.Add (new SelectionChangedEventFragment());
+			result.Add (new SelectionDecoratorsFragment());
+			result.Add (new SelectionDisabledDatesFragment());
+			result.Add (new SelectionModesFragment());
+			result.Add (new SelectionSetDatesFragment());
+			result.Add (new SelectionSetRangeFragment());
 
-			calendarExamples.Put ("Events", result);
+			calendarExamples.Put ("Selection", result);
 
 			return calendarExamples;
 		}

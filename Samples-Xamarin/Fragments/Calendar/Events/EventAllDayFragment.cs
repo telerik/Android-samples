@@ -33,7 +33,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "All Day";
+			return "All day event";
 		}
 	}
 }

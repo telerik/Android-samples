@@ -6,7 +6,7 @@
     <com.telerik.widget.primitives.legend.RadLegendView
         android:id="@+id/legendView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.telerik.widget.primitives.legend.RadLegendView>
+        android:layout_height="wrap_content" />
 
     <com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView
         android:id="@+id/chartView"

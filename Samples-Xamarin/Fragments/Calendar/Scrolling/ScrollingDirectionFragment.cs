@@ -21,7 +21,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Scrolling Direction";
+			return "Horizontal scroll";
 		}
 	}
 }

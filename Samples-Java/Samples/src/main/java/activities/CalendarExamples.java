@@ -2,6 +2,7 @@ package activities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import fragments.calendar.CalendarInitFragment;
 import fragments.calendar.CalendarInitXmlFragment;
@@ -29,11 +30,8 @@ import fragments.calendar.selection.CalendarSelectionListenerFragment;
 import fragments.calendar.selection.CalendarSelectionModeFragment;
 import fragments.calendar.selection.CalendarSelectionRangeFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarExamples implements ExamplesProvider {
-    private HashMap<String, ArrayList<ExampleFragment>> calendarExamples;
+    private LinkedHashMap<String, ArrayList<ExampleFragment>> calendarExamples;
 
     public CalendarExamples() {
         this.calendarExamples = this.getCalendarExamples();
@@ -45,12 +43,12 @@ public class CalendarExamples implements ExamplesProvider {
     }
 
     @Override
-    public HashMap<String, ArrayList<ExampleFragment>> examples() {
+    public LinkedHashMap<String, ArrayList<ExampleFragment>> examples() {
         return this.calendarExamples;
     }
 
-    private HashMap<String, ArrayList<ExampleFragment>> getCalendarExamples() {
-        HashMap<String, ArrayList<ExampleFragment>> calendarExamples = new HashMap<String, ArrayList<ExampleFragment>>();
+    private LinkedHashMap<String, ArrayList<ExampleFragment>> getCalendarExamples() {
+        LinkedHashMap<String, ArrayList<ExampleFragment>> calendarExamples = new LinkedHashMap<String, ArrayList<ExampleFragment>>();
 
         ArrayList<ExampleFragment> result = new ArrayList<ExampleFragment>();
 
@@ -61,23 +59,23 @@ public class CalendarExamples implements ExamplesProvider {
 
         result = new ArrayList<ExampleFragment>();
 
+        result.add(new CalendarDisplayDateSetFragment());
         result.add(new CalendarDisplayDateListenerFragment());
         result.add(new CalendarDisplayDateMinMaxFragment());
-        result.add(new CalendarDisplayDateSetFragment());
 
         calendarExamples.put("Display Date", result);
 
         result = new ArrayList<ExampleFragment>();
 
-        result.add(new CalendarDisplayModeListenerFragment());
         result.add(new CalendarDisplayModeSetFragment());
+        result.add(new CalendarDisplayModeListenerFragment());
 
         calendarExamples.put("Display Mode", result);
 
         result = new ArrayList<ExampleFragment>();
 
-        result.add(new CalendarEventAllDayFragment());
         result.add(new CalendarEventCreationFragment());
+        result.add(new CalendarEventAllDayFragment());
         result.add(new CalendarEventRenderModeFragment());
         result.add(new CalendarEventReadFragment());
         result.add(new CalendarEventInlineMode());

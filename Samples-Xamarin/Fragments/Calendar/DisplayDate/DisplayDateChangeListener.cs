@@ -21,7 +21,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Display Date Change Listener";
+			return "Display date changed listener";
 		}
 
 		private class DateChangeListener : Java.Lang.Object, Com.Telerik.Widget.Calendar.RadCalendarView.IOnDisplayDateChangedListener
@@ -37,7 +37,8 @@ namespace Samples
 			public void OnDisplayDateChanged (long oldValue, long newValue)
 			{
 				calendar.TimeInMillis = newValue;
-				Toast.MakeText (this.context, calendar.Time.ToString (), ToastLength.Long).Show ();
+				String value = String.Format("New display date: {0}-{1}-{2}", calendar.Get(CalendarField.Year), calendar.Get(CalendarField.Month) + 1, calendar.Get(CalendarField.DayOfMonth));
+				Toast.MakeText (this.context, value, ToastLength.Long).Show ();
 			}
 		}
 	}

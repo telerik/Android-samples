@@ -22,7 +22,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Scrolling Fling Speed";
+			return "Scrolling fling speed";
 		}
 	}
 }

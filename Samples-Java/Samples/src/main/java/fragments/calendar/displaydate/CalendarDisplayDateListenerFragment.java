@@ -14,9 +14,6 @@ import java.util.Calendar;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarDisplayDateListenerFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -29,7 +26,8 @@ public class CalendarDisplayDateListenerFragment extends Fragment implements Exa
             @Override
             public void onDisplayDateChanged(long oldDate, long newDate) {
                 calendar.setTimeInMillis(newDate);
-                Toast.makeText(getActivity(), calendar.getTime().toString(), Toast.LENGTH_SHORT).show();
+                String value = String.format("New display date: %d-%d-%d", calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
+                Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -38,6 +36,6 @@ public class CalendarDisplayDateListenerFragment extends Fragment implements Exa
 
     @Override
     public String title() {
-        return "Listener";
+        return "Display date changed listener";
     }
 }

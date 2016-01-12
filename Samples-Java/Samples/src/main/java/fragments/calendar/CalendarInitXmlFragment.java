@@ -12,23 +12,20 @@ import com.telerik.widget.calendar.RadCalendarView;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ajekov on 2/23/2015.
- */
 public class CalendarInitXmlFragment extends Fragment implements ExampleFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.example_calendar_init, null);
+        View rootView = inflater.inflate(R.layout.example_calendar_init, container, false);
 
-        RadCalendarView calendarView = (RadCalendarView) root.findViewById(R.id.calendarView);
+        RadCalendarView calendarView = (RadCalendarView) rootView.findViewById(R.id.calendarView);
         // customize calendar here
 
-        return root;
+        return rootView;
     }
 
     @Override
     public String title() {
-        return "Init From Xml";
+        return "Init from xml";
     }
 }

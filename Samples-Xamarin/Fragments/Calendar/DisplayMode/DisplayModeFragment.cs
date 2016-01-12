@@ -23,7 +23,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Display Modes";
+			return "Display modes";
 		}
 
 		public override void OnCreateOptionsMenu (IMenu menu, MenuInflater inflater)
@@ -48,7 +48,6 @@ namespace Samples
 				menu.FindItem (Resource.Id.itemWeek).SetEnabled(true);
 				menu.FindItem (Resource.Id.itemYear).SetEnabled (false);
 			}
-
 		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)

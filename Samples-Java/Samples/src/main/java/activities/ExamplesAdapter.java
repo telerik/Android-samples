@@ -8,18 +8,15 @@ import android.widget.TextView;
 import com.telerik.android.sdk.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
-/**
- * Created by ginev on 12/5/2014.
- */
 public class ExamplesAdapter extends BaseExpandableListAdapter {
 
     private Object[] keys;
 
-    private HashMap<String, ArrayList<ExampleFragment>> source;
+    private LinkedHashMap<String, ArrayList<ExampleFragment>> source;
 
-    public ExamplesAdapter(HashMap<String, ArrayList<ExampleFragment>> source){
+    public ExamplesAdapter(LinkedHashMap<String, ArrayList<ExampleFragment>> source){
         this.source = source;
         this.keys = this.source.keySet().toArray();
     }

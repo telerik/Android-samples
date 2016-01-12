@@ -52,7 +52,7 @@ namespace Samples
 		}
 
 		public String Title() {
-			return "Inline display mode";
+			return "Inline mode";
 		}
 	}
 }
