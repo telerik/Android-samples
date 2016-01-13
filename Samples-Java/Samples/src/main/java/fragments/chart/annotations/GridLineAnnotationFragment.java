@@ -10,7 +10,8 @@ import android.widget.FrameLayout;
 
 import com.telerik.android.sdk.R;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
-import com.telerik.widget.chart.visualization.annotations.cartesian.CartesianPlotBandAnnotation;
+import com.telerik.widget.chart.visualization.annotations.HorizontalAlignment;
+import com.telerik.widget.chart.visualization.annotations.cartesian.CartesianGridLineAnnotation;
 import com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.CategoricalAxis;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.LinearAxis;
@@ -20,15 +21,12 @@ import java.util.ArrayList;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ginev on 11/21/2014.
- */
 public class GridLineAnnotationFragment extends Fragment implements ExampleFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        FrameLayout rootView = (FrameLayout)inflater.inflate(R.layout.fragment_grid_line_annotations, container, false);
+        FrameLayout rootView = (FrameLayout) inflater.inflate(R.layout.fragment_grid_line_annotations, container, false);
         rootView.addView(this.createChart());
         return rootView;
     }
@@ -56,21 +54,26 @@ public class GridLineAnnotationFragment extends Fragment implements ExampleFragm
         //Add series to chart
         chart.getSeries().add(barSeries);
 
-        CartesianPlotBandAnnotation annotation = new CartesianPlotBandAnnotation(verticalAxis, 6, 8);
+        CartesianGridLineAnnotation annotation = new CartesianGridLineAnnotation(verticalAxis, 3);
         chart.getAnnotations().add(annotation);
-        annotation.setFillColor(Color.argb(150, 0, 148, 255));
-        annotation.setStrokeColor(Color.argb(150, 0, 74, 127));
+        annotation.setLabelHorizontalAlignment(HorizontalAlignment.LEFT);
+        annotation.setStrokeColor(Color.argb(255, 235, 100, 32));
         annotation.setStrokeWidth(4);
         annotation.setZIndex(1001);
-
+        annotation.setLabel("This is Grid Line annotation");
 
         return chart;
     }
 
-    private ArrayList<DataEntity> getData(){
+    @Override
+    public String title() {
+        return "Grid Line annotations";
+    }
+
+    private ArrayList<DataEntity> getData() {
         ArrayList<DataEntity> result = new ArrayList<DataEntity>(8);
 
-        for (int i = 0; i < 8; i++){
+        for (int i = 0; i < 8; i++) {
             DataEntity entity = new DataEntity();
             entity.value = i + 1;
             entity.category = "Item " + i;
@@ -80,12 +83,7 @@ public class GridLineAnnotationFragment extends Fragment implements ExampleFragm
         return result;
     }
 
-    @Override
-    public String title() {
-        return "Grid Line annotations";
-    }
-
-    public class DataEntity{
+    public class DataEntity {
         public String category;
         public int value;
     }

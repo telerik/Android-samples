@@ -10,8 +10,7 @@ import android.widget.FrameLayout;
 
 import com.telerik.android.sdk.R;
 import com.telerik.widget.chart.engine.databinding.FieldNameDataPointBinding;
-import com.telerik.widget.chart.visualization.annotations.HorizontalAlignment;
-import com.telerik.widget.chart.visualization.annotations.cartesian.CartesianGridLineAnnotation;
+import com.telerik.widget.chart.visualization.annotations.cartesian.CartesianPlotBandAnnotation;
 import com.telerik.widget.chart.visualization.cartesianChart.RadCartesianChartView;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.CategoricalAxis;
 import com.telerik.widget.chart.visualization.cartesianChart.axes.LinearAxis;
@@ -21,9 +20,6 @@ import java.util.ArrayList;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ginev on 11/21/2014.
- */
 public class PlotBandAnnotationFragment extends Fragment implements ExampleFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,13 +53,13 @@ public class PlotBandAnnotationFragment extends Fragment implements ExampleFragm
         //Add series to chart
         chart.getSeries().add(barSeries);
 
-        CartesianGridLineAnnotation annotation = new CartesianGridLineAnnotation(verticalAxis, 3);
+        CartesianPlotBandAnnotation annotation = new CartesianPlotBandAnnotation(verticalAxis, 6, 8);
         chart.getAnnotations().add(annotation);
-        annotation.setLabelHorizontalAlignment(HorizontalAlignment.LEFT);
-        annotation.setStrokeColor(Color.argb(255, 235, 100, 32));
+        annotation.setFillColor(Color.argb(150, 0, 148, 255));
+        annotation.setStrokeColor(Color.argb(150, 0, 74, 127));
         annotation.setStrokeWidth(4);
         annotation.setZIndex(1001);
-        annotation.setLabel("This is Grid Line annotation");
+        annotation.setLabel("This is Plot Band annotation");
 
         return chart;
     }

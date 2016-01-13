@@ -18,6 +18,7 @@ using Com.Telerik.Widget.Chart.Visualization.Annotations.Cartesian;
 using Android.Graphics;
 using Java.Util;
 using Com.Telerik.Widget.Chart.Engine.Databinding;
+using Com.Telerik.Widget.Chart.Visualization.Annotations;
 
 namespace Samples
 {
@@ -54,13 +55,13 @@ namespace Samples
 			//Add series to chart
 			chart.Series.Add(barSeries);
 
-			CartesianPlotBandAnnotation annotation = new CartesianPlotBandAnnotation(verticalAxis, 6, 8);
+			CartesianGridLineAnnotation annotation = new CartesianGridLineAnnotation(verticalAxis, 3);
 			chart.Annotations.Add(annotation);
-			annotation.FillColor = Color.Argb(150, 0, 148, 255);
-			annotation.StrokeColor = Color.Argb(150, 0, 74, 127);
-			annotation.StrokeColor = 4;
+			annotation.LabelHorizontalAlignment = HorizontalAlignment.Left;
+			annotation.StrokeColor = Color.Argb(255, 235, 100, 32);
+			annotation.StrokeWidth = 4;
 			annotation.ZIndex = 1001;
-
+			annotation.Label = "This is Grid Line annotation";
 
 			return chart;
 		}

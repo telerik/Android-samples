@@ -55,13 +55,13 @@ namespace Samples
 			//Add series to chart
 			chart.Series.Add(barSeries);
 
-			CartesianGridLineAnnotation annotation = new CartesianGridLineAnnotation(verticalAxis, 3);
+			CartesianPlotBandAnnotation annotation = new CartesianPlotBandAnnotation(verticalAxis, 6, 8);
 			chart.Annotations.Add(annotation);
-			annotation.LabelHorizontalAlignment = HorizontalAlignment.Left;
-			annotation.StrokeColor = Color.Argb(255, 235, 100, 32);
+			annotation.FillColor = Color.Argb(150, 0, 148, 255);
+			annotation.StrokeColor = Color.Argb(150, 0, 74, 127);
 			annotation.StrokeWidth = 4;
 			annotation.ZIndex = 1001;
-			annotation.Label = "This is Grid Line annotation";
+			annotation.Label = "This is Plot Band annotation";
 
 			return chart;
 		}
