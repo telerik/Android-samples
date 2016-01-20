@@ -30,7 +30,7 @@ namespace Samples
 			this.listView = (RadListView) rootView.FindViewById(Resource.Id.listView).JavaCast<RadListView>();
 
 			for (int i = 0; i < 10; i++) {
-				source.Add("Item " + (source.Count + i));
+				source.Add("Item " + i);
 			}
 
 			this.listView.SetAdapter(new MyListViewAdapter(source));
@@ -53,16 +53,17 @@ namespace Samples
 			Java.Util.ArrayList dataPage = getDataPage(10);
 
 			for (int i = 0; i < dataPage.Size(); i++) {
-				currentAdapter.Add(0, dataPage.Get(i));
+				currentAdapter.Add(i, dataPage.Get(i));
 			}
 
-			srb.EndRefresh(false);
+			srb.EndRefresh(true);
 		}
 
 		private Java.Util.ArrayList getDataPage(int pageSize) {
 			Java.Util.ArrayList page = new Java.Util.ArrayList();
+			int sourceSize = listView.GetAdapter ().ItemCount;
 			for (int i = 0; i < pageSize; i++) {
-				page.Add("Item " + source.Count);
+				page.Add("Item " + (sourceSize + i));
 			}
 			return page;
 		}
