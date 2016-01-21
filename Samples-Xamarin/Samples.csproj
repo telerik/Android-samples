@@ -248,6 +248,7 @@
     <AndroidResource Include="Resources\values\Dimens.xml" />
     <AndroidResource Include="Resources\values-w600dp\Dimens.xml" />
     <AndroidResource Include="Resources\values-w820dp\Dimens.xml" />
+    <AndroidResource Include="Resources\layout\fragment_calendar_events_read.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
