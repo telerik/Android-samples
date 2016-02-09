@@ -2,7 +2,9 @@
 
 <resources>
     <!-- Base application theme. -->
-    <style name="ApplicationTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <style name="ApplicationTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
 
     <style name="DarkTheme" parent="ApplicationTheme">
         <item name="android:actionBarStyle">@style/ExamplesActivityActionBar</item>

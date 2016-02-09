@@ -166,7 +166,9 @@
         <item name="android:layout_marginLeft">-5dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:button">@drawable/drawer_radio_button</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:drawableLeft">@drawable/drawer_radio_button</item>
     </style>
 
     <style name="DrawerPositionButton">

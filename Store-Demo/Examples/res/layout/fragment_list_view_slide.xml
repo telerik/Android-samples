@@ -12,7 +12,7 @@
         app:contentInsetLeft="0dp"
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
-        android:background="#FFF2ED"
+        android:background="#FFFFFF"
         tools:ignore="UnusedAttribute">
         <TextView
             android:text="Destinations"

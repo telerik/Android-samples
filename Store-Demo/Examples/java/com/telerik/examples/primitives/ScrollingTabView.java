@@ -450,7 +450,11 @@ public class ScrollingTabView extends FrameLayout implements AdapterView.OnItemC
             if (mCanceled) return;
 
             mVisibilityAnim = null;
-            setVisibility(mFinalVisibility);
+            switch (mFinalVisibility) {
+                case VISIBLE: setVisibility(VISIBLE);break;
+                case INVISIBLE : setVisibility(INVISIBLE);break;
+                default: setVisibility(GONE);
+            }
         }
 
         @Override

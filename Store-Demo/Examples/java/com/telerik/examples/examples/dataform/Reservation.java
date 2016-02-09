@@ -15,10 +15,10 @@ import com.telerik.widget.dataform.visualization.editors.DataFormTimeEditor;
 import java.util.Calendar;
 
 public class Reservation extends NotifyPropertyChangedBase {
-    private String creatorName;
-    private String creatorPhone;
+    private String creatorName = "";
+    private String creatorPhone = "";
     private long reservationDate = Calendar.getInstance().getTimeInMillis();
-    private long reservationTime = Calendar.getInstance().getTimeInMillis();
+    private long reservationTime = DataFormFragment.getCalendarTime(20, 0);
     private int numberOfGuests = 1;
     private String tableSection = "patio";
     private int tableNumber = 1;
@@ -94,7 +94,6 @@ public class Reservation extends NotifyPropertyChangedBase {
             editorLayout = R.layout.reservation_editor_layout,
             coreEditorLayout = R.layout.data_form_number_picker_image,
             headerLayout = R.layout.reservation_editor_collapsed_header,
-            converter = DoubleToIntConverter.class,
             group = "group3")
     public int getNumberOfGuests() {
         return numberOfGuests;

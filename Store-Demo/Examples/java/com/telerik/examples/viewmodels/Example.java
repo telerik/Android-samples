@@ -7,6 +7,7 @@ public class Example {
     private String fragmentName = "FallbackExamples";
     private Boolean isNew = false, isHighlighted = false;
     private String imageResource = "drawable/control_logo";
+    private int highlightPosition = 0;
     private ExampleGroup parent;
 
     public Example(ExampleGroup parent) {
@@ -59,6 +60,14 @@ public class Example {
 
     public void setIsHighlighted(Boolean value) {
         this.isHighlighted = value;
+    }
+
+    public int getHighlightPosition() {
+        return highlightPosition;
+    }
+
+    public void setHighlightPosition(int highlightPosition) {
+        this.highlightPosition = highlightPosition;
     }
 
     public String getDescriptionText() {

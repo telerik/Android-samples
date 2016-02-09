@@ -35,6 +35,7 @@ public class SettingsFragment extends ExampleFragmentBase implements RadioGroup.
     private RadSideDrawer sideDrawer;
     private ToggleButton currentPosition;
     private HashMap<Integer, DrawerTransition> transitions = new HashMap<Integer, DrawerTransition>();
+    private int drawerSize;
 
     public SettingsFragment() {
         transitions.put(R.id.revealTransitionButton, new RevealTransition());
@@ -60,7 +61,8 @@ public class SettingsFragment extends ExampleFragmentBase implements RadioGroup.
         sideDrawer.setDrawerTransition(new RevealTransition());
         sideDrawer.setMainContent(R.layout.example_side_drawer_settings);
         sideDrawer.setDrawerContent(R.layout.example_side_drawer_drawer);
-        sideDrawer.setDrawerSize(Math.round(this.getResources().getDimension(R.dimen.example_side_drawer_width)));
+        drawerSize = Math.round(this.getResources().getDimension(R.dimen.example_side_drawer_width));
+        sideDrawer.setDrawerSize(drawerSize);
         sideDrawer.addOnLayoutChangeListener(this);
 
         ListView menuList = (ListView)sideDrawer.getDrawerContent().findViewById(R.id.drawerMenuList);
@@ -108,15 +110,19 @@ public class SettingsFragment extends ExampleFragmentBase implements RadioGroup.
         switch (positionId) {
             case R.id.drawerPositionLeft:
                 this.sideDrawer.setDrawerLocation(DrawerLocation.LEFT);
+                this.sideDrawer.setDrawerSize(drawerSize);
                 break;
             case R.id.drawerPositionRight:
                 this.sideDrawer.setDrawerLocation(DrawerLocation.RIGHT);
+                this.sideDrawer.setDrawerSize(drawerSize);
                 break;
             case R.id.drawerPositionTop:
                 this.sideDrawer.setDrawerLocation(DrawerLocation.TOP);
+                this.sideDrawer.setDrawerSize(0);
                 break;
             case R.id.drawerPositionBottom:
                 this.sideDrawer.setDrawerLocation(DrawerLocation.BOTTOM);
+                this.sideDrawer.setDrawerSize(0);
                 break;
         }
     }

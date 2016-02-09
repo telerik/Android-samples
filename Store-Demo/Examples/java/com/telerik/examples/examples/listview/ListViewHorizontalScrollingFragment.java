@@ -18,7 +18,7 @@ import com.googlecode.flickrjandroid.photos.PhotoList;
 import com.telerik.examples.R;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
 import com.telerik.examples.primitives.drawables.Triangle;
-import com.telerik.widget.list.ListViewAdapter;
+import com.telerik.widget.list.ListViewDataSourceAdapter;
 import com.telerik.widget.list.LoadOnDemandBehavior;
 import com.telerik.widget.list.RadListView;
 import com.telerik.widget.list.SlideItemAnimator;
@@ -176,13 +176,13 @@ public class ListViewHorizontalScrollingFragment extends ExampleFragmentBase {
                 return;
             }
 
-            ListViewAdapter lva = (ListViewAdapter) this.associatedListView.getAdapter();
+            ListViewDataSourceAdapter lva = (ListViewDataSourceAdapter) this.associatedListView.getAdapter();
 
             for (Photo p : o) {
                 PhotoItemData container = new PhotoItemData();
                 container.setPhoto(p);
                 container.setGroupKey(tag);
-                lva.add(container);
+                lva.add(container, false);
             }
 
             lva.notifyLoadingFinished();

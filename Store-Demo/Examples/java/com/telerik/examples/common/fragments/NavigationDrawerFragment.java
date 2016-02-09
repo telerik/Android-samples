@@ -30,8 +30,6 @@ import com.telerik.examples.common.contracts.TransitionHandler;
 import com.telerik.examples.primitives.ExamplesGridView;
 import com.telerik.examples.viewmodels.ExampleGroup;
 
-import org.apache.http.NameValuePair;
-
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">

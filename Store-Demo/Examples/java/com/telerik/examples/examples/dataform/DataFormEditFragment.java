@@ -66,6 +66,7 @@ public class DataFormEditFragment extends ExampleFragmentBase implements View.On
 
         DataFormNumberPickerEditor guestNumberEditor = (DataFormNumberPickerEditor) dataForm.getExistingEditorForProperty("NumberOfGuests");
         RadNumberPicker picker = (RadNumberPicker)guestNumberEditor.getEditorView();
+        picker.setMinimum(1);
         picker.setPluralFormatString("%.0f guests");
         picker.setSingleFormatString("%.0f guest");
         picker.setZeroFormatString(picker.getPluralFormatString());
@@ -160,9 +161,10 @@ public class DataFormEditFragment extends ExampleFragmentBase implements View.On
     private void hideKeyboard() {
         Activity activity = (Activity)this.dataForm.getContext();
         InputMethodManager manager = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-
         if(activity.getCurrentFocus() != null) {
-            manager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+            manager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        } else {
+            manager.hideSoftInputFromWindow(null, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 }

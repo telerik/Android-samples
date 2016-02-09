@@ -127,7 +127,7 @@ public class IndicatorsFragment extends ExampleFragmentBase implements View.OnCl
 
         this.context = getActivity();
         this.resources = getResources();
-        this.currentActiveSeries = new ArrayList<ChartSeries>();
+        this.currentActiveSeries = new ArrayList<>();
 
         this.initDataPointBindings();
 
@@ -158,35 +158,35 @@ public class IndicatorsFragment extends ExampleFragmentBase implements View.OnCl
     }
 
     private void initDataPointBindings() {
-        this.categoryBinding = new GenericDataPointBinding<FinancialDataClass, Calendar>(new Function<FinancialDataClass, Calendar>() {
+        this.categoryBinding = new GenericDataPointBinding<>(new Function<FinancialDataClass, Calendar>() {
             @Override
             public Calendar apply(FinancialDataClass argument) {
                 return argument.date;
             }
         });
 
-        this.openBinding = new GenericDataPointBinding<FinancialDataClass, Float>(new Function<FinancialDataClass, Float>() {
+        this.openBinding = new GenericDataPointBinding<>(new Function<FinancialDataClass, Float>() {
             @Override
             public Float apply(FinancialDataClass argument) {
                 return argument.open;
             }
         });
 
-        this.highBinding = new GenericDataPointBinding<FinancialDataClass, Float>(new Function<FinancialDataClass, Float>() {
+        this.highBinding = new GenericDataPointBinding<>(new Function<FinancialDataClass, Float>() {
             @Override
             public Float apply(FinancialDataClass argument) {
                 return argument.high;
             }
         });
 
-        this.lowBinding = new GenericDataPointBinding<FinancialDataClass, Float>(new Function<FinancialDataClass, Float>() {
+        this.lowBinding = new GenericDataPointBinding<>(new Function<FinancialDataClass, Float>() {
             @Override
             public Float apply(FinancialDataClass argument) {
                 return argument.low;
             }
         });
 
-        this.closeBinding = new GenericDataPointBinding<FinancialDataClass, Float>(new Function<FinancialDataClass, Float>() {
+        this.closeBinding = new GenericDataPointBinding<>(new Function<FinancialDataClass, Float>() {
             @Override
             public Float apply(FinancialDataClass argument) {
                 return argument.close;
@@ -215,9 +215,16 @@ public class IndicatorsFragment extends ExampleFragmentBase implements View.OnCl
         ViewGroup customDialog = (ViewGroup) alertDialog.findViewById(R.id.custom_dialog_view);
 
         // Design workaround
-        ViewGroup dialogRoot = ((ViewGroup) customDialog.getParent().getParent().getParent());
-        dialogRoot.getChildAt(0).setVisibility(View.GONE);
-        dialogRoot.getChildAt(1).setVisibility(View.GONE);
+        if(customDialog != null &&
+                customDialog.getParent() != null &&
+                customDialog.getParent().getParent() != null &&
+                customDialog.getParent().getParent().getParent() != null) {
+            ViewGroup dialogRoot = ((ViewGroup) customDialog.getParent().getParent().getParent());
+            if(dialogRoot.getChildCount() > 1) {
+                dialogRoot.getChildAt(0).setVisibility(View.GONE);
+                dialogRoot.getChildAt(1).setVisibility(View.GONE);
+            }
+        }
 
         customDialog.findViewById(R.id.cancel_btn).setOnClickListener(this);
 

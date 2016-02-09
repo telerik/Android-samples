@@ -82,6 +82,8 @@ public class ExamplesParser {
                 example.setIsNew(Boolean.valueOf(attributeValue));
             } else if (attributeName.equals(("IsHighlighted"))) {
                 example.setIsHighlighted(Boolean.valueOf(attributeValue));
+            } else if (attributeName.equals(("HighlightPosition"))) {
+                example.setHighlightPosition(Integer.parseInt(attributeValue));
             } else if (attributeName.equals(("Fragment"))) {
                 example.setFragmentName(attributeValue);
             } else if (attributeName.equals("Image")) {

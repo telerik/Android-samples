@@ -31,7 +31,10 @@
         <include layout="@layout/data_form_edit_toolbar"/>
 
         <fragment android:id="@+id/data_form_edit_fragment_id"
-            android:layout_margin="68dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginBottom="@dimen/data_form_margin"
+            android:layout_marginLeft="@dimen/data_form_margin"
+            android:layout_marginRight="@dimen/data_form_margin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             class="com.telerik.examples.examples.dataform.DataFormEditFragment"/>

@@ -1,5 +1,6 @@
 package com.telerik.examples.examples.dataform;
 
+import com.telerik.widget.calendar.CalendarTools;
 import com.telerik.widget.dataform.engine.PropertyValidatorBase;
 
 import java.util.Calendar;
@@ -12,11 +13,17 @@ public class FutureDateValidator extends PropertyValidatorBase {
 
     @Override
     protected boolean validateCore(Object input, String propertyName) {
-        Long millis = (Long)input;
         Calendar today = Calendar.getInstance();
         Calendar selected = new GregorianCalendar();
-        selected.setTimeInMillis(millis);
 
-        return selected.after(today);
+        if(Calendar.class.isAssignableFrom(input.getClass())) {
+            selected = (Calendar)input;
+        } else {
+            Long millis = (Long) input;
+            selected.setTimeInMillis(millis);
+        }
+        long todayTime = CalendarTools.getDateStart(today.getTimeInMillis());
+        long selectedTime = CalendarTools.getDateStart(selected.getTimeInMillis());
+        return selectedTime >= todayTime;
     }
 }

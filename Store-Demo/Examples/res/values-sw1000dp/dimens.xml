@@ -1,4 +1,4 @@
 <resources>
     <dimen name="calendar_range_example_height">400dp</dimen>
-    <dimen name="data_form_margin">48dp</dimen>
+    <dimen name="data_form_margin">68dp</dimen>
 </resources>

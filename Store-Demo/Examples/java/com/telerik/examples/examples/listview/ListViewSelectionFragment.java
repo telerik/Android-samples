@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -25,6 +24,7 @@ import com.telerik.examples.R;
 import com.telerik.examples.common.fragments.ExampleFragmentBase;
 import com.telerik.examples.examples.listview.models.BlogPost;
 import com.telerik.examples.examples.listview.models.BlogsParser;
+import com.telerik.widget.list.CollapsibleGroupsBehavior;
 import com.telerik.widget.list.RadListView;
 import com.telerik.widget.list.SelectionBehavior;
 import com.telerik.widget.list.SwipeExecuteBehavior;
@@ -41,7 +41,6 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
 
     private RadListView listView;
     private BlogPostAdapter adapter;
-    private Toolbar toolbar;
     private TextView actionModeTitleView;
     private TextView txtBlogTitle;
     private TextView txtBlogContent;
@@ -52,6 +51,7 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
     private SelectionBehavior selectionBehavior;
     private SwipeExecuteBehavior swipeExecuteBehavior;
     private ReorderWithHandlesBehavior reorderBehavior;
+    private CollapsibleGroupsBehavior collapsibleGroupsBehavior;
     private View menuItemAll;
     private View menuItemFavorites;
     private View menuSelection;
@@ -63,8 +63,6 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
 
         final View rootView = inflater.inflate(R.layout.fragment_list_view_selection, container, false);
 
-        this.toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-
         this.adapter = new BlogPostAdapter(new ArrayList<BlogPost>());
 
         this.listView = (RadListView) rootView.findViewById(R.id.listView);
@@ -74,6 +72,7 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
         this.reorderBehavior = new ReorderWithHandlesBehavior(R.id.imgReorder);
 
         this.swipeExecuteBehavior = new SwipeExecuteBehavior();
+        this.swipeExecuteBehavior.addListener(new SwipeListener());
         this.swipeExecuteBehavior.setAutoDissolve(false);
         this.listView.addBehavior(this.swipeExecuteBehavior);
 
@@ -81,6 +80,10 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
 
         this.selectionBehavior.addListener(new ListViewSelectionListener());
         this.listView.addBehavior(this.selectionBehavior);
+
+
+        this.collapsibleGroupsBehavior = new CollapsibleGroupsBehavior();
+        this.listView.addBehavior(collapsibleGroupsBehavior);
 
         this.initExampleSettings(rootView);
         boolean isAllSelected = true;
@@ -161,7 +164,6 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
         }
 
         this.changeMenuIsEnabled(false);
-        this.toolbar.setVisibility(View.GONE);
 
         this.actionModeTitleView.setText(this.reorderModeHeader);
         this.getActivity().startActionMode(new ReorderModeCallback());
@@ -346,7 +348,6 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
             this.exampleMainContent.setVisibility(View.INVISIBLE);
             this.selectedBlogPostView.setVisibility(View.VISIBLE);
 
-            toolbar.setVisibility(View.GONE);
             actionModeTitleView.setText("");
             long id = adapter.getCurrentItemId();
             int position = adapter.getPosition(id);
@@ -354,7 +355,6 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
         } else {
             this.exampleMainContent.setVisibility(View.VISIBLE);
             this.selectedBlogPostView.setVisibility(View.GONE);
-            toolbar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -379,7 +379,6 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
-            toolbar.setVisibility(View.VISIBLE);
 
             adapter.exitReorderMode();
 
@@ -489,7 +488,6 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
                 adapter.setShowCurrent(false);
             }
             changeMenuIsEnabled(false);
-            toolbar.setVisibility(View.GONE);
             actionMode = getActivity().startActionMode(new SelectionModeCallback());
         }
 
@@ -505,7 +503,6 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
             if (actionMode != null) {
                 actionMode.finish();
             }
-            toolbar.setVisibility(View.VISIBLE);
             changeMenuIsEnabled(true);
             if (isWideScreen) {
                 adapter.setShowCurrent(true);
@@ -602,6 +599,47 @@ public class ListViewSelectionFragment extends ExampleFragmentBase {
             for (int i = 2 * categoryItemsCount; i < blogPosts.size(); i++) {
                 blogPosts.get(i).setPublishDate(calendar.getTimeInMillis());
             }
+        }
+    }
+
+    class SwipeListener implements SwipeExecuteBehavior.SwipeExecuteListener {
+        public SwipeListener() {
+        }
+
+        @Override
+        public void onSwipeStarted(int position) {
+        }
+
+        @Override
+        public void onSwipeProgressChanged(int position, int currentOffset, View swipeContent) {
+            if (swipeContent == null) {
+                return;
+            }
+
+            View leftLayout = ((ViewGroup) swipeContent).getChildAt(0);
+            View rightLayout = ((ViewGroup) swipeContent).getChildAt(1);
+
+            if (currentOffset > 0) {
+                leftLayout.setVisibility(View.VISIBLE);
+                rightLayout.setVisibility(View.INVISIBLE);
+            } else {
+                leftLayout.setVisibility(View.INVISIBLE);
+                rightLayout.setVisibility(View.VISIBLE);
+            }
+
+            if(selectionBehavior.isInProgress()) {
+                selectionBehavior.endSelection();
+            }
+        }
+
+        @Override
+        public void onSwipeEnded(int position, int finalOffset) {
+
+        }
+
+        @Override
+        public void onExecuteFinished(int position) {
+
         }
     }
 }

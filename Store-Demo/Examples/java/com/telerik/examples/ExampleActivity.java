@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,7 +93,6 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
         Fresco.initialize(this);
         super.onCreate(savedInstanceState);
         TelerikActivityHelper.updateActivityTaskDescription(this);
-        this.initFeedback();
         Intent intent = this.getIntent();
         this.app = (ExamplesApplicationContext) this.getApplicationContext();
         if (savedInstanceState == null) {
@@ -258,6 +256,9 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
     }
 
     private void sendFeedback() {
+        if(feedback == null) {
+            initFeedback();
+        }
         feedback.show(ExampleActivity.this);
         app.trackEvent(TrackedApplication.EXAMPLE_SCREEN, TrackedApplication.EVENT_SEND_FEEDBACK);
     }
@@ -285,13 +286,11 @@ public class ExampleActivity extends FragmentActivity implements ExampleFragment
 
     private void initFeedback() {
         this.feedback = RadFeedback.instance();
-        TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
-        String telephonyId = telephonyManager.getDeviceId();
         String androidId = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
-        String uniqueHash = telephonyId;
+        String uniqueHash = "";
         if (androidId != null) {
-            uniqueHash = String.format("%s", (telephonyId + androidId).hashCode());
+            uniqueHash = String.format("%s", androidId.hashCode());
         }
 
         try {

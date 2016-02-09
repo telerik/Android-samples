@@ -2,16 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.telerik.examples"
-    android:versionCode="11"
-    android:versionName="2015.3.0">
+    android:versionCode="12"
+    android:versionName="2016.1.0">
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="22" />
+        android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".common.ExamplesApplicationContext"
@@ -19,8 +18,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/appName"
         android:logo="@drawable/telerik_logo"
-        android:theme="@style/ApplicationTheme"
-        tools:replace="label">
+        android:theme="@style/ApplicationTheme">
         <service android:name="com.google.android.gms.tagmanager.InstallReferrerService"/>
         <receiver
             android:name="com.google.android.gms.tagmanager.InstallReferrerReceiver"
@@ -31,7 +29,6 @@
         </receiver>
         <activity
             android:name="com.telerik.examples.LoadingActivity"
-            android:label="@string/appName"
             android:noHistory="true"
             android:theme="@style/BrandedActionBarTheme">
             <intent-filter>
@@ -42,30 +39,27 @@
         </activity>
         <activity
             android:name="com.telerik.examples.MainActivity"
-            android:label="@string/appName"
             android:launchMode="singleTop"
             android:theme="@style/BrandedActionBarTheme">
 
         </activity>
         <activity
             android:name="com.telerik.examples.ExampleGroupActivity"
-            android:label="@string/appName"
             android:theme="@style/ExampleGroupDarkTheme" />
         <activity
             android:name="com.telerik.examples.ExampleInfoActivity"
-            android:label="@string/appName"
             android:theme="@style/BrandedActionBarTheme" />
         <activity
-            android:name="com.telerik.examples.ExampleActivity"
-            android:label="@string/appName"></activity>
+            android:windowSoftInputMode="stateUnspecified|adjustNothing"
+            android:name="com.telerik.examples.ExampleActivity"/>
         <activity
             android:name="com.telerik.examples.ViewCodeActivity"
             android:label="@string/title_activity_view_code"
-            android:theme="@style/BrandedActionBarTheme"></activity>
+            android:theme="@style/BrandedActionBarTheme"/>
         <activity
             android:name="com.telerik.examples.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/BrandedActionBarTheme"></activity>
+            android:theme="@style/BrandedActionBarTheme"/>
     </application>
 
 </manifest>

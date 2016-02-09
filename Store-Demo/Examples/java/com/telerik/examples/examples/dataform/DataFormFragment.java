@@ -17,7 +17,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class DataFormFragment extends ExampleFragmentBase implements View.OnClickListener, OnEditEndListener, SelectionBehavior.SelectionChangedListener {
@@ -90,7 +89,7 @@ public class DataFormFragment extends ExampleFragmentBase implements View.OnClic
         reservation.setCreatorName("Rachel Nabors");
         reservation.setCreatorPhone("359-555-1236");
         reservation.setReservationDate(Calendar.getInstance().getTimeInMillis());
-        reservation.setReservationTime(Calendar.getInstance().getTimeInMillis());
+        reservation.setReservationTime(getCalendarTime(20,0));
         reservation.setNumberOfGuests(10);
         reservation.setTableNumber(10);
         result.add(reservation);
@@ -99,7 +98,7 @@ public class DataFormFragment extends ExampleFragmentBase implements View.OnClic
         reservation.setCreatorName("Christian Heilmann");
         reservation.setCreatorPhone("359-555-1236");
         reservation.setReservationDate(Calendar.getInstance().getTimeInMillis());
-        reservation.setReservationTime(Calendar.getInstance().getTimeInMillis());
+        reservation.setReservationTime(getCalendarTime(20,30));
         reservation.setNumberOfGuests(6);
         reservation.setTableNumber(15);
         result.add(reservation);
@@ -108,7 +107,7 @@ public class DataFormFragment extends ExampleFragmentBase implements View.OnClic
         reservation.setCreatorName("Thomas Drake");
         reservation.setCreatorPhone("359-555-1236");
         reservation.setReservationDate(Calendar.getInstance().getTimeInMillis());
-        reservation.setReservationTime(Calendar.getInstance().getTimeInMillis());
+        reservation.setReservationTime(getCalendarTime(21, 0));
         reservation.setNumberOfGuests(4);
         reservation.setTableNumber(1);
         result.add(reservation);
@@ -117,7 +116,7 @@ public class DataFormFragment extends ExampleFragmentBase implements View.OnClic
         reservation.setCreatorName("Aaron White");
         reservation.setCreatorPhone("359-555-1236");
         reservation.setReservationDate(Calendar.getInstance().getTimeInMillis());
-        reservation.setReservationTime(Calendar.getInstance().getTimeInMillis());
+        reservation.setReservationTime(getCalendarTime(21, 45));
         reservation.setNumberOfGuests(2);
         reservation.setTableNumber(2);
         result.add(reservation);
@@ -126,12 +125,19 @@ public class DataFormFragment extends ExampleFragmentBase implements View.OnClic
         reservation.setCreatorName("Nancy Davolio");
         reservation.setCreatorPhone("359-555-1236");
         reservation.setReservationDate(Calendar.getInstance().getTimeInMillis());
-        reservation.setReservationTime(Calendar.getInstance().getTimeInMillis());
+        reservation.setReservationTime(getCalendarTime(22,0));
         reservation.setNumberOfGuests(6);
         reservation.setTableNumber(15);
         result.add(reservation);
 
         return result;
+    }
+
+    static long getCalendarTime(int hour, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        return calendar.getTimeInMillis();
     }
 
     private void editCurrentReservation() {

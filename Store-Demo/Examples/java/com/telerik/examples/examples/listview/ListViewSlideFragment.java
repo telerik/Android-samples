@@ -66,9 +66,8 @@ public class ListViewSlideFragment extends ExampleFragmentBase {
 
         slideLayoutManager = new SlideLayoutManager(getActivity());
 
-        updateListViewLayoutParams();
-
         adapter = new DestinationsAdapter(getData());
+        updateListViewLayoutParams();
         listView.setAdapter(adapter);
 
         listView.addItemClickListener(new RadListView.ItemClickListener() {
@@ -151,8 +150,16 @@ public class ListViewSlideFragment extends ExampleFragmentBase {
     }
 
     public class DestinationsAdapter extends ListViewAdapter {
+        private int width;
+        private int height;
+
         public DestinationsAdapter(List items) {
             super(items);
+        }
+
+        public void setDimens(int width, int height) {
+            this.width = width;
+            this.height = height;
         }
 
         @Override
@@ -168,7 +175,7 @@ public class ListViewSlideFragment extends ExampleFragmentBase {
 
             final DestinationViewHolder typedVh = (DestinationViewHolder) holder;
 
-            loadBitmap(item.src, typedVh.destinationImage);
+            loadBitmap(item.src, typedVh.destinationImage, width, height);
             typedVh.position = position;
             typedVh.separator.setBackgroundColor(item.color);
             typedVh.destinationTitle.setText(item.title);
@@ -184,7 +191,7 @@ public class ListViewSlideFragment extends ExampleFragmentBase {
         }
     }
 
-    public void loadBitmap(int resId, ImageView imageView) {
+    public void loadBitmap(int resId, ImageView imageView, int reqWidth, int reqHeight) {
 
         final String imageKey = String.valueOf(resId);
 
@@ -193,16 +200,39 @@ public class ListViewSlideFragment extends ExampleFragmentBase {
             imageView.setImageBitmap(bitmap);
         } else {
             imageView.setImageResource(0);
-            BitmapWorkerTask task = new BitmapWorkerTask(imageView);
+            BitmapWorkerTask task = new BitmapWorkerTask(imageView, reqWidth, reqHeight);
             task.execute(resId);
         }
     }
 
-    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId) {
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
         final BitmapFactory.Options options = new BitmapFactory.Options();
+
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
 
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+
+        return inSampleSize;
     }
 
     private void navigateToDetailsFragment() {
@@ -219,17 +249,21 @@ public class ListViewSlideFragment extends ExampleFragmentBase {
     class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
         private final WeakReference<ImageView> imageViewReference;
         private int data = 0;
+        private int width;
+        private int height;
         private Resources resources;
 
-        public BitmapWorkerTask(ImageView imageView) {
+        public BitmapWorkerTask(ImageView imageView, int width, int height) {
             imageViewReference = new WeakReference<>(imageView);
             resources = getResources();
+            this.width = width;
+            this.height = height;
         }
 
         @Override
         protected Bitmap doInBackground(Integer... params) {
             data = params[0];
-            Bitmap bitmap = decodeSampledBitmapFromResource(resources, data);
+            Bitmap bitmap = decodeSampledBitmapFromResource(resources, data, width, height);
             addBitmapToMemoryCache(String.valueOf(data), bitmap);
             return bitmap;
         }
@@ -396,6 +430,8 @@ public class ListViewSlideFragment extends ExampleFragmentBase {
         }
 
         listView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, cardHeight));
+
+        adapter.setDimens(cardWidth, cardHeight);
 
         slideLayoutManager.setPreviousItemPreview(offset);
         slideLayoutManager.setNextItemPreview(offset);

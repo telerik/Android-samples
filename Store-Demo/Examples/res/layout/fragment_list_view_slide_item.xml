@@ -53,8 +53,8 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/listView"
         android:background="@color/white"
-        android:layout_gravity="center"
         android:layout_width="@dimen/list_view_slide_item_width"
+        android:layout_gravity="center_horizontal|top"
         android:layout_height="wrap_content"/>
 
     <android.support.design.widget.FloatingActionButton

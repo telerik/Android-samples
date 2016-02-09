@@ -17,6 +17,8 @@ import com.telerik.examples.viewmodels.ExampleGroup;
 import com.telerik.examples.viewmodels.GalleryExample;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ExamplesAdapter extends ArrayAdapter<Example> {
@@ -166,8 +168,16 @@ public class ExamplesAdapter extends ArrayAdapter<Example> {
         }
 
         @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
+        protected void publishResults(CharSequence constraint, final FilterResults results) {
             filteredList = (ArrayList<Example>) results.values;
+            if(HIGHLIGHTED_EXAMPLES_FILTER_KEY == constraint) {
+                Collections.sort(filteredList, new Comparator<Example>() {
+                    @Override
+                    public int compare(Example lhs, Example rhs) {
+                        return lhs.getHighlightPosition() - rhs.getHighlightPosition();
+                    }
+                });
+            }
             notifyDataSetChanged();
         }
     }
