@@ -30,6 +30,8 @@ public class DataFormExamples implements ExamplesProvider {
         result.add(new DataFormJsonEditFragment());
         result.add(new DataFormSchemaSetupFragment());
 
+        result.add(new DataFormCommitEventsFragment());
+
         dataFormExamples.put("Features", result);
 
         return dataFormExamples;
