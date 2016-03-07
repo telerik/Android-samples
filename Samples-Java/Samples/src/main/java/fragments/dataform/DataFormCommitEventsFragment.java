@@ -30,22 +30,22 @@ public class DataFormCommitEventsFragment extends Fragment implements ExampleFra
 
         form.setEntity(new Person());
 
-        // >> global-commit-listener
+        // >> data-form-global-commit-listener
         // The commit listener will be notified before and after each property is committed.
         // The global data form commit listeners are only notified when the CommitMode is set to Manual.
         form.addCommitListener(this);
-        // << global-commit-listener
+        // << data-form-global-commit-listener
 
-        // >> local-commit-listener
+        // >> data-form-local-commit-listener
         // Add a commit listener for a specific property. This way the listener will be notified whenever a
         // commit is attempted regardless of the data form commit mode.
         form.getExistingEditorForProperty("Age").property().addCommitListener(this);
-        // << local-commit-listener
+        // << data-form-local-commit-listener
 
         return rootLayout;
     }
 
-    // >> cancel-commit
+    // >> data-form-commit-listener-implementation
     @Override
     public boolean onBeforeCommit(EntityProperty entityProperty) {
         // To cancel the commit for a given property return true.
@@ -55,12 +55,10 @@ public class DataFormCommitEventsFragment extends Fragment implements ExampleFra
 
         return false;
     }
-    // << cancel-commit
 
-    // >> after-commit
     @Override
     public void onAfterCommit(EntityProperty entityProperty) {
         // Do something after a property has been committed.
     }
-    // << after-commit
+    // << data-form-commit-listener-implementation
 }
