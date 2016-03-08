@@ -58,25 +58,25 @@
       <HintPath>packages\Xamarin.Android.Support.v8.RenderScript.23.0.1.3\lib\MonoAndroid403\Xamarin.Android.Support.v8.RenderScript.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Chart">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Chart.dll</HintPath>
+      <HintPath>lib\Telerik.Xamarin.Android.Chart.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Common">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Common.dll</HintPath>
+      <HintPath>lib\Telerik.Xamarin.Android.Common.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Data">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Data.dll</HintPath>
+      <HintPath>lib\Telerik.Xamarin.Android.Data.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Feedback">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Feedback.dll</HintPath>
+      <HintPath>lib\Telerik.Xamarin.Android.Feedback.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Input">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Input.dll</HintPath>
+      <HintPath>lib\Telerik.Xamarin.Android.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.List">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.List.dll</HintPath>
+      <HintPath>lib\Telerik.Xamarin.Android.List.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Primitives">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Primitives.dll</HintPath>
+      <HintPath>lib\Telerik.Xamarin.Android.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +179,7 @@
     <Compile Include="Fragments\ListView\ListViewCollapsibleFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormJsonEditFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormSchemaSetupFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormCommitEventsFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -249,6 +250,7 @@
     <AndroidResource Include="Resources\values-w600dp\Dimens.xml" />
     <AndroidResource Include="Resources\values-w820dp\Dimens.xml" />
     <AndroidResource Include="Resources\layout\fragment_calendar_events_read.axml" />
+    <AndroidResource Include="Resources\layout\fragment_dataform_commit_events.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
