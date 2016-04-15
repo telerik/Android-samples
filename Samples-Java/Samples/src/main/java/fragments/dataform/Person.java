@@ -27,7 +27,7 @@ public class Person extends NotifyPropertyChangedBase {
         notifyListeners("Age", value);
     }
 
-    @DataFormProperty(label = "Employee Type", index = 1, group = "Group 1")
+    @DataFormProperty(label = "Position", index = 1, group = "Group 1")
     public EmployeeType getEmployeeType() {
         return employeeType;
     }
