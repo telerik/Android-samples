@@ -78,7 +78,7 @@ public class Person extends NotifyPropertyChangedBase {
     public String toString() {
         DateFormat dateFormat = SimpleDateFormat.getDateInstance();
 
-        return String.format("Name: %s, Age: %s, Mail: %s, EmployeeType: %s, IsEmployed: %s, BirthDate: %s",
+        return String.format("Name: %s, \nAge: %s, \nMail: %s, \nEmployeeType: %s, \nIsEmployed: %s, \nBirthDate: %s",
                 name, Integer.toString(age), mail, employeeType.toString(), Boolean.toString(isEmployed), dateFormat.format(new Date(birthDate)));
     }
 }

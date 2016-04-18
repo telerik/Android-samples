@@ -16,6 +16,7 @@ import com.telerik.widget.dataform.visualization.DataFormLinearLayoutManager;
 import com.telerik.widget.dataform.visualization.RadDataForm;
 import com.telerik.widget.dataform.visualization.core.CommitMode;
 import com.telerik.widget.dataform.visualization.core.ValidationMode;
+import com.telerik.widget.dataform.visualization.editors.adapters.EditorSpinnerAdapter;
 
 import activities.ExampleFragment;
 
@@ -35,7 +36,7 @@ public class DataFormValidationModeFragment extends Fragment implements ExampleF
 
         Spinner validationModeSpinner = (Spinner) rootLayout.findViewById(R.id.data_form_validation_mode_spinner);
         validationModeSpinner.setOnItemSelectedListener(this);
-        validationModeSpinner.setAdapter(new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, new ValidationMode[]{ValidationMode.IMMEDIATE, ValidationMode.ON_LOST_FOCUS, ValidationMode.MANUAL}));
+        validationModeSpinner.setAdapter(new EditorSpinnerAdapter(this.getActivity(), R.layout.data_form_spinner_item, ValidationMode.values()));
 
         dataForm = new RadDataForm(this.getActivity());
 
