@@ -36,6 +36,11 @@ namespace Samples
 			result.Add (new DataFormJsonEditFragment ());
 			result.Add (new DataFormSchemaSetupFragment ());
 
+			result.Add (new DataFormCommitEventsFragment());
+
+			result.Add (new DataFormEditorStylesFragment());
+			result.Add (new DataFormLabelPositionsFragment());
+
 			dataFormExamples.Put ("Features", result);
 
 			return dataFormExamples;

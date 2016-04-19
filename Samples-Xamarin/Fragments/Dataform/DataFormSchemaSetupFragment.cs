@@ -44,7 +44,7 @@ namespace Samples
 				String schema = LoadJSONFromAsset("PersonSchema.json");
 				JSONObject jsonSchema = new JSONObject(schema);
 				DataFormMetadata metadata = new DataFormMetadata(jsonSchema);
-				dataForm.SetMetadata(metadata);
+				dataForm.Metadata = metadata;
 			} catch(JSONException e) {
 				Log.Error ("json", "error parsing json", e);
 			}
