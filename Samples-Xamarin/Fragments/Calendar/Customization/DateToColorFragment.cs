@@ -35,8 +35,8 @@ namespace Samples
 			// >> (hide)
 			return calendarView;
 		}
-		// << (hide)
 
+		// << (hide)
 		class DateToColorExample : Java.Lang.Object, IFunction
 		{
 			private Java.Util.Calendar calendar = Java.Util.Calendar.Instance;

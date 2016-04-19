@@ -55,12 +55,6 @@ namespace Samples
 						Android.Graphics.Color.ParseColor("#FF00A1"),
 						Android.Graphics.Color.ParseColor("#F988CF"));
 				} 
-				else 
-				{
-					calendarCell.SetBackgroundColor (
-						Android.Graphics.Color.ParseColor("#FFFFFF"),
-						Android.Graphics.Color.ParseColor("#FBFBFB"));
-				}
 			}
 		}
 		// << calendar-customizations-customization-rule

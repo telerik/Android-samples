@@ -52,15 +52,19 @@ namespace Samples
 			EntityPropertyViewer entityPropertyViewer = (EntityPropertyViewer)p0;
 			switch (entityPropertyViewer.Property().Name()) {
 				case "Name":
-					((TextView)entityPropertyViewer.HeaderView).SetTextColor(Color.Blue);
-					((EditText)entityPropertyViewer.EditorView).SetTextColor(Color.Blue);
+					TextView headerView = (TextView)entityPropertyViewer.HeaderView;
+					headerView.SetTextColor (Color.Blue);
+					EditText editorView = (EditText)entityPropertyViewer.EditorView;
+					editorView.SetTextColor (Color.Blue);
 					break;
 				case "Age":
 					entityPropertyViewer.RootLayout().SetBackgroundColor(Color.Cyan);
 					break;
 				case "BirthDate":
-					entityPropertyViewer.HeaderView.SetBackgroundColor(Color.Red);
-					entityPropertyViewer.EditorView.SetBackgroundColor(Color.ParseColor("#AAFF4444"));
+					entityPropertyViewer.HeaderView.
+						SetBackgroundColor(Color.Red);
+					entityPropertyViewer.EditorView.
+						SetBackgroundColor(Color.ParseColor("#AAFF4444"));
 					break;
 			}
 		}
