@@ -47,6 +47,13 @@ namespace Samples
 			calendarExamples.Put ("Display Mode", result);
 
 			result = new ArrayList ();
+			result.Add(new CellStylesFragment());
+			result.Add(new CustomizationRuleFragment());
+			result.Add(new DateToColorFragment());
+
+			calendarExamples.Put("Customizations", result);
+
+			result = new ArrayList ();
 
 			result.Add (new EventFragment());
 			result.Add (new EventAllDayFragment());
