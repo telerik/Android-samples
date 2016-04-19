@@ -31,12 +31,12 @@ namespace Samples
 			// >> calendar-customizations-date-to-color
 			Calendar calendar = Calendar.GetInstance(Java.Util.TimeZone.Default);
 			calendarView.DateToColor = new DateToColorExample ();
-			// << calendar-customizations-date-to-color
-
+			// ...
+			// >> (hide)
 			return calendarView;
 		}
+		// << (hide)
 
-		// >> calendar-customizations-date-to-color-class
 		class DateToColorExample : Java.Lang.Object, IFunction
 		{
 			private Java.Util.Calendar calendar = Java.Util.Calendar.Instance;
@@ -50,7 +50,7 @@ namespace Samples
 				return null;
 			}
 		}
-		// << calendar-customizations-date-to-color-class
+		// << calendar-customizations-date-to-color
 	}
 }
 

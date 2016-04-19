@@ -31,10 +31,11 @@ namespace Samples
 			// >> calendar-customizations-customization-rule
 			Calendar calendar = Calendar.GetInstance(Java.Util.TimeZone.Default);
 			calendarView.CustomizationRule = new CustomizationRuleExample ();
-			// << calendar-customizations-customization-rule
-
+			// ...
+			// >> (hide)
 			return calendarView;
 		}
+		// << (hide)
 
 		class CustomizationRuleExample : Java.Lang.Object, IProcedure
 		{
@@ -62,6 +63,7 @@ namespace Samples
 				}
 			}
 		}
+		// << calendar-customizations-customization-rule
 	}
 }
 

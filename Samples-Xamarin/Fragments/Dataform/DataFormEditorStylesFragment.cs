@@ -38,13 +38,14 @@ namespace Samples
 
 			// >> data-form-customizations-editor-styles
 			dataForm.EditorCustomizations = new EditorCustomizationsExample ();
-			// << data-form-customizations-editor-styles
+			// ...
+			// >> (hide)
 
 			return layoutRoot;
 		}
 	}
 
-	// >> data-form-customizations-editor-styles-class
+	// << (hide)
 	class EditorCustomizationsExample : Java.Lang.Object, IProcedure {
 		public void Apply (Java.Lang.Object p0)
 		{
@@ -64,6 +65,6 @@ namespace Samples
 			}
 		}
 	}
-	// << data-form-customizations-editor-styles-class
+	// << data-form-customizations-editor-styles
 }
 
