@@ -42,15 +42,19 @@ public class DataFormEditorStylesFragment extends Fragment implements ExampleFra
             public void apply(EntityPropertyViewer entityPropertyViewer) {
                 switch (entityPropertyViewer.property().name()) {
                     case "Name":
-                        ((TextView)entityPropertyViewer.getHeaderView()).setTextColor(Color.BLUE);
-                        ((EditText)entityPropertyViewer.getEditorView()).setTextColor(Color.BLUE);
+                        TextView headerView = (TextView)entityPropertyViewer.getHeaderView();
+                        headerView.setTextColor(Color.BLUE);
+                        EditText editorView = (EditText)entityPropertyViewer.getEditorView();
+                        editorView.setTextColor(Color.BLUE);
                         break;
                     case "Age":
                         entityPropertyViewer.rootLayout().setBackgroundColor(Color.CYAN);
                         break;
                     case "BirthDate":
-                        entityPropertyViewer.getHeaderView().setBackgroundColor(Color.RED);
-                        entityPropertyViewer.getEditorView().setBackgroundColor(Color.parseColor("#AAFF4444"));
+                        entityPropertyViewer.getHeaderView().
+                                setBackgroundColor(Color.RED);
+                        entityPropertyViewer.getEditorView().
+                                setBackgroundColor(Color.parseColor("#AAFF4444"));
                         break;
                 }
             }

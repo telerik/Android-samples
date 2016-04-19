@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.telerik.android.common.Procedure;
 import com.telerik.widget.calendar.CalendarCell;
+import com.telerik.widget.calendar.CalendarCellType;
 import com.telerik.widget.calendar.RadCalendarView;
 
 import java.util.Calendar;
@@ -27,13 +28,16 @@ public class CalendarCustomizationRuleFragment extends Fragment implements Examp
         calendarView.setCustomizationRule(new Procedure<CalendarCell>() {
             @Override
             public void apply(CalendarCell calendarCell) {
+                if(calendarCell.getCellType() != CalendarCellType.Date) {
+                    return;
+                }
                 calendar.setTimeInMillis(calendarCell.getDate());
                 if(calendar.get(Calendar.DAY_OF_MONTH) == 21 &&
                         calendar.get(Calendar.MONTH) ==
                                 Calendar.getInstance().get(Calendar.MONTH)) {
-                    calendarCell.setBackgroundColor(Color.parseColor("#FF00A1"), Color.parseColor("#F988CF"));
-                } else {
-                    calendarCell.setBackgroundColor(Color.parseColor("#FFFFFF"), Color.parseColor("#FBFBFB"));
+                    calendarCell.setBackgroundColor(
+                            Color.parseColor("#FF00A1"),
+                            Color.parseColor("#F988CF"));
                 }
             }
         });
