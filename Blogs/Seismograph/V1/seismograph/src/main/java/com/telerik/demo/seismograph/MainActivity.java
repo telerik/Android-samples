@@ -177,13 +177,13 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     private RadCartesianChartView createChart(Iterable<SeismicDataPoint> dataPoints) {
         RadCartesianChartView chart = new RadCartesianChartView(this);
-        LinearAxis vAxis = new LinearAxis(this);
+        LinearAxis vAxis = new LinearAxis();
 
         // The maximum value of the accelerometer is 20 and the minimum -20, so give a bonus 10 to the vertical axis.
         vAxis.setMaximum(30);
         vAxis.setMinimum(-30);
 
-        CategoricalAxis hAxis = new CategoricalAxis(this);
+        CategoricalAxis hAxis = new CategoricalAxis();
         hAxis.setShowLabels(false);
 
         DataPointBinding categoryBinding = new DataPointBinding() {
@@ -200,12 +200,12 @@ public class MainActivity extends Activity implements SensorEventListener {
             }
         };
 
-        LineSeries series = new LineSeries(this);
+        LineSeries series = new LineSeries();
         series.setCategoryBinding(categoryBinding);
         series.setValueBinding(valueBinding);
         series.setData(dataPoints);
 
-        CartesianChartGrid grid = new CartesianChartGrid(this);
+        CartesianChartGrid grid = new CartesianChartGrid();
 
         chart.setGrid(grid);
         chart.setVerticalAxis(vAxis);

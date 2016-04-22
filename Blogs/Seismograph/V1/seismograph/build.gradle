@@ -8,18 +8,17 @@ repositories {
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.0.3"
+    compileSdkVersion 23
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 19
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
         release {
-            runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
@@ -27,5 +26,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile (name: 'Chart-2014.1.0226', ext: 'aar')
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile (name: 'Chart-2015.3.1113-dev-release', ext: 'aar')
+    compile (name: 'Common-2015.3.1113-dev-release', ext: 'aar')
+    compile (name: 'Primitives-2015.3.1113-dev-release', ext: 'aar')
 }
