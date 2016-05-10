@@ -1,3 +1,3 @@
-Please place your chart library here and make sure you update the name in the gradle project file if you are using version different than Chart-2014.1.0226.aar
+Please place your chart, primitives and common libraries here and make sure you update the name in the gradle project file if you are using version different than *-2015.3.1113.aar
 
-If you are using the Chart-2014.1.0226.aar version then a simple gradle sync will get you all set up and ready to go.
+If you are using the 2015.3.1113 dev version then a simple gradle sync will get you all set up and ready to go.
