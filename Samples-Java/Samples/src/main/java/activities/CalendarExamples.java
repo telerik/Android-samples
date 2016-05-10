@@ -1,11 +1,13 @@
 package activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import fragments.calendar.CalendarInitFragment;
 import fragments.calendar.CalendarInitXmlFragment;
+import fragments.calendar.customization.CalendarCellStylesFragment;
+import fragments.calendar.customization.CalendarCustomizationRuleFragment;
+import fragments.calendar.customization.CalendarDateToColorFragment;
 import fragments.calendar.displaydate.CalendarDisplayDateListenerFragment;
 import fragments.calendar.displaydate.CalendarDisplayDateMinMaxFragment;
 import fragments.calendar.displaydate.CalendarDisplayDateSetFragment;
@@ -71,6 +73,13 @@ public class CalendarExamples implements ExamplesProvider {
         result.add(new CalendarDisplayModeListenerFragment());
 
         calendarExamples.put("Display Mode", result);
+
+        result = new ArrayList<ExampleFragment>();
+        result.add(new CalendarCellStylesFragment());
+        result.add(new CalendarCustomizationRuleFragment());
+        result.add(new CalendarDateToColorFragment());
+
+        calendarExamples.put("Customizations", result);
 
         result = new ArrayList<ExampleFragment>();
 

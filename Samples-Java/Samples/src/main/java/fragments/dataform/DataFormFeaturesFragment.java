@@ -19,6 +19,7 @@ import com.telerik.widget.dataform.engine.PropertyChangedListener;
 import com.telerik.widget.dataform.engine.RangeValidator;
 import com.telerik.widget.dataform.visualization.RadDataForm;
 import com.telerik.widget.dataform.visualization.core.CommitMode;
+import com.telerik.widget.dataform.visualization.editors.adapters.EditorSpinnerAdapter;
 
 import activities.ExampleFragment;
 
@@ -56,7 +57,7 @@ public class DataFormFeaturesFragment extends Fragment implements ExampleFragmen
         validator.setMin(18);
 
         Spinner commitModes = (Spinner)layoutRoot.findViewById(R.id.commitModeSpinner);
-        commitModes.setAdapter(new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, CommitMode.values()));
+        commitModes.setAdapter(new EditorSpinnerAdapter(this.getActivity(), R.layout.data_form_spinner_item, CommitMode.values()));
         commitModes.setOnItemSelectedListener(this);
 
         commitButton = (Button) layoutRoot.findViewById(R.id.manualCommit);

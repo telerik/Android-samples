@@ -39,6 +39,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -180,6 +181,11 @@
     <Compile Include="Fragments\Dataform\DataFormJsonEditFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormSchemaSetupFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormCommitEventsFragment.cs" />
+    <Compile Include="Fragments\Calendar\Customization\DateToColorFragment.cs" />
+    <Compile Include="Fragments\Calendar\Customization\CustomizationRuleFragment.cs" />
+    <Compile Include="Fragments\Calendar\Customization\CellStylesFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormEditorStylesFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormLabelPositionsFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -251,6 +257,8 @@
     <AndroidResource Include="Resources\values-w820dp\Dimens.xml" />
     <AndroidResource Include="Resources\layout\fragment_calendar_events_read.axml" />
     <AndroidResource Include="Resources\layout\fragment_dataform_commit_events.axml" />
+    <AndroidResource Include="Resources\layout\fragment_dataform_editor_styles.axml" />
+    <AndroidResource Include="Resources\layout\fragment_dataform_label_positions.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
@@ -274,6 +282,7 @@
     <Folder Include="Fragments\Dataform\" />
     <Folder Include="Resources\values-w600dp\" />
     <Folder Include="Resources\values-w820dp\" />
+    <Folder Include="Fragments\Calendar\Customization\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>

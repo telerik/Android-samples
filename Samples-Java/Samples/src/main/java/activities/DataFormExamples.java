@@ -32,6 +32,9 @@ public class DataFormExamples implements ExamplesProvider {
 
         result.add(new DataFormCommitEventsFragment());
 
+        result.add(new DataFormEditorStylesFragment());
+        result.add(new DataFormLabelPositionsFragment());
+
         dataFormExamples.put("Features", result);
 
         return dataFormExamples;

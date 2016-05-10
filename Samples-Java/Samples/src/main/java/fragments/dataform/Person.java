@@ -27,7 +27,7 @@ public class Person extends NotifyPropertyChangedBase {
         notifyListeners("Age", value);
     }
 
-    @DataFormProperty(label = "Employee Type", index = 1, group = "Group 1")
+    @DataFormProperty(label = "Position", index = 1, group = "Group 1")
     public EmployeeType getEmployeeType() {
         return employeeType;
     }
@@ -78,7 +78,7 @@ public class Person extends NotifyPropertyChangedBase {
     public String toString() {
         DateFormat dateFormat = SimpleDateFormat.getDateInstance();
 
-        return String.format("Name: %s, Age: %s, Mail: %s, EmployeeType: %s, IsEmployed: %s, BirthDate: %s",
+        return String.format("Name: %s, \nAge: %s, \nMail: %s, \nEmployeeType: %s, \nIsEmployed: %s, \nBirthDate: %s",
                 name, Integer.toString(age), mail, employeeType.toString(), Boolean.toString(isEmployed), dateFormat.format(new Date(birthDate)));
     }
 }

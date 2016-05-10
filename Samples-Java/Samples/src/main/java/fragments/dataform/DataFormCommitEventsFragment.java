@@ -45,6 +45,7 @@ public class DataFormCommitEventsFragment extends Fragment implements ExampleFra
         return rootLayout;
     }
 
+
     // >> data-form-commit-listener-implementation
     @Override
     public boolean onBeforeCommit(EntityProperty entityProperty) {
