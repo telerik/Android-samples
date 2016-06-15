@@ -26,9 +26,9 @@ namespace Samples
 		}
 
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			ViewGroup rootLayout = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_dataform_grouping, null);
+			ViewGroup rootLayout = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_dataform_grouping, container, false);
 
-			RadDataForm dataForm = new RadDataForm(this.Activity);
+			RadDataForm dataForm = (RadDataForm)rootLayout.FindViewById(Resource.Id.data_form_grouping);
 			dataForm.LayoutManager = new DataFormLinearLayoutManager(this.Activity);
 			Person person = new Person();
 			person.Name = "Joe";
@@ -40,8 +40,6 @@ namespace Samples
 
 			EntityPropertyEditor mailEditor = Android.Runtime.Extensions.JavaCast<EntityPropertyEditor>(dataForm.GetExistingEditorForProperty("Mail"));
 			mailEditor.ValidationViewBehavior = new BlinkValidationBehavior(this.Activity);
-
-			rootLayout.AddView(dataForm);
 
 			return rootLayout;
 		}

@@ -22,14 +22,12 @@ namespace Samples
 	{
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			ViewGroup layoutRoot = (ViewGroup) inflater.Inflate(Resource.Layout.fragment_dataform_validation, null);
+			ViewGroup layoutRoot = (ViewGroup) inflater.Inflate(Resource.Layout.fragment_dataform_validation, container, false);
 
-			RadDataForm dataForm = new RadDataForm(this.Activity);
+			RadDataForm dataForm = (RadDataForm)layoutRoot.FindViewById(Resource.Id.data_form_validation);
 			dataForm.SetEntity (new Person ());
 
 			dataForm.GetExistingEditorForProperty ("Name").Property ().Validator = new NonEmptyValidator();
-
-			layoutRoot.AddView(dataForm);
 
 			return layoutRoot;
 		}

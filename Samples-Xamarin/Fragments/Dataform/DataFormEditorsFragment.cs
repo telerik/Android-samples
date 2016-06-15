@@ -26,14 +26,12 @@ namespace Samples
 		RadDataForm dataForm;
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			ViewGroup rootLayout = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_dataform_editors, null);
+			ViewGroup rootLayout = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_dataform_editors, container, false);
 
-			dataForm = new RadDataForm(this.Activity);
+			dataForm = (RadDataForm)rootLayout.FindViewById(Resource.Id.data_form_editors);
 			dataForm.Adapter.SetEditorProvider(this);
 
 			dataForm.SetEntity (new Person ());
-
-			rootLayout.AddView(dataForm);
 
 			return rootLayout;
 		}

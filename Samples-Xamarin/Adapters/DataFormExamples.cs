@@ -30,6 +30,7 @@ namespace Samples
 			result.Add (new DataFormEditorsFragment ());
 			result.Add (new DataFormValidationFragment ());
 			result.Add (new DataFormGroupLayoutFragment ());
+			result.Add (new DataFormExpandableGroupsFragment ());
 			result.Add (new DataFormPlaceholderLayoutFragment ());
 			result.Add (new DataFormValidationBehaviorFragment ());
 			result.Add (new DataFormValidationModeFragment ());
