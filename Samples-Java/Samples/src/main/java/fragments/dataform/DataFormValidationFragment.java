@@ -22,14 +22,12 @@ public class DataFormValidationFragment extends Fragment implements ExampleFragm
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup layoutRoot = (ViewGroup) inflater.inflate(R.layout.fragment_dataform_validation, null);
+        ViewGroup layoutRoot = (ViewGroup) inflater.inflate(R.layout.fragment_dataform_validation, container, false);
 
-        RadDataForm dataForm = new RadDataForm(this.getActivity());
+        RadDataForm dataForm = (RadDataForm)layoutRoot.findViewById(R.id.data_form_validation);
         dataForm.setEntity(new Person());
 
         dataForm.getExistingEditorForProperty("Name").property().setValidator(new NonEmptyValidator());
-
-        layoutRoot.addView(dataForm);
 
         return layoutRoot;
     }

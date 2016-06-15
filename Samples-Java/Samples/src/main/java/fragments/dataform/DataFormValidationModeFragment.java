@@ -32,13 +32,13 @@ public class DataFormValidationModeFragment extends Fragment implements ExampleF
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootLayout = (ViewGroup) inflater.inflate(R.layout.fragment_dataform_validation_mode, null);
+        ViewGroup rootLayout = (ViewGroup) inflater.inflate(R.layout.fragment_dataform_validation_mode, container, false);
 
         Spinner validationModeSpinner = (Spinner) rootLayout.findViewById(R.id.data_form_validation_mode_spinner);
         validationModeSpinner.setOnItemSelectedListener(this);
         validationModeSpinner.setAdapter(new EditorSpinnerAdapter(this.getActivity(), R.layout.data_form_spinner_item, ValidationMode.values()));
 
-        dataForm = new RadDataForm(this.getActivity());
+        dataForm = (RadDataForm)rootLayout.findViewById(R.id.data_form_validation_mode);
 
         dataForm.setLayoutManager(new DataFormLinearLayoutManager(this.getActivity()));
         dataForm.setCommitMode(CommitMode.MANUAL);
@@ -51,8 +51,6 @@ public class DataFormValidationModeFragment extends Fragment implements ExampleF
 
         validateButton = (Button)rootLayout.findViewById(R.id.data_form_validate_button);
         validateButton.setOnClickListener(this);
-
-        rootLayout.addView(dataForm, 0);
 
         return rootLayout;
     }

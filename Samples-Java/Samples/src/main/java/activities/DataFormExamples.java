@@ -3,7 +3,6 @@ package activities;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import fragments.dataform.DataFormGroupLayoutFragment;
 import fragments.dataform.*;
 
 public class DataFormExamples implements ExamplesProvider {
@@ -23,6 +22,7 @@ public class DataFormExamples implements ExamplesProvider {
         result.add(new DataFormValidationFragment());
 
         result.add(new DataFormGroupLayoutFragment());
+        result.add(new DataFormExpandableGroupsFragment());
         result.add(new DataFormPlaceholderLayoutFragment());
         result.add(new DataFormValidationBehaviorFragment());
         result.add(new DataFormValidationModeFragment());

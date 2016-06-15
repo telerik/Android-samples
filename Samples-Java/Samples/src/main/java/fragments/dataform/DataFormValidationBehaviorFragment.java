@@ -29,9 +29,9 @@ public class DataFormValidationBehaviorFragment extends Fragment implements Exam
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootLayout = (ViewGroup)inflater.inflate(R.layout.fragment_dataform_grouping, null);
+        ViewGroup rootLayout = (ViewGroup)inflater.inflate(R.layout.fragment_dataform_grouping, container, false);
 
-        RadDataForm dataForm = new RadDataForm(this.getActivity());
+        RadDataForm dataForm = (RadDataForm)rootLayout.findViewById(R.id.data_form_grouping);
         dataForm.setLayoutManager(new DataFormLinearLayoutManager(this.getActivity()));
         Person person = new Person();
         person.setName("Joe");
@@ -43,8 +43,6 @@ public class DataFormValidationBehaviorFragment extends Fragment implements Exam
 
         EntityPropertyEditor mailEditor = (EntityPropertyEditor) dataForm.getExistingEditorForProperty("Mail");
         mailEditor.setValidationViewBehavior(new BlinkValidationBehavior(this.getActivity()));
-
-        rootLayout.addView(dataForm);
 
         return rootLayout;
     }

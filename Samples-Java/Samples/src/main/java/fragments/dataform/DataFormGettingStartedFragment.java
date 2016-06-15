@@ -21,12 +21,10 @@ public class DataFormGettingStartedFragment extends Fragment implements ExampleF
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootLayout = (ViewGroup)inflater.inflate(R.layout.fragment_dataform_getting_started, null);
+        ViewGroup rootLayout = (ViewGroup)inflater.inflate(R.layout.fragment_dataform_getting_started, container, false);
 
-        RadDataForm dataForm = new RadDataForm(this.getActivity());
+        RadDataForm dataForm = (RadDataForm)rootLayout.findViewById(R.id.data_form_getting_started);
         dataForm.setEntity(new Person());
-
-        rootLayout.addView(dataForm);
 
         return rootLayout;
     }

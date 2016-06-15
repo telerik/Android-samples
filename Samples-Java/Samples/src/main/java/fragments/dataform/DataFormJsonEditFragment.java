@@ -38,7 +38,7 @@ public class DataFormJsonEditFragment extends Fragment implements ExampleFragmen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ViewGroup layoutRoot = (ViewGroup)inflater.inflate(R.layout.fragment_data_form_json_edit, container, false);
-        RadDataForm dataForm = new RadDataForm(this.getActivity());
+        RadDataForm dataForm = (RadDataForm)layoutRoot.findViewById(R.id.data_form_json_edit);
 
         String json = loadJSONFromAsset(R.raw.person);
 
@@ -48,8 +48,6 @@ public class DataFormJsonEditFragment extends Fragment implements ExampleFragmen
         } catch (JSONException e) {
             Log.e("json", "error parsing json", e);
         }
-
-        layoutRoot.addView(dataForm);
 
         return layoutRoot;
     }

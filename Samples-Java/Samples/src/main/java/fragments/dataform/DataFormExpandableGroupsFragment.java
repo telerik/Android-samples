@@ -7,20 +7,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.telerik.android.common.Function2;
 import com.telerik.android.sdk.R;
 import com.telerik.widget.dataform.visualization.DataFormGroupLayoutManager;
-import com.telerik.widget.dataform.visualization.DataFormPlaceholderLayoutManager;
 import com.telerik.widget.dataform.visualization.EditorGroup;
+import com.telerik.widget.dataform.visualization.ExpandableEditorGroup;
 import com.telerik.widget.dataform.visualization.RadDataForm;
 
 import activities.ExampleFragment;
 
-public class DataFormGroupLayoutFragment extends Fragment implements ExampleFragment {
+public class DataFormExpandableGroupsFragment extends Fragment implements ExampleFragment {
     @Override
     public String title() {
-        return "Data Form Groups";
+        return "Data Form Expandable Groups";
     }
 
     @Nullable
@@ -34,15 +35,15 @@ public class DataFormGroupLayoutFragment extends Fragment implements ExampleFrag
         groupManager.setCreateGroup(new Function2<Context, String, EditorGroup>() {
             @Override
             public EditorGroup apply(Context context, String groupName) {
-                // Developers can create a special group layout for any given group name.
-                if(groupName.equals("Group 2")) {
-                    EditorGroup group = new EditorGroup(context, groupName, R.layout.dataform_custom_group);
-                    // Each group can have a specific layout manager, be it a table layout, a linear layout, a placeholder layout or even something completely custom.
-                    group.setLayoutManager(new DataFormPlaceholderLayoutManager(context, R.layout.dataform_group_placeholder_layout));
-                    return group;
-                }
-
-                return null;
+                final ExpandableEditorGroup group = new ExpandableEditorGroup(context, groupName);
+                group.addIsExpandedChangedListener(new ExpandableEditorGroup.IsExpandedChangedListener() {
+                    @Override
+                    public void onChanged(boolean isExpanded) {
+                        String message = String.format("%s has been %s", group.name(), isExpanded ? "expanded" : "collapsed");
+                        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return group;
             }
         });
 

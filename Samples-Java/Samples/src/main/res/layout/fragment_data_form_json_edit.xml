@@ -2,5 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="fragments.dataform.DataFormJsonEditFragment">
-
+    <com.telerik.widget.dataform.visualization.RadDataForm
+        android:id="@+id/data_form_json_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </FrameLayout>
