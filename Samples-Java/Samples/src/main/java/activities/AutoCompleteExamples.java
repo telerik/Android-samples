@@ -19,9 +19,6 @@ import fragments.listview.ListViewSwipeToExecuteFragment;
 import fragments.listview.ListViewSwipeToRefreshFragment;
 import fragments.listview.ListViewWrapFragment;
 
-/**
- * Created by slazarov on 9/1/16.
- */
 public class AutoCompleteExamples implements ExamplesProvider {
     @Override
     public String controlName() {
@@ -34,7 +31,7 @@ public class AutoCompleteExamples implements ExamplesProvider {
 
         ArrayList<ExampleFragment> examplesSet = new ArrayList<>();
         examplesSet.add(new AutoCompleteGettingStartedFragment());
-        examples.put("Init", examplesSet);
+        examples.put("Feature Review", examplesSet);
 
         return examples;
     }

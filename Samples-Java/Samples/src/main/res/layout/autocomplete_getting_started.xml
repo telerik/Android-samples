@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root">
+    android:id="@+id/root"
+    android:paddingTop="10dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,6 +54,7 @@
     <com.telerik.widget.autocomplete.TestModuledAutoComplete
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:id="@+id/autocmp">
     </com.telerik.widget.autocomplete.TestModuledAutoComplete>
 </LinearLayout>

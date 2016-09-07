@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.telerik.android.sdk.R;
 import com.telerik.widget.autocomplete.AutoCompleteAdapter;
@@ -47,18 +45,11 @@ public class AutoCompleteGettingStartedFragment extends Fragment implements Exam
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-      //  LinearLayout layout = (LinearLayout) getResources().getLayout(R.layout.autocomplete_getting_started);
         View rootView = inflater.inflate(R.layout.autocomplete_getting_started, container, false);
-       // LinearLayout lay = new LinearLayout(this.getActivity().getBaseContext());
-//        layout.setOrientation(LinearLayout.HORIZONTAL);
-//        layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-
-
-
-        TestModuledAutoComplete autocomplete = (TestModuledAutoComplete) rootView.findViewById(R.id.autocmp);
-        autocomplete.suggestMode = SuggestMode.SUGGEST;
-        autocomplete.displayMode = DisplayMode.PLAIN;
+        final TestModuledAutoComplete autocomplete = (TestModuledAutoComplete) rootView.findViewById(R.id.autocmp);
+        autocomplete.setSuggestMode(SuggestMode.SUGGEST);
+        autocomplete.setDisplayMode(DisplayMode.PLAIN);
 
         String jsonData = this.getJSONFile(R.raw.countries);
         try{
@@ -69,11 +60,51 @@ public class AutoCompleteGettingStartedFragment extends Fragment implements Exam
             ex.printStackTrace();
         }
 
-        AutoCompleteAdapter adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(data), R.layout.suggestion_item_layout);
+        final AutoCompleteAdapter adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(data), R.layout.suggestion_item_layout);
         adapter.setCompletionMode(CompletionMode.STARTS_WITH);
         autocomplete.setAdapter(adapter);
 
-       // rootView.addView(autocomplete);
+        Button btnSuggest = (Button)rootView.findViewById(R.id.suggestButton);
+        btnSuggest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                autocomplete.setSuggestMode(SuggestMode.SUGGEST);
+            }
+        });
+
+        Button btnSuggestAppend = (Button)rootView.findViewById(R.id.suggestAppendButton);
+        btnSuggestAppend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                autocomplete.setSuggestMode(SuggestMode.SUGGEST_APPEND);
+            }
+        });
+
+        Button btnAppend = (Button)rootView.findViewById(R.id.appendButton);
+        btnAppend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                autocomplete.setSuggestMode(SuggestMode.APPEND);
+            }
+        });
+
+        Button btnStartsWith = (Button)rootView.findViewById(R.id.startsWithButton);
+        btnStartsWith.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.setCompletionMode(CompletionMode.STARTS_WITH);
+                autocomplete.resetAutocomplete();
+            }
+        });
+        Button btnContains = (Button)rootView.findViewById(R.id.containsButton);
+        btnContains.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.setCompletionMode(CompletionMode.CONTAINS);
+                autocomplete.setSuggestMode(SuggestMode.SUGGEST);
+                autocomplete.resetAutocomplete();
+            }
+        });
         return rootView;
     }
 
