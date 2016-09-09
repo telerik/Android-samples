@@ -21,21 +21,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 
 import activities.ExampleFragment;
 
 
-public class AutoCompleteGettingStartedFragment extends Fragment implements ExampleFragment {
+public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment implements ExampleFragment {
 
     private JSONArray data;
+    private TestModuledAutoComplete autocomplete;
+    private AutoCompleteAdapter adapter;
 
     @Override
     public String title() {
@@ -47,7 +42,7 @@ public class AutoCompleteGettingStartedFragment extends Fragment implements Exam
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.autocomplete_getting_started, container, false);
 
-        final TestModuledAutoComplete autocomplete = (TestModuledAutoComplete) rootView.findViewById(R.id.autocmp);
+        autocomplete = (TestModuledAutoComplete) rootView.findViewById(R.id.autocmp);
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
         autocomplete.setDisplayMode(DisplayMode.PLAIN);
 
@@ -60,10 +55,16 @@ public class AutoCompleteGettingStartedFragment extends Fragment implements Exam
             ex.printStackTrace();
         }
 
-        final AutoCompleteAdapter adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(data), R.layout.suggestion_item_layout);
+        adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(data), R.layout.suggestion_item_layout);
         adapter.setCompletionMode(CompletionMode.STARTS_WITH);
         autocomplete.setAdapter(adapter);
 
+        this.setButtonAction(rootView);
+
+        return rootView;
+    }
+
+    private void setButtonAction(View rootView){
         Button btnSuggest = (Button)rootView.findViewById(R.id.suggestButton);
         btnSuggest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +106,24 @@ public class AutoCompleteGettingStartedFragment extends Fragment implements Exam
                 autocomplete.resetAutocomplete();
             }
         });
-        return rootView;
+        Button btnTokens = (Button)rootView.findViewById(R.id.tokens_mode_btn);
+        btnTokens.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                autocomplete.setDisplayMode(DisplayMode.TOKENS);
+                autocomplete.resetAutocomplete();
+            }
+        });
+
+        Button btnPlain = (Button)rootView.findViewById(R.id.plain_mode_btn);
+        btnPlain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                autocomplete.setDisplayMode(DisplayMode.PLAIN);
+                autocomplete.resetAutocomplete();
+            }
+        });
+
     }
 
     private ArrayList<TokenModel> getTokenModelObjects(JSONArray json) {
@@ -131,29 +149,5 @@ public class AutoCompleteGettingStartedFragment extends Fragment implements Exam
         }
 
         return feedData;
-    }
-
-    public String getJSONFile(int asset) {
-        String json;
-        try {
-            InputStream is = getResources().openRawResource(asset);
-            Writer writer = new StringWriter();
-            char[] buffer = new char[1024];
-            try {
-                Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-                int n;
-                while ((n = reader.read(buffer)) != -1) {
-                    writer.write(buffer, 0, n);
-                }
-            } finally {
-                is.close();
-            }
-
-            json = writer.toString();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
     }
 }

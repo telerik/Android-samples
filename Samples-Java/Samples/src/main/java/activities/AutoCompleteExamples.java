@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import fragments.autocomplete.AutoCompleteGettingStartedFragment;
+import fragments.autocomplete.AutoCompleteTokensFragment;
 import fragments.listview.ListViewCollapsibleFragment;
 import fragments.listview.ListViewDataOperationsFragment;
 import fragments.listview.ListViewDeckOfCardsFragment;
@@ -22,7 +23,7 @@ import fragments.listview.ListViewWrapFragment;
 public class AutoCompleteExamples implements ExamplesProvider {
     @Override
     public String controlName() {
-        return "AutoComplete";
+        return "AutoCompleteTextView";
     }
 
     @Override
@@ -31,6 +32,7 @@ public class AutoCompleteExamples implements ExamplesProvider {
 
         ArrayList<ExampleFragment> examplesSet = new ArrayList<>();
         examplesSet.add(new AutoCompleteGettingStartedFragment());
+        examplesSet.add(new AutoCompleteTokensFragment());
         examples.put("Feature Review", examplesSet);
 
         return examples;
