@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.telerik.widget.gauge.RadRadialGaugeView
+        android:id="@+id/radial_gauge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/radio_60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60"/>
+        <RadioButton
+            android:id="@+id/radio_80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="80"/>
+
+        <RadioButton
+            android:id="@+id/radio_120"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="120"/>
+        <RadioButton
+            android:id="@+id/radio_160"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="160"/>
+    </RadioGroup>
+
+</LinearLayout>
