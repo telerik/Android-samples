@@ -1,8 +1,10 @@
 package fragments.autocomplete;
 
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +55,14 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
         }
 
         adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(data), R.layout.suggestion_item_layout);
-        adapter.setCompletionMode(CompletionMode.STARTS_WITH);
+        adapter.setCompletionMode(CompletionMode.CONTAINS);
         autocomplete.setAdapter(adapter);
+
+        int a = rootView.getHeight();
+        Display display = this.getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        int sd  =  display.getHeight();
+        autocomplete.suggestionViewHeight = sd/3;
 
         return rootView;
     }

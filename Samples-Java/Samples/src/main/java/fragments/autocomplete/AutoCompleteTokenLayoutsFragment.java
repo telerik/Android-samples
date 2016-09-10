@@ -27,7 +27,11 @@ import activities.ExampleFragment;
 
 public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment implements ExampleFragment {
 
-    private JSONArray data;
+    private String[] data = new String[]{"Australia", "Albania","Bulgaria","Belgium","Cyprus","Italy","Japan",
+            "Denmark","Finland","France","Germany","Greece","Hungary","Ireland",
+            "Latvia","Luxembourg","Macedonia","Moldova","Monaco","Netherlands","Norway",
+            "Poland","Romania","Russia","Sweden","Slovenia","Slovakia","Turkey","Ukraine",
+            "Vatican City"};
     private TestModuledAutoComplete autocomplete = null;
 
     public String title() {
@@ -44,22 +48,23 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
         autocomplete.setDisplayMode(DisplayMode.TOKENS);
         autocomplete.setTokensLayoutMode(LayoutMode.HORIZONTAL);
 
-        String jsonData = this.getJSONFile(R.raw.countries);
-        try{
-            JSONObject jObj = new JSONObject(jsonData);
-            data = jObj.getJSONArray("data");
-        }
-        catch(JSONException ex){
-            ex.printStackTrace();
-        }
-
-        final AutoCompleteAdapter adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(data), R.layout.suggestion_item_layout);
+        final AutoCompleteAdapter adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(), R.layout.suggestion_item_layout);
         adapter.setCompletionMode(CompletionMode.STARTS_WITH);
         autocomplete.setAdapter(adapter);
 
         this.setButtonActions(rootView);
 
         return rootView;
+    }
+
+    private ArrayList<TokenModel> getTokenModelObjects() {
+        ArrayList<TokenModel> feedData = new ArrayList<TokenModel>();
+        for(int i = 0; i < this.data.length; i++){
+            TokenModel token = new TokenModel(this.data[i], null, null);
+            feedData.add(token);
+        }
+
+        return feedData;
     }
 
     private void setButtonActions(View rootView){
@@ -83,30 +88,4 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
         });
 
     }
-
-    private ArrayList<TokenModel> getTokenModelObjects(JSONArray json) {
-        ArrayList<TokenModel> feedData = new ArrayList<TokenModel>();
-        JSONObject current = new JSONObject();
-        for(int i = 0; i < json.length(); i++) {
-            String name = "";
-            String flag = "";
-
-            try{
-                current = json.getJSONObject(i);
-                name = (String)current.get("country");
-                flag = (String)current.get("flag");
-            }
-            catch (JSONException ex){
-                ex.printStackTrace();
-            }
-
-            int dr = getResources().getIdentifier(flag, "drawable","com.telerik.android.sdk");
-            Drawable m = getResources().getDrawable(dr);
-            TokenModel token = new TokenModel(name,m, null);
-            feedData.add(token);
-        }
-
-        return feedData;
-    }
-
 }
