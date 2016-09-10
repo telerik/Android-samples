@@ -45,6 +45,7 @@ dependencies {
     compile(name: 'Input', ext: 'aar');
     compile(name: 'Data', ext: 'aar');
     compile(name: 'List', ext: 'aar');
+    compile(name: 'Gauges', ext: 'aar');
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
