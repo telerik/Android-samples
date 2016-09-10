@@ -12,8 +12,8 @@ import com.telerik.android.sdk.R;
 import com.telerik.widget.autocomplete.AutoCompleteAdapter;
 import com.telerik.widget.autocomplete.CompletionMode;
 import com.telerik.widget.autocomplete.DisplayMode;
+import com.telerik.widget.autocomplete.RadAutoCompleteTextView;
 import com.telerik.widget.autocomplete.SuggestMode;
-import com.telerik.widget.autocomplete.TestModuledAutoComplete;
 import com.telerik.widget.autocomplete.TokenModel;
 
 import org.json.JSONArray;
@@ -27,7 +27,7 @@ import activities.ExampleFragment;
 public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment implements ExampleFragment {
 
     private JSONArray data;
-    private TestModuledAutoComplete autocomplete;
+    private RadAutoCompleteTextView autocomplete;
     private AutoCompleteAdapter adapter;
 
     @Override
@@ -40,7 +40,7 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.autocomplete_customization, container, false);
 
-        autocomplete = (TestModuledAutoComplete) rootView.findViewById(R.id.autocomplete);
+        autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocomplete);
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
         autocomplete.setDisplayMode(DisplayMode.TOKENS);
 

@@ -12,8 +12,8 @@ import com.telerik.android.sdk.R;
 import com.telerik.widget.autocomplete.AutoCompleteAdapter;
 import com.telerik.widget.autocomplete.CompletionMode;
 import com.telerik.widget.autocomplete.DisplayMode;
+import com.telerik.widget.autocomplete.RadAutoCompleteTextView;
 import com.telerik.widget.autocomplete.SuggestMode;
-import com.telerik.widget.autocomplete.TestModuledAutoComplete;
 import com.telerik.widget.autocomplete.TokenModel;
 
 import org.json.JSONArray;
@@ -33,7 +33,7 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
                                         "Latvia","Luxembourg","Macedonia","Moldova","Monaco","Netherlands","Norway",
                                         "Poland","Romania","Russia","Sweden","Slovenia","Slovakia","Turkey","Ukraine",
                                         "Vatican City"};
-    private TestModuledAutoComplete autocomplete;
+    private RadAutoCompleteTextView autocomplete;
     private AutoCompleteAdapter adapter;
 
     @Override
@@ -46,7 +46,7 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.autocomplete_getting_started, container, false);
 
-        autocomplete = (TestModuledAutoComplete) rootView.findViewById(R.id.autocmp);
+        autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocmp);
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
         autocomplete.setDisplayMode(DisplayMode.PLAIN);
 

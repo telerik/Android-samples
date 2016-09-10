@@ -13,13 +13,9 @@ import com.telerik.widget.autocomplete.AutoCompleteAdapter;
 import com.telerik.widget.autocomplete.CompletionMode;
 import com.telerik.widget.autocomplete.DisplayMode;
 import com.telerik.widget.autocomplete.LayoutMode;
+import com.telerik.widget.autocomplete.RadAutoCompleteTextView;
 import com.telerik.widget.autocomplete.SuggestMode;
-import com.telerik.widget.autocomplete.TestModuledAutoComplete;
 import com.telerik.widget.autocomplete.TokenModel;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -32,7 +28,7 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
             "Latvia","Luxembourg","Macedonia","Moldova","Monaco","Netherlands","Norway",
             "Poland","Romania","Russia","Sweden","Slovenia","Slovakia","Turkey","Ukraine",
             "Vatican City"};
-    private TestModuledAutoComplete autocomplete = null;
+    private RadAutoCompleteTextView autocomplete = null;
 
     public String title() {
         return "Token Layouts";
@@ -43,7 +39,7 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.autocomplete_token_layouts, container, false);
 
-        autocomplete = (TestModuledAutoComplete) rootView.findViewById(R.id.autocmp);
+        autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocmp);
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
         autocomplete.setDisplayMode(DisplayMode.TOKENS);
         autocomplete.setTokensLayoutMode(LayoutMode.HORIZONTAL);
@@ -86,6 +82,5 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
                 autocomplete.resetAutocomplete();
             }
         });
-
     }
 }

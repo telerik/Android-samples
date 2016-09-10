@@ -71,10 +71,10 @@
             android:id="@+id/tokens_mode_btn"/>
     </LinearLayout>
 
-    <com.telerik.widget.autocomplete.TestModuledAutoComplete
+    <com.telerik.widget.autocomplete.RadAutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:id="@+id/autocmp">
-    </com.telerik.widget.autocomplete.TestModuledAutoComplete>
+    </com.telerik.widget.autocomplete.RadAutoCompleteTextView>
 </LinearLayout>
