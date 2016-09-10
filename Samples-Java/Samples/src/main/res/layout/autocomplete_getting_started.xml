@@ -51,6 +51,26 @@
             android:id="@+id/containsButton"/>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Display Modes"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plain"
+            android:id="@+id/plain_mode_btn"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tokens"
+            android:id="@+id/tokens_mode_btn"/>
+    </LinearLayout>
+
     <com.telerik.widget.autocomplete.TestModuledAutoComplete
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

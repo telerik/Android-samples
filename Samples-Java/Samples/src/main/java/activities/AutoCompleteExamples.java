@@ -3,26 +3,14 @@ package activities;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import fragments.autocomplete.AutoCompleteCustomizationFragment;
 import fragments.autocomplete.AutoCompleteGettingStartedFragment;
-import fragments.listview.ListViewCollapsibleFragment;
-import fragments.listview.ListViewDataOperationsFragment;
-import fragments.listview.ListViewDeckOfCardsFragment;
-import fragments.listview.ListViewGettingStartedFragment;
-import fragments.listview.ListViewItemAnimationFragment;
-import fragments.listview.ListViewLayoutsFragment;
-import fragments.listview.ListViewLoadOnDemandFragment;
-import fragments.listview.ListViewReorderFragment;
-import fragments.listview.ListViewSelectionFragment;
-import fragments.listview.ListViewSlideFragment;
-import fragments.listview.ListViewStickyHeadersFragment;
-import fragments.listview.ListViewSwipeToExecuteFragment;
-import fragments.listview.ListViewSwipeToRefreshFragment;
-import fragments.listview.ListViewWrapFragment;
+import fragments.autocomplete.AutoCompleteTokenLayoutsFragment;
 
 public class AutoCompleteExamples implements ExamplesProvider {
     @Override
     public String controlName() {
-        return "AutoComplete";
+        return "AutoCompleteTextView";
     }
 
     @Override
@@ -31,6 +19,8 @@ public class AutoCompleteExamples implements ExamplesProvider {
 
         ArrayList<ExampleFragment> examplesSet = new ArrayList<>();
         examplesSet.add(new AutoCompleteGettingStartedFragment());
+        examplesSet.add(new AutoCompleteTokenLayoutsFragment());
+        examplesSet.add(new AutoCompleteCustomizationFragment());
         examples.put("Feature Review", examplesSet);
 
         return examples;
