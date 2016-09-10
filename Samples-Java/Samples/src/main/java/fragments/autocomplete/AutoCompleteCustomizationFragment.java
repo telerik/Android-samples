@@ -58,11 +58,9 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
         adapter.setCompletionMode(CompletionMode.CONTAINS);
         autocomplete.setAdapter(adapter);
 
-        int a = rootView.getHeight();
         Display display = this.getActivity().getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        int sd  =  display.getHeight();
-        autocomplete.suggestionViewHeight = sd/3;
+        int height  =  display.getHeight();
+        autocomplete.suggestionViewHeight = height/3;
 
         return rootView;
     }
