@@ -1,7 +1,6 @@
 package fragments.autocomplete;
 
 import android.graphics.drawable.Drawable;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -21,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import activities.ExampleFragment;
@@ -28,7 +28,11 @@ import activities.ExampleFragment;
 
 public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment implements ExampleFragment {
 
-    private JSONArray data;
+    private String[] data = new String[]{"Australia", "Albania","Bulgaria","Belgium","Cyprus","Italy","Japan",
+                                        "Denmark","Finland","France","Germany","Greece","Hungary","Ireland",
+                                        "Latvia","Luxembourg","Macedonia","Moldova","Monaco","Netherlands","Norway",
+                                        "Poland","Romania","Russia","Sweden","Slovenia","Slovakia","Turkey","Ukraine",
+                                        "Vatican City"};
     private TestModuledAutoComplete autocomplete;
     private AutoCompleteAdapter adapter;
 
@@ -46,16 +50,7 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
         autocomplete.setDisplayMode(DisplayMode.PLAIN);
 
-        String jsonData = this.getJSONFile(R.raw.countries);
-        try{
-            JSONObject jObj = new JSONObject(jsonData);
-            data = jObj.getJSONArray("data");
-        }
-        catch(JSONException ex){
-            ex.printStackTrace();
-        }
-
-        adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(data), R.layout.suggestion_item_layout);
+        adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(), R.layout.suggestion_item_layout);
         adapter.setCompletionMode(CompletionMode.STARTS_WITH);
         autocomplete.setAdapter(adapter);
 
@@ -126,25 +121,10 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
 
     }
 
-    private ArrayList<TokenModel> getTokenModelObjects(JSONArray json) {
+    private ArrayList<TokenModel> getTokenModelObjects() {
         ArrayList<TokenModel> feedData = new ArrayList<TokenModel>();
-        JSONObject current = new JSONObject();
-        for(int i = 0; i < json.length(); i++) {
-            String name = "";
-            String flag = "";
-
-            try{
-                current = json.getJSONObject(i);
-                name = (String)current.get("country");
-                flag = (String)current.get("flag");
-            }
-            catch (JSONException ex){
-                ex.printStackTrace();
-            }
-
-            int dr = getResources().getIdentifier(flag, "drawable","com.telerik.android.sdk");
-            Drawable m = getResources().getDrawable(dr);
-            TokenModel token = new TokenModel(name,m, null);
+        for(int i = 0; i < this.data.length; i++){
+            TokenModel token = new TokenModel(this.data[i], null, null);
             feedData.add(token);
         }
 
