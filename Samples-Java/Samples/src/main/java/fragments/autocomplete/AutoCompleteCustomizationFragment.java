@@ -1,6 +1,5 @@
 package fragments.autocomplete;
 
-import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -61,6 +60,9 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
         Display display = this.getActivity().getWindowManager().getDefaultDisplay();
         int height  =  display.getHeight();
         autocomplete.suggestionViewHeight = height/3;
+
+        Drawable img = getResources().getDrawable(R.drawable.search);
+        autocomplete.setAutocompleteIcon(img);
 
         return rootView;
     }
