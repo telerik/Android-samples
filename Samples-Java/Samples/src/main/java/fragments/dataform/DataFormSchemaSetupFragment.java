@@ -37,7 +37,7 @@ public class DataFormSchemaSetupFragment extends Fragment implements ExampleFrag
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ViewGroup layoutRoot = (ViewGroup) inflater.inflate(R.layout.fragment_data_form_schema_setup, container, false);
-        RadDataForm dataForm = new RadDataForm(this.getActivity());
+        RadDataForm dataForm = (RadDataForm)layoutRoot.findViewById(R.id.data_form_schema);
 
         String json = loadJSONFromAsset(R.raw.person_extended);
 
@@ -52,8 +52,6 @@ public class DataFormSchemaSetupFragment extends Fragment implements ExampleFrag
         } catch (JSONException e) {
             Log.e("json", "error parsing json", e);
         }
-
-        layoutRoot.addView(dataForm);
 
         return layoutRoot;
 

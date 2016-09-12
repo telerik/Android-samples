@@ -27,9 +27,9 @@ public class DataFormEditorsFragment extends Fragment implements ExampleFragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootLayout = (ViewGroup)inflater.inflate(R.layout.fragment_dataform_editors, null);
+        ViewGroup rootLayout = (ViewGroup)inflater.inflate(R.layout.fragment_dataform_editors, container, false);
 
-        final RadDataForm dataForm = new RadDataForm(this.getActivity());
+        final RadDataForm dataForm = (RadDataForm)rootLayout.findViewById(R.id.data_form_editors);
         dataForm.getAdapter().setEditorProvider(new Function<EntityProperty, EntityPropertyEditor>() {
             @Override
             public EntityPropertyEditor apply(EntityProperty property) {
@@ -42,8 +42,6 @@ public class DataFormEditorsFragment extends Fragment implements ExampleFragment
         });
 
         dataForm.setEntity(new Person());
-
-        rootLayout.addView(dataForm);
 
         return rootLayout;
     }

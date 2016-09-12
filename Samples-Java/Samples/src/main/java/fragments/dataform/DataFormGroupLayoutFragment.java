@@ -26,9 +26,9 @@ public class DataFormGroupLayoutFragment extends Fragment implements ExampleFrag
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootLayout = (ViewGroup)inflater.inflate(R.layout.fragment_dataform_grouping, null);
+        ViewGroup rootLayout = (ViewGroup) inflater.inflate(R.layout.fragment_dataform_grouping, container, false);
 
-        RadDataForm dataForm = new RadDataForm(this.getActivity());
+        RadDataForm dataForm = (RadDataForm)rootLayout.findViewById(R.id.data_form_grouping);
 
         DataFormGroupLayoutManager groupManager = new DataFormGroupLayoutManager(this.getActivity());
         groupManager.setCreateGroup(new Function2<Context, String, EditorGroup>() {
@@ -48,8 +48,6 @@ public class DataFormGroupLayoutFragment extends Fragment implements ExampleFrag
 
         dataForm.setLayoutManager(groupManager);
         dataForm.setEntity(new Person());
-
-        rootLayout.addView(dataForm);
 
         return rootLayout;
     }
