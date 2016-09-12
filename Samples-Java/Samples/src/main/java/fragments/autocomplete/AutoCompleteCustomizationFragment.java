@@ -59,7 +59,7 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
 
         Display display = this.getActivity().getWindowManager().getDefaultDisplay();
         int height  =  display.getHeight();
-        autocomplete.suggestionViewHeight = height/3;
+        autocomplete.setSuggestionViewHeight(height/3);
 
         Drawable img = getResources().getDrawable(R.drawable.search);
         autocomplete.setAutocompleteIcon(img);
