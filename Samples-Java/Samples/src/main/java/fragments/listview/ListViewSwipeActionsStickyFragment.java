@@ -7,14 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.telerik.android.sdk.R;
 import com.telerik.widget.list.ListViewAdapter;
 import com.telerik.widget.list.ListViewHolder;
 import com.telerik.widget.list.RadListView;
 import com.telerik.widget.list.SwipeActionsBehavior;
-import com.telerik.widget.list.SwipeExecuteBehavior;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ import activities.ExampleFragment;
 /**
  * Created by ginev on 2/20/2015.
  */
-public class ListViewSwipeActionsFragment extends Fragment implements ExampleFragment {
+public class ListViewSwipeActionsStickyFragment extends Fragment implements ExampleFragment {
 
     private RadListView listView;
     private SwipeActionsBehavior sab;
@@ -56,44 +54,71 @@ public class ListViewSwipeActionsFragment extends Fragment implements ExampleFra
 
         this.listView.setAdapter(new MyListViewAdapter(dataSource));
 
+        // >> swipe-actions-sticky
+
         this.sab = new SwipeActionsBehavior();
         this.sab.addListener(new SwipeActionsBehavior.SwipeActionsListener() {
-            private int leftContentSize = -1;
-            private int rightContentSize = -1;
+            private int leftWidth = -1;
+            private int rightWidth = -1;
+            private ViewGroup swipeView;
+            private View leftActionView;
+            private View rightActionView;
             @Override
             public void onSwipeStarted(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent) {
-                View swipeView = swipeActionEvent.swipeView();
-                if (this.leftContentSize == -1 || rightContentSize == -1) {
-                    sab.setSwipeThresholdStart((((ViewGroup)swipeView).getChildAt(0)).getWidth());
-                    sab.setSwipeThresholdEnd((((ViewGroup)swipeView).getChildAt(1)).getWidth());
+                this.swipeView = (ViewGroup)swipeActionEvent.swipeView();
+                this.leftActionView = this.swipeView.getChildAt(0);
+                this.rightActionView = this.swipeView.getChildAt(1);
+
+                if (leftWidth == -1) {
+                    leftWidth = this.leftActionView.getWidth();
                 }
-               // setClickable(swipeView, false);
+
+                if (rightWidth == -1) {
+                    rightWidth = this.rightActionView.getWidth();
+                }
             }
 
             @Override
             public void onSwipeProgressChanged(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent) {
 
+                if (swipeActionEvent.currentOffset() > leftWidth){
+                    ViewGroup.LayoutParams lp = this.leftActionView.getLayoutParams();
+                    lp.width = swipeActionEvent.currentOffset();
+                    this.leftActionView.setLayoutParams(lp);
+                }
+
+                if (swipeActionEvent.currentOffset() < -rightWidth){
+                    ViewGroup.LayoutParams lp = this.rightActionView.getLayoutParams();
+                    lp.width = -swipeActionEvent.currentOffset();
+                    this.rightActionView.setLayoutParams(lp);
+                }
             }
 
             @Override
             public void onSwipeEnded(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent) {
-
+                // Fired when the user releases the item being swiped.
             }
 
             @Override
             public void onExecuteFinished(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent) {
-
+                // Fired when the swipe-execute procedure has ended, i.e. the item being swiped is at
+                // its original position.
+                this.leftWidth = -1;
+                this.rightWidth = -1;
             }
         });
 
         this.listView.addBehavior(this.sab);
 
+        // << swipe-actions-sticky
+
         return rootView;
     }
 
+
     @Override
     public String title() {
-        return "Swipe actions";
+        return "Swipe actions: sticky actions";
     }
 
     class EmailMessage {
@@ -126,7 +151,7 @@ public class ListViewSwipeActionsFragment extends Fragment implements ExampleFra
         @Override
         public ListViewHolder onCreateSwipeContentHolder(ViewGroup viewGroup) {
             LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-            View swipeContentView = inflater.inflate(R.layout.example_list_view_swipe_content, viewGroup, false);
+            View swipeContentView = inflater.inflate(R.layout.example_list_view_swipe_actions_gs_swipe_content, viewGroup, false);
             MySwipeContentViewHolder vh = new MySwipeContentViewHolder(swipeContentView);
             return vh;
         }
@@ -135,22 +160,6 @@ public class ListViewSwipeActionsFragment extends Fragment implements ExampleFra
         public void onBindSwipeContentHolder(final ListViewHolder viewHolder, final int position) {
             final EmailMessage currentMessage = (EmailMessage)getItem(position);
             MySwipeContentViewHolder swipeContentHolder = (MySwipeContentViewHolder)viewHolder;
-            swipeContentHolder.action1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(((MySwipeContentViewHolder) viewHolder).itemView.getContext(), currentMessage.title + " successfully archived.", Toast.LENGTH_SHORT).show();
-                    sab.endExecute();
-                }
-            });
-
-            swipeContentHolder.action2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    remove(position);
-                    Toast.makeText(((MySwipeContentViewHolder) viewHolder).itemView.getContext(), currentMessage.title + " successfully deleted.", Toast.LENGTH_SHORT).show();
-                    sab.endExecute();
-                }
-            });
         }
     }
 
