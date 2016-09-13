@@ -121,6 +121,8 @@ public class ListViewSwipeActionsGettingStartedFragment extends Fragment impleme
             customVH.txtContent.setText(message.content);
         }
 
+        // >> list-swipe-actions-adapter
+
         @Override
         public ListViewHolder onCreateSwipeContentHolder(ViewGroup viewGroup) {
             LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
@@ -134,6 +136,7 @@ public class ListViewSwipeActionsGettingStartedFragment extends Fragment impleme
             final EmailMessage currentMessage = (EmailMessage)getItem(position);
             MySwipeContentViewHolder swipeContentHolder = (MySwipeContentViewHolder)viewHolder;
         }
+        // << list-swipe-actions-adapter
     }
 
     class MyCustomViewHolder extends ListViewHolder {

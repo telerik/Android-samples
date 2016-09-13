@@ -57,7 +57,7 @@ public class ListViewSwipeActionsStickyThresholdFragment extends Fragment implem
 
         this.listView.setAdapter(new MyListViewAdapter(dataSource));
 
-        // >> swipe-actions-sticky
+        // >> swipe-actions-animated-actions
 
         this.sab = new SwipeActionsBehavior();
         this.sab.addListener(new SwipeActionsBehavior.SwipeActionsListener() {
@@ -135,7 +135,7 @@ public class ListViewSwipeActionsStickyThresholdFragment extends Fragment implem
 
         this.listView.addBehavior(this.sab);
 
-        // << swipe-actions-sticky
+        // << swipe-actions-animated-actions
 
         return rootView;
     }
@@ -143,7 +143,7 @@ public class ListViewSwipeActionsStickyThresholdFragment extends Fragment implem
 
     @Override
     public String title() {
-        return "Swipe actions: sticky threshold";
+        return "Swipe actions: animated thresholds";
     }
 
     class EmailMessage {

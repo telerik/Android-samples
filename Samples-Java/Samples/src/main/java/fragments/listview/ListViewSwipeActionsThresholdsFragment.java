@@ -87,7 +87,7 @@ public class ListViewSwipeActionsThresholdsFragment extends Fragment implements 
         });
 
         this.listView.addBehavior(this.sab);
-        // >> list-swipe-actions-thresholds
+        // << list-swipe-actions-thresholds
 
         return rootView;
     }
