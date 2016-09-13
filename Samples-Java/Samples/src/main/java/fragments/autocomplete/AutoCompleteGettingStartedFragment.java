@@ -1,6 +1,7 @@
 package fragments.autocomplete;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.Button;
 import com.telerik.android.sdk.R;
 import com.telerik.widget.autocomplete.AutoCompleteAdapter;
 import com.telerik.widget.autocomplete.CompletionMode;
+import com.telerik.widget.autocomplete.CompletionModeContains;
+import com.telerik.widget.autocomplete.CompletionModeStartsWith;
 import com.telerik.widget.autocomplete.DisplayMode;
 import com.telerik.widget.autocomplete.RadAutoCompleteTextView;
 import com.telerik.widget.autocomplete.SuggestMode;
@@ -52,9 +55,13 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
 
         // >> autocomplete-adapter
         adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(), R.layout.suggestion_item_layout);
-        adapter.setCompletionMode(CompletionMode.STARTS_WITH);
+        adapter.setCompletionMode(new CompletionModeStartsWith());
         autocomplete.setAdapter(adapter);
         // << autocomplete-adapter
+
+        Display display = this.getActivity().getWindowManager().getDefaultDisplay();
+        int height  =  display.getHeight();
+        autocomplete.setSuggestionViewHeight(height/4);
 
         this.setButtonAction(rootView);
 
@@ -90,7 +97,7 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
         btnStartsWith.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapter.setCompletionMode(CompletionMode.STARTS_WITH);
+                adapter.setCompletionMode(new CompletionModeStartsWith());
                 autocomplete.resetAutocomplete();
             }
         });
@@ -98,7 +105,7 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
         btnContains.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapter.setCompletionMode(CompletionMode.CONTAINS);
+                adapter.setCompletionMode(new CompletionModeContains());
                 autocomplete.setSuggestMode(SuggestMode.SUGGEST);
                 autocomplete.resetAutocomplete();
             }

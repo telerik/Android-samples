@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.telerik.android.sdk.R;
 import com.telerik.widget.autocomplete.AutoCompleteAdapter;
 import com.telerik.widget.autocomplete.CompletionMode;
+import com.telerik.widget.autocomplete.CompletionModeContains;
 import com.telerik.widget.autocomplete.DisplayMode;
 import com.telerik.widget.autocomplete.RadAutoCompleteTextView;
 import com.telerik.widget.autocomplete.SuggestMode;
@@ -57,7 +58,7 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
         }
 
         adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(data), R.layout.suggestion_item_layout);
-        adapter.setCompletionMode(CompletionMode.CONTAINS);
+        adapter.setCompletionMode(new CompletionModeContains());
         autocomplete.setAdapter(adapter);
 
         Display display = this.getActivity().getWindowManager().getDefaultDisplay();
