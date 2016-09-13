@@ -22,7 +22,7 @@ public class GaugesGettingStartedFragment extends Fragment implements ExampleFra
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_radial_gauge, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_gauge_getting_started, container, false);
         final RadRadialGaugeView gauge = Util.getLayoutPart(rootView, R.id.radial_gauge, RadRadialGaugeView.class);
 
         GaugeRadialScale scale = new GaugeRadialScale(getContext());

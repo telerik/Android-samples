@@ -7,17 +7,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_margin="20dp"/>
     <RadioGroup
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="40dp">
         <RadioButton
             android:id="@+id/radio_60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="60"/>
+            android:text="60"
+            android:checked="true"/>
         <RadioButton
             android:id="@+id/radio_80"
             android:layout_width="wrap_content"
