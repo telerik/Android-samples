@@ -20,11 +20,14 @@ import activities.ExampleFragment;
 
 public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment implements ExampleFragment {
 
-    private String[] data = new String[]{"Australia", "Albania","Bulgaria","Belgium","Cyprus","Italy","Japan",
+    // >> autocomplete-array
+    private String[] data = new String[]{"Australia", "Albania","Austria", "Argentina", "Maldives","Bulgaria","Belgium","Cyprus","Italy","Japan",
                                         "Denmark","Finland","France","Germany","Greece","Hungary","Ireland",
                                         "Latvia","Luxembourg","Macedonia","Moldova","Monaco","Netherlands","Norway",
                                         "Poland","Romania","Russia","Sweden","Slovenia","Slovakia","Turkey","Ukraine",
-                                        "Vatican City"};
+                                        "Vatican City", "Chad", "China", "Chile"};
+    // << autocomplete-array
+
     private RadAutoCompleteTextView autocomplete;
     private AutoCompleteAdapter adapter;
 
@@ -36,15 +39,22 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.autocomplete_getting_started, container, false);
 
+        View rootView = inflater.inflate(R.layout.autocomplete_getting_started, container, false);
+        // >> autocomplete-load
         autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocmp);
+        // << autocomplete-load
+
+        // >> autocomplete-suggest-display
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
         autocomplete.setDisplayMode(DisplayMode.PLAIN);
+        // << autocomplete-suggest-display
 
+        // >> autocomplete-adapter
         adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(), R.layout.suggestion_item_layout);
         adapter.setCompletionMode(CompletionMode.STARTS_WITH);
         autocomplete.setAdapter(adapter);
+        // << autocomplete-adapter
 
         this.setButtonAction(rootView);
 
@@ -113,6 +123,7 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
 
     }
 
+    // >> autocomplete-token-models
     private ArrayList<TokenModel> getTokenModelObjects() {
         ArrayList<TokenModel> feedData = new ArrayList<TokenModel>();
         for(int i = 0; i < this.data.length; i++){
@@ -122,4 +133,5 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
 
         return feedData;
     }
+    // << autocomplete-token-models
 }

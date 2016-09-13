@@ -21,11 +21,11 @@ import activities.ExampleFragment;
 
 public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment implements ExampleFragment {
 
-    private String[] data = new String[]{"Australia", "Albania","Bulgaria","Belgium","Cyprus","Italy","Japan",
+    private String[] data = new String[]{"Australia", "Albania","Austria", "Argentina", "Maldives","Bulgaria","Belgium","Cyprus","Italy","Japan",
             "Denmark","Finland","France","Germany","Greece","Hungary","Ireland",
             "Latvia","Luxembourg","Macedonia","Moldova","Monaco","Netherlands","Norway",
             "Poland","Romania","Russia","Sweden","Slovenia","Slovakia","Turkey","Ukraine",
-            "Vatican City"};
+            "Vatican City", "Chad", "China", "Chile"};
     private RadAutoCompleteTextView autocomplete = null;
 
     public String title() {
@@ -39,11 +39,18 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
 
         autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocmp);
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
+        // >> autocomplete-display-mode
         autocomplete.setDisplayMode(DisplayMode.TOKENS);
+        // << autocomplete-display-mode
+
+        // >> autocomplete-layout-mode
         autocomplete.setTokensLayoutMode(LayoutMode.HORIZONTAL);
+        // << autocomplete-layout-mode
 
         final AutoCompleteAdapter adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(), R.layout.suggestion_item_layout);
+        // >> autocomplete-completion-mode
         adapter.setCompletionMode(CompletionMode.STARTS_WITH);
+        // << autocomplete-completion-mode
         autocomplete.setAdapter(adapter);
 
         this.setButtonActions(rootView);
