@@ -41,7 +41,10 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
         View rootView = inflater.inflate(R.layout.autocomplete_customization, container, false);
 
         autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocomplete);
+
+        // >> autocomplete-suggest-mode
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
+        // << autocomplete-suggest-mode
         autocomplete.setDisplayMode(DisplayMode.TOKENS);
 
         String jsonData = this.getJSONFile(R.raw.countries);
