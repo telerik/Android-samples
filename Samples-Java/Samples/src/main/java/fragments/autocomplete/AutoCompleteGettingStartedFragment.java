@@ -1,5 +1,4 @@
 package fragments.autocomplete;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import com.telerik.widget.autocomplete.DisplayMode;
 import com.telerik.widget.autocomplete.RadAutoCompleteTextView;
 import com.telerik.widget.autocomplete.SuggestMode;
 import com.telerik.widget.autocomplete.TokenModel;
-
 import java.util.ArrayList;
 
 import activities.ExampleFragment;
