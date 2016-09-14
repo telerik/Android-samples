@@ -82,7 +82,7 @@ public class GuagesAnimationsFragment extends Fragment implements ExampleFragmen
 
     private void setupGauge(RadGaugeView gauge) {
         gauge.getSubtitle().setText("km/h");
-        gauge.setSubtitleOffsetY(20);
+        gauge.setSubtitleVerticalOffset(20);
 
         GaugeRadialScale scale = new GaugeRadialScale(getActivity());
         scale.setMinimum(0);
