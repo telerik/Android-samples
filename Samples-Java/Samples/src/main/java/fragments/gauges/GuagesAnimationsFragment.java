@@ -9,6 +9,7 @@ import android.util.Range;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.RadioButton;
 
 import com.telerik.android.common.Util;
@@ -102,8 +103,15 @@ public class GuagesAnimationsFragment extends Fragment implements ExampleFragmen
         needle.setLength(0.8f);
         needle.setBottomWidth(8);
         needle.setTopWidth(8);
+
+        // >> gauge-animations-turn-on
         needle.setAnimated(true);
         needle.setAnimationDuration(500);
+        // << gauge-animations-turn-on
+
+        // >> gauge-animations-timing-func
+        needle.setInterpolator(new AccelerateDecelerateInterpolator());
+        // << gauge-animations-timing-func
 
         scale.addIndicator(needle);
 

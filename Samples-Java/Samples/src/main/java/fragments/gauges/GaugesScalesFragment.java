@@ -27,26 +27,25 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
         View rootView = inflater.inflate(R.layout.fragment_gauge_scales, container, false);
         RadRadialGaugeView gauge = Util.getLayoutPart(rootView, R.id.radial_gauge, RadRadialGaugeView.class);
 
+        // >> radial-scale-instantiate
         GaugeRadialScale scale1 = new GaugeRadialScale(getActivity());
         scale1.setMinimum(34);
         scale1.setMaximum(40);
+        // << radial-scale-instantiate
+
+        // << radial-scale-config
         scale1.setRadius(0.6f);
+        scale1.setStrokeWidth(2);
+        // >> radial-scale-config
+
+        // >> radial-scale-config-ticks-labels
         scale1.setLabelsColor(Color.GRAY);
-        scale1.getStrokePaint().setStrokeWidth(2);
-        scale1.addIndicator(getIndicator(34,36,Color.BLUE));
-        scale1.addIndicator(getIndicator(36.05f,40,Color.RED));
         scale1.setLabelsCount(7);
         scale1.setMajorTicksCount(7);
         scale1.getLabelsPaint().setTextSize(30);
+        // << radial-scale-config-ticks-labels
 
-        GaugeRadialNeedle needle = new GaugeRadialNeedle(getActivity());
-        needle.setValue(36.5f);
-        needle.setLength(0.5f);
-        needle.setTopWidth(8);
-        needle.setBottomWidth(8);
-        scale1.addIndicator(needle);
-        gauge.addScale(scale1);
-
+        // >> radial-scale-config2
         GaugeRadialScale scale2 = new GaugeRadialScale(getActivity());
         scale2.getStrokePaint().setStrokeWidth(2);
         scale2.setRadius(0.7f);
@@ -59,16 +58,35 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
         scale2.setLabelsLayoutMode(GaugeScaleLabelsLayoutMode.OUTER);
         scale2.getLabelsPaint().setTextSize(30);
         scale2.setLabelsColor(Color.GRAY);
-        gauge.addScale(scale2);
+        // << radial-scale-config2
 
+        // >> add-scale-to-gauge
+        gauge.addScale(scale1);
+        gauge.addScale(scale2);
+        // << add-scale-to-gauge
+
+        // >> add-indicators-to-scale
+        GaugeRadialNeedle needle = new GaugeRadialNeedle(getActivity());
+        needle.setValue(36.5f);
+        needle.setLength(0.5f);
+        needle.setTopWidth(8);
+        needle.setBottomWidth(8);
+        scale1.addIndicator(needle);
+        scale1.addIndicator(getIndicator(34,36,Color.BLUE));
+        scale1.addIndicator(getIndicator(36.05f,40,Color.RED));
+        // << add-indicators-to-scale
+
+        // >> gauge-set-title
         gauge.getTitle().setText("celsius");
         gauge.getSubtitle().setText("fahrenheit");
         gauge.setTitleVerticalOffset(90);
+        // << gauge-set-title
 
         return rootView;
 
     }
 
+    // >> add-bar-indicator-helper
     private GaugeIndicator getIndicator(float min, float max, int color) {
         GaugeRadialBarIndicator indicator = new GaugeRadialBarIndicator(this.getActivity());
         indicator.setMinimum(min);
@@ -78,6 +96,7 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
         indicator.setBarWidth(0.08f);
         return indicator;
     }
+    // << add-bar-indicator-helper
 
     @Override
     public String title() {
