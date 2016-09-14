@@ -37,7 +37,7 @@
                     android:id="@+id/data_form_validation_mode_spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:textSize="@dimen/data_form_editor_text_size"
                     style="@style/Widget.AppCompat.Spinner.Underlined"/>
 
                 <Button
