@@ -43,7 +43,6 @@ public class GuagesAnimationsFragment extends Fragment implements ExampleFragmen
         btn60.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                needle.setAnimationStartValue(needle.getValue());
                 needle.setValue(60);
             }
         });
@@ -52,7 +51,6 @@ public class GuagesAnimationsFragment extends Fragment implements ExampleFragmen
         btn80.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                needle.setAnimationStartValue(needle.getValue());
                 needle.setValue(80);
             }
         });
@@ -61,7 +59,6 @@ public class GuagesAnimationsFragment extends Fragment implements ExampleFragmen
         btn120.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                needle.setAnimationStartValue(needle.getValue());
                 needle.setValue(120);
             }
         });
@@ -70,7 +67,6 @@ public class GuagesAnimationsFragment extends Fragment implements ExampleFragmen
         btn160.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                needle.setAnimationStartValue(needle.getValue());
                 needle.setValue(160);
             }
         });
@@ -78,9 +74,15 @@ public class GuagesAnimationsFragment extends Fragment implements ExampleFragmen
         return rootView;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        needle.setValue(60);
+    }
+
     private void setupGauge(RadGaugeView gauge) {
         gauge.getSubtitle().setText("km/h");
-        gauge.setSubtitleOffsetY(20);
+        gauge.setSubtitleVerticalOffset(20);
 
         GaugeRadialScale scale = new GaugeRadialScale(getActivity());
         scale.setMinimum(0);
