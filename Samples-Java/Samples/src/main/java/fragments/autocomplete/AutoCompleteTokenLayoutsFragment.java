@@ -1,6 +1,8 @@
 package fragments.autocomplete;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +55,10 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
         // << autocomplete-completion-mode
         autocomplete.setAdapter(adapter);
 
+        Display display = this.getActivity().getWindowManager().getDefaultDisplay();
+        int height  =  display.getHeight();
+        autocomplete.setSuggestionViewHeight(height/4);
+
         this.setButtonActions(rootView);
 
         return rootView;
@@ -61,7 +67,7 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
     private ArrayList<TokenModel> getTokenModelObjects() {
         ArrayList<TokenModel> feedData = new ArrayList<TokenModel>();
         for(int i = 0; i < this.data.length; i++){
-            TokenModel token = new TokenModel(this.data[i], null, null);
+            TokenModel token = new TokenModel(this.data[i], null);
             feedData.add(token);
         }
 

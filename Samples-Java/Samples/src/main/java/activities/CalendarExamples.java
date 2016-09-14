@@ -41,7 +41,7 @@ public class CalendarExamples implements ExamplesProvider {
 
     @Override
     public String controlName() {
-        return "Calendar";
+        return "CalendarView";
     }
 
     @Override

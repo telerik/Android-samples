@@ -87,7 +87,7 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
 
             int dr = getResources().getIdentifier(flag, "drawable","com.telerik.android.sdk");
             Drawable m = getResources().getDrawable(dr);
-            TokenModel token = new TokenModel(name,m, null);
+            TokenModel token = new TokenModel(name,m);
             feedData.add(token);
         }
 

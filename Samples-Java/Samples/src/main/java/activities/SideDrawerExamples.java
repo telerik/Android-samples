@@ -8,7 +8,7 @@ import fragments.sidedrawer.SideDrawerFeaturesFragment;
 public class SideDrawerExamples implements ExamplesProvider {
     @Override
     public String controlName() {
-        return "Side Drawer";
+        return "SideDrawer";
     }
 
     @Override

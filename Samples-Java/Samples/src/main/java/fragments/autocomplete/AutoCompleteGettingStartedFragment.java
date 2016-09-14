@@ -1,6 +1,8 @@
 package fragments.autocomplete;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,6 @@ import com.telerik.widget.autocomplete.TokenModel;
 import java.util.ArrayList;
 
 import activities.ExampleFragment;
-
 
 public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment implements ExampleFragment {
 
@@ -55,6 +56,10 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
         adapter.setCompletionMode(CompletionMode.STARTS_WITH);
         autocomplete.setAdapter(adapter);
         // << autocomplete-adapter
+
+        Display display = this.getActivity().getWindowManager().getDefaultDisplay();
+        int height  =  display.getHeight();
+        autocomplete.setSuggestionViewHeight(height/4);
 
         this.setButtonAction(rootView);
 
@@ -127,7 +132,7 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
     private ArrayList<TokenModel> getTokenModelObjects() {
         ArrayList<TokenModel> feedData = new ArrayList<TokenModel>();
         for(int i = 0; i < this.data.length; i++){
-            TokenModel token = new TokenModel(this.data[i], null, null);
+            TokenModel token = new TokenModel(this.data[i], null);
             feedData.add(token);
         }
 
