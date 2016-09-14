@@ -6,7 +6,6 @@
         android:id="@+id/radial_gauge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_margin="20dp"/>
 
 </LinearLayout>

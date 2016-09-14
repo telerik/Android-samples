@@ -63,7 +63,7 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
 
         gauge.getTitle().setText("celsius");
         gauge.getSubtitle().setText("fahrenheit");
-        gauge.setTitleOffsetY(90);
+        gauge.setTitleVerticalOffset(90);
 
         return rootView;
 

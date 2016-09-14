@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.telerik.android.common.Util;
 import com.telerik.android.sdk.R;
 import com.telerik.widget.gauge.RadRadialGaugeView;
+import com.telerik.widget.indicators.GaugeBarIndicatorCapMode;
 import com.telerik.widget.indicators.GaugeIndicator;
 import com.telerik.widget.indicators.GaugeRadialBarIndicator;
 import com.telerik.widget.scales.GaugeRadialScale;
@@ -18,7 +19,7 @@ import java.util.Random;
 import activities.ExampleFragment;
 
 public class GaugesCustomizationFragment extends Fragment implements ExampleFragment {
-    ArrayList<GaugeIndicator> indicators;
+    RadRadialGaugeView gauge;
     @Override
     public String title() {
         return "Customization";
@@ -28,11 +29,11 @@ public class GaugesCustomizationFragment extends Fragment implements ExampleFrag
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_gauge_customization, container, false);
-        RadRadialGaugeView gauge = Util.getLayoutPart(rootView, R.id.radial_gauge, RadRadialGaugeView.class);
+        gauge = Util.getLayoutPart(rootView, R.id.radial_gauge, RadRadialGaugeView.class);
 
         GaugeRadialScale scale = new GaugeRadialScale(getActivity());
         scale.setStartAngle(0);
-        scale.setSweepAngle(359.99f);
+        scale.setSweepAngle(360);
         scale.setLineVisible(false);
         scale.setMinimum(0);
         scale.setMaximum(100);
@@ -51,7 +52,6 @@ public class GaugesCustomizationFragment extends Fragment implements ExampleFrag
                 Color.argb(255,132,235,247)
         };
 
-        indicators = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             GaugeRadialBarIndicator trnspIndicator = new GaugeRadialBarIndicator(getActivity());
             trnspIndicator.setMinimum(0);
@@ -70,18 +70,16 @@ public class GaugesCustomizationFragment extends Fragment implements ExampleFrag
             indicator.setBarWidth(0.2f);
             indicator.setLocation(0.5f +  i * 0.25f);
             indicator.setFillColor(colors[i]);
+            indicator.setCap(GaugeBarIndicatorCapMode.ROUND);
             scale.addIndicator(indicator);
-            indicators.add(indicator);
         }
         gauge.addScale(scale);
         return rootView;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        for (GaugeIndicator indicator : indicators) {
-            indicator.startAnimation();
-        }
+    public void onResume() {
+        super.onResume();
+        gauge.animateGauge();
     }
 }

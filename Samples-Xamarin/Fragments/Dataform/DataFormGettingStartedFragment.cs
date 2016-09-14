@@ -20,13 +20,11 @@ namespace Samples
 	{
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			ViewGroup rootLayout = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_dataform_getting_started, null);
+			ViewGroup rootLayout = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_dataform_getting_started, container, false);
 
-			RadDataForm dataForm = new RadDataForm(this.Activity);
+			RadDataForm dataForm = (RadDataForm)rootLayout.FindViewById(Resource.Id.data_form_getting_started);
 
 			dataForm.SetEntity(new Person());
-
-			rootLayout.AddView(dataForm);
 
 			return rootLayout;
 		}

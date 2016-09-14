@@ -30,13 +30,13 @@ namespace Samples
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			ViewGroup rootLayout = (ViewGroup) inflater.Inflate(Resource.Layout.fragment_dataform_validation_mode, null);
+			ViewGroup rootLayout = (ViewGroup) inflater.Inflate(Resource.Layout.fragment_dataform_validation_mode, container, false);
 
 			Spinner validationModeSpinner = (Spinner) rootLayout.FindViewById(Resource.Id.data_form_validation_mode_spinner);
 			validationModeSpinner.OnItemSelectedListener = this;
 			validationModeSpinner.Adapter = new ArrayAdapter(this.Activity, Android.Resource.Layout.SimpleSpinnerItem, new ValidationMode[]{ValidationMode.Immediate, ValidationMode.OnLostFocus, ValidationMode.Manual});
 
-			dataForm = new RadDataForm(this.Activity);
+			dataForm = (RadDataForm)rootLayout.FindViewById(Resource.Id.data_form_validation_mode);
 
 			dataForm.LayoutManager = new DataFormLinearLayoutManager(this.Activity);
 			dataForm.CommitMode = CommitMode.Manual;
@@ -49,8 +49,6 @@ namespace Samples
 
 			validateButton = (Button)rootLayout.FindViewById(Resource.Id.data_form_validate_button);
 			validateButton.SetOnClickListener(this);
-
-			rootLayout.AddView(dataForm, 0);
 
 			return rootLayout;
 		}

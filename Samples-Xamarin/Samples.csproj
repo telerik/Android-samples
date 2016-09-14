@@ -192,6 +192,7 @@
     <Compile Include="Fragments\Calendar\Customization\CellStylesFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormEditorStylesFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormLabelPositionsFragment.cs" />
+    <Compile Include="Fragments\Dataform\DataFormExpandableGroupsFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

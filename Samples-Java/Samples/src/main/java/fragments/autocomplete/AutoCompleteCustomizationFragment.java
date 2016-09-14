@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.telerik.android.sdk.R;
 import com.telerik.widget.autocomplete.AutoCompleteAdapter;
 import com.telerik.widget.autocomplete.CompletionMode;
+import com.telerik.widget.autocomplete.CompletionModeContains;
 import com.telerik.widget.autocomplete.DisplayMode;
 import com.telerik.widget.autocomplete.RadAutoCompleteTextView;
 import com.telerik.widget.autocomplete.SuggestMode;
@@ -41,7 +42,10 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
         View rootView = inflater.inflate(R.layout.autocomplete_customization, container, false);
 
         autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocomplete);
+
+        // >> autocomplete-suggest-mode
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
+        // << autocomplete-suggest-mode
         autocomplete.setDisplayMode(DisplayMode.TOKENS);
 
         String jsonData = this.getJSONFile(R.raw.countries);
@@ -54,13 +58,12 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
         }
 
         adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(data), R.layout.suggestion_item_layout);
-        adapter.setCompletionMode(CompletionMode.CONTAINS);
+        adapter.setCompletionMode(new CompletionModeContains());
         autocomplete.setAdapter(adapter);
 
         Display display = this.getActivity().getWindowManager().getDefaultDisplay();
         int height  =  display.getHeight();
-        autocomplete.suggestionViewHeight = height/3;
-
+        autocomplete.setSuggestionViewHeight(height/3);
         Drawable img = getResources().getDrawable(R.drawable.search);
         autocomplete.setAutocompleteIcon(img);
 
@@ -85,7 +88,7 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
 
             int dr = getResources().getIdentifier(flag, "drawable","com.telerik.android.sdk");
             Drawable m = getResources().getDrawable(dr);
-            TokenModel token = new TokenModel(name,m, null);
+            TokenModel token = new TokenModel(name,m);
             feedData.add(token);
         }
 

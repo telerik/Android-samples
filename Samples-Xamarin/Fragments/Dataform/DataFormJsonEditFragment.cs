@@ -34,7 +34,7 @@ namespace Samples
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			ViewGroup layoutRoot = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_data_form_json_edit, container, false);
-			RadDataForm dataForm = new RadDataForm(Activity);
+			RadDataForm dataForm = (RadDataForm)layoutRoot.FindViewById(Resource.Id.data_form_json_edit);
 
 			String json = LoadJSONFromAsset ("Person.json");
 			try {
@@ -43,8 +43,6 @@ namespace Samples
 			} catch(JSONException e) {
 				Log.Error ("json", "error parsing json", e);
 			}
-
-			layoutRoot.AddView(dataForm);
 
 			return layoutRoot;
 		}

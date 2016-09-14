@@ -24,14 +24,12 @@ namespace Samples
 		}
 
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			ViewGroup rootLayout = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_dataform_grouping, null);
+			ViewGroup rootLayout = (ViewGroup)inflater.Inflate(Resource.Layout.fragment_dataform_grouping, container, false);
 
-			RadDataForm dataForm = new RadDataForm(this.Activity);
+			RadDataForm dataForm = (RadDataForm)rootLayout.FindViewById(Resource.Id.data_form_grouping);
 			dataForm.FillViewport = true;
 			dataForm.LayoutManager = new DataFormPlaceholderLayoutManager(this.Activity, Resource.Layout.dataform_placeholder_layout);
 			dataForm.SetEntity (new Person());
-
-			rootLayout.AddView(dataForm);
 
 			return rootLayout;
 		}
