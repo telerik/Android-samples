@@ -67,7 +67,7 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
     private ArrayList<TokenModel> getTokenModelObjects() {
         ArrayList<TokenModel> feedData = new ArrayList<TokenModel>();
         for(int i = 0; i < this.data.length; i++){
-            TokenModel token = new TokenModel(this.data[i], null, null);
+            TokenModel token = new TokenModel(this.data[i], null);
             feedData.add(token);
         }
 
