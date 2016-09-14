@@ -12,7 +12,7 @@ import fragments.gauges.GuagesAnimationsFragment;
 public class GaugeExamples implements ExamplesProvider {
     @Override
     public String controlName() {
-        return "RadGaugeView";
+        return "Gauge";
     }
 
     @Override

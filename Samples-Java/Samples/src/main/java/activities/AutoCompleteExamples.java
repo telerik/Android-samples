@@ -10,7 +10,7 @@ import fragments.autocomplete.AutoCompleteTokenLayoutsFragment;
 public class AutoCompleteExamples implements ExamplesProvider {
     @Override
     public String controlName() {
-        return "RadAutoCompleteTextView";
+        return "Auto-Complete";
     }
 
     @Override
