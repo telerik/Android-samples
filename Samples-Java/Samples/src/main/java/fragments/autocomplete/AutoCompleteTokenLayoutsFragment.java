@@ -1,4 +1,5 @@
 package fragments.autocomplete;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Display;
@@ -10,7 +11,6 @@ import android.widget.Button;
 import com.telerik.android.sdk.R;
 import com.telerik.widget.autocomplete.AutoCompleteAdapter;
 import com.telerik.widget.autocomplete.CompletionMode;
-import com.telerik.widget.autocomplete.CompletionModeStartsWith;
 import com.telerik.widget.autocomplete.DisplayMode;
 import com.telerik.widget.autocomplete.LayoutMode;
 import com.telerik.widget.autocomplete.RadAutoCompleteTextView;
@@ -51,7 +51,7 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
 
         final AutoCompleteAdapter adapter = new AutoCompleteAdapter(this.getContext(),this.getTokenModelObjects(), R.layout.suggestion_item_layout);
         // >> autocomplete-completion-mode
-        adapter.setCompletionMode(new CompletionModeStartsWith());
+        adapter.setCompletionMode(CompletionMode.STARTS_WITH);
         // << autocomplete-completion-mode
         autocomplete.setAdapter(adapter);
 
