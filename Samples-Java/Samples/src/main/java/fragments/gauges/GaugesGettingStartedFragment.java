@@ -23,8 +23,12 @@ public class GaugesGettingStartedFragment extends Fragment implements ExampleFra
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_gauge_getting_started, container, false);
-        final RadRadialGaugeView gauge = Util.getLayoutPart(rootView, R.id.radial_gauge, RadRadialGaugeView.class);
 
+        // >> radial-gauge-load
+        RadRadialGaugeView gauge = Util.getLayoutPart(rootView, R.id.radial_gauge, RadRadialGaugeView.class);
+        // << radial-gauge-load
+
+        // >> radial-scale-setup
         GaugeRadialScale scale = new GaugeRadialScale(getContext());
         scale.setMinimum(0);
         scale.setMaximum(6);
@@ -33,10 +37,9 @@ public class GaugesGettingStartedFragment extends Fragment implements ExampleFra
         scale.setLabelsCount(7);
         scale.setLineVisible(false);
         scale.setRadius(0.95f);
+        // << radial-scale-setup
 
-        GaugeRadialNeedle needle = new GaugeRadialNeedle(getContext());
-        needle.setValue(2);
-
+        // >> radial-indicators-setup
         int[] colors = new int[] {
                 Color.rgb(221,221,221),
                 Color.rgb(157,202,86),
@@ -56,8 +59,15 @@ public class GaugesGettingStartedFragment extends Fragment implements ExampleFra
             start += rangeWidth;
         }
 
+        GaugeRadialNeedle needle = new GaugeRadialNeedle(getContext());
+        needle.setValue(2);
         scale.addIndicator(needle);
+        // << radial-indicators-setup
+
+        // >> add-radial-scale
         gauge.addScale(scale);
+        // << add-radial-scale
+
         return rootView;
     }
 

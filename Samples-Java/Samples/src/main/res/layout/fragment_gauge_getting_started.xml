@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <!-- >> radial-gauge-xml -->
     <com.telerik.widget.gauge.RadRadialGaugeView
         android:id="@+id/radial_gauge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"/>
+    <!-- << radial-gauge-xml -->
 
 </LinearLayout>
