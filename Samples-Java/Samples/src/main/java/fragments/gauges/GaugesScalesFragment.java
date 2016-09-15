@@ -33,10 +33,10 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
         scale1.setMaximum(40);
         // << radial-scale-instantiate
 
-        // << radial-scale-config
+        // >> radial-scale-config
         scale1.setRadius(0.6f);
         scale1.setStrokeWidth(2);
-        // >> radial-scale-config
+        // << radial-scale-config
 
         // >> radial-scale-config-ticks-labels
         scale1.setLabelsColor(Color.GRAY);
