@@ -40,6 +40,7 @@ public class GaugesCustomizationFragment extends Fragment implements ExampleFrag
         scale.setTicksVisible(false);
         scale.setLabelsVisible(false);
 
+        // >> gauges-indicators-bars
         int[] transparentColors = new int[] {
                 Color.argb(100,224,151,36),
                 Color.argb(100,196,241,57),
@@ -61,6 +62,7 @@ public class GaugesCustomizationFragment extends Fragment implements ExampleFrag
             trnspIndicator.setLocation(0.5f +  i * 0.25f);
             scale.addIndicator(trnspIndicator);
 
+
             GaugeRadialBarIndicator indicator = new GaugeRadialBarIndicator(getActivity());
             indicator.setMinimum(0);
             Random r = new Random();
@@ -73,6 +75,7 @@ public class GaugesCustomizationFragment extends Fragment implements ExampleFrag
             indicator.setCap(GaugeBarIndicatorCapMode.ROUND);
             scale.addIndicator(indicator);
         }
+        // << gauges-indicators-bars
         gauge.addScale(scale);
         return rootView;
     }

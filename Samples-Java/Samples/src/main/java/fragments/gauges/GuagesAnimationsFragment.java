@@ -99,10 +99,12 @@ public class GuagesAnimationsFragment extends Fragment implements ExampleFragmen
         scale.setLineVisible(false);
         gauge.addScale(scale);
 
+        // >> gauge-indicators-needle
         needle = new GaugeRadialNeedle(getActivity());
         needle.setLength(0.8f);
         needle.setBottomWidth(8);
         needle.setTopWidth(8);
+        // << gauge-indicators-needle
 
         // >> gauge-animations-turn-on
         needle.setAnimated(true);
