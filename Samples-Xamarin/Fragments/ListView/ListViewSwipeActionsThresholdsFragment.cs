@@ -60,6 +60,8 @@ namespace Samples
 			return "Swipe Actions: button actions";
 		}
 
+		// >> list-swipe-actions-thresholds-xamarin
+
 		public void OnExecuteFinished(SwipeActionsBehavior.SwipeActionEvent p0)
 		{
 		}
@@ -82,8 +84,11 @@ namespace Samples
 				sap.SetSwipeThresholdEnd((((ViewGroup)swipeView).GetChildAt(1)).Width);
 			}
 		}
+
+		// << list-swipe-actions-thresholds-xamarin
 	}
 
+	// >> list-swipe-actions-thresholds-xamarin-1
 	class ListViewSwipeActionsThresholdsAdapter : ListViewAdapter
 	{
 		private SwipeActionsBehavior sab;
@@ -177,4 +182,6 @@ namespace Samples
 		}
 
 	}
+
+	// << list-swipe-actions-thresholds-xamarin-1
 }

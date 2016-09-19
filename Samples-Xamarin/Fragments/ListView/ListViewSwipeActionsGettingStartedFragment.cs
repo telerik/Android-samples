@@ -16,6 +16,7 @@ using Com.Telerik.Widget.List;
 
 namespace Samples
 {
+	// >> list-swipe-actions-getting-started-xamarin
 	public class ListViewSwipeActionsGettingStartedFragment : Fragment, ExampleFragment, SwipeActionsBehavior.ISwipeActionsListener
 	{
 		private RadListView listView;
@@ -79,7 +80,9 @@ namespace Samples
 			return "Swipe Actions Getting Started";
 		}
 	}
+	// << list-swipe-actions-getting-started-xamarin
 
+	// >> list-swipe-actions-adapter-xamarin
 	class ListViewSwipeActionsAdapter : ListViewAdapter
 	{
 
@@ -122,6 +125,7 @@ namespace Samples
 	
 		}
 	}
+	// << list-swipe-actions-adapter-xamarin
 
 	class SwipeActionsViewHolder : ListViewHolder
 	{

@@ -63,6 +63,8 @@ namespace Samples
 			return "Swipe Actions: threshold animations";
 		}
 
+		// >> swipe-actions-animated-actions-xamarin
+
 		public void OnExecuteFinished(SwipeActionsBehavior.SwipeActionEvent p0)
 		{
 			// Fired when the swipe-execute procedure has ended, i.e. the item being swiped is at
@@ -135,5 +137,7 @@ namespace Samples
 				rightWidth = this.rightActionView.Width;
 			}
 		}
+
+		// << swipe-actions-animated-actions-xamarin
 	}
 }

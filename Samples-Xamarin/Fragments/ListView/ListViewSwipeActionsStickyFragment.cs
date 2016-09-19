@@ -60,6 +60,8 @@ namespace Samples
 			return "Swipe Actions: Modify swipe content";
 		}
 
+		// >> swipe-actions-sticky-xamarin
+
 		public void OnExecuteFinished(SwipeActionsBehavior.SwipeActionEvent p0)
 		{
 			// Fired when the swipe-execute procedure has ended, i.e. the item being swiped is at
@@ -106,5 +108,7 @@ namespace Samples
 				rightWidth = this.rightActionView.Width;
 			}
 		}
+
+		// << swipe-actions-sticky-xamarin
 	}
 }
