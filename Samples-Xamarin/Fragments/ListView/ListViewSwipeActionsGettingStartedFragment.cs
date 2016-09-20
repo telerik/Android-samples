@@ -75,6 +75,11 @@ namespace Samples
 
 		}
 
+		public void OnSwipeStateChanged(SwipeActionsBehavior.SwipeActionsState p0, SwipeActionsBehavior.SwipeActionsState p1)
+		{
+
+		}
+
 		public string Title()
 		{
 			return "Swipe Actions Getting Started";

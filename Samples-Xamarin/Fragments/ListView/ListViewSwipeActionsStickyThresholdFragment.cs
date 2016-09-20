@@ -79,6 +79,10 @@ namespace Samples
 
 		}
 
+		public void OnSwipeStateChanged(SwipeActionsBehavior.SwipeActionsState oldState, SwipeActionsBehavior.SwipeActionsState newState)
+		{
+		}
+
 		public void OnSwipeProgressChanged(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent)
 		{
 			if (swipeActionEvent.CurrentOffset() > leftWidth)

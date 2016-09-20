@@ -75,6 +75,10 @@ namespace Samples
 		{
 		}
 
+		public void OnSwipeStateChanged(SwipeActionsBehavior.SwipeActionsState oldState, SwipeActionsBehavior.SwipeActionsState newState)
+		{
+		}
+
 		public void OnSwipeStarted(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent)
 		{
 			View swipeView = swipeActionEvent.SwipeView();
