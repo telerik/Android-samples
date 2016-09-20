@@ -8,7 +8,7 @@ import fragments.dataform.*;
 public class DataFormExamples implements ExamplesProvider {
     @Override
     public String controlName() {
-        return "Data Form";
+        return "DataForm";
     }
 
     @Override

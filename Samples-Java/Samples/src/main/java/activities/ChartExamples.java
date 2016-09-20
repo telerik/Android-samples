@@ -41,7 +41,7 @@ public class ChartExamples implements ExamplesProvider {
 
     @Override
     public String controlName() {
-        return "Chart";
+        return "ChartView";
     }
 
     @Override

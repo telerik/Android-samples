@@ -68,22 +68,22 @@
       <HintPath>..\Binaries\Telerik.Xamarin.Android.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Vector.Drawable">
-      <HintPath>packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
-      <HintPath>packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
-      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v4.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
-      <HintPath>packages\Xamarin.Android.Support.v7.RecyclerView.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v7.RecyclerView.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v8.RenderScript">
-      <HintPath>packages\Xamarin.Android.Support.v8.RenderScript.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v8.RenderScript.dll</HintPath>
+      <HintPath>packages\Xamarin.Android.Support.v8.RenderScript.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v8.RenderScript.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Vector.Drawable">
+      <HintPath>packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
+      <HintPath>packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -193,11 +193,23 @@
     <Compile Include="Fragments\Dataform\DataFormEditorStylesFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormLabelPositionsFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormExpandableGroupsFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewSwipeActionsGettingStartedFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewSwipeActionsStickyFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewSwipeActionsStickyThresholdFragment.cs" />
+    <Compile Include="Fragments\ListView\ListViewSwipeActionsThresholdsFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <None Include="lib\Telerik.Xamarin.Android.Chart.dll" />
+    <None Include="lib\Telerik.Xamarin.Android.Common.dll" />
+    <None Include="lib\Telerik.Xamarin.Android.Data.dll" />
+    <None Include="lib\Telerik.Xamarin.Android.Feedback.dll" />
+    <None Include="lib\Telerik.Xamarin.Android.Gauges.dll" />
+    <None Include="lib\Telerik.Xamarin.Android.Input.dll" />
+    <None Include="lib\Telerik.Xamarin.Android.List.dll" />
+    <None Include="lib\Telerik.Xamarin.Android.Primitives.dll" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +278,8 @@
     <AndroidResource Include="Resources\layout\fragment_dataform_commit_events.axml" />
     <AndroidResource Include="Resources\layout\fragment_dataform_editor_styles.axml" />
     <AndroidResource Include="Resources\layout\fragment_dataform_label_positions.axml" />
+    <AndroidResource Include="Resources\layout\example_list_swipe_actions_static.axml" />
+    <AndroidResource Include="Resources\layout\example_list_swipe_actions_buttons.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
@@ -292,10 +306,10 @@
     <Folder Include="Fragments\Calendar\Customization\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <Import Project="packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <ItemGroup>
     <AndroidAsset Include="Assets\Person.json" />
     <AndroidAsset Include="Assets\PersonExtended.json" />
     <AndroidAsset Include="Assets\PersonSchema.json" />
   </ItemGroup>
+  <Import Project="packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
 </Project>
