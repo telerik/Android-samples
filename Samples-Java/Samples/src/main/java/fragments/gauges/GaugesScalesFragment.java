@@ -47,10 +47,9 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
 
         // >> radial-scale-config2
         GaugeRadialScale scale2 = new GaugeRadialScale(getActivity());
-        scale2.getStrokePaint().setStrokeWidth(2);
+        scale2.setStrokeWidth(2);
         scale2.setRadius(0.7f);
-        scale2.setMinimum(93.2f);
-        scale2.setMaximum(104);
+        scale2.setRange(93.2f, 104);
         scale2.setTicksLayoutMode(GaugeScaleTicksLayoutMode.OUTER);
         scale2.setMajorTicksCount(7);
         scale2.setMinorTicksCount(20);

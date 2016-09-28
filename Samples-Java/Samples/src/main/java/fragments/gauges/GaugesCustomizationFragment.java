@@ -35,8 +35,7 @@ public class GaugesCustomizationFragment extends Fragment implements ExampleFrag
         scale.setStartAngle(0);
         scale.setSweepAngle(360);
         scale.setLineVisible(false);
-        scale.setMinimum(0);
-        scale.setMaximum(100);
+        scale.setRange(0, 100);
         scale.setTicksVisible(false);
         scale.setLabelsVisible(false);
 

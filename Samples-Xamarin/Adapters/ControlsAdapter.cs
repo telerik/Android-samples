@@ -17,6 +17,7 @@ namespace Samples
 			this.source.Add (new DataFormExamples ());
 			this.source.Add (new ListViewExamples ());
 			this.source.Add (new SideDrawerExamples ());
+			this.source.Add(new GaugesExamples());
 
 		}
 
