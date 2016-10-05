@@ -212,7 +212,6 @@
     <Compile Include="Adapters\AutoCompleteExmaples.cs" />
     <Compile Include="Fragments\Autocomplete\AutoCompleteTokenLayoutsFragment.cs" />
     <Compile Include="Fragments\Autocomplete\AutoCompleteCustomizationFragment.cs" />
-    <Compile Include="Fragments\Autocomplete\JsonDataLoadFragment.cs" />
     <Compile Include="Fragments\Autocomplete\Country.cs" />
   </ItemGroup>
   <ItemGroup>
