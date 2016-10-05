@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 import activities.ExampleFragment;
 
-public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment implements ExampleFragment {
+public class AutoCompleteGettingStartedFragment extends android.support.v4.app.Fragment implements ExampleFragment {
 
     // >> autocomplete-array
     private String[] data = new String[]{"Australia", "Albania","Austria", "Argentina", "Maldives","Bulgaria","Belgium","Cyprus","Italy","Japan",
@@ -61,12 +61,12 @@ public class AutoCompleteGettingStartedFragment extends JsonDataLoadFragment imp
         int height  =  display.getHeight();
         autocomplete.setSuggestionViewHeight(height/4);
 
-        this.setButtonAction(rootView);
+        this.setButtonActions(rootView);
 
         return rootView;
     }
 
-    private void setButtonAction(View rootView){
+    private void setButtonActions(View rootView){
         Button btnSuggest = (Button)rootView.findViewById(R.id.suggestButton);
         btnSuggest.setOnClickListener(new View.OnClickListener() {
             @Override

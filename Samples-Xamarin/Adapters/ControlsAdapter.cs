@@ -18,16 +18,15 @@ namespace Samples
 			this.source.Add (new ListViewExamples ());
 			this.source.Add (new SideDrawerExamples ());
 			this.source.Add(new GaugesExamples());
+			this.source.Add(new AutoCompleteExmaples());
 
 		}
-
 
 		public override int Count {
 			get {
 				return this.source.Size();
 			}
 		}
-
 
 		public override View GetView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
