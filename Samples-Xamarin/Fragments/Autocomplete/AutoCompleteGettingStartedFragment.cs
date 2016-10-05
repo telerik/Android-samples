@@ -15,11 +15,13 @@ namespace Samples
 
 		public AutoCompleteGettingStartedFragment() : base()
 		{
+			// >> autocomplete-array-xamarin
 			this.data = new List<string>() { "Australia", "Albania","Austria", "Argentina", "Maldives","Bulgaria","Belgium","Cyprus","Italy","Japan",
 										"Denmark","Finland","France","Germany","Greece","Hungary","Ireland",
 										"Latvia","Luxembourg","Macedonia","Moldova","Monaco","Netherlands","Norway",
 										"Poland","Romania","Russia","Sweden","Slovenia","Slovakia","Turkey","Ukraine",
 										"Vatican City", "Chad", "China", "Chile" };
+			// << autocomplete-array-xamarin
 		}
 
 		public string Title()
@@ -30,14 +32,21 @@ namespace Samples
 		public override Android.Views.View OnCreateView(Android.Views.LayoutInflater inflater, Android.Views.ViewGroup container, Android.OS.Bundle savedInstanceState)
 		{
 			View rootView = inflater.Inflate(Resource.Layout.fragment_autocomplete_getting_started,container,false);
-			this.autocomplete = (RadAutoCompleteTextView)rootView.FindViewById(Resource.Id.autocmp);
 
+			// >> autocomplete-load-xamarin
+			this.autocomplete = (RadAutoCompleteTextView)rootView.FindViewById(Resource.Id.autocmp);
+			// << autocomplete-load-xamarin
+
+			// >> autocomplete-suggest-display-xamarin
 			this.autocomplete.SuggestMode = SuggestMode.Suggest;
 			this.autocomplete.DisplayMode = DisplayMode.Plain;
+			// << autocomplete-suggest-display-xamarin
 
+			// >> autocomplete-adapter-xamarin
 			this.adapter = new AutoCompleteAdapter(this.Context, this.GetTokenObjects(), Java.Lang.Integer.ValueOf(Resource.Layout.suggestion_item_layout));
 			this.adapter.CompletionMode = CompletionMode.StartsWith;
 			this.autocomplete.Adapter = this.adapter;
+			// << autocomplete-adapter-xamarin
 
 			Display display = this.Activity.WindowManager.DefaultDisplay;
 			int height = display.Height;
@@ -48,6 +57,7 @@ namespace Samples
 			return rootView;
 		}
 
+		// >> autocomplete-token-models-xamarin
 		private List<TokenModel> GetTokenObjects()
 		{
 			List<TokenModel> feedData = new List<TokenModel>();
@@ -59,6 +69,7 @@ namespace Samples
 
 			return feedData;
 		}
+		// << autocomplete-token-models-xamarin
 
 		private void SetButtonActions(View rootView)
 		{

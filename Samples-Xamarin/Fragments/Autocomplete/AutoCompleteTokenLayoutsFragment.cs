@@ -40,11 +40,19 @@ namespace Samples
 			this.autocomplete = (RadAutoCompleteTextView)rootView.FindViewById(Resource.Id.autocmp);
 
 			this.autocomplete.SuggestMode = SuggestMode.Suggest;
+			// >> autocomplete-display-mode-xamarin
 			this.autocomplete.DisplayMode = DisplayMode.Tokens;
+			// << autocomplete-display-mode-xamarin
+
+			// >> autocomplete-layout-mode-xamarin
 			this.autocomplete.TokensLayoutMode = LayoutMode.Horizontal;
+			// << autocomplete-layout-mode-xamarin
 
 			this.adapter = new AutoCompleteAdapter(this.Context, this.GetTokenObjects(), Java.Lang.Integer.ValueOf(Resource.Layout.suggestion_item_layout));
+
+			// >> autocomplete-completion-mode-xamarin
 			this.adapter.CompletionMode = CompletionMode.StartsWith;
+			// << autocomplete-completion-mode-xamarin
 			this.autocomplete.Adapter = this.adapter;
 
 			Display display = this.Activity.WindowManager.DefaultDisplay;

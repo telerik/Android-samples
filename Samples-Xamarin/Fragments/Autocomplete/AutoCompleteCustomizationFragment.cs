@@ -35,7 +35,10 @@ namespace Samples
 
 			List<FeedObject> objects = this.loadDataFromJson();
 
+			// >> autocomplete-suggest-mode-xamarin
 			this.autocomplete.SuggestMode = SuggestMode.Suggest;
+			// << autocomplete-suggest-mode-xamarin
+
 			this.autocomplete.DisplayMode = DisplayMode.Tokens;
 
 			this.adapter = new AutoCompleteAdapter(this.Context, this.GetTokenObjects(objects), Java.Lang.Integer.ValueOf(Resource.Layout.suggestion_item_layout));
