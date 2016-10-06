@@ -86,8 +86,7 @@ public class GuagesAnimationsFragment extends Fragment implements ExampleFragmen
         gauge.setSubtitleVerticalOffset(20);
 
         GaugeRadialScale scale = new GaugeRadialScale(getActivity());
-        scale.setMinimum(0);
-        scale.setMaximum(180);
+        scale.setRange(0, 180);
         scale.setRadius(0.98f);
         scale.setLabelsCount(10);
         scale.setMajorTicksCount(19);
