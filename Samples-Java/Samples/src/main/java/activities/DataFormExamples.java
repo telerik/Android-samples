@@ -34,6 +34,7 @@ public class DataFormExamples implements ExamplesProvider {
 
         result.add(new DataFormEditorStylesFragment());
         result.add(new DataFormLabelPositionsFragment());
+        result.add(new DataFormImageLabelsFragment());
 
         dataFormExamples.put("Features", result);
 
