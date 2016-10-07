@@ -41,6 +41,7 @@ namespace Samples
 
 			result.Add (new DataFormEditorStylesFragment());
 			result.Add (new DataFormLabelPositionsFragment());
+			result.Add (new DataFormImageLabelsFragment());
 
 			dataFormExamples.Put ("Features", result);
 
