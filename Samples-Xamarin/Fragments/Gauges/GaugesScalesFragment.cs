@@ -75,6 +75,7 @@ namespace Samples
 			return rootView;
 		}
 
+		// >> add-bar-indicator-helper
 		private GaugeIndicator GetIndicator(float min, float max, int color)
 		{
 			GaugeRadialBarIndicator indicator = new GaugeRadialBarIndicator(Activity);
@@ -85,6 +86,7 @@ namespace Samples
 			indicator.BarWidth = 0.08f;
 			return indicator;
 		}
+		// << add-bar-indicator-helper
 
 		public string Title()
 		{
