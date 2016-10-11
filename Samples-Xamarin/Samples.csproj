@@ -65,28 +65,28 @@
       <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Chart">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1005_2_Dev\Binaries\Telerik.Xamarin.Android.Chart.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Chart.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Common">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1005_2_Dev\Binaries\Telerik.Xamarin.Android.Common.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Common.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Data">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1005_2_Dev\Binaries\Telerik.Xamarin.Android.Data.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Data.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Feedback">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1005_2_Dev\Binaries\Telerik.Xamarin.Android.Feedback.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Feedback.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Gauges">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1005_2_Dev\Binaries\Telerik.Xamarin.Android.Gauges.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Gauges.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Input">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1005_2_Dev\Binaries\Telerik.Xamarin.Android.Input.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.List">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1005_2_Dev\Binaries\Telerik.Xamarin.Android.List.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.List.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.Primitives">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1005_2_Dev\Binaries\Telerik.Xamarin.Android.Primitives.dll</HintPath>
+      <HintPath>..\Binaries\Telerik.Xamarin.Android.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
@@ -213,6 +213,8 @@
     <Compile Include="Fragments\Autocomplete\AutoCompleteTokenLayoutsFragment.cs" />
     <Compile Include="Fragments\Autocomplete\AutoCompleteCustomizationFragment.cs" />
     <Compile Include="Fragments\Autocomplete\Country.cs" />
+    <Compile Include="Fragments\Dataform\DataFormImageLabelsFragment.cs" />
+    <Compile Include="Fragments\Dataform\Employee.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -337,6 +339,27 @@
     <AndroidResource Include="Resources\drawable\turkey.png" />
     <AndroidResource Include="Resources\drawable\ukraine.png" />
     <AndroidResource Include="Resources\drawable\vatican.png" />
+    <AndroidResource Include="Resources\layout\fragment_dataform_image_labels.axml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_dataform_calendar.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_dataform_guest.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_dataform_phone.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_dataform_table.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_dataform_calendar.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_dataform_guest.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_dataform_phone.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_dataform_table.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_dataform_calendar.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_dataform_guest.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_dataform_phone.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_dataform_table.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_dataform_calendar.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_dataform_guest.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_dataform_phone.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_dataform_table.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_dataform_calendar.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_dataform_guest.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_dataform_phone.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_dataform_table.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
