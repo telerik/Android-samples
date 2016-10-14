@@ -56,6 +56,7 @@ namespace Samples
 		}
 	}
 
+	// >> calendar-custom-inline-events-adapter
 	public class MyInlineEventsAdapter : ArrayAdapter
 	{
 		private LayoutInflater layoutInflater;
@@ -73,7 +74,8 @@ namespace Samples
 
 			if (view == null)
 			{
-				view = layoutInflater.Inflate(Resource.Layout.custom_inline_event_layout, parent, false);
+				view = layoutInflater.Inflate(
+					Resource.Layout.custom_inline_event_layout, parent, false);
 
 				holder = new ViewHolder();
 				holder.eventTitle = (TextView)view.FindViewById(Resource.Id.event_title);
@@ -89,7 +91,8 @@ namespace Samples
 			Event event1 = eventInfo.OriginalEvent();
 			holder.eventTitle.SetTextColor(new Color(event1.EventColor));
 			holder.eventTitle.Text = event1.Title;
-			String eventTime = String.Format("{0} - {1}", eventInfo.StartTimeFormatted(), eventInfo.EndTimeFormatted());
+			String eventTime = String.Format("{0} - {1}", 
+			                                 eventInfo.StartTimeFormatted(), eventInfo.EndTimeFormatted());
 			holder.eventTime.Text = eventTime;
 
 			return view;
@@ -101,5 +104,6 @@ namespace Samples
 			public TextView eventTime;
 		}
 	}
+	// << calendar-custom-inline-events-adapter
 }
 

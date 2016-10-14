@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- >> calendar-inline-custom-xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -24,3 +25,4 @@
         android:textSize="18sp" />
 
 </LinearLayout>
+<!-- << calendar-inline-custom-xml -->
