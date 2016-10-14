@@ -216,6 +216,7 @@
     <Compile Include="Fragments\Dataform\DataFormImageLabelsFragment.cs" />
     <Compile Include="Fragments\Dataform\Employee.cs" />
     <Compile Include="Fragments\Calendar\Events\EventsInlineCustomFragment.cs" />
+    <Compile Include="Fragments\Calendar\Events\EventRenderCustomFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
