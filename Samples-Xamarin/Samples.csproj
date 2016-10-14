@@ -215,6 +215,7 @@
     <Compile Include="Fragments\Autocomplete\Country.cs" />
     <Compile Include="Fragments\Dataform\DataFormImageLabelsFragment.cs" />
     <Compile Include="Fragments\Dataform\Employee.cs" />
+    <Compile Include="Fragments\Calendar\Events\EventsInlineCustomFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -360,6 +361,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_dataform_guest.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_dataform_phone.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_dataform_table.png" />
+    <AndroidResource Include="Resources\layout\custom_inline_event_layout.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
