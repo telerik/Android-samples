@@ -73,7 +73,8 @@ public class CalendarEventInlineModeCustom extends Fragment implements ExampleFr
 
         public MyInlineEventsAdapter(Context context) {
             super(context, R.layout.custom_inline_event_layout);
-            this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            this.layoutInflater = (LayoutInflater) context.
+                    getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
@@ -83,7 +84,8 @@ public class CalendarEventInlineModeCustom extends Fragment implements ExampleFr
             ViewHolder holder;
 
             if (view == null) {
-                view = layoutInflater.inflate(R.layout.custom_inline_event_layout, parent, false);
+                view = layoutInflater.inflate(
+                        R.layout.custom_inline_event_layout, parent, false);
 
                 holder = new ViewHolder();
                 holder.eventTitle = (TextView) view.findViewById(R.id.event_title);
@@ -98,7 +100,8 @@ public class CalendarEventInlineModeCustom extends Fragment implements ExampleFr
             Event event = eventInfo.originalEvent();
             holder.eventTitle.setTextColor(event.getEventColor());
             holder.eventTitle.setText(event.getTitle());
-            String eventTime = String.format("%s - %s", eventInfo.startTimeFormatted(), eventInfo.endTimeFormatted());
+            String eventTime = String.format("%s - %s",
+                    eventInfo.startTimeFormatted(), eventInfo.endTimeFormatted());
             holder.eventTime.setText(eventTime);
 
             return view;
