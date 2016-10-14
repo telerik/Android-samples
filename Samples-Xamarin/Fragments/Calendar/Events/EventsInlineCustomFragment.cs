@@ -61,7 +61,7 @@ namespace Samples
 		private LayoutInflater layoutInflater;
 
 		public MyInlineEventsAdapter(Context context)
-			:base(context, Resource.Layout.custom_inline_event_layout)
+			: base(context, Resource.Layout.custom_inline_event_layout)
 		{
 			this.layoutInflater = LayoutInflater.From(context); ;
 		}
@@ -92,7 +92,7 @@ namespace Samples
 			String eventTime = String.Format("{0} - {1}", eventInfo.StartTimeFormatted(), eventInfo.EndTimeFormatted());
 			holder.eventTime.Text = eventTime;
 
-            return view;
+			return view;
 		}
 
 		class ViewHolder : Java.Lang.Object
