@@ -153,7 +153,7 @@ public class ListViewSwipeToExecuteFragment extends Fragment implements ExampleF
             swipeContentHolder.action2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    remove(position);
+                    remove(currentMessage);
                     Toast.makeText(((MySwipeContentViewHolder) viewHolder).itemView.getContext(), currentMessage.title + " successfully deleted.", Toast.LENGTH_SHORT).show();
                     notifySwipeExecuteFinished();
                 }
