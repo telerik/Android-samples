@@ -56,21 +56,17 @@ namespace Samples
 		private ArrayList getData() {
 			ArrayList data = new ArrayList();
 			int size = 10;
-			Java.Util.Random r = new Java.Util.Random();
 
 			for (int i = 1; i <= size; ++i) {
 				OhlcData ohlc = new OhlcData();
 				ohlc.category = i.ToString();
-				ohlc.high = r.NextInt(100);
-				if (ohlc.high < 2) {
-					ohlc.high = 2;
-				}
+				ohlc.high = ChartExamples.randomIntValues[i] + 20;
 
-				ohlc.low = r.NextInt(ohlc.high - 1);
-				ohlc.open = ohlc.low + r.NextInt(ohlc.high - ohlc.low);
-				ohlc.close = ohlc.low + r.NextInt(ohlc.high - ohlc.low);
+                ohlc.low = ohlc.high - 10;
+                ohlc.open = ohlc.high - 7;
+                ohlc.close = ohlc.high - 2;
 
-				data.Add(ohlc);
+                data.Add(ohlc);
 			}
 
 			return data;

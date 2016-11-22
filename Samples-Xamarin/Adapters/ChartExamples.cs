@@ -6,8 +6,10 @@ namespace Samples
 	public class ChartExamples : Java.Lang.Object, ExamplesProvider {
 
 		private LinkedHashMap chartExamples;
+        public static double[] randomDoubleValues = new double[] { 52.00d, 60.00d, 77.00d, 50.00d, 56.00d, 75.00d, 85.00d, 15.00d, 25.00d, 5.00d, 10.00d, 20.00d, 30.00d, 40.00d, 45.00d, 60.00d, 80.00d, 50.00d, 35.00d, 70.00d, 77.00d};
+        public static int[] randomIntValues = new int[] { 70, 60, 30, 40, 50, 20, 5, 10, 15, 20, 25, 35, 55, 65, 75, 85, 80, 10, 15, 20, 30, 45, 60, 80, 50, 55, 70, 60, 30, 40, 50, 20, 5, 10, 15, 20, 25, 35, 55, 65, 75, 85, 80, 10, 15, 20, 30, 45, 60, 80, 50, 55, 70, 60, 30, 40, 50, 20, 5, 10, 15, 20, 25, 35, 55, 65, 75, 85, 80, 10, 15, 20, 30, 45, 60, 80, 50, 55, 70, 60, 30, 40, 50, 20, 5, 10, 15, 20, 25, 35, 55, 65, 75, 85, 80, 10, 15, 20, 30, 45, 60, 80, 50, 55 };
 
-		public ChartExamples(){
+        public ChartExamples(){
 
 			this.chartExamples = this.getChartExamples();
 		}

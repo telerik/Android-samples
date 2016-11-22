@@ -68,12 +68,12 @@ namespace Samples
 		}
 
 		private ArrayList getData(){
-			Java.Util.Random numberGenerator = new Java.Util.Random();
+
 			ArrayList result = new ArrayList(8);
 
 			for (int i = 0; i < 80; i++){
-				DataEntity entity = new DataEntity();
-				entity.value = numberGenerator.NextInt(10) + 1;
+				DataEntity entity = new DataEntity();  
+				entity.value = ChartExamples.randomIntValues[i];
 				entity.category = "Item " + i;
 				result.Add(entity);
 			}
@@ -91,7 +91,6 @@ namespace Samples
 				DataEntity entity = (DataEntity)p0;
 				return entity.category;
 			}
-
 		}
 
 		public class ValueBinding : DataPointBinding{

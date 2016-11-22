@@ -45,23 +45,23 @@ namespace Samples
 			verticalAxis.LabelFormat = "%.0f";
 			this.chartView.VerticalAxis = verticalAxis;
 
-			for (int i = 0; i < 5; i++){
+			for (int i = 0; i < 3; i++){
 				BarSeries series = new BarSeries();
 				series.LegendTitle = "Series " + (i + 1);
 				series.CategoryBinding = new CategoryBinding();
 				series.ValueBinding = new ValueBinding();
-				series.Data = this.getData();
+				series.Data = this.getData(i);
 				this.chartView.Series.Add(series);
 			}
 		}
 
-		private ArrayList getData() {
-			Java.Util.Random numberGenerator = new Java.Util.Random();
+		private ArrayList getData(int invocation) {
+
 			ArrayList result = new ArrayList(8);
 
 			for (int i = 0; i < 8; i++) {
 				DataEntity entity = new DataEntity();
-				entity.value = numberGenerator.NextInt(10) + 1;
+				entity.value = ChartExamples.randomIntValues[invocation * 8 + i];
 				entity.category = "Item " + i;
 				result.Add(entity);
 			}

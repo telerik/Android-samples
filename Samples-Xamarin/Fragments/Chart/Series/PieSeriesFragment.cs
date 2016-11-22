@@ -41,13 +41,13 @@ namespace Samples
 		}
 
 		private ArrayList getData() {
-			Java.Util.Random r = new Java.Util.Random();
+
 
 			ArrayList result = new ArrayList();
 
 			for (int i = 0; i < 8; i++) {
 				DataEntity entity = new DataEntity();
-				entity.value = r.NextInt(10) + 1;
+				entity.value = ChartExamples.randomIntValues[i];
 				result.Add(entity);
 			}
 
