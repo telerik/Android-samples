@@ -2,18 +2,18 @@ package fragments.listview;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.telerik.android.sdk.R;
 import com.telerik.widget.list.ListViewAdapter;
 import com.telerik.widget.list.ListViewHolder;
 import com.telerik.widget.list.RadListView;
-import com.telerik.widget.list.SwipeExecuteBehavior;
+import com.telerik.widget.list.SwipeActionsBehavior;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +23,10 @@ import activities.ExampleFragment;
 /**
  * Created by ginev on 2/20/2015.
  */
-public class ListViewSwipeToExecuteFragment extends Fragment implements ExampleFragment {
+public class ListViewSwipeActionsMultipleActionsFragment extends Fragment implements ExampleFragment {
 
     private RadListView listView;
+    private SwipeActionsBehavior sab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,53 +55,80 @@ public class ListViewSwipeToExecuteFragment extends Fragment implements ExampleF
 
         this.listView.setAdapter(new MyListViewAdapter(dataSource));
 
-        final SwipeExecuteBehavior seb = new SwipeExecuteBehavior();
-        seb.setAutoDissolve(false);
-        seb.addListener(new SwipeExecuteBehavior.SwipeExecuteListener() {
-            private int leftContentSize = -1;
-            private int rightContentSize = -1;
+        // >> swipe-actions-multiple
+
+        DisplayMetrics dp = this.getResources().getDisplayMetrics();
+        this.sab = new SwipeActionsBehavior();
+        this.sab.setSwipeThresholdStart((int)dp.density * 250);
+        this.sab.setSwipeThresholdEnd((int)dp.density * 250);
+        this.sab.addListener(new SwipeActionsBehavior.SwipeActionsListener() {
+            private int leftWidth = -1;
+            private int rightWidth = -1;
+            private ViewGroup swipeView;
+            private View leftActionView;
+            private View rightActionView;
 
             @Override
-            public void onSwipeStarted(int position) {
-            }
+            public void onSwipeStarted(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent) {
+                this.swipeView = (ViewGroup)swipeActionEvent.swipeView();
+                this.leftActionView = this.swipeView.getChildAt(0);
+                this.rightActionView = this.swipeView.getChildAt(1);
 
+                if (leftWidth == -1) {
+                    leftWidth = this.leftActionView.getWidth();
+                }
 
-            @Override
-            public void onSwipeProgressChanged(int position, int currentOffset, View swipeView) {
-                if (this.leftContentSize == -1 || rightContentSize == -1) {
-                    leftContentSize = (((ViewGroup)swipeView).getChildAt(0)).getWidth();
-                    rightContentSize = (((ViewGroup)swipeView).getChildAt(1)).getWidth();
+                if (rightWidth == -1) {
+                    rightWidth = this.rightActionView.getWidth();
                 }
             }
 
             @Override
-            public void onSwipeEnded(int position, int finalOffset) {
+            public void onSwipeProgressChanged(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent) {
 
-                if(finalOffset > leftContentSize) {
-                    seb.setSwipeOffset(leftContentSize);
+                if (swipeActionEvent.currentOffset() > leftWidth){
+                    ViewGroup.LayoutParams lp = this.leftActionView.getLayoutParams();
+                    lp.width = swipeActionEvent.currentOffset();
+                    this.leftActionView.setLayoutParams(lp);
                 }
-                else if(finalOffset < -rightContentSize) {
-                    seb.setSwipeOffset(-rightContentSize);
-                } else {
-                    seb.setSwipeOffset(0);
+
+                if (swipeActionEvent.currentOffset() < -rightWidth){
+                    ViewGroup.LayoutParams lp = this.rightActionView.getLayoutParams();
+                    lp.width = -swipeActionEvent.currentOffset();
+                    this.rightActionView.setLayoutParams(lp);
                 }
             }
 
             @Override
-            public void onExecuteFinished(int position) {
-                leftContentSize = -1;
-                rightContentSize = -1;
+            public void onSwipeEnded(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent) {
+                // Fired when the user releases the item being swiped.
+            }
+
+            @Override
+            public void onExecuteFinished(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent) {
+                // Fired when the swipe-execute procedure has ended, i.e. the item being swiped is at
+                // its original position.
+                this.leftWidth = -1;
+                this.rightWidth = -1;
+            }
+
+            @Override
+            public void onSwipeStateChanged(SwipeActionsBehavior.SwipeActionsState swipeActionsState, SwipeActionsBehavior.SwipeActionsState swipeActionsState1) {
+
             }
         });
 
-        this.listView.addBehavior(seb);
+        this.listView.addBehavior(this.sab);
+
+        // << swipe-actions-multiple
 
         return rootView;
     }
 
+
     @Override
     public String title() {
-        return "Swipe to execute";
+        return "Swipe actions: multiple actions";
     }
 
     class EmailMessage {
@@ -133,7 +161,7 @@ public class ListViewSwipeToExecuteFragment extends Fragment implements ExampleF
         @Override
         public ListViewHolder onCreateSwipeContentHolder(ViewGroup viewGroup) {
             LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-            View swipeContentView = inflater.inflate(R.layout.example_list_view_swipe_content, viewGroup, false);
+            View swipeContentView = inflater.inflate(R.layout.example_list_view_swipe_actions_multiple_content, viewGroup, false);
             MySwipeContentViewHolder vh = new MySwipeContentViewHolder(swipeContentView);
             return vh;
         }
@@ -142,22 +170,6 @@ public class ListViewSwipeToExecuteFragment extends Fragment implements ExampleF
         public void onBindSwipeContentHolder(final ListViewHolder viewHolder, final int position) {
             final EmailMessage currentMessage = (EmailMessage)getItem(position);
             MySwipeContentViewHolder swipeContentHolder = (MySwipeContentViewHolder)viewHolder;
-            swipeContentHolder.action1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(((MySwipeContentViewHolder) viewHolder).itemView.getContext(), currentMessage.title + " successfully archived.", Toast.LENGTH_SHORT).show();
-                    notifySwipeExecuteFinished();
-                }
-            });
-
-            swipeContentHolder.action2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    remove(currentMessage);
-                    Toast.makeText(((MySwipeContentViewHolder) viewHolder).itemView.getContext(), currentMessage.title + " successfully deleted.", Toast.LENGTH_SHORT).show();
-                    notifySwipeExecuteFinished();
-                }
-            });
         }
     }
 

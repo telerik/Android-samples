@@ -7,3 +7,4 @@ gen/
 /**/obj/
 /**/*.suo
 *.userprefs
+Resource.designer.cs
