@@ -38,6 +38,7 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.autocomplete_token_layouts, container, false);
+        rootView.setFocusableInTouchMode(true);
 
         autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocmp);
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);

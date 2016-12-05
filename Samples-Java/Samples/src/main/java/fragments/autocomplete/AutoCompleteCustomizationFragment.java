@@ -39,6 +39,7 @@ public class AutoCompleteCustomizationFragment extends JsonDataLoadFragment impl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.autocomplete_customization, container, false);
+        rootView.setFocusableInTouchMode(true);
 
         autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocomplete);
 
