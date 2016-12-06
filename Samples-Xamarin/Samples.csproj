@@ -67,29 +67,29 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Chart">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Chart.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Common">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Data">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Feedback">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Feedback.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Gauges">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Gauges.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Input">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Input.dll</HintPath>
+    <Reference Include="Telerik.Xamarin.Android.Primitives">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1206_2_Dev\Binaries\Telerik.Xamarin.Android.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Xamarin.Android.List">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.List.dll</HintPath>
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1206_2_Dev\Binaries\Telerik.Xamarin.Android.List.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Primitives">
-      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Primitives.dll</HintPath>
+    <Reference Include="Telerik.Xamarin.Android.Input">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1206_2_Dev\Binaries\Telerik.Xamarin.Android.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Gauges">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1206_2_Dev\Binaries\Telerik.Xamarin.Android.Gauges.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Feedback">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1206_2_Dev\Binaries\Telerik.Xamarin.Android.Feedback.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Data">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1206_2_Dev\Binaries\Telerik.Xamarin.Android.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Common">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1206_2_Dev\Binaries\Telerik.Xamarin.Android.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Chart">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1206_2_Dev\Binaries\Telerik.Xamarin.Android.Chart.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

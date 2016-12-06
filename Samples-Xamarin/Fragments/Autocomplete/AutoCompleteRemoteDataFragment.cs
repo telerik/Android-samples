@@ -146,7 +146,7 @@ namespace Samples
 				}
 			}
 			remoteCallback.Apply(filtered);
-			autocomplete.ResolveAfterFilter(autocomplete.TextField.Text.ToString());
+			autocomplete.ResolveAfterFilter(autocomplete.TextField.Text.ToString(), true);
 		}
 
 		private List<TokenModel> GetTokenModelObjects(JSONArray data)
