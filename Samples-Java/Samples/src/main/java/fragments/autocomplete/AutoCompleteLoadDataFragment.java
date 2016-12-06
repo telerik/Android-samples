@@ -61,7 +61,7 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
         autocomplete.setUsingAsyncData(true);
 
         adapter = new AutoCompleteAdapter(this.getContext(),new ArrayList<TokenModel>(), R.layout.suggestion_item_layout);
-        adapter.setCompletionMode(FeedAutoCompleteTask.STARTS_WITH_REMOTE);
+        adapter.setCompletionMode(STARTS_WITH_REMOTE);
         autocomplete.setAdapter(adapter);
 
         Display display = this.getActivity().getWindowManager().getDefaultDisplay();
@@ -71,19 +71,22 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
         return rootView;
     }
 
-
-    private static class FeedAutoCompleteTask extends AsyncTask<String, String, Void> {
+    // >> autocomplete-remote-full
+    private class FeedAutoCompleteTask extends AsyncTask<String, String, Void> {
         JSONArray data;
-        private static Procedure<List<TokenModel>> remoteCallback;
-        private static String filter;
+        private Procedure<List<TokenModel>> remoteCallback;
+        private String filter;
 
-        public FeedAutoCompleteTask() {
+        public FeedAutoCompleteTask(Procedure<List<TokenModel>> callback, String filterString) {
+            this.remoteCallback = callback;
+            this.filter = filterString;
         }
 
         protected void onPreExecute() {
 
         }
 
+        // >> autocomplete-remote-do-in-background
         @Override
         protected Void doInBackground(String... params) {
             try {
@@ -127,7 +130,9 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
 
             return null;
         }
+        // << autocomplete-remote-do-in-background
 
+        // >> autocomplete-remote-on-post-execute
         @Override
         protected void onPostExecute(Void result) {
             List<TokenModel> filtered = new ArrayList<>();
@@ -142,22 +147,22 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
             autocomplete.resolveAfterFilter(autocomplete.getTextField().getText().toString(), true);
 
         }
+        // << autocomplete-remote-on-post-execute
 
-        public static Function2Async<String, List<TokenModel>, List<TokenModel>> STARTS_WITH_REMOTE = new Function2Async<String, List<TokenModel>, List<TokenModel>>() {
-            @Override
-            public void apply(String filterString, List<TokenModel> originalCollection, Procedure<List<TokenModel>> callback) {
-                remoteCallback = callback;
-                filter = filterString;
-                System.out.println("Custom Apply");
-                if (originalCollection.size() == 0) {
-                    FeedAutoCompleteTask task  = new FeedAutoCompleteTask();
-                    task.execute();
-                }
-            }
-        };
     }
 
-    private static ArrayList<TokenModel> getTokenModelObjects(JSONArray json) {
+    // >> autocomplete-remote-completion-mode
+    public Function2Async<String, List<TokenModel>, List<TokenModel>> STARTS_WITH_REMOTE = new Function2Async<String, List<TokenModel>, List<TokenModel>>() {
+        @Override
+        public void apply(String filterString, List<TokenModel> originalCollection, Procedure<List<TokenModel>> callback) {
+                FeedAutoCompleteTask task  = new FeedAutoCompleteTask(callback, filterString);
+                task.execute();
+        }
+    };
+    // << autocomplete-remote-completion-mode
+    // << autocomplete-remote-full
+
+    private ArrayList<TokenModel> getTokenModelObjects(JSONArray json) {
         ArrayList<TokenModel> feedData = new ArrayList<TokenModel>();
         JSONObject current = new JSONObject();
         for(int i = 0; i < json.length(); i++) {

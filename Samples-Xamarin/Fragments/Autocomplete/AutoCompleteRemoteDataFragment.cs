@@ -19,7 +19,7 @@ namespace Samples
 
 		public string Title()
 		{
-			return "Load Remote Data";
+			return "Loading Remote Data";
 		}
 
 		public override Android.Views.View OnCreateView(Android.Views.LayoutInflater inflater, Android.Views.ViewGroup container, Android.OS.Bundle savedInstanceState)
@@ -30,7 +30,7 @@ namespace Samples
 
 			this.autocomplete.SuggestMode = SuggestMode.Suggest;
 			this.autocomplete.DisplayMode = DisplayMode.Plain;
-			this.autocomplete.AutocompleteHint = "Choose airport";
+			this.autocomplete.AutocompleteHint = "Your destination:";
 			this.autocomplete.UsingAsyncData = true;
 
 			this.adapter = new AutoCompleteAdapter(this.Context, new List<TokenModel>(), Java.Lang.Integer.ValueOf(Resource.Layout.suggestion_item_layout));
