@@ -46,6 +46,8 @@ namespace Samples
 
 	}
 
+	// >> autocomplete-remote-full-xamarin
+	// >> autocomplete-remote-completion-mode-xamarin
 	public class StartsWithRemote : Java.Lang.Object, IFunction2Async
 	{
 		private RadAutoCompleteTextView autocomplete;
@@ -66,7 +68,7 @@ namespace Samples
 			}
 		}
 	}
-
+	// << autocomplete-remote-completion-mode-xamarin
 
 	class FeedAutoCompleteTask : Android.OS.AsyncTask<string, string, Java.Lang.Void>
 	{
@@ -84,6 +86,7 @@ namespace Samples
 			this.data = new JSONArray();
 		}
 
+		// >> autocomplete-remote-do-in-background-xamarin
 		protected override Java.Lang.Void RunInBackground(params string[] @params)
 		{
 			try
@@ -132,7 +135,9 @@ namespace Samples
 
 			return null;
 		}
+		// << autocomplete-remote-do-in-background-xamarin
 
+		// >> autocomplete-remote-on-post-execute-xamarin
 		protected override void OnPostExecute(Java.Lang.Void result)
 		{
 			ArrayList filtered = new ArrayList();
@@ -148,6 +153,8 @@ namespace Samples
 			remoteCallback.Apply(filtered);
 			autocomplete.ResolveAfterFilter(autocomplete.TextField.Text.ToString(), true);
 		}
+		// << autocomplete-remote-on-post-execute-xamarin
+		// << autocomplete-remote-full-xamarin
 
 		private List<TokenModel> GetTokenModelObjects(JSONArray data)
 		{
