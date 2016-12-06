@@ -148,6 +148,7 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
             public void apply(String filterString, List<TokenModel> originalCollection, Procedure<List<TokenModel>> callback) {
                 remoteCallback = callback;
                 filter = filterString;
+                System.out.println("Custom Apply");
                 if (originalCollection.size() == 0) {
                     FeedAutoCompleteTask task  = new FeedAutoCompleteTask();
                     task.execute();

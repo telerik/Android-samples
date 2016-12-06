@@ -64,32 +64,32 @@
     <Reference Include="Xamarin.Android.Support.v7.AppCompat">
       <HintPath>packages\Xamarin.Android.Support.v7.AppCompat.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Chart">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Chart.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Common">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Data">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Feedback">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Feedback.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Gauges">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Gauges.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Input">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Input.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.List">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.List.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Primitives">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Primitives.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Chart">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Common">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Data">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Feedback">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Feedback.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Gauges">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Gauges.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Input">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.List">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.List.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Primitives">
+      <HintPath>..\..\Desktop\Telerik_UI_for_Xamarin_Android_2016_3_1205_2_Dev\Binaries\Telerik.Xamarin.Android.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +218,8 @@
     <Compile Include="Fragments\Dataform\Employee.cs" />
     <Compile Include="Fragments\Calendar\Events\EventsInlineCustomFragment.cs" />
     <Compile Include="Fragments\Calendar\Events\EventRenderCustomFragment.cs" />
+    <Compile Include="Fragments\Autocomplete\AutoCompleteRemoteDataFragment.cs" />
+    <Compile Include="Fragments\Autocomplete\AirportModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -233,6 +235,7 @@
     <None Include="lib\Telerik.Xamarin.Android.Primitives.dll" />
     <None Include="packages.config" />
     <AndroidResource Include="Resources\layout\example_list_swipe_actions_multiple.axml" />
+    <AndroidResource Include="Resources\layout\fragment_autocomplete_remote_data.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
