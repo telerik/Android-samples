@@ -139,7 +139,7 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
                 }
             }
             remoteCallback.apply(filtered);
-            autocomplete.resolveAfterFilter(autocomplete.getTextField().getText().toString());
+            autocomplete.resolveAfterFilter(autocomplete.getTextField().getText().toString(), true);
 
         }
 
@@ -169,7 +169,7 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
                 String abr = (String)current.get("FIELD5");
                 airport = fullname + "," + abr;
             }
-            catch (JSONException ex){
+            catch (JSONException ex) {
                 ex.printStackTrace();
             }
 
