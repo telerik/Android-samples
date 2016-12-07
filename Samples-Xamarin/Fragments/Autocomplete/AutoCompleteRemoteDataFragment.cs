@@ -31,9 +31,10 @@ namespace Samples
 			this.autocomplete.SuggestMode = SuggestMode.Suggest;
 			this.autocomplete.DisplayMode = DisplayMode.Plain;
 			this.autocomplete.AutocompleteHint = "Your destination:";
+			// >> set-async-data-xamarin
 			this.autocomplete.UsingAsyncData = true;
-
 			this.adapter = new AutoCompleteAdapter(this.Context, new List<TokenModel>(), Java.Lang.Integer.ValueOf(Resource.Layout.suggestion_item_layout));
+			// << set-async-data-xamarin
 			this.adapter.CompletionMode = new StartsWithRemote(this.autocomplete);
 			this.autocomplete.Adapter = this.adapter;
 

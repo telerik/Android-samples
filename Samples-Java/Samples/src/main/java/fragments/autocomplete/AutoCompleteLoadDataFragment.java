@@ -58,9 +58,10 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
         autocomplete.setDisplayMode(DisplayMode.PLAIN);
         autocomplete.setAutocompleteHint("Choose airport");
+        // >> set-async-data
         autocomplete.setUsingAsyncData(true);
-
         adapter = new AutoCompleteAdapter(this.getContext(),new ArrayList<TokenModel>(), R.layout.suggestion_item_layout);
+        // << set-async-data
         adapter.setCompletionMode(STARTS_WITH_REMOTE);
         autocomplete.setAdapter(adapter);
 
