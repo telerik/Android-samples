@@ -9,6 +9,8 @@ using Java.Net;
 using Org.Json;
 using Java.Util;
 using Java.Lang;
+using Android.Widget;
+using Android.Graphics;
 
 namespace Samples
 {
@@ -41,11 +43,22 @@ namespace Samples
 			Display display = this.Activity.WindowManager.DefaultDisplay;
 			int height = display.Height;
 			this.autocomplete.SuggestionViewHeight = height / 4;
+			this.autocomplete.AddTokenAddedListener(new asd());
 
 			return rootView;
 		}
 
+		class asd : Java.Lang.Object, ITokenAddedListener
+		{
+			public void OnTokenAdded(RadAutoCompleteTextView p0, TokenModel p1)
+			{
+				p0.TextField.SetBackgroundColor(Color.Green);
+			}
+		}
+
 	}
+
+
 
 	// >> autocomplete-remote-full-xamarin
 	// >> autocomplete-remote-completion-mode-xamarin

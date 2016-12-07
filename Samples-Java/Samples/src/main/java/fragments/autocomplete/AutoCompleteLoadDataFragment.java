@@ -60,7 +60,8 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
         autocomplete.setAutocompleteHint("Choose airport");
         // >> set-async-data
         autocomplete.setUsingAsyncData(true);
-        adapter = new AutoCompleteAdapter(this.getContext(),new ArrayList<TokenModel>(), R.layout.suggestion_item_layout);
+        adapter = new AutoCompleteAdapter(this.getContext(),new ArrayList<TokenModel>(),
+                R.layout.suggestion_item_layout);
         // << set-async-data
         adapter.setCompletionMode(STARTS_WITH_REMOTE);
         autocomplete.setAdapter(adapter);
@@ -91,7 +92,8 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
         @Override
         protected Void doInBackground(String... params) {
             try {
-                URL url = new URL("http://www.telerik.com/docs/default-source/ui-for-ios/airports.json?sfvrsn=2");
+                URL url = new URL
+                        ("http://www.telerik.com/docs/default-source/ui-for-ios/airports.json?sfvrsn=2");
 
                 HttpURLConnection urlConnection = (HttpURLConnection) url
                         .openConnection();
@@ -104,7 +106,8 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
                 int status = urlConnection.getResponseCode();
 
                 if (status == 200) {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    BufferedReader reader = new BufferedReader
+                            (new InputStreamReader(urlConnection.getInputStream()));
                     char[] buffer = new char[1024];
                     int n;
                     Writer writer = new StringWriter();
@@ -145,7 +148,8 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
                 }
             }
             remoteCallback.apply(filtered);
-            autocomplete.resolveAfterFilter(autocomplete.getTextField().getText().toString(), true);
+            autocomplete.resolveAfterFilter(autocomplete.getTextField().getText().toString(),
+                    true);
 
         }
         // << autocomplete-remote-on-post-execute
@@ -153,10 +157,13 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
     }
 
     // >> autocomplete-remote-completion-mode
-    public Function2Async<String, List<TokenModel>, List<TokenModel>> STARTS_WITH_REMOTE = new Function2Async<String, List<TokenModel>, List<TokenModel>>() {
+    public Function2Async<String, List<TokenModel>, List<TokenModel>> STARTS_WITH_REMOTE
+            = new Function2Async<String, List<TokenModel>, List<TokenModel>>() {
         @Override
-        public void apply(String filterString, List<TokenModel> originalCollection, Procedure<List<TokenModel>> callback) {
-                FeedAutoCompleteTask task  = new FeedAutoCompleteTask(callback, filterString);
+        public void apply(String filterString, List<TokenModel> originalCollection,
+                          Procedure<List<TokenModel>> callback) {
+                FeedAutoCompleteTask task  =
+                        new FeedAutoCompleteTask(callback, filterString);
                 task.execute();
         }
     };
