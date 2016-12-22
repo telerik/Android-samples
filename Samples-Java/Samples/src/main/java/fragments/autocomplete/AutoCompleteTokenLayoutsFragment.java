@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.telerik.android.sdk.R;
 import com.telerik.widget.autocomplete.AutoCompleteAdapter;
@@ -15,6 +16,7 @@ import com.telerik.widget.autocomplete.DisplayMode;
 import com.telerik.widget.autocomplete.LayoutMode;
 import com.telerik.widget.autocomplete.RadAutoCompleteTextView;
 import com.telerik.widget.autocomplete.SuggestMode;
+import com.telerik.widget.autocomplete.TokenAddedListener;
 import com.telerik.widget.autocomplete.TokenModel;
 
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class AutoCompleteTokenLayoutsFragment extends JsonDataLoadFragment imple
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.autocomplete_token_layouts, container, false);
+        rootView.setFocusableInTouchMode(true);
 
         autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocmp);
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);

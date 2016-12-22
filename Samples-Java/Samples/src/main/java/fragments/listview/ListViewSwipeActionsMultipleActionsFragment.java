@@ -112,10 +112,6 @@ public class ListViewSwipeActionsMultipleActionsFragment extends Fragment implem
                 this.rightWidth = -1;
             }
 
-            @Override
-            public void onSwipeStateChanged(SwipeActionsBehavior.SwipeActionsState swipeActionsState, SwipeActionsBehavior.SwipeActionsState swipeActionsState1) {
-
-            }
         });
 
         this.listView.addBehavior(this.sab);
