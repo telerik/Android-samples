@@ -92,9 +92,9 @@ public class DataFormAutoCompleteTextViewEditorFragment extends Fragment impleme
             this.data.add(current);
         }
 
-        // >> dataform-autocomplete-updateValues
+        // >> dataform-autocomplete-updatevalues
         ((EntityPropertyCore)this.dataForm.getPropertyByName("From")).updateValues(list.toArray());
-        // << dataform-autocomplete-updateValues
+        // << dataform-autocomplete-updatevalues
 
         AutoCompleteAdapter adapter = new AutoCompleteAdapter(this.getContext(), this.data, R.layout.suggestion_item_layout);
         adapter.setHighlightColor(Color.parseColor("#187390"));
