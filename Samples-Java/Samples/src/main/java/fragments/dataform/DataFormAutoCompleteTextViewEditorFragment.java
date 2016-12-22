@@ -111,7 +111,9 @@ public class DataFormAutoCompleteTextViewEditorFragment extends Fragment impleme
         // >> dataform-autocomplete-updateadapter
         fromEditor.updateAdapter();
         // << dataform-autocomplete-updateadapter
+        // >> dataform-autocomplete-setdisplaymode
         fromEditor.setDisplayMode(DisplayMode.TOKENS);
+        // << dataform-autocomplete-setdisplaymode
         fromAutocomplete.setAutocompleteHint("Airport or city");
 
 
