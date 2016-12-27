@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 
 import fragments.autocomplete.AutoCompleteCustomizationFragment;
 import fragments.autocomplete.AutoCompleteGettingStartedFragment;
+import fragments.autocomplete.AutoCompleteLoadDataFragment;
 import fragments.autocomplete.AutoCompleteTokenLayoutsFragment;
 
 public class AutoCompleteExamples implements ExamplesProvider {
@@ -21,6 +22,7 @@ public class AutoCompleteExamples implements ExamplesProvider {
         examplesSet.add(new AutoCompleteGettingStartedFragment());
         examplesSet.add(new AutoCompleteTokenLayoutsFragment());
         examplesSet.add(new AutoCompleteCustomizationFragment());
+        examplesSet.add(new AutoCompleteLoadDataFragment());
         examples.put("Feature Review", examplesSet);
 
         return examples;

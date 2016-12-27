@@ -1,5 +1,6 @@
 package fragments.autocomplete;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Display;
@@ -42,6 +43,7 @@ public class AutoCompleteGettingStartedFragment extends android.support.v4.app.F
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.autocomplete_getting_started, container, false);
+        rootView.setFocusableInTouchMode(true);
         // >> autocomplete-load
         autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocmp);
         // << autocomplete-load

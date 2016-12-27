@@ -81,10 +81,6 @@ public class ListViewSwipeActionsGettingStartedFragment extends Fragment impleme
                 // its original position.
             }
 
-            @Override
-            public void onSwipeStateChanged(SwipeActionsBehavior.SwipeActionsState swipeActionsState, SwipeActionsBehavior.SwipeActionsState swipeActionsState1) {
-
-            }
         });
 
         this.listView.addBehavior(this.sab);
