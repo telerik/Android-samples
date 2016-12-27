@@ -61,7 +61,6 @@ public class GaugesCustomizationFragment extends Fragment implements ExampleFrag
             trnspIndicator.setLocation(0.5f +  i * 0.25f);
             scale.addIndicator(trnspIndicator);
 
-
             GaugeRadialBarIndicator indicator = new GaugeRadialBarIndicator(getActivity());
             indicator.setMinimum(0);
             Random r = new Random();
