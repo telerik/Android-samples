@@ -37,6 +37,7 @@ public class GaugesGettingStartedFragment extends Fragment implements ExampleFra
         scale.setLabelsCount(7);
         scale.setLineVisible(false);
         scale.setRadius(0.95f);
+        scale.setTicksOffset(0);
         // << radial-scale-setup
 
         // >> radial-indicators-setup

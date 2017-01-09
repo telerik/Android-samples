@@ -43,6 +43,8 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
         scale1.setLabelsCount(7);
         scale1.setMajorTicksCount(7);
         scale1.getLabelsPaint().setTextSize(30);
+        scale1.setTicksOffset(0);
+        scale1.setLabelsOffset(0.1f);
         // << radial-scale-config-ticks-labels
 
         // >> radial-scale-config2
@@ -57,6 +59,8 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
         scale2.setLabelsLayoutMode(GaugeScaleLabelsLayoutMode.OUTER);
         scale2.getLabelsPaint().setTextSize(30);
         scale2.setLabelsColor(Color.GRAY);
+        scale2.setTicksOffset(0);
+        scale2.setLabelsOffset(0.1f);
         // << radial-scale-config2
 
         // >> add-scale-to-gauge

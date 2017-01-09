@@ -91,8 +91,8 @@ public class GuagesAnimationsFragment extends Fragment implements ExampleFragmen
         scale.setLabelsCount(10);
         scale.setMajorTicksCount(19);
         scale.setMinorTicksCount(1);
-        scale.setLabelsOffset(scale.getLabelsOffset() + 20);
-        scale.setTicksOffset(0.1f);
+        scale.setLabelsOffset(0.15f);
+        scale.setTicksOffset(0.01f);
         scale.getMajorTicksStrokePaint().setStrokeWidth(2);
         scale.setMajorTicksStrokeColor(Color.rgb(132,132,132));
         scale.setLineVisible(false);
