@@ -35,7 +35,8 @@ namespace Samples
 			this.autocomplete.AutocompleteHint = "Your destination:";
 			// >> set-async-data-xamarin
 			this.autocomplete.UsingAsyncData = true;
-			this.adapter = new AutoCompleteAdapter(this.Context, new List<TokenModel>(), Java.Lang.Integer.ValueOf(Resource.Layout.suggestion_item_layout));
+			this.adapter = new AutoCompleteAdapter(this.Context, new List<TokenModel>(),
+			                                       Java.Lang.Integer.ValueOf(Resource.Layout.suggestion_item_layout));
 			// << set-async-data-xamarin
 			this.adapter.CompletionMode = new StartsWithRemote(this.autocomplete);
 			this.autocomplete.Adapter = this.adapter;
@@ -43,22 +44,10 @@ namespace Samples
 			Display display = this.Activity.WindowManager.DefaultDisplay;
 			int height = display.Height;
 			this.autocomplete.SuggestionViewHeight = height / 4;
-			this.autocomplete.AddTokenAddedListener(new asd());
 
 			return rootView;
 		}
-
-		class asd : Java.Lang.Object, ITokenAddedListener
-		{
-			public void OnTokenAdded(RadAutoCompleteTextView p0, TokenModel p1)
-			{
-				p0.TextField.SetBackgroundColor(Color.Green);
-			}
-		}
-
 	}
-
-
 
 	// >> autocomplete-remote-full-xamarin
 	// >> autocomplete-remote-completion-mode-xamarin
@@ -71,13 +60,15 @@ namespace Samples
 			this.autocomplete = autocomplete;
 		}
 
-		public void Apply(Java.Lang.Object autoCompleteText, Java.Lang.Object originalCollection, IProcedure finishedCallback)
+		public void Apply(Java.Lang.Object autoCompleteText,
+		                  Java.Lang.Object originalCollection, IProcedure finishedCallback)
 		{
 			IList list = originalCollection as IList;
 
 			if (list == null)
 			{
-				FeedAutoCompleteTask task = new FeedAutoCompleteTask(finishedCallback, (string)autoCompleteText, this.autocomplete);
+				FeedAutoCompleteTask task = new FeedAutoCompleteTask(
+					finishedCallback,(string)autoCompleteText,this.autocomplete);
 				task.Execute();
 			}
 		}
@@ -105,7 +96,8 @@ namespace Samples
 		{
 			try
 			{
-				URL url = new URL("http://www.telerik.com/docs/default-source/ui-for-ios/airports.json?sfvrsn=2");
+				URL url = new URL
+					("http://www.telerik.com/docs/default-source/ui-for-ios/airports.json?sfvrsn=2");
 
 				HttpURLConnection urlConnection = (HttpURLConnection)url
 						.OpenConnection();
@@ -118,7 +110,8 @@ namespace Samples
 
 				if (status.Equals(HttpStatus.Ok))
 				{
-					BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.InputStream));
+					BufferedReader reader = new BufferedReader
+						(new InputStreamReader(urlConnection.InputStream));
 					char[] buffer = new char[1024];
 					int n;
 					Writer writer = new Java.IO.StringWriter();
