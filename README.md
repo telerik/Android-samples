@@ -10,7 +10,7 @@ The SDK examples of the UI for Android components are to be found in the Samples
 
 Build and run the project.
 
-# Getting started with Ui for Xamarin.Android
+# Getting started with UI for Xamarin.Android
 The SDK examples of the Xamarin wrappers of UI for Android are to be found in the Samples-Xamarin folder. To run the project, install the latest version of Xamarin on your computer, extract the UI for Xamarin.Android DLLs into a `Binaries` folder right next to Samples-Xamarin folder. Build and run the project.
 
 [Telerik UI for Android](http://www.telerik.com/android-ui) is a set of tools for building Android applications. 
