@@ -6,9 +6,4 @@
     tools:context="com.example.skarlatov.app.MainActivity"
     android:id="@+id/rootLayout">
 
-    <com.telerik.android.primitives.widget.tabview.RadTabView
-        android:id="@+id/tabView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
 </FrameLayout>
