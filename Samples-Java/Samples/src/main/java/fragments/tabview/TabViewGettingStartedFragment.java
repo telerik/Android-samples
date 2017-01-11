@@ -26,15 +26,15 @@ public class TabViewGettingStartedFragment extends Fragment implements ExampleFr
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.tab_view_getting_started, null);
 
-        // >> tab-view-create-instance
+        // >> tabview-create-instance
         RadTabView tabView = new RadTabView(this.getContext());
-        // << tab-view-create-instance
+        // << tabview-create-instance
 
-        // >> tab-view-add-tabs
+        // >> tabview-add-tabs
         tabView.getTabs().add(new Tab("Tab 1"));
         tabView.getTabs().add(new Tab("Tab 2"));
         tabView.getTabs().add(new Tab("Tab 3"));
-        // << tab-view-add-tabs
+        // << tabview-add-tabs
 
         tabView.addChangeListener(this);
 
@@ -42,7 +42,7 @@ public class TabViewGettingStartedFragment extends Fragment implements ExampleFr
         return view;
     }
 
-    // >> tab-view-listener-content-view
+    // >> tabview-listener-content-view
     @Override
     public View getContentViewForTab(Tab tab) {
         TextView contentView = new TextView(this.getContext());
@@ -51,7 +51,7 @@ public class TabViewGettingStartedFragment extends Fragment implements ExampleFr
 
         return contentView;
     }
-    // << tab-view-listener-content-view
+    // << tabview-listener-content-view
 
     @Override
     public TabItemView getViewForTab(Tab tab) {

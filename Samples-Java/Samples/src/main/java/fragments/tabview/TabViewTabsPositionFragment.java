@@ -55,9 +55,9 @@ public class TabViewTabsPositionFragment extends Fragment implements ExampleFrag
     }
 
     public void onTopPosition() {
-        // >> tab-view-tabs-position
+        // >> tabview-tabs-position
         this.tabView.setTabsPosition(TabsPosition.TOP);
-        // << tab-view-tabs-position
+        // << tabview-tabs-position
     }
 
     public void onBottomPosition() {
@@ -89,9 +89,9 @@ public class TabViewTabsPositionFragment extends Fragment implements ExampleFrag
     }
 
     public void onCenterAlignment() {
-        // >> tab-view-tabs-alignment
+        // >> tabview-tabs-alignment
         this.tabView.getTabStrip().setTabsAlignment(TabsAlignment.CENTER);
-        // << tab-view-tabs-alignment
+        // << tabview-tabs-alignment
     }
 
     public void onStretchAlignment() {
