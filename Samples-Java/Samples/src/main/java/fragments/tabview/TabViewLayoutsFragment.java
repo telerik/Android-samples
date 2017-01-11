@@ -48,6 +48,11 @@ public class TabViewLayoutsFragment extends Fragment implements ExampleFragment,
 
         this.overflowButton = Util.getLayoutPart(view, R.id.overflowLayout, Button.class);
         this.overflowButton.setOnClickListener(this);
+
+        // >> tab-layout-maxtabs
+        tabView.getTabStrip().getLayout().setMaxVisibleTabs(5);
+        // << tab-layout-maxtabs
+
         return view;
     }
 
@@ -79,11 +84,15 @@ public class TabViewLayoutsFragment extends Fragment implements ExampleFragment,
     }
 
     private void onScrollLayout() {
+        // >> scroll-layout-instance
         this.tabView.getTabStrip().setTabStripLayout(new TabStripScrollLayout());
+        // << scroll-layout-instance
     }
 
     private void onOverflowLayout() {
+        // >> overflow-layout-instance
         this.tabView.getTabStrip().setTabStripLayout(new TabStripOverflowLayout());
+        // << overflow-layout-instance
     }
 
     @Override

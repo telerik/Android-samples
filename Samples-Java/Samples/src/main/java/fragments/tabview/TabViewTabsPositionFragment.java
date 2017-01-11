@@ -16,6 +16,7 @@ import com.telerik.android.primitives.widget.tabstrip.TabItemView;
 import com.telerik.android.primitives.widget.tabstrip.TabsAlignment;
 import com.telerik.android.primitives.widget.tabview.RadTabView;
 import com.telerik.android.primitives.widget.tabview.TabViewChangeListener;
+import com.telerik.android.primitives.widget.tabview.TabsPosition;
 import com.telerik.android.sdk.R;
 
 import activities.ExampleFragment;
@@ -54,19 +55,21 @@ public class TabViewTabsPositionFragment extends Fragment implements ExampleFrag
     }
 
     public void onTopPosition() {
-        this.tabView.setTabsPosition(com.telerik.android.primitives.widget.tabview.TabsPosition.TOP);
+        // >> tab-view-tabs-position
+        this.tabView.setTabsPosition(TabsPosition.TOP);
+        // << tab-view-tabs-position
     }
 
     public void onBottomPosition() {
-        this.tabView.setTabsPosition(com.telerik.android.primitives.widget.tabview.TabsPosition.BOTTOM);
+        this.tabView.setTabsPosition(TabsPosition.BOTTOM);
     }
 
     public void onLeftPosition() {
-        this.tabView.setTabsPosition(com.telerik.android.primitives.widget.tabview.TabsPosition.LEFT);
+        this.tabView.setTabsPosition(TabsPosition.LEFT);
     }
 
     public void onRightPosition() {
-        this.tabView.setTabsPosition(com.telerik.android.primitives.widget.tabview.TabsPosition.RIGHT);
+        this.tabView.setTabsPosition(TabsPosition.RIGHT);
     }
 
     public void onLeftAlignment() {
@@ -86,7 +89,9 @@ public class TabViewTabsPositionFragment extends Fragment implements ExampleFrag
     }
 
     public void onCenterAlignment() {
+        // >> tab-view-tabs-alignment
         this.tabView.getTabStrip().setTabsAlignment(TabsAlignment.CENTER);
+        // << tab-view-tabs-alignment
     }
 
     public void onStretchAlignment() {
