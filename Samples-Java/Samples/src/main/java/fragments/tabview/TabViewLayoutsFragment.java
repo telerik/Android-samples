@@ -53,6 +53,8 @@ public class TabViewLayoutsFragment extends Fragment implements ExampleFragment,
         tabView.getTabStrip().getLayout().setMaxVisibleTabs(5);
         // << tab-layout-maxtabs
 
+        tabView.addChangeListener(this);
+
         return view;
     }
 

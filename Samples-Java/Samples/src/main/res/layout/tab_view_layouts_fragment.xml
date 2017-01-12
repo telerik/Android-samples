@@ -13,24 +13,28 @@
         android:layout_height="wrap_content">
         <Button
             android:text="Add"
+            android:textSize="11sp"
             android:id="@+id/addTab"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
         <Button
             android:text="Remove"
+            android:textSize="11sp"
             android:id="@+id/removeTab"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
         <Button
             android:text="Scroll"
+            android:textSize="11sp"
             android:id="@+id/scrollLayout"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
         <Button
             android:text="Overflow"
+            android:textSize="11sp"
             android:id="@+id/overflowLayout"
             android:layout_weight="1"
             android:layout_width="0dp"
