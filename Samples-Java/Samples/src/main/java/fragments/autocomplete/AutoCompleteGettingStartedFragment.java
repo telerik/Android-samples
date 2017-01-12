@@ -13,6 +13,7 @@ import com.telerik.android.sdk.R;
 import com.telerik.widget.autocomplete.AutoCompleteAdapter;
 import com.telerik.widget.autocomplete.CompletionMode;
 import com.telerik.widget.autocomplete.DisplayMode;
+import com.telerik.widget.autocomplete.LayoutMode;
 import com.telerik.widget.autocomplete.RadAutoCompleteTextView;
 import com.telerik.widget.autocomplete.SuggestMode;
 import com.telerik.widget.autocomplete.TokenModel;
@@ -110,16 +111,17 @@ public class AutoCompleteGettingStartedFragment extends android.support.v4.app.F
                 autocomplete.resetAutocomplete();
             }
         });
-        Button btnTokens = (Button)rootView.findViewById(R.id.tokens_mode_btn);
+        Button btnTokens = (Button)rootView.findViewById(R.id.tokensButton);
         btnTokens.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 autocomplete.setDisplayMode(DisplayMode.TOKENS);
+                autocomplete.setTokensLayoutMode(LayoutMode.HORIZONTAL);
                 autocomplete.resetAutocomplete();
             }
         });
 
-        Button btnPlain = (Button)rootView.findViewById(R.id.plain_mode_btn);
+        Button btnPlain = (Button)rootView.findViewById(R.id.plainButton);
         btnPlain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
