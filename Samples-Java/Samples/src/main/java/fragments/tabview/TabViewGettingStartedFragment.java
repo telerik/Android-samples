@@ -36,7 +36,9 @@ public class TabViewGettingStartedFragment extends Fragment implements ExampleFr
         tabView.getTabs().add(new Tab("Tab 3"));
         // << tabview-add-tabs
 
+        // >> tabview-change-listener
         tabView.addChangeListener(this);
+        // << tabview-change-listener
 
         view.addView(tabView);
         return view;
