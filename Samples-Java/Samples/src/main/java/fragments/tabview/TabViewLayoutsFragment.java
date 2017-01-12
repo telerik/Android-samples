@@ -35,6 +35,7 @@ public class TabViewLayoutsFragment extends Fragment implements ExampleFragment,
     }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        this.tabCounter = 1;
         View view = inflater.inflate(R.layout.tab_view_layouts_fragment, null);
         tabView = Util.getLayoutPart(view, R.id.tabView, RadTabView.class);
         this.addButton = Util.getLayoutPart(view, R.id.addTab, Button.class);
