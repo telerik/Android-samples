@@ -29,6 +29,7 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
 
         // >> radial-scale-instantiate
         GaugeRadialScale scale1 = new GaugeRadialScale(getActivity());
+        scale1.setLineVisible(true);
         scale1.setMinimum(34);
         scale1.setMaximum(40);
         // << radial-scale-instantiate
@@ -49,6 +50,7 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
 
         // >> radial-scale-config2
         GaugeRadialScale scale2 = new GaugeRadialScale(getActivity());
+        scale2.setLineVisible(true);
         scale2.setStrokeWidth(2);
         scale2.setRadius(0.7f);
         scale2.setRange(93.2f, 104);
