@@ -11,7 +11,7 @@ import fragments.tabview.TabViewTabsPositionFragment;
 public class TabViewExamples implements ExamplesProvider {
     @Override
     public String controlName() {
-        return "TabView";
+        return "TabView Beta";
     }
 
     @Override
