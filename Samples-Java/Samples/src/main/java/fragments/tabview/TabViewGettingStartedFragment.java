@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.telerik.android.common.Util;
 import com.telerik.android.primitives.widget.tabstrip.Tab;
 import com.telerik.android.primitives.widget.tabstrip.TabItemView;
 import com.telerik.android.primitives.widget.tabview.RadTabView;
@@ -29,6 +30,8 @@ public class TabViewGettingStartedFragment extends Fragment implements ExampleFr
         // >> tabview-create-instance
         RadTabView tabView = new RadTabView(this.getContext());
         // << tabview-create-instance
+
+        tabView.setId(R.id.tabView);
 
         // >> tabview-add-tabs
         tabView.getTabs().add(new Tab("Tab 1"));
