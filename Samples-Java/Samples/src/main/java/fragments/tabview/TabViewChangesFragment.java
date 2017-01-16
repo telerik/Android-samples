@@ -39,6 +39,7 @@ public class TabViewChangesFragment extends Fragment implements ExampleFragment,
         return view;
     }
 
+    // >> tabview-listener-content-view
     @Override
     public View getContentViewForTab(Tab tab) {
         TextView contentView = new TextView(this.getContext());
@@ -47,6 +48,7 @@ public class TabViewChangesFragment extends Fragment implements ExampleFragment,
 
         return contentView;
     }
+    // << tabview-listener-content-view
 
     @Override
     public TabItemView getViewForTab(Tab tab) {
@@ -57,6 +59,7 @@ public class TabViewChangesFragment extends Fragment implements ExampleFragment,
         return tabItemView;
     }
 
+    // >> tabview-listener-selection
     @Override
     public boolean onSelectingTab(Tab tabToSelect) {
         // Cancel selection of the middle tab.
@@ -70,4 +73,5 @@ public class TabViewChangesFragment extends Fragment implements ExampleFragment,
         }
         Log.d("TabView selected: ", selectedTab.getTitle());
     }
+    // << tabview-listener-selection
 }

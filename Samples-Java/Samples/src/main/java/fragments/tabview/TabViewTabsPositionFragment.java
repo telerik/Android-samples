@@ -16,6 +16,7 @@ import com.telerik.android.primitives.widget.tabstrip.TabItemView;
 import com.telerik.android.primitives.widget.tabstrip.TabsAlignment;
 import com.telerik.android.primitives.widget.tabview.RadTabView;
 import com.telerik.android.primitives.widget.tabview.TabViewChangeListener;
+import com.telerik.android.primitives.widget.tabview.TabsPosition;
 import com.telerik.android.sdk.R;
 
 import activities.ExampleFragment;
@@ -53,43 +54,47 @@ public class TabViewTabsPositionFragment extends Fragment implements ExampleFrag
         return view;
     }
 
-    public void onTopPosition(View view) {
-        this.tabView.setTabsPosition(com.telerik.android.primitives.widget.tabview.TabsPosition.TOP);
+    public void onTopPosition() {
+        // >> tabview-tabs-position
+        this.tabView.setTabsPosition(TabsPosition.TOP);
+        // << tabview-tabs-position
     }
 
-    public void onBottomPosition(View view) {
-        this.tabView.setTabsPosition(com.telerik.android.primitives.widget.tabview.TabsPosition.BOTTOM);
+    public void onBottomPosition() {
+        this.tabView.setTabsPosition(TabsPosition.BOTTOM);
     }
 
-    public void onLeftPosition(View view) {
-        this.tabView.setTabsPosition(com.telerik.android.primitives.widget.tabview.TabsPosition.LEFT);
+    public void onLeftPosition() {
+        this.tabView.setTabsPosition(TabsPosition.LEFT);
     }
 
-    public void onRightPosition(View view) {
-        this.tabView.setTabsPosition(com.telerik.android.primitives.widget.tabview.TabsPosition.RIGHT);
+    public void onRightPosition() {
+        this.tabView.setTabsPosition(TabsPosition.RIGHT);
     }
 
-    public void onLeftAlignment(View view) {
+    public void onLeftAlignment() {
         this.tabView.getTabStrip().setTabsAlignment(TabsAlignment.LEFT);
     }
 
-    public void onRightAlignment(View view) {
+    public void onRightAlignment() {
         this.tabView.getTabStrip().setTabsAlignment(TabsAlignment.RIGHT);
     }
 
-    public void onTopAlignment(View view) {
+    public void onTopAlignment() {
         this.tabView.getTabStrip().setTabsAlignment(TabsAlignment.TOP);
     }
 
-    public void onBottomAlignment(View view) {
+    public void onBottomAlignment() {
         this.tabView.getTabStrip().setTabsAlignment(TabsAlignment.BOTTOM);
     }
 
-    public void onCenterAlignment(View view) {
+    public void onCenterAlignment() {
+        // >> tabview-tabs-alignment
         this.tabView.getTabStrip().setTabsAlignment(TabsAlignment.CENTER);
+        // << tabview-tabs-alignment
     }
 
-    public void onStretchAlignment(View view) {
+    public void onStretchAlignment() {
         this.tabView.getTabStrip().setTabsAlignment(TabsAlignment.STRETCH);
     }
 
@@ -120,43 +125,43 @@ public class TabViewTabsPositionFragment extends Fragment implements ExampleFrag
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.topPosition) {
-            this.onTopPosition(v);
+            this.onTopPosition();
         }
 
         if(v.getId() == R.id.leftPosition) {
-this.onLeftPosition(v);
+            this.onLeftPosition();
         }
 
         if(v.getId() == R.id.rightPosition) {
-this.onRightPosition(v);
+            this.onRightPosition();
         }
 
         if(v.getId() == R.id.bottomPosition) {
-this.onBottomPosition(v);
+            this.onBottomPosition();
         }
 
         if(v.getId() == R.id.topAlignment) {
-this.onTopAlignment(v);
+            this.onTopAlignment();
         }
 
         if(v.getId() == R.id.leftAlignment) {
-this.onLeftAlignment(v);
+            this.onLeftAlignment();
         }
 
         if(v.getId() == R.id.bottomAlignment) {
-this.onBottomAlignment(v);
+            this.onBottomAlignment();
         }
 
         if(v.getId() == R.id.rightAlignment) {
-this.onRightAlignment(v);
+            this.onRightAlignment();
         }
 
         if(v.getId() == R.id.centerAlignment) {
-this.onCenterAlignment(v);
+            this.onCenterAlignment();
         }
 
         if(v.getId() == R.id.stretchAlignment) {
-this.onStretchAlignment(v);
+            this.onStretchAlignment();
         }
     }
 }
