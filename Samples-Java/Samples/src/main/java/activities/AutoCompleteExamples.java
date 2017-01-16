@@ -11,7 +11,7 @@ import fragments.autocomplete.AutoCompleteTokenLayoutsFragment;
 public class AutoCompleteExamples implements ExamplesProvider {
     @Override
     public String controlName() {
-        return "AutoCompleteTextView Beta";
+        return "AutoCompleteTextView";
     }
 
     @Override
