@@ -67,8 +67,8 @@ namespace Samples
 			scale.LabelsCount = 10;
 			scale.MajorTicksCount = 19;
 			scale.MinorTicksCount = 1;
-			scale.LabelsOffset = scale.LabelsOffset + 20;
-			scale.TicksOffset = 0.1f;
+			scale.LabelsOffset = 0.15f;
+			scale.TicksOffset = 0;
 			scale.MajorTicksStrokePaint.StrokeWidth = 2;
 			scale.MajorTicksStrokeColor = Color.Rgb(132, 132, 132);
 			scale.LineVisible = false;
