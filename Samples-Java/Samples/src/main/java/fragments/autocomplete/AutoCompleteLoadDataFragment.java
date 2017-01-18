@@ -1,5 +1,8 @@
 package fragments.autocomplete;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +12,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.telerik.android.common.Function2Async;
 import com.telerik.android.common.Procedure;
@@ -40,6 +44,9 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
     private static RadAutoCompleteTextView autocomplete;
     private AutoCompleteAdapter adapter;
     private static List<TokenModel> remoteData;
+    private View exampleMain;
+    private View connectionInfo;
+    private Button refresh;
 
     @Override
     public String title() {
@@ -55,22 +62,41 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
 
         autocomplete = (RadAutoCompleteTextView) rootView.findViewById(R.id.autocomplete);
 
+        exampleMain = rootView.findViewById(R.id.exampleMainContainer);
+        connectionInfo = rootView.findViewById(R.id.connectionInfoContainer);
+        refresh = (Button) rootView.findViewById(R.id.retryButton);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isConnectionAvailable = isConnectionAvailable(getActivity());
+                updateConnectivity(isConnectionAvailable);
+            }
+        });
+
+        boolean isConnectionAvailable = isConnectionAvailable(getActivity());
+        updateConnectivity(isConnectionAvailable);
+
         autocomplete.setSuggestMode(SuggestMode.SUGGEST);
         autocomplete.setDisplayMode(DisplayMode.PLAIN);
         autocomplete.setAutocompleteHint("Choose airport");
         // >> set-async-data
         autocomplete.setUsingAsyncData(true);
-        adapter = new AutoCompleteAdapter(this.getContext(),new ArrayList<TokenModel>(),
+        adapter = new AutoCompleteAdapter(this.getContext(), new ArrayList<TokenModel>(),
                 R.layout.suggestion_item_layout);
         // << set-async-data
         adapter.setCompletionMode(STARTS_WITH_REMOTE);
         autocomplete.setAdapter(adapter);
 
         Display display = this.getActivity().getWindowManager().getDefaultDisplay();
-        int height  =  display.getHeight();
-        autocomplete.setSuggestionViewHeight(height/4);
+        int height = display.getHeight();
+        autocomplete.setSuggestionViewHeight(height / 4);
 
         return rootView;
+    }
+
+    private void updateConnectivity(boolean isNetwork) {
+        exampleMain.setVisibility(isNetwork ? View.VISIBLE : View.GONE);
+        connectionInfo.setVisibility(isNetwork ? View.GONE : View.VISIBLE);
     }
 
     // >> autocomplete-remote-full
@@ -91,12 +117,12 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
         // >> autocomplete-remote-do-in-background
         @Override
         protected Void doInBackground(String... params) {
+            HttpURLConnection urlConnection = null;
             try {
                 URL url = new URL
                         ("http://www.telerik.com/docs/default-source/ui-for-ios/airports.json?sfvrsn=2");
 
-                HttpURLConnection urlConnection = (HttpURLConnection) url
-                        .openConnection();
+                urlConnection = (HttpURLConnection) url.openConnection();
 
                 urlConnection.setRequestMethod("GET");
                 urlConnection.setRequestProperty("Content-length", "0");
@@ -118,11 +144,10 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
 
                     String json = writer.toString();
 
-                    try{
+                    try {
                         JSONObject jObj = new JSONObject(json);
                         data = jObj.getJSONArray("airports");
-                    }
-                    catch(JSONException ex){
+                    } catch (JSONException ex) {
                         ex.printStackTrace();
                     }
                 }
@@ -130,6 +155,10 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
             } catch (IOException e) {
                 Log.e("IOException", e.toString());
                 e.printStackTrace();
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
             }
 
             return null;
@@ -143,7 +172,7 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
             remoteData = getTokenModelObjects(data);
             for (TokenModel item : remoteData) {
                 String text = item.getText();
-                if(text.toLowerCase().startsWith(filter.toLowerCase())) {
+                if (text.toLowerCase().startsWith(filter.toLowerCase())) {
                     filtered.add(item);
                 }
             }
@@ -162,9 +191,9 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
         @Override
         public void apply(String filterString, List<TokenModel> originalCollection,
                           Procedure<List<TokenModel>> callback) {
-                FeedAutoCompleteTask task  =
-                        new FeedAutoCompleteTask(callback, filterString);
-                task.execute();
+            FeedAutoCompleteTask task =
+                    new FeedAutoCompleteTask(callback, filterString);
+            task.execute();
         }
     };
     // << autocomplete-remote-completion-mode
@@ -173,16 +202,15 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
     private ArrayList<TokenModel> getTokenModelObjects(JSONArray json) {
         ArrayList<TokenModel> feedData = new ArrayList<TokenModel>();
         JSONObject current = new JSONObject();
-        for(int i = 0; i < json.length(); i++) {
+        for (int i = 0; i < json.length(); i++) {
             String airport = "";
 
-            try{
+            try {
                 current = json.getJSONObject(i);
-                String fullname = (String)current.get("FIELD2");
-                String abr = (String)current.get("FIELD5");
+                String fullname = (String) current.get("FIELD2");
+                String abr = (String) current.get("FIELD5");
                 airport = fullname + "," + abr;
-            }
-            catch (JSONException ex) {
+            } catch (JSONException ex) {
                 ex.printStackTrace();
             }
 
@@ -191,5 +219,14 @@ public class AutoCompleteLoadDataFragment extends Fragment implements ExampleFra
         }
 
         return feedData;
+    }
+
+    public static boolean isConnectionAvailable(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
     }
 }
