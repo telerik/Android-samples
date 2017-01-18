@@ -136,6 +136,7 @@ public class ListViewSwipeActionsStickyThresholdFragment extends Fragment implem
             public void onSwipeStateChanged(SwipeActionsBehavior.SwipeActionsState swipeActionsState, SwipeActionsBehavior.SwipeActionsState swipeActionsState1) {
 
             }
+
         });
 
         this.listView.addBehavior(this.sab);

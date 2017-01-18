@@ -17,9 +17,8 @@ namespace Samples
 			this.source.Add (new DataFormExamples ());
 			this.source.Add (new ListViewExamples ());
 			this.source.Add (new SideDrawerExamples ());
-			this.source.Add(new GaugesExamples());
-			this.source.Add(new AutoCompleteExmaples());
-
+            this.source.Add(new AutoCompleteExmaples());
+            this.source.Add(new GaugesExamples());
 		}
 
 		public override int Count {

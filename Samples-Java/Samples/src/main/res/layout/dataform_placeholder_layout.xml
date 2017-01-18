@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"/>
 
     <FrameLayout
-        android:layout_gravity="center_horizontal|top"
+        android:layout_gravity="end|center_vertical"
         android:tag="IsEmployed"
         android:layout_width="150dp"
         android:layout_height="wrap_content"/>
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"/>
 
     <FrameLayout
-        android:layout_gravity="center"
+        android:layout_gravity="start|center_vertical"
         android:tag="EmployeeType"
         android:layout_width="150dp"
         android:layout_height="wrap_content"/>

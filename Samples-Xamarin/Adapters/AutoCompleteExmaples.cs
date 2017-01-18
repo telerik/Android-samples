@@ -25,7 +25,7 @@ namespace Samples
 
 		public String ControlName()
 		{
-			return "AutoCompleteTextView Beta";
+			return "AutoCompleteTextView";
 		}
 
 		private LinkedHashMap GetAutoCompleteExamples()
@@ -36,6 +36,7 @@ namespace Samples
 			result.Add(new AutoCompleteGettingStartedFragment());
 			result.Add(new AutoCompleteTokenLayoutsFragment());
 			result.Add(new AutoCompleteCustomizationFragment());
+			result.Add(new AutoCompleteRemoteDataFragment());
 			examples.Put("Init", result);
 
 			return examples;

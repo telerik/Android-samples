@@ -7,23 +7,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Token Layouts"/>
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+        <RadioButton android:id="@+id/horizontal_layout_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Horizontal"
-            android:layout_gravity="center"
-            android:id="@+id/horizontal_layout_btn"/>
-        <Button
+            android:checked="true"
+            android:text="Horizontal" />
+        <RadioButton android:id="@+id/wrap_layout_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wrap"
-            android:layout_gravity="center"
-            android:id="@+id/wrap_layout_btn"/>
-    </LinearLayout>
+            android:text="Wrap" />
+    </RadioGroup>
 
     <com.telerik.widget.autocomplete.RadAutoCompleteTextView
         android:layout_width="match_parent"
