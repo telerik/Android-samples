@@ -35,10 +35,11 @@ namespace Samples
 			scale.LabelsCount = 7;
 			scale.LineVisible = false;
 			scale.Radius = 0.95f;
-			// << radial-scale-setup
+            scale.TicksOffset = 0;
+            // << radial-scale-setup
 
-			// >> radial-indicators-setup
-			int[] colors = new int[] {
+            // >> radial-indicators-setup
+            int[] colors = new int[] {
 				Color.Rgb(221,221,221),
 				Color.Rgb(157,202,86),
 				Color.Rgb(240,196,77),

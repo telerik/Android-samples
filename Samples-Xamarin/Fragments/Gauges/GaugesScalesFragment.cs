@@ -20,7 +20,8 @@ namespace Samples
 
 			// >> radial-scale-instantiate
 			GaugeRadialScale scale1 = new GaugeRadialScale(Activity);
-			scale1.Minimum = 34;
+            scale1.LineVisible = true;
+            scale1.Minimum = 34;
 			scale1.Maximum = 40;
 			// << radial-scale-instantiate
 
@@ -34,11 +35,14 @@ namespace Samples
 			scale1.LabelsCount = 7;
 			scale1.MajorTicksCount = 7;
 			scale1.LabelsPaint.TextSize = 30;
-			// << radial-scale-config-ticks-labels
+            scale1.TicksOffset = 0;
+            scale1.LabelsOffset = 0.1f;
+            // << radial-scale-config-ticks-labels
 
-			// >> radial-scale-config2
-			GaugeRadialScale scale2 = new GaugeRadialScale(Activity);
-			scale2.StrokeWidth = 2;
+            // >> radial-scale-config2
+            GaugeRadialScale scale2 = new GaugeRadialScale(Activity);
+            scale2.LineVisible = true;
+            scale2.StrokeWidth = 2;
 			scale2.Radius = 0.7f;
 			scale2.SetRange(93.2f, 104);
 			scale2.TicksLayoutMode = GaugeScaleTicksLayoutMode.Outer;
@@ -48,10 +52,12 @@ namespace Samples
 			scale2.LabelsLayoutMode = GaugeScaleLabelsLayoutMode.Outer;
 			scale2.LabelsPaint.TextSize = 30;
 			scale2.LabelsColor = Color.Gray;
-			// << radial-scale-config2
+            scale2.TicksOffset = 0;
+            scale2.LabelsOffset = 0.1f;
+            // << radial-scale-config2
 
-			// >> add-scale-to-gauge
-			gauge.AddScale(scale1);
+            // >> add-scale-to-gauge
+            gauge.AddScale(scale1);
 			gauge.AddScale(scale2);
 			// << add-scale-to-gauge
 
