@@ -25,7 +25,7 @@ namespace Samples
 
 		public String ControlName()
 		{
-			return "AutoCompleteTextView Beta";
+			return "AutoCompleteTextView";
 		}
 
 		private LinkedHashMap GetAutoCompleteExamples()

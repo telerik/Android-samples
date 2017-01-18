@@ -103,13 +103,13 @@ namespace Samples
 				this.autocomplete.Adapter.CompletionMode = CompletionMode.Contains;
 			};
 
-			Button btnTokens = (Button)rootView.FindViewById(Resource.Id.tokens_mode_btn);
+			Button btnTokens = (Button)rootView.FindViewById(Resource.Id.tokensButton);
 			btnTokens.Click += (object sender, EventArgs e) =>
 			{
 				this.autocomplete.DisplayMode = DisplayMode.Tokens;
 			};
 
-			Button btnPlain = (Button)rootView.FindViewById(Resource.Id.plain_mode_btn);
+			Button btnPlain = (Button)rootView.FindViewById(Resource.Id.plainButton);
 			btnPlain.Click += (object sender, EventArgs e) =>
 			{
 				this.autocomplete.DisplayMode = DisplayMode.Plain;

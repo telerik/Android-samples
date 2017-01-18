@@ -51,7 +51,7 @@ namespace Samples
 
 			this.autocomplete.SuggestMode = SuggestMode.Suggest;
 			this.autocomplete.DisplayMode = DisplayMode.Plain;
-			this.autocomplete.AutocompleteHint = "Your destination:";
+			this.autocomplete.AutocompleteHint = "Choose airport";
 			// >> set-async-data-xamarin
 			this.autocomplete.UsingAsyncData = true;
 			this.adapter = new AutoCompleteAdapter(
