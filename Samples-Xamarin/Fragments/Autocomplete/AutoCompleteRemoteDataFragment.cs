@@ -11,32 +11,51 @@ using Java.Util;
 using Java.Lang;
 using Android.Widget;
 using Android.Graphics;
+using Android.Net;
+using Android.Content;
 
 namespace Samples
 {
-	public class AutoCompleteRemoteDataFragment : Android.Support.V4.App.Fragment, ExampleFragment
+	public class AutoCompleteRemoteDataFragment : Android.Support.V4.App.Fragment, ExampleFragment, View.IOnClickListener
 	{
 		private RadAutoCompleteTextView autocomplete;
 		private AutoCompleteAdapter adapter;
+		private View exampleMain;
+		private View connectionInfo;
+		private Button refresh;
 
 		public string Title()
 		{
 			return "Loading Remote Data";
 		}
 
+		public void OnClick(View v)
+		{
+			bool isConnectionAvailable = IsConnectionAvailable(Activity);
+			this.UpdateConnectivity(isConnectionAvailable);
+		}
+
 		public override Android.Views.View OnCreateView(Android.Views.LayoutInflater inflater, Android.Views.ViewGroup container, Android.OS.Bundle savedInstanceState)
 		{
 			View rootView = inflater.Inflate(Resource.Layout.fragment_autocomplete_remote_data, container, false);
 
-			this.autocomplete = (RadAutoCompleteTextView)rootView.FindViewById(Resource.Id.autocmp);
+			this.autocomplete = (RadAutoCompleteTextView)rootView.FindViewById(Resource.Id.autocomplete);
+
+			this.exampleMain = rootView.FindViewById(Resource.Id.exampleMainContainer);
+			this.connectionInfo = rootView.FindViewById(Resource.Id.connectionInfoContainer);
+			this.refresh = (Button)rootView.FindViewById(Resource.Id.retryButton);
+			this.refresh.SetOnClickListener(this);
+
+			bool isConnectionAvailable = IsConnectionAvailable(Activity);
+			this.UpdateConnectivity(isConnectionAvailable);
 
 			this.autocomplete.SuggestMode = SuggestMode.Suggest;
 			this.autocomplete.DisplayMode = DisplayMode.Plain;
 			this.autocomplete.AutocompleteHint = "Your destination:";
 			// >> set-async-data-xamarin
 			this.autocomplete.UsingAsyncData = true;
-			this.adapter = new AutoCompleteAdapter(this.Context, new List<TokenModel>(),
-			                                       Java.Lang.Integer.ValueOf(Resource.Layout.suggestion_item_layout));
+			this.adapter = new AutoCompleteAdapter(
+				this.Context, new List<TokenModel>(), Integer.ValueOf(Resource.Layout.suggestion_item_layout));
 			// << set-async-data-xamarin
 			this.adapter.CompletionMode = new StartsWithRemote(this.autocomplete);
 			this.autocomplete.Adapter = this.adapter;
@@ -47,6 +66,21 @@ namespace Samples
 
 			return rootView;
 		}
+
+		private void UpdateConnectivity(bool isNetwork)
+		{
+			this.exampleMain.Visibility = isNetwork ? ViewStates.Visible : ViewStates.Gone;
+			this.connectionInfo.Visibility = isNetwork ? ViewStates.Gone : ViewStates.Visible;
+		}
+
+		public static bool IsConnectionAvailable(Context context)
+		{
+			ConnectivityManager cm = (ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
+
+			NetworkInfo activeNetwork = cm.ActiveNetworkInfo;
+			return activeNetwork != null &&
+				activeNetwork.IsConnectedOrConnecting;
+		}
 	}
 
 	// >> autocomplete-remote-full-xamarin
@@ -55,20 +89,20 @@ namespace Samples
 	{
 		private RadAutoCompleteTextView autocomplete;
 
-		public StartsWithRemote(RadAutoCompleteTextView autocomplete) 
+		public StartsWithRemote(RadAutoCompleteTextView autocomplete)
 		{
 			this.autocomplete = autocomplete;
 		}
 
 		public void Apply(Java.Lang.Object autoCompleteText,
-		                  Java.Lang.Object originalCollection, IProcedure finishedCallback)
+						  Java.Lang.Object originalCollection, IProcedure finishedCallback)
 		{
 			IList list = originalCollection as IList;
 
 			if (list == null)
 			{
 				FeedAutoCompleteTask task = new FeedAutoCompleteTask(
-					finishedCallback,(string)autoCompleteText,this.autocomplete);
+					finishedCallback, (string)autoCompleteText, this.autocomplete);
 				task.Execute();
 			}
 		}
@@ -94,13 +128,13 @@ namespace Samples
 		// >> autocomplete-remote-do-in-background-xamarin
 		protected override Java.Lang.Void RunInBackground(params string[] @params)
 		{
+			HttpURLConnection urlConnection = null;
 			try
 			{
 				URL url = new URL
 					("http://www.telerik.com/docs/default-source/ui-for-ios/airports.json?sfvrsn=2");
 
-				HttpURLConnection urlConnection = (HttpURLConnection)url
-						.OpenConnection();
+				urlConnection = (HttpURLConnection)url.OpenConnection();
 
 				urlConnection.RequestMethod = "GET";
 				urlConnection.UseCaches = false;
@@ -139,6 +173,13 @@ namespace Samples
 			{
 				e.PrintStackTrace();
 			}
+			finally
+			{
+				if (urlConnection != null)
+				{
+					urlConnection.Disconnect();
+				}
+			}
 
 			return null;
 		}
@@ -165,7 +206,7 @@ namespace Samples
 
 		private List<TokenModel> GetTokenModelObjects(JSONArray data)
 		{
-			
+
 			List<TokenModel> feedData = new List<TokenModel>();
 			JSONObject current = new JSONObject();
 
