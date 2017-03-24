@@ -59,7 +59,7 @@ namespace Samples
 				chart.Series.Add(areaSeries);
 			}
 
-			ChartPalette defaultPaletteClone = new ChartPalette(chart.Palette);
+			ChartPalette defaultPaletteClone = chart.Palette.ClonePalette();
 
 			// We acquire the palette entry containing the settings for the third series in the chart setup.
 			PaletteEntry areaSeriesEntry = defaultPaletteClone.GetEntry(ChartPalette.AreaFamily, 2);
