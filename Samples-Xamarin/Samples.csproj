@@ -200,6 +200,7 @@
     <Compile Include="Fragments\Dataform\DataFormEditorStylesFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormLabelPositionsFragment.cs" />
     <Compile Include="Fragments\Dataform\DataFormExpandableGroupsFragment.cs" />
+    <Compile Include="Fragments\Dataform\CustomEditorFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewSwipeActionsGettingStartedFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewSwipeActionsStickyFragment.cs" />
     <Compile Include="Fragments\ListView\ListViewSwipeActionsStickyThresholdFragment.cs" />
@@ -272,6 +273,7 @@
     <AndroidResource Include="Resources\layout\fragment_list_view_deck.axml" />
     <AndroidResource Include="Resources\layout\example_list_view_deck_item_layout.xml" />
     <AndroidResource Include="Resources\layout\fragment_dataform_custom_editor.axml" />
+    <AndroidResource Include="Resources\layout\dataform_custom_editor_fragment.axml" />
     <AndroidResource Include="Resources\layout\dataform_custom_editor.axml" />
     <AndroidResource Include="Resources\layout\dataform_custom_editor_list_item.axml" />
     <AndroidResource Include="Resources\layout\fragment_dataform_getting_started.axml" />
