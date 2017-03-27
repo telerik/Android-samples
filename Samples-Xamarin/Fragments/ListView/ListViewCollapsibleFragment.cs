@@ -173,15 +173,17 @@ namespace Samples
 		}
 
 
-		class MyGroupDescriptor : Java.Lang.Object, Com.Telerik.Android.Common.IFunction{
-
-			public Java.Lang.Object Apply(Java.Lang.Object o1){
+		class MyGroupDescriptor : Java.Lang.Object, Com.Telerik.Android.Common.IFunction
+		{
+			public Java.Lang.Object Apply(Java.Lang.Object o1)
+			{
 				ShoppingListItem currentItem = (ShoppingListItem) o1;
 				return currentItem.category;
 			}
 		}
 
-		class ShoppingListItem : Java.Lang.Object {
+		class ShoppingListItem : Java.Lang.Object
+		{
 			public System.String category;
 			public int price;
 			public System.String name;
