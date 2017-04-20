@@ -11,6 +11,7 @@ namespace Samples
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			this.calendarView = new RadCalendarView (Activity);
+			this.calendarView.SelectionMode = CalendarSelectionMode.Single;
 			this.calendarView.GestureManager.SetDoubleTapToChangeDisplayMode (false);
 			this.HasOptionsMenu = true;
 			/* 
@@ -35,18 +36,32 @@ namespace Samples
 		{
 			CalendarDisplayMode currentDisplayMode = calendarView.DisplayMode;
 
-			if (currentDisplayMode == CalendarDisplayMode.Month) {
-				menu.FindItem (Resource.Id.itemMonth).SetEnabled(false);
-				menu.FindItem (Resource.Id.itemWeek).SetEnabled(true);
-				menu.FindItem (Resource.Id.itemYear).SetEnabled (true);
-			} else if (currentDisplayMode == CalendarDisplayMode.Week){
-				menu.FindItem (Resource.Id.itemMonth).SetEnabled(true);
-				menu.FindItem (Resource.Id.itemWeek).SetEnabled(false);
-				menu.FindItem (Resource.Id.itemYear).SetEnabled (true);
-			}else if (currentDisplayMode == CalendarDisplayMode.Year){
-				menu.FindItem (Resource.Id.itemMonth).SetEnabled(true);
-				menu.FindItem (Resource.Id.itemWeek).SetEnabled(true);
-				menu.FindItem (Resource.Id.itemYear).SetEnabled (false);
+			if (currentDisplayMode == CalendarDisplayMode.Month)
+			{
+				menu.FindItem(Resource.Id.itemMonth).SetEnabled(false);
+				menu.FindItem(Resource.Id.itemWeek).SetEnabled(true);
+				menu.FindItem(Resource.Id.itemDay).SetEnabled(true);
+				menu.FindItem(Resource.Id.itemYear).SetEnabled(true);
+			}
+			else if (currentDisplayMode == CalendarDisplayMode.Week)
+			{
+				menu.FindItem(Resource.Id.itemMonth).SetEnabled(true);
+				menu.FindItem(Resource.Id.itemWeek).SetEnabled(false);
+				menu.FindItem(Resource.Id.itemDay).SetEnabled(true);
+				menu.FindItem(Resource.Id.itemYear).SetEnabled(true);
+			}
+			else if (currentDisplayMode == CalendarDisplayMode.Year)
+			{
+				menu.FindItem(Resource.Id.itemMonth).SetEnabled(true);
+				menu.FindItem(Resource.Id.itemWeek).SetEnabled(true);
+				menu.FindItem(Resource.Id.itemDay).SetEnabled(true);
+				menu.FindItem(Resource.Id.itemYear).SetEnabled(false);
+			}
+			else if (currentDisplayMode == CalendarDisplayMode.Day) {
+				menu.FindItem(Resource.Id.itemMonth).SetEnabled(true);
+				menu.FindItem(Resource.Id.itemWeek).SetEnabled(true);
+				menu.FindItem(Resource.Id.itemDay).SetEnabled(false);
+				menu.FindItem(Resource.Id.itemYear).SetEnabled(true);
 			}
 		}
 
@@ -60,8 +75,11 @@ namespace Samples
 			} else if (itemId == Resource.Id.itemMonth) {
 				calendarView.ChangeDisplayMode (CalendarDisplayMode.Month, false); 
 				return true;
-			}else if (itemId == Resource.Id.itemYear) {
+			} else if (itemId == Resource.Id.itemYear) {
 				calendarView.ChangeDisplayMode (CalendarDisplayMode.Year, false); 
+				return true;
+			} else if (itemId == Resource.Id.itemDay) {
+				calendarView.ChangeDisplayMode(CalendarDisplayMode.Day, false);
 				return true;
 			}
 

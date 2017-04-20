@@ -95,6 +95,14 @@ namespace Samples
 
 			calendarExamples.Put("Selection", result);
 
+			result = new ArrayList();
+
+			result.Add(new DayViewGettingStartedFragment());
+			result.Add(new DayViewStylesFragment());
+			result.Add(new DayViewCustomViewsFragment());
+
+			calendarExamples.Put("DayView", result);
+
 			return calendarExamples;
 		}
 	}

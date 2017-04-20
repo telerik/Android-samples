@@ -220,6 +220,10 @@
     <Compile Include="Fragments\Calendar\Events\EventRenderCustomFragment.cs" />
     <Compile Include="Fragments\Autocomplete\AutoCompleteRemoteDataFragment.cs" />
     <Compile Include="Fragments\Autocomplete\AirportModel.cs" />
+    <Compile Include="Fragments\Calendar\DayView\DayViewGettingStartedFragment.cs" />
+    <Compile Include="Fragments\Calendar\DayView\CalendarEventsHelper.cs" />
+    <Compile Include="Fragments\Calendar\DayView\DayViewStylesFragment.cs" />
+    <Compile Include="Fragments\Calendar\DayView\DayViewCustomViewsFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -236,6 +240,7 @@
     <None Include="packages.config" />
     <AndroidResource Include="Resources\layout\example_list_swipe_actions_multiple.axml" />
     <AndroidResource Include="Resources\layout\fragment_autocomplete_remote_data.axml" />
+    <AndroidResource Include="Resources\layout\example_calendar_dayview_custom.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -376,6 +381,9 @@
     <AndroidAsset Include="Assets\PersonExtended.json" />
     <AndroidAsset Include="Assets\PersonSchema.json" />
     <AndroidAsset Include="Assets\countries.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fragments\Calendar\DayView\" />
   </ItemGroup>
   <Import Project="packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
 </Project>

@@ -1,11 +1,14 @@
 ﻿<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+        android:title="Day"
+        android:id="@+id/itemDay" />
     <item
         android:title="Week"
         android:id="@+id/itemWeek" />
     <item
         android:title="Month"
         android:id="@+id/itemMonth" />
-        <item
+    <item
         android:title="Year"
         android:id="@+id/itemYear" />
 </menu>
