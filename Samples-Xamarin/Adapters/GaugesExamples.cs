@@ -13,7 +13,7 @@ namespace Samples
 
 		public String ControlName()
 		{
-			return "GaugeView Beta";
+			return "GaugeView";
 		}
 
 		public LinkedHashMap Examples()
@@ -27,8 +27,8 @@ namespace Samples
 			ArrayList result = new ArrayList();
 
 			result.Add(new GaugesGettingStartedFragment());
-			result.Add(new GaugesScalesFragment());
-			result.Add(new GaugesAnimationsFragment());
+            result.Add(new GaugesAnimationsFragment());
+            result.Add(new GaugesScalesFragment());
 			result.Add(new GaugeCustomizationFragment());
 			examples.Put("Init", result);
 

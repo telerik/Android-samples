@@ -63,6 +63,7 @@ public class ListViewSwipeActionsStickyFragment extends Fragment implements Exam
             private ViewGroup swipeView;
             private View leftActionView;
             private View rightActionView;
+
             @Override
             public void onSwipeStarted(SwipeActionsBehavior.SwipeActionEvent swipeActionEvent) {
                 this.swipeView = (ViewGroup)swipeActionEvent.swipeView();
@@ -106,6 +107,12 @@ public class ListViewSwipeActionsStickyFragment extends Fragment implements Exam
                 this.leftWidth = -1;
                 this.rightWidth = -1;
             }
+
+            @Override
+            public void onSwipeStateChanged(SwipeActionsBehavior.SwipeActionsState swipeActionsState, SwipeActionsBehavior.SwipeActionsState swipeActionsState1) {
+
+            }
+
         });
 
         this.listView.addBehavior(this.sab);

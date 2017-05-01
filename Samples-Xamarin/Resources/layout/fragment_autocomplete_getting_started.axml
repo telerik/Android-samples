@@ -1,75 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/root"
-    android:paddingTop="10dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick a country:" />
+<!-- >> autocomplete-xml -->
+    <com.telerik.widget.autocomplete.RadAutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/autocmp" />
+<!-- << autocomplete-xml -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Suggest Modes" />
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+        <RadioButton
+            android:id="@+id/suggestButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Suggest"
-            android:id="@+id/suggestButton" />
-        <Button
+            android:checked="true"
+            android:text="Suggest" />
+        <RadioButton
+            android:id="@+id/suggestAppendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Suggest-Append"
-            android:id="@+id/suggestAppendButton" />
-        <Button
+            android:text="Suggest-Append" />
+        <RadioButton
+            android:id="@+id/appendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Append"
-            android:id="@+id/appendButton" />
-    </LinearLayout>
+            android:text="Append" />
+    </RadioGroup>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Completion Modes" />
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+        <RadioButton
+            android:id="@+id/startsWithButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Starts With"
-            android:id="@+id/startsWithButton" />
-        <Button
+            android:checked="true"
+            android:text="Starts with" />
+        <RadioButton
+            android:id="@+id/containsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contains"
-            android:id="@+id/containsButton" />
-    </LinearLayout>
+            android:text="Contains" />
+    </RadioGroup>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Display Modes" />
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+        <RadioButton
+            android:id="@+id/plainButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Plain"
-            android:id="@+id/plain_mode_btn" />
-        <Button
+            android:checked="true"
+            android:text="Plain" />
+        <RadioButton
+            android:id="@+id/tokensButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tokens"
-            android:id="@+id/tokens_mode_btn" />
-    </LinearLayout>
-    <com.telerik.widget.autocomplete.RadAutoCompleteTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:id="@+id/autocmp" />
+            android:text="Tokens" />
+    </RadioGroup>
 </LinearLayout>

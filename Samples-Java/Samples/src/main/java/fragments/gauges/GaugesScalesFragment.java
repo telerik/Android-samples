@@ -29,6 +29,7 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
 
         // >> radial-scale-instantiate
         GaugeRadialScale scale1 = new GaugeRadialScale(getActivity());
+        scale1.setLineVisible(true);
         scale1.setMinimum(34);
         scale1.setMaximum(40);
         // << radial-scale-instantiate
@@ -43,10 +44,13 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
         scale1.setLabelsCount(7);
         scale1.setMajorTicksCount(7);
         scale1.getLabelsPaint().setTextSize(30);
+        scale1.setTicksOffset(0);
+        scale1.setLabelsOffset(0.1f);
         // << radial-scale-config-ticks-labels
 
         // >> radial-scale-config2
         GaugeRadialScale scale2 = new GaugeRadialScale(getActivity());
+        scale2.setLineVisible(true);
         scale2.setStrokeWidth(2);
         scale2.setRadius(0.7f);
         scale2.setRange(93.2f, 104);
@@ -57,6 +61,8 @@ public class GaugesScalesFragment extends Fragment implements ExampleFragment {
         scale2.setLabelsLayoutMode(GaugeScaleLabelsLayoutMode.OUTER);
         scale2.getLabelsPaint().setTextSize(30);
         scale2.setLabelsColor(Color.GRAY);
+        scale2.setTicksOffset(0);
+        scale2.setLabelsOffset(0.1f);
         // << radial-scale-config2
 
         // >> add-scale-to-gauge

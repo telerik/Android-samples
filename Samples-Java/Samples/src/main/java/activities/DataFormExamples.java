@@ -19,6 +19,7 @@ public class DataFormExamples implements ExamplesProvider {
         result.add(new DataFormGettingStartedFragment());
         result.add(new DataFormFeaturesFragment());
         result.add(new DataFormEditorsFragment());
+        result.add(new DataFormAutoCompleteTextViewEditorFragment());
         result.add(new DataFormValidationFragment());
 
         result.add(new DataFormGroupLayoutFragment());

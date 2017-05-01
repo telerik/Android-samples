@@ -80,6 +80,12 @@ public class ListViewSwipeActionsGettingStartedFragment extends Fragment impleme
                 // Fired when the swipe-execute procedure has ended, i.e. the item being swiped is at
                 // its original position.
             }
+
+            @Override
+            public void onSwipeStateChanged(SwipeActionsBehavior.SwipeActionsState swipeActionsState, SwipeActionsBehavior.SwipeActionsState swipeActionsState1) {
+
+            }
+
         });
 
         this.listView.addBehavior(this.sab);
@@ -136,6 +142,7 @@ public class ListViewSwipeActionsGettingStartedFragment extends Fragment impleme
             final EmailMessage currentMessage = (EmailMessage)getItem(position);
             MySwipeContentViewHolder swipeContentHolder = (MySwipeContentViewHolder)viewHolder;
         }
+
         // << list-swipe-actions-adapter
     }
 

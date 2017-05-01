@@ -5,88 +5,103 @@ using Com.Telerik.Android.Common;
 
 namespace Samples
 {
-	public class CalendarExamples : Java.Lang.Object, ExamplesProvider {
+	public class CalendarExamples : Java.Lang.Object, ExamplesProvider
+	{
 
 		private LinkedHashMap calendarExamples;
 
-		public CalendarExamples(){
+		public CalendarExamples()
+		{
 			this.calendarExamples = this.GetCalendarExamples();
 		}
 
-		public String ControlName() {
+		public String ControlName()
+		{
 			return "Calendar";
 		}
 
-		public LinkedHashMap Examples(){
+		public LinkedHashMap Examples()
+		{
 			return this.calendarExamples;
 		}
 
-		private LinkedHashMap GetCalendarExamples(){
+		private LinkedHashMap GetCalendarExamples()
+		{
 			LinkedHashMap calendarExamples = new LinkedHashMap();
 			ArrayList result = new ArrayList();
 
-			result.Add (new InitCodeFragment());
-			result.Add (new InitXmlFragment());
+			result.Add(new InitCodeFragment());
+			result.Add(new InitXmlFragment());
 
-			calendarExamples.Put ("Init", result);
+			calendarExamples.Put("Init", result);
 
-			result = new ArrayList ();
+			result = new ArrayList();
 
-			result.Add (new DisplayDateSetFragment());
-			result.Add (new DisplayDateChangeListenerFragment());
-			result.Add (new DisplayDateMinMaxValuesFragment());
+			result.Add(new DisplayDateSetFragment());
+			result.Add(new DisplayDateChangeListenerFragment());
+			result.Add(new DisplayDateMinMaxValuesFragment());
 			//result.Add (new DisplayDateChangeEventFragment());
 
-			calendarExamples.Put ("Display Date", result);
+			calendarExamples.Put("Display Date", result);
 
-			result = new ArrayList ();
+			result = new ArrayList();
 
-			result.Add (new DisplayModeFragment());
-			result.Add (new DisplayModeChangeListenerFragment());
+			result.Add(new DisplayModeFragment());
+			result.Add(new DisplayModeChangeListenerFragment());
 
-			calendarExamples.Put ("Display Mode", result);
+			calendarExamples.Put("Display Mode", result);
 
-			result = new ArrayList ();
+			result = new ArrayList();
 			result.Add(new CellStylesFragment());
 			result.Add(new CustomizationRuleFragment());
 			result.Add(new DateToColorFragment());
 
 			calendarExamples.Put("Customizations", result);
 
-			result = new ArrayList ();
+			result = new ArrayList();
 
-			result.Add (new EventFragment());
-			result.Add (new EventAllDayFragment());
-			result.Add (new EventRenderModeFragment());
-			result.Add (new ReadEventsFragment());
+			result.Add(new EventFragment());
+			result.Add(new EventAllDayFragment());
+			result.Add(new EventRenderModeFragment());
+			result.Add(new EventRenderCustomFragment());
+			result.Add(new ReadEventsFragment());
 			//result.Add (new ReadEventsOptionsFragment());
-			result.Add (new EventsInlineDisplayModeFragment());
-			result.Add (new EventsPopupDisplayModeFragment());
+			result.Add(new EventsInlineDisplayModeFragment());
+			result.Add(new EventsPopupDisplayModeFragment());
+			result.Add(new EventsInlineCustomFragment());
 
-			calendarExamples.Put ("Events", result);
+			calendarExamples.Put("Events", result);
 
-			result = new ArrayList ();
+			result = new ArrayList();
 
-			result.Add (new ScrollingDirectionFragment());
-			result.Add (new ScrollingFlingSpeedFragment());
-			result.Add (new ScrollingFrictionFragment());
-			result.Add (new ScrollingModesFragment());
-			result.Add (new ScrollingProgramatticallyFragment());
-			result.Add (new ScrollingSnapFragment());
+			result.Add(new ScrollingDirectionFragment());
+			result.Add(new ScrollingFlingSpeedFragment());
+			result.Add(new ScrollingFrictionFragment());
+			result.Add(new ScrollingModesFragment());
+			result.Add(new ScrollingProgramatticallyFragment());
+			result.Add(new ScrollingSnapFragment());
 
-			calendarExamples.Put ("Scrolling", result);
+			calendarExamples.Put("Scrolling", result);
 
-			result = new ArrayList ();
+			result = new ArrayList();
 
-			result.Add (new SelectionChangedListenerFragment());
+			result.Add(new SelectionChangedListenerFragment());
 			//result.Add (new SelectionChangedEventFragment());
-			result.Add (new SelectionDecoratorsFragment());
-			result.Add (new SelectionDisabledDatesFragment());
-			result.Add (new SelectionModesFragment());
-			result.Add (new SelectionSetDatesFragment());
-			result.Add (new SelectionSetRangeFragment());
+			result.Add(new SelectionDecoratorsFragment());
+			result.Add(new SelectionDisabledDatesFragment());
+			result.Add(new SelectionModesFragment());
+			result.Add(new SelectionSetDatesFragment());
+			result.Add(new SelectionSetRangeFragment());
 
-			calendarExamples.Put ("Selection", result);
+			calendarExamples.Put("Selection", result);
+
+			result = new ArrayList();
+
+			result.Add(new DayViewGettingStartedFragment());
+			result.Add(new DayViewStylesFragment());
+			result.Add(new DayViewCustomViewsFragment());
+
+			calendarExamples.Put("DayView", result);
 
 			return calendarExamples;
 		}
