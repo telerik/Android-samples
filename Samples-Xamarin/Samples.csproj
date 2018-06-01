@@ -74,9 +74,6 @@
     <Reference Include="Telerik.Xamarin.Android.Gauges">
       <HintPath>..\Binaries\Telerik.Xamarin.Android.Gauges.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Xamarin.Android.Feedback">
-      <HintPath>..\Binaries\Telerik.Xamarin.Android.Feedback.dll</HintPath>
-    </Reference>
     <Reference Include="Telerik.Xamarin.Android.Data">
       <HintPath>..\Binaries\Telerik.Xamarin.Android.Data.dll</HintPath>
     </Reference>
