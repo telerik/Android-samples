@@ -8,9 +8,9 @@ using Android.App;
 [assembly: AssemblyTitle ("Telerik Xamarin.Android Samples")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("")]
-[assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("ginev")]
+[assembly: AssemblyCompany("Telerik EAD")]
+[assembly: AssemblyProduct ("Telerik Xamarin.Android Samples")]
+[assembly: AssemblyCopyright("Copyright © 2014-2018 Telerik EAD. All rights reserved.")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 
