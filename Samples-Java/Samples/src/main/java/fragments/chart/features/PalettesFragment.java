@@ -23,9 +23,6 @@ import java.util.Random;
 
 import activities.ExampleFragment;
 
-/**
- * Created by ginev on 11/21/2014.
- */
 public class PalettesFragment extends Fragment implements ExampleFragment {
 
     @Override
@@ -64,7 +61,7 @@ public class PalettesFragment extends Fragment implements ExampleFragment {
             chart.getSeries().add(areaSeries);
         }
 
-        ChartPalette defaultPaletteClone = chart.getPalette().clone();
+        ChartPalette defaultPaletteClone = chart.getPalette().clonePalette();
 
         // We acquire the palette entry containing the settings for the third series in the chart setup.
         PaletteEntry areaSeriesEntry = defaultPaletteClone.getEntry(ChartPalette.AREA_FAMILY, 2);
