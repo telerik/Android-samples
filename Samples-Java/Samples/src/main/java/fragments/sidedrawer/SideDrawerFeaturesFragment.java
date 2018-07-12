@@ -2,11 +2,9 @@ package fragments.sidedrawer;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -37,8 +35,9 @@ import com.telerik.android.sdk.R;
 
 import activities.ExampleFragment;
 
-public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragment, DrawerChangeListener {
+public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragment, DrawerChangeListener, View.OnLayoutChangeListener  {
     private RadSideDrawer drawer;
+    private Spinner transitionsSpinner;
     DrawerTransition[] transitions;
 
     @Override
@@ -48,10 +47,16 @@ public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragm
         drawer = (RadSideDrawer)rootView.findViewById(R.id.sideDrawer);
         drawer.setMainContent(this.loadMainContent(inflater));
         drawer.setDrawerContent(this.loadDrawerContent(inflater));
-
+        drawer.addOnLayoutChangeListener(this);
         drawer.addChangeListener(this);
 
         return rootView;
+    }
+
+    @Override
+    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+        this.drawer.removeOnLayoutChangeListener(this);
+        this.addTransitionsSpinnerListener();
     }
 
     private View loadMainContent(LayoutInflater inflater) {
@@ -72,7 +77,7 @@ public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragm
             }
         });
 
-        Spinner transitionsSpinner = (Spinner)result.findViewById(R.id.drawerTransitionsSpinner);
+        this.transitionsSpinner = (Spinner)result.findViewById(R.id.drawerTransitionsSpinner);
         transitions = new DrawerTransition[]
                 {
                         new SlideInOnTopTransition(),
@@ -86,17 +91,6 @@ public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragm
                 };
         ArrayAdapter<DrawerTransition> transitionsAdapter = new ArrayAdapter<DrawerTransition>(this.getActivity(), android.R.layout.simple_list_item_1, transitions);
         transitionsSpinner.setAdapter(transitionsAdapter);
-        transitionsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                drawer.setDrawerTransition(transitions[position]);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         CheckBox closeOnBackPress = (CheckBox)result.findViewById(R.id.drawerCloseOnBackPress);
         closeOnBackPress.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -142,6 +136,20 @@ public class SideDrawerFeaturesFragment extends Fragment implements ExampleFragm
         });
 
         return result;
+    }
+
+    private void addTransitionsSpinnerListener() {
+        this.transitionsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                drawer.setDrawerTransition(transitions[position]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override
