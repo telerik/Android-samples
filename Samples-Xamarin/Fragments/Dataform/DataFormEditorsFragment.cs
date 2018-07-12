@@ -1,23 +1,12 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System;
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Com.Telerik.Widget.Dataform.Engine;
 using Com.Telerik.Widget.Dataform.Visualization;
 using Com.Telerik.Widget.Dataform.Visualization.Core;
 using Com.Telerik.Android.Common;
-using Com.Telerik.Widget.Dataform.Visualization.Editors;
-using System.Reflection;
-using Java.Util;
 
 namespace Samples
 {
@@ -36,24 +25,27 @@ namespace Samples
 			return rootLayout;
 		}
 
-		public Java.Lang.Object Apply (Java.Lang.Object p0) {
+		public Java.Lang.Object Apply (Java.Lang.Object p0)
+		{
 			IEntityProperty property = (IEntityProperty)p0;
-//			if(property.Name().Equals("EmployeeType")) {
-//				return new CustomEditor(dataForm, property);
-//			}
+			if(property.Name().Equals("EmployeeType")) {
+				return new CustomEditor(dataForm, property, this.Activity.FragmentManager);
+			}
 
 			return null;
 		}
 
-		public String Title() {
+		public String Title()
+		{
 			return "Editors";
 		}
 
 		public class CustomEditor : EntityPropertyEditor, View.IOnClickListener, IPropertyChangedListener {
 			private EmployeeType type;
 			private Button editorButton;
+			private FragmentManager fragmentManager;
 
-			public CustomEditor(RadDataForm dataForm, IEntityProperty property) : base(dataForm,
+			public CustomEditor(RadDataForm dataForm, IEntityProperty property, FragmentManager fragmentManager) : base(dataForm,
 					dataForm.EditorsMainLayout,
 					dataForm.EditorsHeaderLayout,
 					Resource.Id.data_form_text_viewer_header,
@@ -67,14 +59,16 @@ namespace Samples
 				editorButton.SetOnClickListener(this);
 
 				((TextView)HeaderView).Text = property.Header;
-
+				this.fragmentManager = fragmentManager;
 			}
 
-			public override Java.Lang.Object Value() {
+			public override Java.Lang.Object Value()
+			{
 				return type.ToString();
 			}
 
-			protected override void ApplyEntityValueToEditor(Java.Lang.Object o) {
+			protected override void ApplyEntityValueToEditor(Java.Lang.Object o)
+			{
 				if(o == null) {
 					this.editorButton.Text = "Tap to select.";
 					return;
@@ -85,18 +79,21 @@ namespace Samples
 				type = (EmployeeType)Enum.Parse(type.GetType(), o.ToString());
 			}
 
-			public void OnClick(View v) {
+			public void OnClick(View v)
+			{
 				this.ShowEditorFragment(this.type);
 			}
 
-			private void ShowEditorFragment(EmployeeType initialValue) {
-				/*CustomEditorFragment fragment = new CustomEditorFragment();
+			private void ShowEditorFragment(EmployeeType initialValue)
+			{
+				CustomEditorFragment fragment = new CustomEditorFragment();
 				fragment.AddPropertyChangedListener(this);
 				fragment.Type = initialValue;
-				fragment.Show(Activity.GetSupportFragmentManager(), "customEditor");*/
+				fragment.Show(this.fragmentManager, "customEditor");
 			}
 
-			public void OnPropertyChanged(String s, Java.Lang.Object o) {
+			public void OnPropertyChanged(String s, Java.Lang.Object o)
+			{
 				if(o.ToString() == type.ToString()) {
 					return;
 				}

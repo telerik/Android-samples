@@ -256,6 +256,7 @@
     <Compile Include="Fragments\Calendar\DayView\CalendarEventsHelper.cs" />
     <Compile Include="Fragments\Calendar\DayView\DayViewStylesFragment.cs" />
     <Compile Include="Fragments\Calendar\DayView\DayViewCustomViewsFragment.cs" />
+    <Compile Include="Fragments\Dataform\CustomEditorFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -273,6 +274,7 @@
     <AndroidResource Include="Resources\layout\example_list_swipe_actions_multiple.axml" />
     <AndroidResource Include="Resources\layout\fragment_autocomplete_remote_data.axml" />
     <AndroidResource Include="Resources\layout\example_calendar_dayview_custom.axml" />
+    <AndroidResource Include="Resources\layout\dataform_custom_editor_fragment.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
