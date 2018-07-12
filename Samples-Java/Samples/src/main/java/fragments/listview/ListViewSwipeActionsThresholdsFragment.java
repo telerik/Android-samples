@@ -14,7 +14,6 @@ import com.telerik.widget.list.ListViewAdapter;
 import com.telerik.widget.list.ListViewHolder;
 import com.telerik.widget.list.RadListView;
 import com.telerik.widget.list.SwipeActionsBehavior;
-import com.telerik.widget.list.SwipeExecuteBehavior;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -154,6 +153,7 @@ public class ListViewSwipeActionsThresholdsFragment extends Fragment implements 
                 @Override
                 public void onClick(View v) {
                     remove(position);
+                    notifyItemRangeChanged(position, getItemCount());
                     Toast.makeText(((MySwipeContentViewHolder) viewHolder).itemView.getContext(), currentMessage.title + " successfully deleted.", Toast.LENGTH_SHORT).show();
                     sab.endExecute();
                 }

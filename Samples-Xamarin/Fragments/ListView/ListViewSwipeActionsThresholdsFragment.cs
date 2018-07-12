@@ -165,6 +165,7 @@ namespace Samples
 			if (v == this.vh.action2)
 			{
 				this.adapter.Remove(position);
+				this.adapter.NotifyItemRangeChanged(position, this.adapter.ItemCount);
 				Toast.MakeText(this.vh.ItemView.Context, currentMessage.title + " successfully deleted.", ToastLength.Short).Show();
 				sab.EndExecute();
 			}
