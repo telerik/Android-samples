@@ -126,6 +126,7 @@ namespace Samples
             {
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
             };
+
             Spinner currentTimeIndicatorWidthSpinner = this.CreateSpinner(currentTimeIndicatorWidthSpinnerArray, 3, (sender, e) =>
             {
                 this.calendarView.MultiDayView.DayEventsViewStyle.CurrentTimeIndicatorWidth = currentTimeIndicatorWidthSpinnerArray[e.Position];
@@ -143,6 +144,7 @@ namespace Samples
             {
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
             };
+
             Spinner currentTimeIndicatorRadiusSpinner = this.CreateSpinner(currentTimeIndicatorRadiusSpinnerArray, 3, (sender, e) =>
             {
                 this.calendarView.MultiDayView.DayEventsViewStyle.CurrentTimeIndicatorRadius = currentTimeIndicatorRadiusSpinnerArray[e.Position];
@@ -163,6 +165,7 @@ namespace Samples
                 "#" + Java.Lang.Integer.ToHexString(Color.Green).ToUpper().Substring(2),
                 "#" + Java.Lang.Integer.ToHexString(Color.Blue).ToUpper().Substring(2),
             };
+
             Spinner currentTimeIndicatorColorSpinner = this.CreateSpinner(currentTimeIndicatorColorSpinnerArray, 0, (sender, e) =>
             {
                 this.calendarView.MultiDayView.DayEventsViewStyle.CurrentTimeIndicatorColor = Color.ParseColor(currentTimeIndicatorColorSpinnerArray[e.Position]);
@@ -170,6 +173,28 @@ namespace Samples
 
             container.AddView(currentTimeIndicatorColorLabel);
             container.AddView(currentTimeIndicatorColorSpinner);
+
+
+            // CurrentTimeIndicatorColor configuration
+            var todayBackgroundColorLabel = new TextView(Activity);
+            todayBackgroundColorLabel.Text = "Set today background color:";
+
+            var todayBackgroundColorSpinnerArray = new System.Collections.Generic.List<string>
+            {
+                "#" + Java.Lang.Integer.ToHexString(Color.ParseColor("#F5F5F5")).ToUpper().Substring(2),
+                "#" + Java.Lang.Integer.ToHexString(Color.Yellow).ToUpper().Substring(2),
+                "#" + Java.Lang.Integer.ToHexString(Color.Green).ToUpper().Substring(2),
+                "#" + Java.Lang.Integer.ToHexString(Color.White).ToUpper().Substring(2)
+            };
+
+            Spinner todayBackgroundColorSpinner = this.CreateSpinner(todayBackgroundColorSpinnerArray, 0, (sender, e) =>
+            {
+                this.calendarView.MultiDayView.DayEventsViewStyle.TodayBackgroundColor = Color.ParseColor(todayBackgroundColorSpinnerArray[e.Position]);
+                this.calendarView.MultiDayView.AllDayEventsViewStyle.TodayBackgroundColor = Color.ParseColor(todayBackgroundColorSpinnerArray[e.Position]);
+            });
+
+            container.AddView(todayBackgroundColorLabel);
+            container.AddView(todayBackgroundColorSpinner);
 
             return container;
         }
