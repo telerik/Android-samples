@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -76,36 +78,140 @@ namespace Samples
         private View CreateConfigurationMenu()
         {
             LinearLayout container = new LinearLayout(Activity);
+            container.Orientation = Orientation.Vertical;
             container.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.MatchParent);
 
             container.SetBackgroundColor(Android.Graphics.Color.White);
 
-            var label = new TextView(Activity);
-            label.Text = "Set visible days:";
+            // VisibleDays configuration
+            var visibleDaysLabel = new TextView(Activity);
+            visibleDaysLabel.Text = "Set visible days:";
 
-            var spinnerArray = new System.Collections.Generic.List<int>();
-            spinnerArray.Add(1);
-            spinnerArray.Add(2);
-            spinnerArray.Add(3);
-            spinnerArray.Add(4);
-            spinnerArray.Add(5);
-            spinnerArray.Add(6);
-            spinnerArray.Add(7);
-
-            Spinner spinner = new Spinner(Activity);
-            ArrayAdapter<int> spinnerArrayAdapter = new ArrayAdapter<int>(Activity, Android.Resource.Layout.SimpleSpinnerDropDownItem, spinnerArray);
-            spinner.Adapter = spinnerArrayAdapter;
-
-            spinner.SetSelection(4);
-            spinner.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) => 
+            var visibleDaysSpinnerArray = new System.Collections.Generic.List<int>
             {
-                this.calendarView.MultiDayView.VisibleDays = spinnerArray[e.Position];
+                1, 2, 3, 4, 5, 6, 7
             };
 
-            container.AddView(label);
-            container.AddView(spinner);
+            Spinner visibleDaysSpinner = this.CreateSpinner(visibleDaysSpinnerArray, 4, (sender, e) =>
+            {
+                this.calendarView.MultiDayView.VisibleDays = visibleDaysSpinnerArray[e.Position];
+            });
+
+            container.AddView(visibleDaysLabel);
+            container.AddView(visibleDaysSpinner);
+
+
+            // CurrentTimeIndicatorVisible configuration
+            var currentTimeIndicatorVisibleLabel = new TextView(Activity);
+            currentTimeIndicatorVisibleLabel.Text = "Set CurrentTimeIndicator visible:";
+
+            var currentTimeIndicatorVisibleSpinnerArray = new System.Collections.Generic.List<bool>
+            {
+                true, false
+            };
+            Spinner currentTimeIndicatorVisibleSpinner = this.CreateSpinner(currentTimeIndicatorVisibleSpinnerArray, 0, (sender, e) =>
+            {
+                this.calendarView.MultiDayView.DayEventsViewStyle.CurrentTimeIndicatorVisible = currentTimeIndicatorVisibleSpinnerArray[e.Position];
+            });
+
+            container.AddView(currentTimeIndicatorVisibleLabel);
+            container.AddView(currentTimeIndicatorVisibleSpinner);
+
+
+            // CurrentTimeIndicatorWidth configuration
+            var currentTimeIndicatorWidthLabel = new TextView(Activity);
+            currentTimeIndicatorWidthLabel.Text = "Set CurrentTimeIndicator width:";
+
+            var currentTimeIndicatorWidthSpinnerArray = new System.Collections.Generic.List<int>
+            {
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+            };
+
+            Spinner currentTimeIndicatorWidthSpinner = this.CreateSpinner(currentTimeIndicatorWidthSpinnerArray, 3, (sender, e) =>
+            {
+                this.calendarView.MultiDayView.DayEventsViewStyle.CurrentTimeIndicatorWidth = currentTimeIndicatorWidthSpinnerArray[e.Position];
+            });
+
+            container.AddView(currentTimeIndicatorWidthLabel);
+            container.AddView(currentTimeIndicatorWidthSpinner);
+
+
+            // CurrentTimeIndicatorRadius configuration
+            var currentTimeIndicatorRadiusLabel = new TextView(Activity);
+            currentTimeIndicatorRadiusLabel.Text = "Set CurrentTimeIndicator radius:";
+
+            var currentTimeIndicatorRadiusSpinnerArray = new System.Collections.Generic.List<int>
+            {
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+            };
+
+            Spinner currentTimeIndicatorRadiusSpinner = this.CreateSpinner(currentTimeIndicatorRadiusSpinnerArray, 3, (sender, e) =>
+            {
+                this.calendarView.MultiDayView.DayEventsViewStyle.CurrentTimeIndicatorRadius = currentTimeIndicatorRadiusSpinnerArray[e.Position];
+            });
+
+            container.AddView(currentTimeIndicatorRadiusLabel);
+            container.AddView(currentTimeIndicatorRadiusSpinner);
+
+
+            // CurrentTimeIndicatorColor configuration
+            var currentTimeIndicatorColorLabel = new TextView(Activity);
+            currentTimeIndicatorColorLabel.Text = "Set CurrentTimeIndicator color:";
+
+            var currentTimeIndicatorColorSpinnerArray = new System.Collections.Generic.List<string>
+            {
+                "#" + Java.Lang.Integer.ToHexString(Color.Red).ToUpper().Substring(2),
+                "#" + Java.Lang.Integer.ToHexString(Color.Yellow).ToUpper().Substring(2),
+                "#" + Java.Lang.Integer.ToHexString(Color.Green).ToUpper().Substring(2),
+                "#" + Java.Lang.Integer.ToHexString(Color.Blue).ToUpper().Substring(2),
+            };
+
+            Spinner currentTimeIndicatorColorSpinner = this.CreateSpinner(currentTimeIndicatorColorSpinnerArray, 0, (sender, e) =>
+            {
+                this.calendarView.MultiDayView.DayEventsViewStyle.CurrentTimeIndicatorColor = Color.ParseColor(currentTimeIndicatorColorSpinnerArray[e.Position]);
+            });
+
+            container.AddView(currentTimeIndicatorColorLabel);
+            container.AddView(currentTimeIndicatorColorSpinner);
+
+
+            // CurrentTimeIndicatorColor configuration
+            var todayBackgroundColorLabel = new TextView(Activity);
+            todayBackgroundColorLabel.Text = "Set today background color:";
+
+            var todayBackgroundColorSpinnerArray = new System.Collections.Generic.List<string>
+            {
+                "#" + Java.Lang.Integer.ToHexString(Color.ParseColor("#F5F5F5")).ToUpper().Substring(2),
+                "#" + Java.Lang.Integer.ToHexString(Color.Yellow).ToUpper().Substring(2),
+                "#" + Java.Lang.Integer.ToHexString(Color.Green).ToUpper().Substring(2),
+                "#" + Java.Lang.Integer.ToHexString(Color.White).ToUpper().Substring(2)
+            };
+
+            Spinner todayBackgroundColorSpinner = this.CreateSpinner(todayBackgroundColorSpinnerArray, 0, (sender, e) =>
+            {
+                this.calendarView.MultiDayView.DayEventsViewStyle.TodayBackgroundColor = Color.ParseColor(todayBackgroundColorSpinnerArray[e.Position]);
+                this.calendarView.MultiDayView.AllDayEventsViewStyle.TodayBackgroundColor = Color.ParseColor(todayBackgroundColorSpinnerArray[e.Position]);
+            });
+
+            container.AddView(todayBackgroundColorLabel);
+            container.AddView(todayBackgroundColorSpinner);
 
             return container;
+        }
+
+        private Spinner CreateSpinner(System.Collections.IList options, int initialSelection, Action<object, AdapterView.ItemSelectedEventArgs> action)
+        {
+            Spinner spinner = new Spinner(Activity);
+            ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(Activity, Android.Resource.Layout.SimpleSpinnerDropDownItem, options);
+            spinner.Adapter = spinnerArrayAdapter;
+
+            spinner.SetSelection(initialSelection);
+            spinner.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) =>
+            {
+                action.Invoke(sender, e);
+            };
+
+            return spinner;
         }
 
         public class EventViewTapListener : Java.Lang.Object, Com.Telerik.Widget.Calendar.Dayview.CalendarDayView.IEventViewTapListener
