@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
@@ -77,6 +78,8 @@ namespace Samples
 
         private View CreateConfigurationMenu()
         {
+            var scrollView = new ScrollView(Activity);
+            
             LinearLayout container = new LinearLayout(Activity);
             container.Orientation = Orientation.Vertical;
             container.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.MatchParent);
@@ -175,7 +178,7 @@ namespace Samples
             container.AddView(currentTimeIndicatorColorSpinner);
 
 
-            // CurrentTimeIndicatorColor configuration
+            // TodayBackgroundColor configuration
             var todayBackgroundColorLabel = new TextView(Activity);
             todayBackgroundColorLabel.Text = "Set today background color:";
 
@@ -196,7 +199,51 @@ namespace Samples
             container.AddView(todayBackgroundColorLabel);
             container.AddView(todayBackgroundColorSpinner);
 
-            return container;
+
+            // WeekendsVisible configuration
+            var weekendsVisibleLabel = new TextView(Activity);
+            weekendsVisibleLabel.Text = "Set weekends visible:";
+
+            var weekendsVisibleSpinnerArray = new System.Collections.Generic.List<bool>
+            {
+                true, false
+            };
+
+            Spinner weekendsVisibleSpinner = this.CreateSpinner(weekendsVisibleSpinnerArray, 0, (sender, e) =>
+            {
+                this.calendarView.MultiDayView.WeekendsVisible = weekendsVisibleSpinnerArray[e.Position];
+            });
+
+            container.AddView(weekendsVisibleLabel);
+            container.AddView(weekendsVisibleSpinner);
+
+
+            // ScrollToEvent configuration
+            Button scrollToEventButton = new Button(Activity);
+            scrollToEventButton.Text = "Scroll To Event";
+            scrollToEventButton.Click += (object sender, EventArgs e) => 
+            {
+                var randomEvent = this.GetRandomEventIntoView();
+                this.calendarView.MultiDayView.ScrollToEvent(randomEvent, true);
+            };
+
+            container.AddView(scrollToEventButton);
+            scrollView.AddView(container);
+
+            return scrollView;
+        }
+
+        private Event GetRandomEventIntoView()
+        {
+            var startDate = this.calendarView.DisplayDate;
+
+            var calendar = Calendar.Instance;
+            calendar.TimeInMillis = startDate;
+            calendar.Add(CalendarField.DayOfYear, this.calendarView.MultiDayView.VisibleDays);
+            var endDate = calendar.TimeInMillis;
+
+            var events = this.calendarView.EventAdapter.Events.Where(x => x.StartDate > startDate && x.EndDate < endDate).ToList();
+            return events[this.random.Next(0, events.Count - 1)];
         }
 
         private Spinner CreateSpinner(System.Collections.IList options, int initialSelection, Action<object, AdapterView.ItemSelectedEventArgs> action)
