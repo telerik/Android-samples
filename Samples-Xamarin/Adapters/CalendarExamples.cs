@@ -103,12 +103,6 @@ namespace Samples
 
 			calendarExamples.Put("DayView", result);
 
-            result = new ArrayList();
-            result.Add(new MultiDayViewGettingStartedFragment());
-            result.Add(new MultiDayViewConfigurationFragment());
-
-            calendarExamples.Put("MultiDayView", result);
-
 			return calendarExamples;
 		}
 	}
