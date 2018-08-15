@@ -257,8 +257,6 @@
     <Compile Include="Fragments\Calendar\DayView\DayViewStylesFragment.cs" />
     <Compile Include="Fragments\Calendar\DayView\DayViewCustomViewsFragment.cs" />
     <Compile Include="Fragments\Dataform\CustomEditorFragment.cs" />
-    <Compile Include="Fragments\Calendar\MultiDayView\MultiDayViewGettingStartedFragment.cs" />
-    <Compile Include="Fragments\Calendar\MultiDayView\MultiDayViewConfigurationFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -419,9 +417,6 @@
     <AndroidAsset Include="Assets\countries.json" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Fragments\Calendar\MultiDayView\" />
-  </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
