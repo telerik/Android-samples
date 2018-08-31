@@ -57,13 +57,13 @@ namespace Samples
 		}
 
 		private ArrayList getData(){
-			Java.Util.Random numberGenerator = new Java.Util.Random();
+
 			ArrayList result = new ArrayList(8);
 
 			for (int i = 0; i < 20; i++){
 				ScatterDataEntity entity = new ScatterDataEntity();
-				entity.value1 = numberGenerator.NextDouble() * 10;
-				entity.value2 = numberGenerator.NextDouble() * 10;
+				entity.value1 = ChartExamples.randomDoubleValues[i] * 3;
+				entity.value2 = ChartExamples.randomDoubleValues[i] * 2;
 				result.Add(entity);
 			}
 

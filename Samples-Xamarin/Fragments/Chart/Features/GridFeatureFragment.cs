@@ -71,12 +71,12 @@ namespace Samples
 		}
 
 		private ArrayList getData(){
-			Java.Util.Random numberGenerator = new Java.Util.Random();
+
 			ArrayList result = new ArrayList(8);
 
 			for (int i = 0; i < 8; i++){
 				DataEntity entity = new DataEntity();
-				entity.value = numberGenerator.NextInt(10) + 1;
+				entity.value = ChartExamples.randomIntValues[i];
 				entity.category = "Item " + i;
 				result.Add(entity);
 			}

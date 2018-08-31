@@ -64,14 +64,14 @@ namespace Samples
 		}
 
 		private ArrayList getData(){
-			Java.Util.Random numberGenerator = new Java.Util.Random();
+
 			ArrayList result = new ArrayList(8);
 
-			for (int i = 0; i < 20; i++){
+			for (int i = 0; i < 8; i++){
 				ScatterDataEntity entity = new ScatterDataEntity();
-				entity.value1 = numberGenerator.NextDouble() * 10;
-				entity.value2 = numberGenerator.NextDouble() * 10;
-				entity.bubbleArea = numberGenerator.NextInt(5) + 1;
+				entity.value1 = ChartExamples.randomIntValues[i];
+				entity.value2 = ChartExamples.randomIntValues[i] + 10;
+				entity.bubbleArea = i * 3;
 				result.Add(entity);
 			}
 

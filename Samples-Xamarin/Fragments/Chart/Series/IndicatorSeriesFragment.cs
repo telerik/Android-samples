@@ -84,18 +84,16 @@ namespace Samples
 		private ArrayList getData() {
 			ArrayList data = new ArrayList();
 			int size = 10;
-			Java.Util.Random r = new Java.Util.Random();
-
 
 			int month = 1;
 			for (int i = 1; i <= size; ++i) {
 				FinancialDataClass ohlc = new FinancialDataClass();
 				//ohlc.category = Integer.toString(i);
-				ohlc.high = 150 + r.NextInt(50);
+				ohlc.high = 150 + ChartExamples.randomIntValues[i];
 
-				ohlc.low = ohlc.high - (r.NextInt(20) + 10);
-				ohlc.open = ohlc.low + r.NextInt((int)ohlc.high - (int)ohlc.low);
-				ohlc.close = ohlc.low + r.NextInt((int)ohlc.high - (int)ohlc.low);
+				ohlc.low = ohlc.high - 50;
+				ohlc.open = ohlc.high - 35;
+				ohlc.close = ohlc.high -15;
 				Calendar date = Calendar.Instance;
 				date.Set(CalendarField.Month, month++);
 				ohlc.date = date;
