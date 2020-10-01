@@ -22,3 +22,5 @@ The SDK examples of the Xamarin wrappers of UI for Android are to be found in th
 [UI for Android Feedback Portal](http://feedback.telerik.com/Project/158)
 
 [UI for Android Forums](http://www.telerik.com/forums/android)
+hope you like my work.
+thank you.
