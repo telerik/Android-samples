@@ -2,7 +2,7 @@
 Welcome to the Android-samples repository. Here you can find SDK examples of usage scenarios of all UI for Android components. You can also find the source code of the UI for Android demo application as seen on the Google Play Store: https://play.google.com/store/apps/details?id=com.telerik.examples&hl=en
 
 # Getting started with UI for Android
-The SDK examples of the UI for Android components are to be found in the Samples-Java folder. To run the project, import it in Android Studio, extract the UI for Android binaries into the `libs` folder and rename **all** them by stripping the version as follows:
+The SDK examples of the UI for Android components are to be found in the Samples-Java folder. To run the project, import it in Android Studio,UI/UX designers. ... Programmers transform the structure and visual performance, thought out and created by designers, into the real interface. extract the UI for Android binaries into the `libs` folder and rename **all** them by stripping the version as follows:
 - Common.aar
 - Primitives.aar
 - Input.aar
